@@ -27,10 +27,10 @@ public class AnalysisResult {
     private String reportPdfPath; // PDF 보고서 파일 경로
     private String reportXmlPath; // XML 보고서 파일 경로
 
-    @OneToOne(mappedBy = "analysisResult", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "analysisResult", cascade = CascadeType.ALL, orphanRemoval = true)
     private ScanSummary scanSummary;
 
-    @OneToMany(mappedBy = "analysisResult", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "analysisResult", cascade = CascadeType.ALL, orphanRemoval = true)
     private java.util.List<Vulnerability> vulnerabilities;
 
     public long getCriticalCount() {
