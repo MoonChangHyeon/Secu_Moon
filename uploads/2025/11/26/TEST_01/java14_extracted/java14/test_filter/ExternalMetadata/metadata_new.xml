@@ -1,0 +1,2903 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExternalMetadataPack xmlns="xmlns://www.fortifysoftware.com/schema/externalMetadata" schemaVersion="1.0">
+    <PackInfo>
+        <Name>행안부49개항목</Name>
+        <PackID>KISA49-external-mappings</PackID>
+        <Version>202401</Version>
+    </PackInfo>
+    <ExternalList>
+        <ExternalListID>3ADB9EE4-5761-4289-8BD3-CBFCC593KISA</ExternalListID>
+        <Name>행안부49개항목</Name>
+        <Shortcut>행안부49개항목</Shortcut>
+        <Description>행안부49개항목</Description>
+        <Group>행안부49개항목</Group>
+        <ExternalCategoryDefinition>
+            <Name>01.01. SQL 삽입</Name>
+            <Description>01.01. SQL 삽입</Description>
+            <OrderingInfo>1</OrderingInfo>
+        </ExternalCategoryDefinition>        
+        <ExternalCategoryDefinition>
+            <Name>01.02. 코드 삽입</Name>
+            <Description>01.02. 코드 삽입</Description>
+            <OrderingInfo>2</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>01.03. 경로 조작 및 자원 삽입</Name>
+            <Description>01.03. 경로 조작 및 자원 삽입</Description>
+            <OrderingInfo>3</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>01.04. 크로스사이트 스크립트</Name>
+            <Description>01.04. 크로스사이트 스크립트: Reflected</Description>
+            <OrderingInfo>4</OrderingInfo>
+        </ExternalCategoryDefinition>        
+        <ExternalCategoryDefinition>
+            <Name>01.05. 운영체제 명령어 삽입</Name>
+            <Description>01.05. 운영체제 명령어 삽입</Description>
+            <OrderingInfo>5</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>01.06. 위험한 형식 파일 업로드</Name>
+            <Description>01.06. 위험한 형식 파일 업로드</Description>
+            <OrderingInfo>6</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>01.07. 신뢰되지 않는 URL 주소로 자동 접속 연결</Name>
+            <Description>01.07. 신뢰되지 않는 URL 주소로 자동 접속 연결</Description>
+            <OrderingInfo>7</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>01.08. 부적절한 XML 외부개체 참조</Name>
+            <Description>01.08. 부적절한 XML 외부개체 참조</Description>
+            <OrderingInfo>8</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>01.09. XML 삽입</Name>
+            <Description>01.09. XML 삽입</Description>
+            <OrderingInfo>9</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>01.10. LDAP 삽입</Name>
+            <Description>01.10. LDAP 삽입</Description>
+            <OrderingInfo>10</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>01.11. 크로스사이트 요청 위조</Name>
+            <Description>01.11. 크로스사이트 요청 위조</Description>
+            <OrderingInfo>11</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>01.12. 서버사이드 요청 위조</Name>
+            <Description>01.12. 서버사이드 요청 위조</Description>
+            <OrderingInfo>12</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>01.13. HTTP 응답분할</Name>
+            <Description>01.13. HTTP 응답분할</Description>
+            <OrderingInfo>13</OrderingInfo>
+        </ExternalCategoryDefinition>        
+        <ExternalCategoryDefinition>
+            <Name>01.14. 정수형 오버플로우</Name>
+            <Description>01.14. 정수형 오버플로우</Description>
+            <OrderingInfo>14</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>01.15. 보안기능 결정에 사용되는 부적절한 입력값</Name>
+            <Description>01.15. 보안기능 결정에 사용되는 부적절한 입력값</Description>
+            <OrderingInfo>15</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>01.16. 메모리 버퍼 오버플로우</Name>
+            <Description>01.16. 메모리 버퍼 오버플로우</Description>
+            <OrderingInfo>16</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>01.17. 포맷스트링 삽입</Name>
+            <Description>01.17. 포맷스트링 삽입</Description>
+            <OrderingInfo>17</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>02.01. 적절한 인증없는 중요기능 허용</Name>
+            <Description>02.01. 적절한 인증없는 중요기능 허용</Description>
+            <OrderingInfo>18</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>02.02. 부적절한 인가</Name>
+            <Description>02.02. 부적절한 인가</Description>
+            <OrderingInfo>19</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>02.03. 중요한 자원에 대한 잘못된 권한 설정</Name>
+            <Description>02.03. 중요한 자원에 대한 잘못된 권한 설정</Description>
+            <OrderingInfo>20</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>02.04. 취약한 암호화 알고리즘 사용</Name>
+            <Description>02.04. 취약한 암호화 알고리즘 사용</Description>
+            <OrderingInfo>21</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>02.05. 암호화되지 않은 중요정보</Name>
+            <Description>02.05. 암호화되지 않은 중요정보</Description>
+            <OrderingInfo>22</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>02.06. 하드코드된 중요정보</Name>
+            <Description>02.06. 하드코드된 중요정보</Description>
+            <OrderingInfo>23</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>02.07. 충분하지 않은 키 길이 사용</Name>
+            <Description>02.07. 충분하지 않은 키 길이 사용</Description>
+            <OrderingInfo>24</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>02.08. 적절하지 않은 난수 값 사용</Name>
+            <Description>02.08. 적절하지 않은 난수 값 사용</Description>
+            <OrderingInfo>25</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>02.09. 취약한 비밀번호 허용</Name>
+            <Description>02.09. 취약한 비밀번호 허용</Description>
+            <OrderingInfo>26</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>02.10. 부적절한 전자서명 확인</Name>
+            <Description>02.10. 부적절한 전자서명 확인</Description>
+            <OrderingInfo>27</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>02.11. 부적절한 인증서 유효성 검증</Name>
+            <Description>02.11. 부적절한 인증서 유효성 검증</Description>
+            <OrderingInfo>28</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>02.12. 사용자 하드디스크에 저장되는 쿠키를 통한 정보 노출</Name>
+            <Description>02.12. 사용자 하드디스크에 저장되는 쿠키를 통한 정보 노출</Description>
+            <OrderingInfo>29</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>02.13. 주석문 안에 포함된 시스템 주요정보</Name>
+            <Description>02.13. 주석문 안에 포함된 시스템 주요정보</Description>
+            <OrderingInfo>30</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>02.14. 솔트 없이 일방향 해쉬 함수 사용</Name>
+            <Description>02.14. 솔트 없이 일방향 해쉬 함수 사용</Description>
+            <OrderingInfo>31</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>02.15. 무결성 검사없는 코드 다운로드</Name>
+            <Description>02.15. 무결성 검사없는 코드 다운로드</Description>
+            <OrderingInfo>32</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>02.16. 반복된 인증시도 제한 기능 부재</Name>
+            <Description>02.16. 반복된 인증시도 제한 기능 부재</Description>
+            <OrderingInfo>33</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>03.01. 경쟁조건: 검사시점과 사용시점(TOCTOU)</Name>
+            <Description>03.01. 경쟁조건: 검사시점과 사용시점(TOCTOU)</Description>
+            <OrderingInfo>34</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>03.02. 종료되지 않는 반복문 또는 재귀 함수</Name>
+            <Description>03.02. 종료되지 않는 반복문 또는 재귀 함수</Description>
+            <OrderingInfo>35</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>04.01. 오류메시지 통한 정보 노출</Name>
+            <Description>04.01. 오류메시지 통한 정보 노출</Description>
+            <OrderingInfo>36</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>04.02. 오류 상황 대응 부재</Name>
+            <Description>04.02. 오류 상황 대응 부재</Description>
+            <OrderingInfo>37</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>04.03. 부적절한 예외처리</Name>
+            <Description>04.03. 부적절한 예외처리</Description>
+            <OrderingInfo>38</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>05.01. 널(Null) 포인터 역참조</Name>
+            <Description>05.01. 널(Null) 포인터 역참조</Description>
+            <OrderingInfo>39</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>05.02. 부적절한 자원 해제</Name>
+            <Description>05.02. 부적절한 자원 해제</Description>
+            <OrderingInfo>40</OrderingInfo>
+        </ExternalCategoryDefinition>    
+        <ExternalCategoryDefinition>
+            <Name>05.03. 해제된 자원 사용</Name>
+            <Description>05.03. 해제된 자원 사용</Description>
+            <OrderingInfo>41</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>05.04. 초기화되지 않은 변수 사용</Name>
+            <Description>05.04. 초기화되지 않은 변수 사용</Description>
+            <OrderingInfo>42</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>05.05. 신뢰할 수 없는 데이터의 역직렬화</Name>
+            <Description>05.05. 신뢰할 수 없는 데이터의 역직렬화</Description>
+            <OrderingInfo>43</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>06.01. 잘못된 세션에 의한 데이터 정보 노출</Name>
+            <Description>06.01. 잘못된 세션에 의한 데이터 정보 노출</Description>
+            <OrderingInfo>44</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>06.02. 제거되지 않고 남은 디버그 코드</Name>
+            <Description>06.02. 제거되지 않고 남은 디버그 코드</Description>
+            <OrderingInfo>45</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>06.03. Public 메소드부터 반환된 Private 배열</Name>
+            <Description>06.03. Public 메소드부터 반환된 Private 배열</Description>
+            <OrderingInfo>46</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>06.04. Private 배열에 Public 데이터 할당</Name>
+            <Description>06.04. Private 배열에 Public 데이터 할당</Description>
+            <OrderingInfo>47</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>07.01. DNS lookup에 의존한 보안 결정</Name>
+            <Description>07.01. DNS lookup에 의존한 보안 결정</Description>
+            <OrderingInfo>48</OrderingInfo>
+        </ExternalCategoryDefinition>
+        <ExternalCategoryDefinition>
+            <Name>07.02. 취약한 API 사용</Name>
+            <Description>07.02. 취약한 API 사용</Description>
+            <OrderingInfo>49</OrderingInfo>
+        </ExternalCategoryDefinition>
+
+
+<!--01. 01.01. SQL 삽입-->
+		<Mapping>
+			<InternalCategory>NoSQL Injection: Realm</InternalCategory>
+			<ExternalCategory>01.01. SQL 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>NoSQL Injection: MongoDB</InternalCategory>
+			<ExternalCategory>01.01. SQL 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>NoSQL Injection: DynamoDB</InternalCategory>
+			<ExternalCategory>01.01. SQL 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>SQL Injection: PartiQL</InternalCategory>
+			<ExternalCategory>01.01. SQL 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>NoSQL Injection: Cosmos DB</InternalCategory>
+			<ExternalCategory>01.01. SQL 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Query String Injection: Amazon Web Services</InternalCategory>
+			<ExternalCategory>01.01. SQL 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Query String Injection: Android Provider</InternalCategory>
+			<ExternalCategory>01.01. SQL 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>SQL Injection: Castle ActiveRecord</InternalCategory>
+			<ExternalCategory>01.01. SQL 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>SQL Injection: LINQ</InternalCategory>
+			<ExternalCategory>01.01. SQL 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>SQL Injection: Nhibernate</InternalCategory>
+			<ExternalCategory>01.01. SQL 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>SQL Injection: Poor Validation</InternalCategory>
+			<ExternalCategory>01.01. SQL 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>SQL Injection: SubSonic</InternalCategory>
+			<ExternalCategory>01.01. SQL 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>SQL Injection: iBatis Data Map</InternalCategory>
+			<ExternalCategory>01.01. SQL 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>SQL Injection: JDO</InternalCategory>
+			<ExternalCategory>01.01. SQL 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>SQL Injection: MyBatis Mapper</InternalCategory>
+			<ExternalCategory>01.01. SQL 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>SQL Injection: Persistence</InternalCategory>
+			<ExternalCategory>01.01. SQL 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+
+
+<!--02. 01.02. 코드 삽입-->
+		<Mapping>
+			<InternalCategory>GraphQL Bad Practices: GraphiQL Enabled</InternalCategory>
+			<ExternalCategory>01.02. 코드 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>GraphQL Bad Practices: Introspection Enabled</InternalCategory>
+			<ExternalCategory>01.02. 코드 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>ColdFusion Bad Practices: Unauthorized Include</InternalCategory>
+			<ExternalCategory>01.02. 코드 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dynamic Code Evaluation: Code Manipulation</InternalCategory>
+			<ExternalCategory>01.02. 코드 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Expression Language Injection: Spring</InternalCategory>
+			<ExternalCategory>01.02. 코드 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>External Content: Content Delivery Network</InternalCategory>
+			<ExternalCategory>01.02. 코드 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>OGNL Expression Injection: Double Evaluation</InternalCategory>
+			<ExternalCategory>01.02. 코드 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>OGNL Expression Injection: Dynamic Method Invocation</InternalCategory>
+			<ExternalCategory>01.02. 코드 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>OGNL Expression Injection: Struts 2</InternalCategory>
+			<ExternalCategory>01.02. 코드 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>PHP Misconfiguration: allow_url_fopen Enabled</InternalCategory>
+			<ExternalCategory>01.02. 코드 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>PHP Misconfiguration: allow_url_include Enabled</InternalCategory>
+			<ExternalCategory>01.02. 코드 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>WCF Misconfiguration: Weak Class Reference</InternalCategory>
+			<ExternalCategory>01.02. 코드 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dynamic Code Evaluation: Code Injection</InternalCategory>
+			<ExternalCategory>01.02. 코드 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dynamic Code Evaluation: Script Injection</InternalCategory>
+			<ExternalCategory>01.02. 코드 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+        </Mapping>	
+		<Mapping>
+			<InternalCategory>OGNL Expression Injection</InternalCategory>
+			<ExternalCategory>01.02. 코드 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+        </Mapping>	
+		
+
+
+<!--03. 01.03. 경로 조작 및 자원 삽입-->
+        <Mapping>
+			<InternalCategory>Path Manipulation</InternalCategory>
+            <ExternalCategory>01.03. 경로 조작 및 자원 삽입</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Path Manipulation: Absolute Path Traversal</InternalCategory>
+            <ExternalCategory>01.03. 경로 조작 및 자원 삽입</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Resource Injection</InternalCategory>
+            <ExternalCategory>01.03. 경로 조작 및 자원 삽입</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+<!--03. 01.03. 경로 조작 및 자원 삽입 추가버전(CWE 기준)-->
+		<Mapping>
+			<InternalCategory>Intent Manipulation: Redirection</InternalCategory>
+			<ExternalCategory>01.03. 경로 조작 및 자원 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Path Manipulation: Base Path Overwriting</InternalCategory>
+			<ExternalCategory>01.03. 경로 조작 및 자원 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Path Manipulation: Zip Entry Overwrite</InternalCategory>
+			<ExternalCategory>01.03. 경로 조작 및 자원 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		
+<!--04. 01.04. 크로스사이트 스크립트-->
+        <Mapping>
+            <InternalCategory>Cross-Site Scripting: Reflected</InternalCategory>
+            <ExternalCategory>01.04. 크로스사이트 스크립트</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Cross-Site Scripting: Persistent</InternalCategory>
+            <ExternalCategory>01.04. 크로스사이트 스크립트</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Cross-Site Scripting: DOM</InternalCategory>
+            <ExternalCategory>01.04. 크로스사이트 스크립트</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Cross-Site Scripting: Poor Validation</InternalCategory>
+            <ExternalCategory>01.04. 크로스사이트 스크립트</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Cross-Site Scripting: External Links</InternalCategory>
+            <ExternalCategory>01.04. 크로스사이트 스크립트</ExternalCategory>
+        <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+ <!--04. 01.04. 크로스사이트 스크립트 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Cross-Site Scripting: SOP Bypass</InternalCategory>
+			<ExternalCategory>01.04. 크로스사이트 스크립트</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Cross-Site Scripting: Untrusted HTML Downloads</InternalCategory>
+			<ExternalCategory>01.04. 크로스사이트 스크립트</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Cross-Site Scripting: Handlebars Helper</InternalCategory>
+			<ExternalCategory>01.04. 크로스사이트 스크립트</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Cross-Site Scripting: SAPUI5 Control</InternalCategory>
+			<ExternalCategory>01.04. 크로스사이트 스크립트</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Cross-Site Scripting: Self</InternalCategory>
+			<ExternalCategory>01.04. 크로스사이트 스크립트</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Cross-Site Scripting: Inter-Component Communication (Cloud)</InternalCategory>
+			<ExternalCategory>01.04. 크로스사이트 스크립트</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Cross-Site Scripting: Inter-Component Communication</InternalCategory>
+			<ExternalCategory>01.04. 크로스사이트 스크립트</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+ 
+<!--05. 01.05. 운영체제 명령어 삽입-->
+        <Mapping>
+            <InternalCategory>Command Injection</InternalCategory>
+            <ExternalCategory>01.05. 운영체제 명령어 삽입</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+<!--05. 01.05. 운영체제 명령어 삽입 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Command Injection: GitHub Actions</InternalCategory>
+			<ExternalCategory>01.05. 운영체제 명령어 삽입</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+
+
+<!--06. 01.06. 위험한 형식 파일 업로드-->
+        <Mapping>
+            <InternalCategory>Often Misused: File Upload</InternalCategory>
+            <ExternalCategory>01.06. 위험한 형식 파일 업로드</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+<!--06. 01.06. 위험한 형식 파일 업로드 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>PHP Misconfiguration: file_uploads Enabled</InternalCategory>
+			<ExternalCategory>01.06. 위험한 형식 파일 업로드</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+
+<!--07. 01.07. 신뢰되지 않는 URL 주소로 자동 접속 연결-->
+        <Mapping>
+            <InternalCategory>Open Redirect</InternalCategory>
+            <ExternalCategory>01.07. 신뢰되지 않는 URL 주소로 자동 접속 연결</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+
+<!--07. 01.08. 부적절한 XML 외부개체 참조-->
+        <Mapping>
+            <InternalCategory>XML External Entity Injection</InternalCategory>
+            <ExternalCategory>01.08. 부적절한 XML 외부개체 참조</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+
+<!--08. 01.09. XML 삽입-->
+        <Mapping>
+            <InternalCategory>XML Injection</InternalCategory>
+            <ExternalCategory>01.09. XML 삽입</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>XQuery Injection</InternalCategory>
+            <ExternalCategory>01.09. XML 삽입</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>XPath Injection</InternalCategory>
+            <ExternalCategory>01.09. XML 삽입</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+
+<!--10. 01.10. LDAP 삽입-->
+        <Mapping>
+            <InternalCategory>LDAP Injection</InternalCategory>
+            <ExternalCategory>01.10. LDAP 삽입</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Access Control: Anonymous LDAP Bind</InternalCategory>
+            <ExternalCategory>01.10. LDAP 삽입</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+
+<!--11. 01.11. 크로스사이트 요청 위조-->
+        <Mapping>
+            <InternalCategory>Cross-Site Request Forgery</InternalCategory>
+            <ExternalCategory>01.11. 크로스사이트 요청 위조</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+<!--11. 01.11. 크로스사이트 요청 위조 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>ASP.NET MVC Bad Practices: Controller Action Not Restricted to POST</InternalCategory>
+			<ExternalCategory>01.11. 크로스사이트 요청 위조</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>ASP.NET MVC Bad Practices: Controller Action Without AntiForgery Validation</InternalCategory>
+			<ExternalCategory>01.11. 크로스사이트 요청 위조</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>ASP.NET MVC Bad Practices: Form Without AntiForgery Token</InternalCategory>
+			<ExternalCategory>01.11. 크로스사이트 요청 위조</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Cookie Security: Missing SameSite Attribute</InternalCategory>
+			<ExternalCategory>01.11. 크로스사이트 요청 위조</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Cookie Security: Overly Permissive SameSite Attribute</InternalCategory>
+			<ExternalCategory>01.11. 크로스사이트 요청 위조</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>	
+
+
+<!--12. 01.12. 서버사이드 요청 위조-->
+        <Mapping>
+            <InternalCategory>Server-Side Request Forgery</InternalCategory>
+            <ExternalCategory>01.12. 서버사이드 요청 위조</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+
+<!--13. 01.13. HTTP 응답분할-->
+        <Mapping>
+            <InternalCategory>Header Manipulation</InternalCategory>
+            <ExternalCategory>01.13. HTTP 응답분할</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Header Manipulation: Cookies</InternalCategory>
+            <ExternalCategory>01.13. HTTP 응답분할</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+<!--13. 01.13. HTTP 응답분할 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>ASP.NET Misconfiguration: Header Checking Disabled</InternalCategory>
+			<ExternalCategory>01.13. HTTP 응답분할</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+
+
+<!--14. 01.14. 정수형 오버플로우-->
+        <Mapping>
+            <InternalCategory>Integer Overflow</InternalCategory>
+            <ExternalCategory>01.14. 정수형 오버플로우</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+
+<!--15. 01.15. 보안기능 결정에 사용되는 부적절한 입력값-->
+        <Mapping>
+            <InternalCategory>Cookie Security: Persistent Session Cookie</InternalCategory>
+            <ExternalCategory>01.15. 보안기능 결정에 사용되는 부적절한 입력값</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+<!--15. 01.15. 보안기능 결정에 사용되는 부적절한 입력값 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Often Misused: Authentication</InternalCategory>
+			<ExternalCategory>01.15. 보안기능 결정에 사용되는 부적절한 입력값</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+
+
+<!--16. 01.16. 메모리 버퍼 오버플로우-->
+        <Mapping>
+            <InternalCategory>Buffer Overflow</InternalCategory>
+            <ExternalCategory>01.16. 메모리 버퍼 오버플로우</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+<!--16. 01.16. 메모리 버퍼 오버플로우 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Buffer Overflow: Off-by-One</InternalCategory>
+			<ExternalCategory>01.16. 메모리 버퍼 오버플로우</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Format String: Argument Number Mismatch</InternalCategory>
+			<ExternalCategory>01.16. 메모리 버퍼 오버플로우</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Format String: Argument Type Mismatch</InternalCategory>
+			<ExternalCategory>01.16. 메모리 버퍼 오버플로우</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Out-of-Bounds Read: Off-by-One</InternalCategory>
+			<ExternalCategory>01.16. 메모리 버퍼 오버플로우</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: Use of Released Camera Resource</InternalCategory>
+			<ExternalCategory>01.16. 메모리 버퍼 오버플로우</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: Use of Released Media Resource</InternalCategory>
+			<ExternalCategory>01.16. 메모리 버퍼 오버플로우</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: Use of Released SQLite Resource</InternalCategory>
+			<ExternalCategory>01.16. 메모리 버퍼 오버플로우</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Buffer Overflow: Signed Comparison</InternalCategory>
+			<ExternalCategory>01.16. 메모리 버퍼 오버플로우</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Out-of-Bounds Read: Signed Comparison</InternalCategory>
+			<ExternalCategory>01.16. 메모리 버퍼 오버플로우</ExternalCategory>
+			<MopasSecurityType>1</MopasSecurityType>
+		</Mapping>
+
+
+<!--17. 01.17. 포맷스트링 삽입-->
+        <Mapping>
+            <InternalCategory>Format String</InternalCategory>
+            <ExternalCategory>01.17. 포맷스트링 삽입</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Format String: Buffer Overflow</InternalCategory>
+            <ExternalCategory>01.17. 포맷스트링 삽입</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+<!--17. 01.17. 포맷스트링 삽입 추가버전(CWE)-->        
+		<Mapping>
+            <InternalCategory>Buffer Overflow: Format String</InternalCategory>
+            <ExternalCategory>01.17. 포맷스트링 삽입</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+		<Mapping>
+            <InternalCategory>Buffer Overflow: Format String (%f/%F)</InternalCategory>
+            <ExternalCategory>01.17. 포맷스트링 삽입</ExternalCategory>
+            <MopasSecurityType>1</MopasSecurityType>
+        </Mapping>
+		
+<!--18. 02.01. 적절한 인증없는 중요기능 허용-->
+        <Mapping>
+            <InternalCategory>J2EE Misconfiguration: Missing Authentication Method</InternalCategory>
+            <ExternalCategory>02.01. 적절한 인증없는 중요기능 허용</ExternalCategory>
+            <MopasSecurityType>2</MopasSecurityType>
+        </Mapping>
+<!--18. 02.01. 적절한 인증없는 중요기능 허용 추가버전(CWE)-->        
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Missing Service Account Token Authentication</InternalCategory>
+			<ExternalCategory>02.01. 적절한 인증없는 중요기능 허용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		
+		
+<!--19. 02.02. 부적절한 인가-->
+<!--19. 02.02. 부적절한 인가 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Access Control: Anonymous LDAP Bind</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Access Control: Case-Insensitive Package Name Comparison</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Access Control: Missing Authorization Check</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Access Control: Weak Security Constraint</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: Missing exported Flag or Component Permission</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Missing API Server Authorization</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Missing Kubelet Authorization</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Missing Kubelet Certificate Authentication</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Missing NodeRestriction Admission Controller</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Missing PodSecurityPolicy Admission Controller</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Struts 2 Bad Practices: Dynamic Method Invocation</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>WCF Misconfiguration: Anonymous Message Client</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>WCF Misconfiguration: Anonymous Transport Client</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>WCF Misconfiguration: MSMQ Anonymous Transport Client</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>WSE Misconfiguration: Missing Authorization</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Often Misused: SMS</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Amazon Web Services Unchecked Permissions</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Android Disable</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Android Recording</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: Improper IAM Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>GCP Terraform Misconfiguration: Overly Permissive Role</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>.NET Attribute Misuse: Authorization Bypass</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: Just Provider writePermission Defined</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: Missing Broadcaster Permission</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: Missing Component Permission</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: Missing Receiver Permission</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: Mixed Component Functionality</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: normal Permission</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: Provider Permission Defined</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: Sticky Broadcast</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: System Permission Defined</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: Unnecessary Component Exposure</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Improper Custom Role Access Control Policy</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Improper Storage Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: API Server Anonymous Access</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Kernel Defaults Overridden</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Kubelet Anonymous Access</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Missing Kubelet Client Certificate</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Missing Node Authorization</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Missing RBAC Authorization</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Missing Security Context</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Missing Service Account Token Authentication</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: NamespaceLifecycle Enforcement Disabled</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Android Activity Recognition</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Android Calendar</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Android Call Log</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Android Camera</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Android Contacts</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Android Data Storage</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Android Location</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Android Microphone</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Android Nearby Devices</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Android Notifications</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Android Read Aural Media</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Android Read Visual Media</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Android Sensors</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Dangerous Intent Permission</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Missing API Permission</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Missing Content Provider Permission</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Missing Intent Permission</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Overriding Permission Verification</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Unnecessary Permission</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>WCF Misconfiguration: Transport Security Enabled</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Access Control: Privilege Escalation</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: AmazonMQ Publicly Accessible</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: DMS Publicly Accessible</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: Improper ECS Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: Improper Lambda Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: Improper SageMaker Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: Improper Serverless Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: Improper Transfer Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: RDS Publicly Accessible</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Android Messaging</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Android Telephony</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Ansible Misconfiguration: Improper EC2 Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Ansible Misconfiguration: Improper Lambda Access Control Policy</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Ansible Misconfiguration: RDS Publicly Accessible</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: API Gateway Publicly Accessible</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: Aurora Publicly Accessible</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: Database Migration Service Publicly Accessible</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: DocumentDB Publicly Accessible</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: Improper EC2 Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: Improper EKS Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: Improper ElastiCache Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: Improper MSK Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: Improper RDS Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: Improper VPC Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: Lightsail Publicly Accessible</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: MQ Publicly Accessible</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: Neptune Publicly Accessible</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: RDS Publicly Accessible</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: Redshift Publicly Accessible</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Ansible Misconfiguration: Improper Security Group Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Ansible Misconfiguration: Improper Storage Account Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Ansible Misconfiguration: Overly Permissive Azure SQL Database Firewall</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Improper AKS Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Improper Compute VM Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Improper Container Registry Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Improper DocumentDB Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Improper Security Group Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Improper SQL Server Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Improper Cognitive Services Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Improper IoT Central Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Improper IoT Hub Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Improper Key Vault Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Improper Media Services Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Improper Service Bus Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Improper SignalR Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Improper Storage Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Improper Web PubSub Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Host Write Access</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: HTTP Basic Authentication</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Image Authorization Bypass</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: Improper API Gateway Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: Improper EC2 Network Access Control</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: Improper Lambda Access Control Policy</InternalCategory>
+			<ExternalCategory>02.02. 부적절한 인가</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+	  
+<!--20. 02.03. 중요한 자원에 대한 잘못된 권한 설정-->
+        <Mapping>
+            <InternalCategory>File Permission Manipulation</InternalCategory>
+            <ExternalCategory>02.03. 중요한 자원에 대한 잘못된 권한 설정</ExternalCategory>
+            <MopasSecurityType>2</MopasSecurityType>
+        </Mapping>
+<!--20. 02.03. 중요한 자원에 대한 잘못된 권한 설정 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Permission Manipulation: Logging</InternalCategory>
+			<ExternalCategory>02.03. 중요한 자원에 대한 잘못된 권한 설정</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>GCP Terraform Misconfiguration: Google Project Network Access Control</InternalCategory>
+			<ExternalCategory>02.03. 중요한 자원에 대한 잘못된 권한 설정</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Host Write Access</InternalCategory>
+			<ExternalCategory>02.03. 중요한 자원에 대한 잘못된 권한 설정</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Cookie Security: HTTPOnly not Set</InternalCategory>
+			<ExternalCategory>02.03. 중요한 자원에 대한 잘못된 권한 설정</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Cookie Security: HTTPOnly not Set on Session Cookie</InternalCategory>
+			<ExternalCategory>02.03. 중요한 자원에 대한 잘못된 권한 설정</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Cookie Security: HTTPOnly not Set on Application Cookie</InternalCategory>
+			<ExternalCategory>02.03. 중요한 자원에 대한 잘못된 권한 설정</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Cookie Security: HTTPOnly not Set on CSRF Cookie</InternalCategory>
+			<ExternalCategory>02.03. 중요한 자원에 대한 잘못된 권한 설정</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>HTML5: Overly Permissive Referrer-Policy</InternalCategory>
+			<ExternalCategory>02.03. 중요한 자원에 대한 잘못된 권한 설정</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Privilege Management: Overriding Permission Verification</InternalCategory>
+			<ExternalCategory>02.03. 중요한 자원에 대한 잘못된 권한 설정</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+
+
+<!--21. 02.04. 취약한 암호화 알고리즘 사용-->
+        <Mapping>
+            <InternalCategory>Weak Encryption</InternalCategory>
+            <ExternalCategory>02.04. 취약한 암호화 알고리즘 사용</ExternalCategory>
+            <MopasSecurityType>2</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Weak Encryption: Inadequate RSA Padding</InternalCategory>
+            <ExternalCategory>02.04. 취약한 암호화 알고리즘 사용</ExternalCategory>
+            <MopasSecurityType>2</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Weak Cryptographic Hash</InternalCategory>
+            <ExternalCategory>02.04. 취약한 암호화 알고리즘 사용</ExternalCategory>
+            <MopasSecurityType>2</MopasSecurityType>
+        </Mapping>
+<!--21. 02.04. 취약한 암호화 알고리즘 사용 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Weak Encryption: Insecure Mode of Operation</InternalCategory>
+			<ExternalCategory>02.04. 취약한 암호화 알고리즘 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Weak Encryption: Stream Cipher</InternalCategory>
+			<ExternalCategory>02.04. 취약한 암호화 알고리즘 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Transport: Weak SSL Protocol</InternalCategory>
+			<ExternalCategory>02.04. 취약한 암호화 알고리즘 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Insecure Active Directory Domain Service Transport</InternalCategory>
+			<ExternalCategory>02.04. 취약한 암호화 알고리즘 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>GCP Terraform Misconfiguration: Weak Cryptographic Cloud DNS Signature</InternalCategory>
+			<ExternalCategory>02.04. 취약한 암호화 알고리즘 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Transport: Weak SSL Cipher</InternalCategory>
+			<ExternalCategory>02.04. 취약한 암호화 알고리즘 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>GCP Terraform Misconfiguration: Insecure Load Balancer Transport</InternalCategory>
+			<ExternalCategory>02.04. 취약한 암호화 알고리즘 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		
+ <!--22. 02.05. 암호화되지 않은 중요정보-->
+        <Mapping>
+            <InternalCategory>Password Management: Password in Configuration File</InternalCategory>
+            <ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+            <MopasSecurityType>2</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Insecure Transport</InternalCategory>
+            <ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+            <MopasSecurityType>2</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>J2EE Misconfiguration: Insecure Transport</InternalCategory>
+            <ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+            <MopasSecurityType>2</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Cookie Security: Cookie not Sent Over SSL</InternalCategory>
+            <ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+            <MopasSecurityType>2</MopasSecurityType>
+        </Mapping>
+<!--22. 02.05. 암호화되지 않은 중요정보 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Insecure Transport: Cipher Suite Downgrade</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Storage: HTTP Response Cache Leak</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Storage: Android Backup Storage</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Storage: Insufficient Cache Leak Protection</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Storage: Persistent Named Pasteboard</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Storage: Universal Clipboard</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Storage: Externally Available Keychain</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Storage: Insufficient Keychain Protection</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Storage: Lacking Keychain Protection</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Storage: Passcode Policy Unenforced</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>OpenAPI Misconfiguration: Insecure Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: Insecure API Gateway Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: Insecure CloudFront Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: Insecure Elasticsearch Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: Insecure ELB Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure App Service Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure CDN Endpoint Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure Function App Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure Logic App Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure MariaDB Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure MySQL Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure Network Monitor Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure PostgreSQL Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure Redis Cache Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure Spring Cloud Redis Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure Spring Cloud Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure Storage Account Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Transport: HSTS not Set</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Transport: gRPC Channel Credentials</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Transport: gRPC Server Credentials</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Transport: HSTS Does Not Include Subdomains</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Transport: Insufficient HSTS Expiration Time</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>ASP.NET Middleware Out of Order: Insecure Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: Insecure API Gateway Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: Insecure CloudFront Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: Insecure ECS Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: Insecure OpenSearch Service Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Terraform Misconfiguration: Insecure RDS Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Ansible Misconfiguration: Insecure App Service Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: HTTPS Not Required</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Insecure App Service Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Insecure CDN Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Insecure EventHub Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Insecure IoT Hub Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Insecure Redis Enterprise Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Insecure Redis Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Insecure Service Bus Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure Event Hubs Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure Front Door Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure Functions Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure Redis Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure Service Bus Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure SQL Database Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Terraform Misconfiguration: Insecure SQL Managed Instance Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dynamic Code Evaluation: Insecure Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Insecure Kubelet Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>OpenAPI Misconfiguration: Credential Leakage</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Web Server Misconfiguration: HTTP Basic Authentication</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Axis 2 Service Provider Misconfiguration: Missing Inbound Encryption</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Axis 2 Service Provider Misconfiguration: Missing Outbound Encryption</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Axis 2 Service Requester Misconfiguration: Missing Inbound Encryption</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Axis 2 Service Requester Misconfiguration: Missing Outbound Encryption</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Transport: RFCOMM Bluetooth Socket</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: HTTP Basic Authentication</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>WebSphere Service Provider Misconfiguration: Missing Inbound Encryption</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>WebSphere Service Provider Misconfiguration: Missing Outbound Encryption</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>WebSphere Service Requester Misconfiguration: Missing Inbound Encryption</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>WebSphere Service Requester Misconfiguration: Missing Outbound Encryption</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Transport: Mail Transmission</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: Insecure Elasticache Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Ansible Misconfiguration: Insecure CloudFront Distribution Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Axis 2 Misconfiguration: Insecure Message Security</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Axis 2 Misconfiguration: Insecure Transport Receiver</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Axis 2 Misconfiguration: Insecure Transport Sender</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Axis 2 Service Provider Misconfiguration: Inbound WS-Security Not Enabled</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Axis 2 Service Provider Misconfiguration: Outbound WS-Security Not Enabled</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Axis 2 Service Provider Misconfiguration: WS-Security Not Enabled</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Axis 2 Service Requester Misconfiguration: Inbound WS-Security Not Enabled</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Axis 2 Service Requester Misconfiguration: Outbound WS-Security Not Enabled</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Axis 2 Service Requester Misconfiguration: WS-Security Not Enabled</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Ansible Misconfiguration: Insecure Storage Account Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Insecure Storage Account Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Insecure etcd Client Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Insecure etcd Peer Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Weak SSL Certificate for Kubelet</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>WCF Misconfiguration: Insecure Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Weak WS-SecurityPolicy: Insecure Transport</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>WebSphere Service Provider Misconfiguration: Inbound WS-Security Not Enabled</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>WebSphere Service Provider Misconfiguration: Outbound WS-Security Not Enabled</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>WebSphere Service Requester Misconfiguration: Inbound WS-Security Not Enabled</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>WebSphere Service Requester Misconfiguration: Outbound WS-Security Not Enabled</InternalCategory>
+			<ExternalCategory>02.05. 암호화되지 않은 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+
+
+<!--23. 02.06. 하드코드된 중요정보-->
+<!--23. 02.06. 하드코드된 중요정보 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Mule Misconfiguration: Hardcoded Password</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Password Management: Empty Password</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Credential Management: Hardcoded API Credentials</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Unauthenticated Service: MongoDB</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Password Management: Hardcoded Password</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Key Management: Unencrypted Private Key</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Password Management: Null Password</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Password Management: Password in HTML Form</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Password Management: Shared Password Database</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Unauthenticated Service: Redis</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Missing Service Account Admission Controller</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Key Management: Empty HMAC Key</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Key Management: Hardcoded HMAC Key</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Key Management: Empty Encryption Key</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Key Management: Empty PBE Password</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Key Management: Hardcoded Encryption Key</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Key Management: Null Encryption Key</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Key Management: Hardcoded PBE Password</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Key Management: Null PBE Password</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Hardcoded Secret</InternalCategory>
+			<ExternalCategory>02.06. 하드코드된 중요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+
+
+
+<!--24. 02.07. 충분하지 않은 키 길이 사용-->
+<!--24. 02.07. 충분하지 않은 키 길이 사용 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Weak Encryption: Insufficient Key Size</InternalCategory>
+			<ExternalCategory>02.07. 충분하지 않은 키 길이 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Weak Cryptographic Signature: Insufficient Key Size</InternalCategory>
+			<ExternalCategory>02.07. 충분하지 않은 키 길이 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Weak Cryptographic Signature: User-Controlled Key Size</InternalCategory>
+			<ExternalCategory>02.07. 충분하지 않은 키 길이 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Weak Encryption: User-Controlled Key Size</InternalCategory>
+			<ExternalCategory>02.07. 충분하지 않은 키 길이 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Weak Encryption: User-Controlled Key Size</InternalCategory>
+			<ExternalCategory>02.07. 충분하지 않은 키 길이 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Transport: Weak SSL Cipher</InternalCategory>
+			<ExternalCategory>02.07. 충분하지 않은 키 길이 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+
+
+
+<!--25. 02.08. 적절하지 않은 난수 값 사용-->
+         <Mapping>
+            <InternalCategory>Insecure Randomness</InternalCategory>
+            <ExternalCategory>02.08. 적절하지 않은 난수 값 사용</ExternalCategory>
+            <MopasSecurityType>2</MopasSecurityType>
+        </Mapping>
+<!--25. 02.08. 적절하지 않은 난수 값 사용 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Insecure Randomness: Weak Entropy Source</InternalCategory>
+			<ExternalCategory>02.08. 적절하지 않은 난수 값 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Randomness: User-Controlled Seed</InternalCategory>
+			<ExternalCategory>02.08. 적절하지 않은 난수 값 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Randomness: Hardcoded Seed</InternalCategory>
+			<ExternalCategory>02.08. 적절하지 않은 난수 값 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>HTML5: Easy-to-Guess Database Name</InternalCategory>
+			<ExternalCategory>02.08. 적절하지 않은 난수 값 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+
+
+
+
+<!--26. 02.09. 취약한 비밀번호 허용-->
+        <Mapping>
+            <InternalCategory>Password Management</InternalCategory>
+            <ExternalCategory>02.09. 취약한 비밀번호 허용</ExternalCategory>
+            <MopasSecurityType>2</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Password Management: Weak Cryptography</InternalCategory>
+            <ExternalCategory>02.09. 취약한 비밀번호 허용</ExternalCategory>
+            <MopasSecurityType>2</MopasSecurityType>
+        </Mapping>
+<!--26. 02.09. 취약한 비밀번호 허용 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Password Management: Weak Redundancy</InternalCategory>
+			<ExternalCategory>02.09. 취약한 비밀번호 허용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+
+<!--27. 02.10. 부적절한 전자서명 확인-->
+
+<!--28. 02.11. 부적절한 인증서 유효성 검증-->
+<!--28. 02.11. 부적절한 인증서 유효성 검증 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>ASP.NET Misconfiguration: Certificate Validation Disabled</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>ASP.NET Misconfiguration: Incomplete Certificate Validation</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Weak etcd SSL Certificate</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure SSL: Server Identity Verification Disabled</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: Insecure DocumentDB Transport</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: Insecure Redshift Transport</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: Missing Google Play Services Updated Security Provider</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: Missing Network Security Configuration</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Ansible Misconfiguration: Insecure MySQL Server Transport</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure Ansible Misconfiguration: Insecure PostgreSQL Server Transport</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Insecure MySQL Server Transport</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Insecure PostgreSQL Server Transport</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure SSL: Android Customized Implementation</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure SSL: Android Socket</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure SSL: Inadequate Certificate Verification</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure SSL: Overly Broad Certificate Trust</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Transport: Database</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Transport: Disabled App Transport Security</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Insecure Transport: External Link</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Inadequate Certificate Verification</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Missing API Server Identity Verification</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Missing Kubelet Identity Verification</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Overly Broad Certificate Trust</InternalCategory>
+			<ExternalCategory>02.11. 부적절한 인증서 유효성 검증</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+
+
+
+<!--29. 02.12. 사용자 하드디스크에 저장되는 쿠키를 통한 정보 노출-->
+<!--29. 02.12. 사용자 하드디스크에 저장되는 쿠키를 통한 정보 노출 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Cookie Security: Persistent Cookie</InternalCategory>
+			<ExternalCategory>02.12. 사용자 하드디스크에 저장되는 쿠키를 통한 정보 노출</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Cookie Security: Persistent Session Cookie</InternalCategory>
+			<ExternalCategory>02.12. 사용자 하드디스크에 저장되는 쿠키를 통한 정보 노출</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+
+
+        
+<!--30. 02.13. 주석문 안에 포함된 시스템 주요정보-->
+<!--30. 02.13. 주석문 안에 포함된 시스템 주요정보 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>System Information Leak: HTML Comment in JSP</InternalCategory>
+			<ExternalCategory>02.13. 주석문 안에 포함된 시스템 주요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Password Management: Password in Commen</InternalCategory>
+			<ExternalCategory>02.13. 주석문 안에 포함된 시스템 주요정보</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+
+<!--31. 02.14. 솔트 없이 일방향 해쉬 함수 사용-->
+<!--31. 02.14. 솔트 없이 일방향 해쉬 함수 사용 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Weak Cryptographic Hash: Empty Salt</InternalCategory>
+			<ExternalCategory>02.14. 솔트 없이 일방향 해쉬 함수 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Weak Cryptographic Hash: Null PBE Salt</InternalCategory>
+			<ExternalCategory>02.14. 솔트 없이 일방향 해쉬 함수 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Weak Cryptographic Hash: Null Salt</InternalCategory>
+			<ExternalCategory>02.14. 솔트 없이 일방향 해쉬 함수 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Weak Cryptographic Hash: Empty PBE Salt</InternalCategory>
+			<ExternalCategory>02.14. 솔트 없이 일방향 해쉬 함수 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Weak Cryptographic Hash: Hardcoded PBE Salt</InternalCategory>
+			<ExternalCategory>02.14. 솔트 없이 일방향 해쉬 함수 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Weak Cryptographic Hash: Predictable Salt</InternalCategory>
+			<ExternalCategory>02.14. 솔트 없이 일방향 해쉬 함수 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Weak Cryptographic Hash: Insecure PBE Iteration Count</InternalCategory>
+			<ExternalCategory>02.14. 솔트 없이 일방향 해쉬 함수 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Weak Cryptographic Hash: Hardcoded Salt</InternalCategory>
+			<ExternalCategory>02.14. 솔트 없이 일방향 해쉬 함수 사용</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+
+
+
+<!--32. 02.15. 무결성 검사없는 코드 다운로드-->
+        <Mapping>
+            <InternalCategory>File Disclosure: J2EE</InternalCategory>
+            <ExternalCategory>02.15. 무결성 검사없는 코드 다운로드</ExternalCategory>
+            <MopasSecurityType>2</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>File Disclosure: Struts</InternalCategory>
+            <ExternalCategory>02.15. 무결성 검사없는 코드 다운로드</ExternalCategory>
+            <MopasSecurityType>2</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>File Disclosure: Spring</InternalCategory>
+            <ExternalCategory>02.15. 무결성 검사없는 코드 다운로드</ExternalCategory>
+            <MopasSecurityType>2</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>File Disclosure: Spring Webflow</InternalCategory>
+            <ExternalCategory>02.15. 무결성 검사없는 코드 다운로드</ExternalCategory>
+            <MopasSecurityType>2</MopasSecurityType>
+        </Mapping>  
+<!--32. 02.15. 무결성 검사없는 코드 다운로드 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>AWS CloudFormation Misconfiguration: Missing CloudTrail Log Validation</InternalCategory>
+			<ExternalCategory>02.15. 무결성 검사없는 코드 다운로드</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dynamic Code Evaluation: Code Manipulation</InternalCategory>
+			<ExternalCategory>02.15. 무결성 검사없는 코드 다운로드</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dynamic Code Evaluation: Code Injection</InternalCategory>
+			<ExternalCategory>02.15. 무결성 검사없는 코드 다운로드</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>AWS Ansible Misconfiguration: Missing CloudTrail Log Validation</InternalCategory>
+			<ExternalCategory>02.15. 무결성 검사없는 코드 다운로드</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dynamic Code Evaluation: Script Injection</InternalCategory>
+			<ExternalCategory>02.15. 무결성 검사없는 코드 다운로드</ExternalCategory>
+			<MopasSecurityType>2</MopasSecurityType>
+		</Mapping>
+
+
+<!--33. 02.16. 반복된 인증시도 제한 기능 부재-->  
+        <Mapping>
+            <InternalCategory>Password Management: Weak Password Policy</InternalCategory>
+            <ExternalCategory>02.16. 반복된 인증시도 제한 기능 부재</ExternalCategory>
+            <MopasSecurityType>2</MopasSecurityType>
+        </Mapping>
+        
+<!--34. 03.01. 경쟁조건: 검사시점과 사용시점(TOCTOU)-->
+<!--34. 03.01. 경쟁조건: 검사시점과 사용시점(TOCTOU) 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Race Condition: App Download</InternalCategory>
+			<ExternalCategory>03.01. 경쟁조건: 검사시점과 사용시점(TOCTOU)</ExternalCategory>
+			<MopasSecurityType>3</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Race Condition: Roaming Data Access</InternalCategory>
+			<ExternalCategory>03.01. 경쟁조건: 검사시점과 사용시점(TOCTOU)</ExternalCategory>
+			<MopasSecurityType>3</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Race Condition: Class Initialization Cycle</InternalCategory>
+			<ExternalCategory>03.01. 경쟁조건: 검사시점과 사용시점(TOCTOU)</ExternalCategory>
+			<MopasSecurityType>3</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Race Condition: PHP Design Flaw</InternalCategory>
+			<ExternalCategory>03.01. 경쟁조건: 검사시점과 사용시점(TOCTOU)</ExternalCategory>
+			<MopasSecurityType>3</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Race Condition: File System Access</InternalCategory>
+			<ExternalCategory>03.01. 경쟁조건: 검사시점과 사용시점(TOCTOU)</ExternalCategory>
+			<MopasSecurityType>3</MopasSecurityType>
+		</Mapping>
+
+
+
+<!--35. 03.02. 종료되지 않는 반복문 또는 재귀 함수-->
+        <Mapping>
+            <InternalCategory>Uncontrolled Recursion</InternalCategory>
+            <ExternalCategory>03.02. 종료되지 않는 반복문 또는 재귀 함수</ExternalCategory>
+            <MopasSecurityType>3</MopasSecurityType>
+        </Mapping>
+<!--35. 03.02. 종료되지 않는 반복문 또는 재귀 함수 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Denial of Service: Stack Exhaustion</InternalCategory>
+			<ExternalCategory>03.02. 종료되지 않는 반복문 또는 재귀 함수</ExternalCategory>
+			<MopasSecurityType>3</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Code Correctness: Stack Exhaustion</InternalCategory>
+			<ExternalCategory>03.02. 종료되지 않는 반복문 또는 재귀 함수</ExternalCategory>
+			<MopasSecurityType>3</MopasSecurityType>
+		</Mapping>
+
+
+
+<!--36. 오류 메시지를 통한 정보 노출-->
+        <Mapping>
+            <InternalCategory>System Information Leak</InternalCategory>
+            <ExternalCategory>04.01. 오류메시지 통한 정보 노출</ExternalCategory>
+            <MopasSecurityType>4</MopasSecurityType>
+        </Mapping>
+<!--36. 오류 메시지를 통한 정보 노출 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>System Information Leak: PHP Errors</InternalCategory>
+			<ExternalCategory>04.01. 오류메시지 통한 정보 노출</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>System Information Leak: Incomplete Servlet Error Handling</InternalCategory>
+			<ExternalCategory>04.01. 오류메시지 통한 정보 노출</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>System Information Leak: Internal</InternalCategory>
+			<ExternalCategory>04.01. 오류메시지 통한 정보 노출</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>J2EE Misconfiguration: Direct JSP Access</InternalCategory>
+			<ExternalCategory>04.01. 오류메시지 통한 정보 노출</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: API Server Profiling</InternalCategory>
+			<ExternalCategory>04.01. 오류메시지 통한 정보 노출</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Controller Manager Profiling</InternalCategory>
+			<ExternalCategory>04.01. 오류메시지 통한 정보 노출</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: readOnlyPort Enabled</InternalCategory>
+			<ExternalCategory>04.01. 오류메시지 통한 정보 노출</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>System Information Leak: Apache Axis</InternalCategory>
+			<ExternalCategory>04.01. 오류메시지 통한 정보 노출</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>System Information Leak: Apache Axis 2</InternalCategory>
+			<ExternalCategory>04.01. 오류메시지 통한 정보 노출</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>System Information Leak: iOS Property List</InternalCategory>
+			<ExternalCategory>04.01. 오류메시지 통한 정보 노출</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>System Information Leak: PHP Version</InternalCategory>
+			<ExternalCategory>04.01. 오류메시지 통한 정보 노출</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>System Information Leak: SignalR Exposed JavaScript Proxy</InternalCategory>
+			<ExternalCategory>04.01. 오류메시지 통한 정보 노출</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>System Information Leak: Spring Boot Actuators Enabled</InternalCategory>
+			<ExternalCategory>04.01. 오류메시지 통한 정보 노출</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>System Information Leak: Struts 2</InternalCategory>
+			<ExternalCategory>04.01. 오류메시지 통한 정보 노출</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>System Information Leak: Overly Broad SQL Logging</InternalCategory>
+			<ExternalCategory>04.01. 오류메시지 통한 정보 노출</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>System Information Leak: External</InternalCategory>
+			<ExternalCategory>04.01. 오류메시지 통한 정보 노출</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+
+
+<!--37. 04.02. 오류 상황 대응 부재-->
+        <Mapping>
+            <InternalCategory>Poor Error Handling: Empty Catch Block</InternalCategory>
+            <ExternalCategory>04.02. 오류 상황 대응 부재</ExternalCategory>
+            <MopasSecurityType>4</MopasSecurityType>
+        </Mapping>
+
+<!--38. 04.03. 부적절한 예외처리-->
+        <Mapping>
+            <InternalCategory>Poor Error Handling: Overly Broad Catch</InternalCategory>
+            <ExternalCategory>04.03. 부적절한 예외처리</ExternalCategory>
+            <MopasSecurityType>4</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Unchecked Return Value</InternalCategory>
+            <ExternalCategory>04.03. 부적절한 예외처리</ExternalCategory>
+            <MopasSecurityType>4</MopasSecurityType>
+        </Mapping>
+<!--38. 04.03. 부적절한 예외처리 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Code Correctness: null Argument To Equivalence Method</InternalCategory>
+			<ExternalCategory>04.03. 부적절한 예외처리</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Code Correctness: Invalid Call to Object.equals()</InternalCategory>
+			<ExternalCategory>04.03. 부적절한 예외처리</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Code Correctness: Comparison of Boxed Primitive Types</InternalCategory>
+			<ExternalCategory>04.03. 부적절한 예외처리</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Denial of Service: StringBuilder</InternalCategory>
+			<ExternalCategory>04.03. 부적절한 예외처리</ExternalCategory>
+			<MopasSecurityType>4</MopasSecurityType>
+		</Mapping>
+
+        
+<!--39. 05.01. 널(Null) 포인터 역참조-->
+        <Mapping>
+            <InternalCategory>Null Dereference</InternalCategory>
+            <ExternalCategory>05.01. 널(Null) 포인터 역참조</ExternalCategory>
+            <MopasSecurityType>5</MopasSecurityType>
+        </Mapping>
+        
+<!--40. 05.02. 부적절한 자원 해제-->
+        <Mapping>
+            <InternalCategory>Unreleased Resource</InternalCategory>
+            <ExternalCategory>05.02. 부적절한 자원 해제</ExternalCategory>
+            <MopasSecurityType>5</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Unreleased Resource: Synchronization</InternalCategory>
+            <ExternalCategory>05.02. 부적절한 자원 해제</ExternalCategory>
+            <MopasSecurityType>5</MopasSecurityType>
+        </Mapping>
+<!--40. 05.02. 부적절한 자원 해제 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Kubelet Streaming Connection Timeout Disabled</InternalCategory>
+			<ExternalCategory>05.02. 부적절한 자원 해제</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Missing Garbage Collection Threshold</InternalCategory>
+			<ExternalCategory>05.02. 부적절한 자원 해제</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Unreleased Resource: Database</InternalCategory>
+			<ExternalCategory>05.02. 부적절한 자원 해제</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Unreleased Resource: LDAP</InternalCategory>
+			<ExternalCategory>05.02. 부적절한 자원 해제</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Unreleased Resource: Streams</InternalCategory>
+			<ExternalCategory>05.02. 부적절한 자원 해제</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Unreleased Resource: Android Camera</InternalCategory>
+			<ExternalCategory>05.02. 부적절한 자원 해제</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Unreleased Resource: Android Media</InternalCategory>
+			<ExternalCategory>05.02. 부적절한 자원 해제</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Unreleased Resource: Android SQLite Database</InternalCategory>
+			<ExternalCategory>05.02. 부적절한 자원 해제</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Unreleased Resource: Cursor Snarfing</InternalCategory>
+			<ExternalCategory>05.02. 부적절한 자원 해제</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Unreleased Resource: Files</InternalCategory>
+			<ExternalCategory>05.02. 부적절한 자원 해제</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Unreleased Resource: Sockets</InternalCategory>
+			<ExternalCategory>05.02. 부적절한 자원 해제</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Unreleased Resource: Unmanaged Object</InternalCategory>
+			<ExternalCategory>05.02. 부적절한 자원 해제</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+
+
+<!--41. 05.03. 해제된 자원 사용-->
+        <Mapping>
+            <InternalCategory>Use After Free</InternalCategory>
+            <ExternalCategory>05.03. 해제된 자원 사용</ExternalCategory>
+            <MopasSecurityType>5</MopasSecurityType>
+        </Mapping>
+<!--41. 05.03. 해제된 자원 사용 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Android Bad Practices: Use of Released Camera Resource</InternalCategory>
+			<ExternalCategory>05.03. 해제된 자원 사용</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: Use of Released Media Resource</InternalCategory>
+			<ExternalCategory>05.03. 해제된 자원 사용</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: Use of Released SQLite Resource</InternalCategory>
+			<ExternalCategory>05.03. 해제된 자원 사용</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+
+        
+<!--42. 05.04. 초기화되지 않은 변수 사용-->
+        <Mapping>
+            <InternalCategory>Uninitialized Variable</InternalCategory>
+            <ExternalCategory>05.04. 초기화되지 않은 변수 사용</ExternalCategory>
+            <MopasSecurityType>5</MopasSecurityType>
+        </Mapping>
+
+<!--43. 05.05. 신뢰할 수 없는 데이터의 역직렬화-->
+        <Mapping>
+            <InternalCategory>Object Injection</InternalCategory>
+            <ExternalCategory>05.05. 신뢰할 수 없는 데이터의 역직렬화</ExternalCategory>
+            <MopasSecurityType>5</MopasSecurityType>
+        </Mapping>
+<!--43. 05.05. 신뢰할 수 없는 데이터의 역직렬화 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Deserialization Bad Practice: Deny List</InternalCategory>
+			<ExternalCategory>05.05. 신뢰할 수 없는 데이터의 역직렬화</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dynamic Code Evaluation: JNDI Reference Injection</InternalCategory>
+			<ExternalCategory>05.05. 신뢰할 수 없는 데이터의 역직렬화</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dynamic Code Evaluation: Serializable Delegate</InternalCategory>
+			<ExternalCategory>05.05. 신뢰할 수 없는 데이터의 역직렬화</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dynamic Code Evaluation: Unsafe BeanUtils Deserialization</InternalCategory>
+			<ExternalCategory>05.05. 신뢰할 수 없는 데이터의 역직렬화</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dynamic Code Evaluation: Unsafe Pickle Deserialization</InternalCategory>
+			<ExternalCategory>05.05. 신뢰할 수 없는 데이터의 역직렬화</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dynamic Code Evaluation: Unsafe XStream Deserialization</InternalCategory>
+			<ExternalCategory>05.05. 신뢰할 수 없는 데이터의 역직렬화</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dynamic Code Evaluation: Unsafe YAML Deserialization</InternalCategory>
+			<ExternalCategory>05.05. 신뢰할 수 없는 데이터의 역직렬화</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dynamic Code Evaluation: XMLDecoder Injection</InternalCategory>
+			<ExternalCategory>05.05. 신뢰할 수 없는 데이터의 역직렬화</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dynamic Code Evaluation: Unsafe JSON Deserialization</InternalCategory>
+			<ExternalCategory>05.05. 신뢰할 수 없는 데이터의 역직렬화</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dynamic Code Evaluation: Unsafe Deserialization</InternalCategory>
+			<ExternalCategory>05.05. 신뢰할 수 없는 데이터의 역직렬화</ExternalCategory>
+			<MopasSecurityType>5</MopasSecurityType>
+		</Mapping>
+
+
+<!--44. 06.01. 잘못된 세션에 의한 데이터 정보 노출-->
+<!--44. 06.01. 잘못된 세션에 의한 데이터 정보 노출 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Race Condition: Format Flaw</InternalCategory>
+			<ExternalCategory>06.01. 잘못된 세션에 의한 데이터 정보 노출</ExternalCategory>
+			<MopasSecurityType>6</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Race Condition: Singleton Member Field</InternalCategory>
+			<ExternalCategory>06.01. 잘못된 세션에 의한 데이터 정보 노출</ExternalCategory>
+			<MopasSecurityType>6</MopasSecurityType>
+		</Mapping>
+
+
+<!--45. 06.02. 제거되지 않고 남은 디버그 코드-->
+        <Mapping>
+            <InternalCategory>Axis 2 Misconfiguration: Debug Information</InternalCategory>
+            <ExternalCategory>06.02. 제거되지 않고 남은 디버그 코드</ExternalCategory>
+            <MopasSecurityType>6</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Flex Misconfiguration: Debug Information</InternalCategory>
+            <ExternalCategory>06.02. 제거되지 않고 남은 디버그 코드</ExternalCategory>
+            <MopasSecurityType>6</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>J2EE Misconfiguration: Debug Information</InternalCategory>
+            <ExternalCategory>06.02. 제거되지 않고 남은 디버그 코드</ExternalCategory>
+            <MopasSecurityType>6</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>WCF Misconfiguration: Debug Information</InternalCategory>
+            <ExternalCategory>06.02. 제거되지 않고 남은 디버그 코드</ExternalCategory>
+            <MopasSecurityType>6</MopasSecurityType>
+        </Mapping>
+<!--45. 06.02. 제거되지 않고 남은 디버그 코드 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>.NET Bad Practices: Leftover Debug Code</InternalCategory>
+			<ExternalCategory>06.02. 제거되지 않고 남은 디버그 코드</ExternalCategory>
+			<MopasSecurityType>6</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Go Bad Practices: Leftover Debug Code</InternalCategory>
+			<ExternalCategory>06.02. 제거되지 않고 남은 디버그 코드</ExternalCategory>
+			<MopasSecurityType>6</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Android Bad Practices: Leftover Debug Code</InternalCategory>
+			<ExternalCategory>06.02. 제거되지 않고 남은 디버그 코드</ExternalCategory>
+			<MopasSecurityType>6</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>J2EE Bad Practices: Leftover Debug Code</InternalCategory>
+			<ExternalCategory>06.02. 제거되지 않고 남은 디버그 코드</ExternalCategory>
+			<MopasSecurityType>6</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Python Bad Practices: Leftover Debug Code</InternalCategory>
+			<ExternalCategory>06.02. 제거되지 않고 남은 디버그 코드</ExternalCategory>
+			<MopasSecurityType>6</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: API Server Profiling</InternalCategory>
+			<ExternalCategory>06.02. 제거되지 않고 남은 디버그 코드</ExternalCategory>
+			<MopasSecurityType>6</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: Controller Manager Profiling</InternalCategory>
+			<ExternalCategory>06.02. 제거되지 않고 남은 디버그 코드</ExternalCategory>
+			<MopasSecurityType>6</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: readOnlyPort Enabled</InternalCategory>
+			<ExternalCategory>06.02. 제거되지 않고 남은 디버그 코드</ExternalCategory>
+			<MopasSecurityType>6</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>System Information Leak: External</InternalCategory>
+			<ExternalCategory>06.02. 제거되지 않고 남은 디버그 코드</ExternalCategory>
+			<MopasSecurityType>6</MopasSecurityType>
+		</Mapping>
+
+
+<!--46. 06.03. Public 메소드부터 반환된 Private 배열-->
+        <Mapping>
+            <InternalCategory>Access Violation</InternalCategory>
+            <ExternalCategory>06.03. Public 메소드부터 반환된 Private 배열</ExternalCategory>
+            <MopasSecurityType>6</MopasSecurityType>
+        </Mapping>
+<!--46. 06.03. Public 메소드부터 반환된 Private 배열 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Unsafe Mobile Code: Access Violation</InternalCategory>
+			<ExternalCategory>06.03. Public 메소드부터 반환된 Private 배열</ExternalCategory>
+			<MopasSecurityType>6</MopasSecurityType>
+		</Mapping>
+
+        
+<!--47. 06.04. Private 배열에 Public 데이터 할당-->
+         <Mapping>
+            <InternalCategory>Poor Style: Non-final Public Static Field</InternalCategory>
+            <ExternalCategory>06.04. Private 배열에 Public 데이터 할당</ExternalCategory>
+            <MopasSecurityType>6</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Unsafe Mobile Code: Unsafe Array Declaration</InternalCategory>
+            <ExternalCategory>06.04. Private 배열에 Public 데이터 할당</ExternalCategory>
+            <MopasSecurityType>6</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Public Data Assigned to Private Array-Typed Field</InternalCategory>
+            <ExternalCategory>06.04. Private 배열에 Public 데이터 할당</ExternalCategory>
+            <MopasSecurityType>6</MopasSecurityType>
+        </Mapping>
+
+<!--48. 07.01. DNS lookup에 의존한 보안 결정-->
+<!--48. 07.01. DNS lookup에 의존한 보안 결정 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Often Misused: Authentication</InternalCategory>
+			<ExternalCategory>07.01. DNS lookup에 의존한 보안 결정</ExternalCategory>
+			<MopasSecurityType>7</MopasSecurityType>
+		</Mapping>
+
+
+<!--49. 07.02. 취약한 API 사용-->
+        <Mapping>
+            <InternalCategory>Obsolete: Deprecated by ESAPI</InternalCategory>
+            <ExternalCategory>07.02. 취약한 API 사용</ExternalCategory>
+            <MopasSecurityType>7</MopasSecurityType>
+        </Mapping>
+        <Mapping>
+            <InternalCategory>Dangerous Function</InternalCategory>
+            <ExternalCategory>07.02. 취약한 API 사용</ExternalCategory>
+            <MopasSecurityType>7</MopasSecurityType>
+        </Mapping>
+<!--49. 07.02. 취약한 API 사용 추가버전(CWE)-->
+		<Mapping>
+			<InternalCategory>Often Misused: sun.misc.Unsafe</InternalCategory>
+			<ExternalCategory>07.02. 취약한 API 사용</ExternalCategory>
+			<MopasSecurityType>7</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dangerous Function: Unsafe Regular Expression</InternalCategory>
+			<ExternalCategory>07.02. 취약한 API 사용</ExternalCategory>
+			<MopasSecurityType>7</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dangerous Function: strcpy()</InternalCategory>
+			<ExternalCategory>07.02. 취약한 API 사용</ExternalCategory>
+			<MopasSecurityType>7</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Dangerous Function: xp_cmdshell</InternalCategory>
+			<ExternalCategory>07.02. 취약한 API 사용</ExternalCategory>
+			<MopasSecurityType>7</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Access Control: Authorization Bypass</InternalCategory>
+			<ExternalCategory>07.02. 취약한 API 사용</ExternalCategory>
+			<MopasSecurityType>7</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Azure ARM Misconfiguration: Improper Storage Network Access Control</InternalCategory>
+			<ExternalCategory>07.02. 취약한 API 사용</ExternalCategory>
+			<MopasSecurityType>7</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>Kubernetes Misconfiguration: API Server Anonymous Access</InternalCategory>
+			<ExternalCategory>07.02. 취약한 API 사용</ExternalCategory>
+			<MopasSecurityType>7</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>J2EE Bad Practices: Sockets</InternalCategory>
+			<ExternalCategory>07.02. 취약한 API 사용</ExternalCategory>
+			<MopasSecurityType>7</MopasSecurityType>
+		</Mapping>
+		<Mapping>
+			<InternalCategory>J2EE Bad Practices: JVM Termination</InternalCategory>
+			<ExternalCategory>07.02. 취약한 API 사용</ExternalCategory>
+			<MopasSecurityType>7</MopasSecurityType>
+		</Mapping>
+
+    </ExternalList>
+</ExternalMetadataPack>

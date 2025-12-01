@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulnerability Scanner</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+        }
+
+        .card {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .05);
+            border: none;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+
+        /* 드롭다운 메뉴가 테이블에서 잘리지 않도록 */
+        .table-responsive {
+            overflow: visible !important;
+        }
+
+        /* 드롭다운 메뉴 스타일 */
+        .dropdown-menu {
+            z-index: 1050;
+        }
+
+        /* Progress Steps 스타일 */
+        .progress-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .step-label {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #6c757d;
+        }
+
+        .step-connector {
+            width: 100px;
+            height: 3px;
+            background-color: #e9ecef;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        /* 완료된 단계 */
+        .step.completed .step-icon {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .step.completed .step-label {
+            color: #28a745;
+        }
+
+        .step.completed+.step-connector {
+            background-color: #28a745;
+        }
+
+        /* 진행 중인 단계 */
+        .step.active .step-icon {
+            background-color: #0d6efd;
+            color: white;
+            animation: pulse 1.5s infinite;
+        }
+
+        .step.active .step-label {
+            color: #0d6efd;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* 테이블 행 호버 효과 */
+        .analysis-row:hover {
+            background-color: #f8f9fa;
+        }
+
+        .progress-detail-row {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="bi bi-shield-check"></i> VulnScanner</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">대시보드</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/results">분석 결과</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/stats">통계</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#newScanModal">분석 요청</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/settings">설정</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div th:replace="${content}"></div>
+    </div>
+
+    <!-- New Scan Modal -->
+    <div class="modal fade" id="newScanModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">분석 요청</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newScanForm" enctype="multipart/form-data">
+                        <div class="accordion" id="scanOptionsAccordion">
+                            <!-- 1. Basic Info -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingBasic">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseBasic" aria-expanded="true"
+                                        aria-controls="collapseBasic">
+                                        기본 정보
+                                    </button>
+                                </h2>
+                                <div id="collapseBasic" class="accordion-collapse collapse show"
+                                    aria-labelledby="headingBasic" data-bs-parent="#scanOptionsAccordion">
+                                    <div class="accordion-body">
+                                        <div class="mb-3">
+                                            <label for="modalBuildId" class="form-label">빌드 ID</label>
+                                            <input type="text" class="form-control" id="modalBuildId" name="buildId"
+                                                placeholder="예: MyProject" required>
+                                            <div class="form-text">이 스캔의 고유 식별자입니다.</div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="modalFile" class="form-label">소스 코드 (ZIP 또는 단일 파일)</label>
+                                            <input type="file" class="form-control" id="modalFile" name="file"
+                                                accept=".zip,.java,.xml,.properties">
+                                            <div class="form-text">분석할 소스 코드를 업로드하세요. ZIP 파일인 경우 자동으로 압축이 해제됩니다.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2. Analysis Phases -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingPhases">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapsePhases" aria-expanded="false"
+                                        aria-controls="collapsePhases">
+                                        분석 단계
+                                    </button>
+                                </h2>
+                                <div id="collapsePhases" class="accordion-collapse collapse"
+                                    aria-labelledby="headingPhases" data-bs-parent="#scanOptionsAccordion">
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="modalClean"
+                                                        name="clean" checked>
+                                                    <label class="form-check-label" for="modalClean">Clean</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="modalTranslate"
+                                                        name="translate" checked>
+                                                    <label class="form-check-label"
+                                                        for="modalTranslate">Translate</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="modalScan"
+                                                        name="scan" checked>
+                                                    <label class="form-check-label" for="modalScan">Scan</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="modalReport"
+                                                        name="report" checked>
+                                                    <label class="form-check-label" for="modalReport">Report</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. Advanced Options -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingAdvanced">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseAdvanced" aria-expanded="false"
+                                        aria-controls="collapseAdvanced">
+                                        고급 설정
+                                    </button>
+                                </h2>
+                                <div id="collapseAdvanced" class="accordion-collapse collapse"
+                                    aria-labelledby="headingAdvanced" data-bs-parent="#scanOptionsAccordion">
+                                    <div class="accordion-body">
+                                        <div class="mb-3">
+                                            <label for="modalClasspath" class="form-label">Classpath</label>
+                                            <input type="text" class="form-control" id="modalClasspath" name="classpath"
+                                                placeholder="예: lib/*.jar">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="modalQuickScan"
+                                                    name="quickScan">
+                                                <label class="form-check-label" for="modalQuickScan">빠른 스캔 (깊이
+                                                    감소)</label>
+                                            </div>
+                                            <div class="form-check mt-2">
+                                                <input class="form-check-input" type="checkbox" id="modalDebugVerbose"
+                                                    name="debugVerbose">
+                                                <label class="form-check-label" for="modalDebugVerbose">상세 디버그 로깅
+                                                    (-debug-verbose)</label>
+                                                <div class="form-text">파싱 오류를 포함한 상세 디버그 메시지를 활성화합니다.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                    <button type="button" class="btn btn-primary" id="submitScanBtn">분석 시작</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // New Scan 모달 제출
+        document.getElementById('submitScanBtn').addEventListener('click', function () {
+            const form = document.getElementById('newScanForm');
+            const formData = new FormData(form);
+
+            // 체크박스 값 처리
+            formData.set('clean', document.getElementById('modalClean').checked);
+            formData.set('translate', document.getElementById('modalTranslate').checked);
+            formData.set('scan', document.getElementById('modalScan').checked);
+            formData.set('report', document.getElementById('modalReport').checked);
+            formData.set('quickScan', document.getElementById('modalQuickScan').checked);
+            formData.set('debugVerbose', document.getElementById('modalDebugVerbose').checked);
+
+            // Build ID 필수 확인
+            const buildId = document.getElementById('modalBuildId').value.trim();
+            if (!buildId) {
+                alert('Build ID를 입력해주세요.');
+                return;
+            }
+
+            // 버튼 비활성화
+            this.disabled = true;
+            this.textContent = '분석 중...';
+
+            fetch('/analysis', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.analysisId) {
+                        alert('분석이 시작되었습니다!');
+                        // 모달 닫기
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('newScanModal'));
+                        modal.hide();
+                        // 폼 초기화
+                        form.reset();
+                        // 페이지 새로고침 (대시보드인 경우)
+                        if (window.location.pathname === '/') {
+                            location.reload();
+                        } else {
+                            // 대시보드로 이동
+                            window.location.href = '/';
+                        }
+                    } else if (data.error) {
+                        alert('오류: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('분석 요청 중 오류 발생');
+                })
+                .finally(() => {
+                    this.disabled = false;
+                    this.textContent = '분석 시작';
+                });
+        });
+    </script>
+</body>
+
+</html>

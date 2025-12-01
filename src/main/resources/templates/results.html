@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::div})}">
+
+<body>
+    <div>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>분석 결과</h2>
+            <div>
+                <button type="button" class="btn btn-danger me-2" id="deleteSelectedBtn" style="display: none;">
+                    <i class="bi bi-trash"></i> 선택 삭제
+                </button>
+                <button class="btn btn-outline-primary" onclick="location.reload()">
+                    <i class="bi bi-arrow-clockwise"></i> 새로고침
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th style="width: 40px;">
+                                    <input type="checkbox" id="selectAll" class="form-check-input">
+                                </th>
+                                <th>빌드 ID</th>
+                                <th>날짜</th>
+                                <th>상태</th>
+                                <th>FPR 파일</th>
+                                <th>작업</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="result : ${results}" class="analysis-row" th:data-status="${result.status}">
+                                <td>
+                                    <input type="checkbox" class="form-check-input row-checkbox"
+                                        th:data-id="${result.id}">
+                                </td>
+                                <td>
+                                    <span th:text="${result.analysisOption.buildId}">MyProject</span>
+                                </td>
+                                <td th:text="${#temporals.format(result.scanDate, 'yyyy-MM-dd HH:mm')}">2023-10-27 10:00
+                                </td>
+                                <td>
+                                    <span th:text="${result.status}"
+                                        th:class="${result.status == 'SUCCESS' ? 'badge bg-success' : (result.status == 'FAILED' ? 'badge bg-danger' : 'badge bg-warning text-dark')}">
+                                    </span>
+                                </td>
+                                <td th:text="${result.fprPath}">result.fpr</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <!-- Detail Button -->
+                                        <a th:href="@{/results/{id}(id=${result.id})}"
+                                            class="btn btn-sm btn-outline-primary">
+                                            <i class="bi bi-search"></i> 상세
+                                        </a>
+
+                                        <!-- Logs Button -->
+                                        <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="modal"
+                                            th:data-bs-target="'#logModal' + ${result.id}">
+                                            <i class="bi bi-file-text"></i> 로그
+                                        </button>
+
+                                        <!-- Download Dropdown -->
+                                        <div class="btn-group" role="group">
+                                            <button type="button"
+                                                class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="bi bi-download"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item"
+                                                        th:href="@{/results/{id}(id=${result.id})}">상세 보기</a></li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li><a class="dropdown-item"
+                                                        th:href="@{/api/analysis/{id}/download-log(id=${result.id}, type='build')}">Build
+                                                        Log 다운로드</a></li>
+                                                <li><a class="dropdown-item"
+                                                        th:href="@{/api/analysis/{id}/download-log(id=${result.id}, type='scan')}">Scan
+                                                        Log 다운로드</a></li>
+                                                <li><a class="dropdown-item"
+                                                        th:href="@{/api/analysis/{id}/download-fpr(id=${result.id})}">FPR
+                                                        다운로드</a></li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li><a class="dropdown-item" th:if="${result.reportPdfPath != null}"
+                                                        th:href="@{/api/analysis/{id}/download-report(id=${result.id}, type='pdf')}">PDF
+                                                        Report 다운로드</a></li>
+                                                <li><a class="dropdown-item" th:if="${result.reportXmlPath != null}"
+                                                        th:href="@{/api/analysis/{id}/download-report(id=${result.id}, type='xml')}">XML
+                                                        Report 다운로드</a></li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li><a class="dropdown-item text-danger" href="#"
+                                                        th:onclick="'deleteAnalysis(' + ${result.id} + ')'">삭제</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Delete Button -->
+                                        <button type="button" class="btn btn-sm btn-outline-danger btn-delete"
+                                            th:data-id="${result.id}">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+
+                                    <!-- Log Modal -->
+                                    <div class="modal fade" th:id="'logModal' + ${result.id}" tabindex="-1">
+                                        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">스캔 로그 - <span
+                                                            th:text="${result.analysisOption.buildId}"></span></h5>
+                                                    <button type="button" class="btn-close"
+                                                        data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <div class="modal-body bg-light">
+                                                    <pre th:text="${result.logs}" class="p-2"
+                                                        style="font-size: 0.85rem; white-space: pre-wrap;"></pre>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">닫기</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr th:if="${#lists.isEmpty(results)}">
+                                <td colspan="7" class="text-center py-5 text-muted">
+                                    <i class="bi bi-inbox display-4 d-block mb-3"></i>
+                                    분석 결과가 없습니다.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                console.log('Results page loaded');
+
+                // Checkbox Logic
+                const selectAllCheckbox = document.getElementById('selectAll');
+                const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+                const deleteSelectedBtn = document.getElementById('deleteSelectedBtn');
+
+                function updateDeleteButton() {
+                    const checkedCount = Array.from(rowCheckboxes).filter(cb => cb.checked).length;
+                    console.log('Checked count:', checkedCount);
+                    if (checkedCount > 0) {
+                        deleteSelectedBtn.style.display = 'inline-block';
+                        deleteSelectedBtn.innerHTML = `<i class="bi bi-trash"></i> 선택 삭제 (${checkedCount})`;
+                    } else {
+                        deleteSelectedBtn.style.display = 'none';
+                    }
+                }
+
+                if (selectAllCheckbox) {
+                    selectAllCheckbox.addEventListener('change', function () {
+                        console.log('Select All changed:', this.checked);
+                        rowCheckboxes.forEach(cb => cb.checked = this.checked);
+                        updateDeleteButton();
+                    });
+                }
+
+                rowCheckboxes.forEach(cb => {
+                    cb.addEventListener('change', function () {
+                        console.log('Row checkbox changed');
+                        const allChecked = Array.from(rowCheckboxes).every(c => c.checked);
+                        const someChecked = Array.from(rowCheckboxes).some(c => c.checked);
+                        if (selectAllCheckbox) {
+                            selectAllCheckbox.checked = allChecked;
+                            selectAllCheckbox.indeterminate = someChecked && !allChecked;
+                        }
+                        updateDeleteButton();
+                    });
+                });
+
+                // Batch Delete
+                if (deleteSelectedBtn) {
+                    deleteSelectedBtn.addEventListener('click', function () {
+                        const selectedIds = Array.from(rowCheckboxes)
+                            .filter(cb => cb.checked)
+                            .map(cb => parseInt(cb.getAttribute('data-id')));
+
+                        console.log('Delete selected:', selectedIds);
+
+                        if (selectedIds.length === 0) return;
+
+                        if (confirm(`선택한 ${selectedIds.length}개의 항목을 삭제하시겠습니까?`)) {
+                            fetch('/api/analysis/batch', {
+                                method: 'DELETE',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(selectedIds)
+                            })
+                                .then(response => {
+                                    if (response.ok) {
+                                        window.location.reload();
+                                    } else {
+                                        alert('삭제 실패');
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    alert('삭제 중 오류 발생');
+                                });
+                        }
+                    });
+                }
+
+                // Single Delete (Event Delegation)
+                document.body.addEventListener('click', function (e) {
+                    const btn = e.target.closest('.btn-delete');
+                    if (btn) {
+                        const id = btn.getAttribute('data-id');
+                        console.log('Delete single:', id);
+                        if (id && confirm('정말 이 분석 결과를 삭제하시겠습니까?')) {
+                            fetch('/api/analysis/' + id, {
+                                method: 'DELETE'
+                            })
+                                .then(response => {
+                                    if (response.ok) {
+                                        window.location.reload();
+                                    } else {
+                                        alert('삭제 실패');
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    alert('삭제 중 오류 발생');
+                                });
+                        }
+                    }
+                });
+
+                // Auto Refresh for Running Scans
+                const hasRunningScans = document.querySelector('.badge.bg-primary') !== null;
+                if (hasRunningScans) {
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 5000); // 5 seconds
+                }
+
+                // Global Delete Function for Dropdown
+                window.deleteAnalysis = function (id) {
+                    if (id && confirm('정말 이 분석 결과를 삭제하시겠습니까?')) {
+                        fetch('/api/analysis/' + id, {
+                            method: 'DELETE'
+                        })
+                            .then(response => {
+                                if (response.ok) {
+                                    window.location.reload();
+                                } else {
+                                    alert('삭제 실패');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('삭제 중 오류 발생');
+                            });
+                    }
+                };
+            });
+        </script>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::div})}">
+
+<body>
+    <div>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>분석 결과 상세</h2>
+            <a href="/results" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> 목록으로 돌아가기
+            </a>
+        </div>
+
+        <!-- Basic Info Card -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">기본 정보</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>ID:</strong> <span th:text="${result?.id}">1</span></p>
+                        <p><strong>빌드 ID:</strong> <span th:text="${result?.analysisOption?.buildId}">Project</span></p>
+                        <p><strong>상태:</strong>
+                            <span th:if="${result.status == 'SUCCESS'}" class="badge bg-success">SUCCESS</span>
+                            <span th:if="${result.status == 'FAILED'}" class="badge bg-danger">FAILED</span>
+                            <span th:if="${result.status != 'SUCCESS' and result.status != 'FAILED'}"
+                                class="badge bg-primary">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                <span th:text="${result.status}">RUNNING</span>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>스캔 날짜:</strong> <span
+                                th:text="${#temporals.format(result.scanDate, 'yyyy-MM-dd HH:mm:ss')}">Date</span></p>
+                        <p><strong>FPR 경로:</strong> <span th:text="${result.fprPath}">Path</span></p>
+                        <p><strong>보고서:</strong>
+                            <a th:if="${result.reportPdfPath != null}"
+                                th:href="@{/api/analysis/{id}/download-report(id=${result.id}, type='pdf')}"
+                                class="btn btn-sm btn-outline-primary me-2"><i class="bi bi-file-earmark-pdf"></i> PDF
+                                다운로드</a>
+                            <a th:if="${result.reportXmlPath != null}"
+                                th:href="@{/api/analysis/{id}/download-report(id=${result.id}, type='xml')}"
+                                class="btn btn-sm btn-outline-secondary"><i class="bi bi-file-earmark-code"></i> XML
+                                다운로드</a>
+                            <button th:if="${result.reportXmlPath != null}"
+                                th:onclick="'reparseAnalysis(' + ${result.id} + ')'"
+                                class="btn btn-sm btn-outline-warning ms-2"><i class="bi bi-arrow-repeat"></i> XML
+                                재파싱</button>
+                            <span th:if="${result.reportPdfPath == null and result.reportXmlPath == null}"
+                                class="text-muted">없음</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Scan Summary Card -->
+        <div class="card mb-4" th:if="${result.scanSummary != null}">
+            <div class="card-header">
+                <h5 class="card-title mb-0">스캔 요약</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="border rounded p-3 text-center bg-light">
+                            <h6 class="text-muted mb-2">Total LOC</h6>
+                            <h3 class="mb-0" th:text="${result.scanSummary.totalLoc}">0</h3>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="border rounded p-3 text-center bg-light">
+                            <h6 class="text-muted mb-2">Scan Time</h6>
+                            <h3 class="mb-0" th:text="${result.scanSummary.scanTime}">00:00</h3>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="border rounded p-3 text-center bg-light">
+                            <h6 class="text-muted mb-2">File Count</h6>
+                            <h3 class="mb-0" th:text="${result.scanSummary.fileCount}">0</h3>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="border rounded p-3 text-center bg-light">
+                            <h6 class="text-muted mb-2">Engine Version</h6>
+                            <h5 class="mb-0" th:text="${result.scanSummary.scaEngineVersion}">-</h5>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="border rounded p-3 text-center bg-light">
+                            <h6 class="text-muted mb-2">Machine Name</h6>
+                            <h5 class="mb-0" th:text="${result.scanSummary.machineName}">-</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vulnerabilities Card -->
+        <div class="card mb-4" th:if="${result.vulnerabilities != null and !result.vulnerabilities.empty}">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">취약점 목록</h5>
+                <div>
+                    <span class="badge bg-danger me-2">Critical: <span th:text="${result.criticalCount}">0</span></span>
+                    <span class="badge bg-warning text-dark me-2">High: <span
+                            th:text="${result.highCount}">0</span></span>
+                    <span class="badge bg-info text-dark me-2">Medium: <span
+                            th:text="${result.mediumCount}">0</span></span>
+                    <span class="badge bg-secondary">Low: <span th:text="${result.lowCount}">0</span></span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-sm">
+                        <thead>
+                            <tr>
+                                <th>Priority</th>
+                                <th>Category</th>
+                                <th>File</th>
+                                <th>Line</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="vuln : ${result.vulnerabilities}">
+                                <td>
+                                    <span th:if="${vuln.priority == 'Critical'}" class="badge bg-danger">Critical</span>
+                                    <span th:if="${vuln.priority == 'High'}"
+                                        class="badge bg-warning text-dark">High</span>
+                                    <span th:if="${vuln.priority == 'Medium'}"
+                                        class="badge bg-info text-dark">Medium</span>
+                                    <span th:if="${vuln.priority == 'Low'}" class="badge bg-secondary">Low</span>
+                                </td>
+                                <td th:text="${vuln.category}">Category</td>
+                                <td th:text="${vuln.fileName}">File.java</td>
+                                <td th:text="${vuln.lineNumber}">10</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+                                        th:data-bs-target="'#vulnModal' + ${vuln.id}">
+                                        Detail
+                                    </button>
+
+                                    <!-- Vulnerability Detail Modal -->
+                                    <style>
+                                        .modal-custom-size {
+                                            max-width: 960px;
+                                            /* 800px + 20% */
+                                        }
+
+                                        .modal-custom-size .modal-content {
+                                            min-height: 600px;
+                                            /* Increase height */
+                                        }
+                                    </style>
+                                    <div class="modal fade" th:id="'vulnModal' + ${vuln.id}" tabindex="-1">
+                                        <div class="modal-dialog modal-custom-size">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">취약점 상세 정보</h5>
+                                                    <button type="button" class="btn-close"
+                                                        data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="mb-3">
+                                                        <h6>Abstract</h6>
+                                                        <p class="bg-light p-2 rounded"
+                                                            th:text="${vuln.abstractMessage}">Message...</p>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <h6>Code Snippet</h6>
+                                                        <pre
+                                                            class="bg-dark text-white p-3 rounded"><code th:text="${vuln.codeSnippet}">Code...</code></pre>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <p><strong>Rule ID:</strong> <span
+                                                                    th:text="${vuln.ruleId}"></span></p>
+                                                            <p><strong>Kingdom:</strong> <span
+                                                                    th:text="${vuln.kingdom}"></span></p>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p><strong>File Path:</strong> <span
+                                                                    th:text="${vuln.filePath}"></span></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">분석 설정</h5>
+            </div>
+            <div class="card-body">
+                <div class="row" th:if="${result.analysisOption != null}">
+                    <div class="col-md-6">
+                        <p><strong>Build ID:</strong> <span th:text="${result.analysisOption.buildId}">Project</span>
+                        </p>
+                        <p><strong>JDK 버전:</strong> <span th:text="${result.analysisOption.jdkVersion}">1.8</span></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>소스 경로:</strong> <span
+                                th:text="${result.analysisOption.sourcePath}">/path/to/source</span>
+                        </p>
+                        <p><strong>제외 패턴:</strong> <span th:text="${result.analysisOption.excludePattern}">none</span>
+                        </p>
+                    </div>
+                </div>
+                <div th:if="${result.analysisOption == null}" class="text-muted">
+                    설정 정보가 없습니다.
+                </div>
+            </div>
+        </div>
+
+        <!-- Logs Section -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">분석 로그</h5>
+            </div>
+            <div class="card-body bg-light">
+                <pre style="max-height: 500px; overflow-y: auto; white-space: pre-wrap;"
+                    th:text="${result.logs}">Logs...</pre>
+            </div>
+        </div>
+
+        <!-- Processing Modal -->
+        <div class="modal fade" id="processingModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body text-center p-4">
+                        <div class="spinner-border text-primary mb-3" role="status" style="width: 3rem; height: 3rem;">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <h5 class="mb-0" id="processingMessage">재파싱 중입니다... 잠시만 기다려주세요.</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function reparseAnalysis(id) {
+                if (!confirm('XML 보고서를 다시 파싱하시겠습니까? 기존 데이터는 덮어씌워집니다.')) {
+                    return;
+                }
+
+                // Show Processing Modal
+                const processingModal = new bootstrap.Modal(document.getElementById('processingModal'));
+                processingModal.show();
+
+                fetch(`/api/analysis/${id}/reparse`, {
+                    method: 'POST'
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            document.getElementById('processingMessage').textContent = '완료되었습니다!';
+                            setTimeout(() => {
+                                location.reload();
+                            }, 500);
+                        } else {
+                            processingModal.hide();
+                            response.text().then(text => alert('오류: ' + text));
+                        }
+                    })
+                    .catch(error => {
+                        processingModal.hide();
+                        console.error('Error:', error);
+                        alert('재파싱 요청 중 오류 발생');
+                    });
+            }
+        </script>
+    </div>
+</body>
+
+</html>

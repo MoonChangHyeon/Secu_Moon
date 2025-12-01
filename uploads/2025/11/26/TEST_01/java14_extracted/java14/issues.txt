@@ -1,0 +1,7 @@
+
+Issue counts by category:
+
+ "Privacy Violation" => 1 Issues
+
+Total for all categories => 1 Issues
+

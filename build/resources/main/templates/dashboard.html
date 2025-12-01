@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::div})}">
+
+<body>
+    <div>
+        <h2 class="mb-4">Dashboard</h2>
+
+        <!-- Summary Cards -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header">총 스캔 수</div>
+                    <div class="card-body">
+                        <h5 class="card-title display-4" th:text="${totalScans}">0</h5>
+                        <p class="card-text">수행된 총 분석 횟수입니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-header">성공률</div>
+                    <div class="card-body">
+                        <h5 class="card-title display-4" th:text="${successRate} + '%'">0%</h5>
+                        <p class="card-text">성공한 스캔의 비율입니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-header">최근 활동 (24h)</div>
+                    <div class="card-body">
+                        <h5 class="card-title display-4" th:text="${recentCount}">0</h5>
+                        <p class="card-text">지난 24시간 동안의 스캔 수입니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <div class="card h-100">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">스캔 추세</h5>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button type="button" class="btn btn-outline-primary active" id="btnWeekly">주간</button>
+                            <button type="button" class="btn btn-outline-primary" id="btnMonthly">월간</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div style="height: 300px; position: relative;">
+                            <canvas id="trendChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">상태 분포</h5>
+                    </div>
+                    <div class="card-body">
+                        <div style="height: 300px; position: relative;">
+                            <canvas id="statusChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Scans Table -->
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">최근 스캔 목록</h5>
+                <a href="/results" class="btn btn-sm btn-outline-primary">전체 보기</a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>빌드 ID</th>
+                                <th>날짜</th>
+                                <th>상태</th>
+                                <th>작업</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="scan : ${recentScans}">
+                                <td th:text="${scan.id}">1</td>
+                                <td>
+                                    <a th:href="@{/results/{id}(id=${scan.id})}" class="text-decoration-none fw-bold"
+                                        th:text="${scan.analysisOption.buildId}">Project</a>
+                                </td>
+                                <td th:text="${#temporals.format(scan.scanDate, 'yyyy-MM-dd HH:mm')}">Date</td>
+                                <td>
+                                    <span th:if="${scan.status == 'SUCCESS'}" class="badge bg-success">SUCCESS</span>
+                                    <span th:if="${scan.status == 'FAILED'}" class="badge bg-danger">FAILED</span>
+                                    <span th:if="${scan.status != 'SUCCESS' and scan.status != 'FAILED'}"
+                                        class="badge bg-primary">RUNNING</span>
+                                </td>
+                                <td>
+                                    <a th:href="@{/results/{id}(id=${scan.id})}"
+                                        class="btn btn-sm btn-outline-secondary">
+                                        <i class="bi bi-search"></i> 상세
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr th:if="${#lists.isEmpty(recentScans)}">
+                                <td colspan="5" class="text-center text-muted py-3">최근 스캔 기록이 없습니다.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script th:inline="javascript">
+            document.addEventListener('DOMContentLoaded', function () {
+                // Trend Chart Data
+                const weeklyLabels = /*[[${trendLabels}]]*/[];
+                const weeklyData = /*[[${trendData}]]*/[];
+                const monthlyLabels = /*[[${monthlyTrendLabels}]]*/[];
+                const monthlyData = /*[[${monthlyTrendData}]]*/[];
+
+                const trendCtx = document.getElementById('trendChart').getContext('2d');
+
+                const trendChart = new Chart(trendCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: weeklyLabels,
+                        datasets: [{
+                            label: '스캔 수',
+                            data: weeklyData,
+                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Toggle Logic
+                const btnWeekly = document.getElementById('btnWeekly');
+                const btnMonthly = document.getElementById('btnMonthly');
+
+                btnWeekly.addEventListener('click', function () {
+                    if (this.classList.contains('active')) return;
+
+                    this.classList.add('active');
+                    btnMonthly.classList.remove('active');
+
+                    trendChart.data.labels = weeklyLabels;
+                    trendChart.data.datasets[0].data = weeklyData;
+                    trendChart.update();
+                });
+
+                btnMonthly.addEventListener('click', function () {
+                    if (this.classList.contains('active')) return;
+
+                    this.classList.add('active');
+                    btnWeekly.classList.remove('active');
+
+                    trendChart.data.labels = monthlyLabels;
+                    trendChart.data.datasets[0].data = monthlyData;
+                    trendChart.update();
+                });
+
+                // Status Chart
+                const statusCtx = document.getElementById('statusChart').getContext('2d');
+                const statusLabels = /*[[${statusLabels}]]*/[];
+                const statusData = /*[[${statusData}]]*/[];
+
+                const backgroundColors = statusLabels.map(label => {
+                    if (label === 'SUCCESS') return 'rgba(75, 192, 192, 0.6)';
+                    if (label === 'FAILED') return 'rgba(255, 99, 132, 0.6)';
+                    return 'rgba(255, 206, 86, 0.6)';
+                });
+
+                new Chart(statusCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: statusLabels,
+                        datasets: [{
+                            data: statusData,
+                            backgroundColor: backgroundColors,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+    </div>
+</body>
+
+</html>

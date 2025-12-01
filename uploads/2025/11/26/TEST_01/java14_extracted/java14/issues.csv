@@ -1,0 +1,3 @@
+sep=,
+IID,category,path,analyzer,status
+"5F20905C395E3FADDC2162378DF3C052","Privacy Violation","Sample.java:12","Data Flow","new"

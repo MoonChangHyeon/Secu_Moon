@@ -1,0 +1,10 @@
+[2025-11-26 16:15:44.969 INFO  1450]
+Processing /Volumes/Moon/1125/vulnscanner/uploads/2025/11/26/TEST_02/java14_extracted/java14/Sample.java
+[2025-11-26 16:15:48.901 INFO  1451]
+Analyzing 9 source file(s)
+[2025-11-26 16:16:12.372 INFO  1455]
+Configuration analysis complete
+[2025-11-26 16:16:13.026 INFO  1458]
+Rendering 1 results
+[2025-11-26 16:16:13.597 INFO  1459]
+Analysis completed in 00:24

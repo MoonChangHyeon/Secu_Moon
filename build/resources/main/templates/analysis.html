@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::div})}">
+
+<body>
+    <div>
+        <h2 class="mb-4">New Scan</h2>
+
+        <div class="card">
+            <div class="card-body">
+                <form th:action="@{/analysis}" th:object="${analysisOption}" method="post">
+
+                    <h5 class="mb-3">General Settings</h5>
+                    <div class="mb-3">
+                        <label for="buildId" class="form-label">Build ID</label>
+                        <input type="text" class="form-control" id="buildId" th:field="*{buildId}"
+                            placeholder="e.g., MyProject" required>
+                        <div class="form-text">Unique identifier for this scan.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Source Code (ZIP or Single File)</label>
+                        <input type="file" class="form-control" id="file" name="file"
+                            accept=".zip,.java,.xml,.properties">
+                        <div class="form-text">Upload source code to analyze. If ZIP, it will be extracted.</div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="clean" th:field="*{clean}" checked>
+                                <label class="form-check-label" for="clean">Clean Phase</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="translate" th:field="*{translate}"
+                                    checked>
+                                <label class="form-check-label" for="translate">Translate Phase</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="scan" th:field="*{scan}" checked>
+                                <label class="form-check-label" for="scan">Scan Phase</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="mb-3">Translation Options</h5>
+                    <div class="mb-3">
+                        <label for="classpath" class="form-label">Classpath</label>
+                        <input type="text" class="form-control" id="classpath" th:field="*{classpath}"
+                            placeholder="e.g., lib/*.jar">
+                    </div>
+                    <h5 class="mb-3">Scan Options</h5>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="quickScan" th:field="*{quickScan}">
+                            <label class="form-check-label" for="quickScan">Quick Scan (Reduced depth)</label>
+                        </div>
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" id="debugVerbose"
+                                th:field="*{debugVerbose}">
+                            <label class="form-check-label" for="debugVerbose">Detailed Debug Logging
+                                (-debug-verbose)</label>
+                            <div class="form-text">Enable detailed debug messages, including parse errors.</div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg" id="startBtn">Start Analysis</button>
+                    </div>
+                </form>
+
+                <div id="logContainer" class="mt-4" style="display: none;">
+                    <h5 class="mb-2">Analysis Logs</h5>
+                    <div class="bg-dark text-light p-3 rounded" style="height: 400px; overflow-y: auto;">
+                        <pre id="logOutput" style="margin: 0; font-family: monospace; white-space: pre-wrap;"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="alertPlaceholder" class="mt-3"></div>
+
+        <script>
+            function showAlert(message, type) {
+                const alertPlaceholder = document.getElementById('alertPlaceholder');
+                const wrapper = document.createElement('div');
+                wrapper.innerHTML = [
+                    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+                    `   <div>${message}</div>`,
+                    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+                    '</div>'
+                ].join('');
+
+                alertPlaceholder.append(wrapper);
+
+                // Auto dismiss after 5 seconds
+                setTimeout(() => {
+                    wrapper.querySelector('.btn-close').click();
+                }, 5000);
+            }
+
+            document.querySelector('form').addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const form = e.target;
+                const formData = new FormData(form);
+                const btn = document.getElementById('startBtn');
+                const logContainer = document.getElementById('logContainer');
+                const logOutput = document.getElementById('logOutput');
+                const alertPlaceholder = document.getElementById('alertPlaceholder');
+
+                // Clear previous alerts
+                alertPlaceholder.innerHTML = '';
+
+                const fileInput = document.getElementById('file');
+                if (fileInput.files.length > 0) {
+                    const fileSize = fileInput.files[0].size;
+                    const maxSize = 100 * 1024 * 1024; // 100MB
+                    if (fileSize > maxSize) {
+                        showAlert('File size exceeds 100MB limit. Please upload a smaller file.', 'danger');
+                        return;
+                    }
+                }
+
+                btn.disabled = true;
+                btn.textContent = 'Starting...';
+                logContainer.style.display = 'block';
+                logOutput.textContent = 'Initializing analysis...';
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        throw new Error(`Server returned ${response.status}: ${errorText}`);
+                    }
+
+                    const data = await response.json();
+                    const analysisId = data.analysisId;
+
+                    btn.textContent = 'Analysis Running...';
+
+                    // Poll logs
+                    const pollInterval = setInterval(async () => {
+                        try {
+                            const logRes = await fetch(`/api/analysis/${analysisId}/logs`);
+                            if (logRes.ok) {
+                                const text = await logRes.text();
+                                logOutput.textContent = text;
+
+                                // Auto scroll to bottom
+                                const container = logOutput.parentElement;
+                                container.scrollTop = container.scrollHeight;
+
+                                // Check if finished (simple check for now)
+                                if (text.includes("Exit Code:")) {
+                                    clearInterval(pollInterval);
+                                    btn.disabled = false;
+                                    btn.textContent = 'Start Analysis';
+                                    if (text.includes("Exit Code: 0")) {
+                                        showAlert('Analysis completed successfully!', 'success');
+                                    } else {
+                                        showAlert('Analysis failed. Check logs.', 'danger');
+                                    }
+                                }
+                            }
+                        } catch (err) {
+                            console.error('Error polling logs:', err);
+                        }
+                    }, 1000);
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    showAlert('Error starting analysis: ' + error.message, 'danger');
+                    btn.disabled = false;
+                    btn.textContent = 'Start Analysis';
+                }
+            });
+        </script>
+    </div>
+</body>
+
+</html>

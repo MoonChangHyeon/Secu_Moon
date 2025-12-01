@@ -1,0 +1,97 @@
+# Security focused Scan Policy:
+# This scan policy omits results
+# that are first and foremost code quality
+# rather than security issues.
+# By choosing scan policy "security",
+# users can ensure Fortify focuses on the security issues only.
+# Default Scan Policy Filter File
+
+(ARGS || ENVIRONMENT || PROPERTY || REGISTRY)
+
+Risk <= Low
+
+Dead Code
+Double Free
+Experimental API
+Format String
+Memory leak
+Null Dereference
+Obsolete
+Poor Style
+
+Poor Error Handling
+Portability Flaw
+Race Condition
+Redundant Null Check
+Type Mismatch
+Undefined Behavior
+Uninitialized Variable
+Unreleased Resource
+Use After Free
+Missing Check against Null
+
+Android Bad Practices: Use of Internal APIs
+Android Bad Practices: Use of File Scheme Cookies
+Android Bad Practices: Leftover Debug Code
+ASP.NET Bad Practices: Unminified Code
+ASP.NET Bad Practices: Non-Serializable Object Stored in Session
+Castor Bad Practices: Query Mode Not Read-Only
+Castor Bad Practices: Unspecified Query Mode
+EJB Bad Practices: Use of AWT/Swing
+EJB Bad Practices: Use of java.io
+EJB Bad Practices: Use of Class Loader
+EJB Bad Practices: Use of Sockets
+EJB Bad Practices: Use of Synchronization Primitives
+Flash Bad Practices: Stage Size Too Small
+Go Bad Practices: Leftover Debug Code
+J2EE Bad Practices: Non-Serializable Object Stored in Session
+J2EE Bad Practices: Leftover Debug Code
+Kubernetes Bad Practices: Default Namespace
+Python Bad Practices: Leftover Debug Code
+SQL Bad Practices: Direct Update
+Code Correctness: Arithmetic Operation on Boolean
+Code Correctness: Byte Array to String Conversion
+Code Correctness: Call to GC.Collect()
+Code Correctness: Call to notify()
+Code Correctness: Call to sleep() in Lock
+Code Correctness: Call to System.gc()
+Code Correctness: Call to Thread.run()
+Code Correctness: Call to Thread.stop()
+Code Correctness: Class Does Not Implement Cloneable
+Code Correctness: Class Does Not Implement Equivalence Method
+Code Correctness: Class Implements ICloneable
+Code Correctness: clone() Invokes Overridable Function
+Code Correctness: Comparison of Boxed Primitive Types
+Code Correctness: Comparison with NaN
+Code Correctness: Constructor Invokes Overridable Function
+Code Correctness: Double-Checked Locking
+Code Correctness: Erroneous Class Compare
+Code Correctness: Erroneous finalize() Method
+Code Correctness: Erroneous Negative Value
+Code Correctness: Erroneous Null Comparison
+Code Correctness: Erroneous String Compare
+Code Correctness: Erroneous Synchronization
+Code Correctness: Erroneous Zero Value
+Code Correctness: Function Not Invoked
+Code Correctness: Function Returns Stack Address
+Code Correctness: Hidden Method
+Code Correctness: Incorrect Serializable Method Signature
+Code Correctness: Incorrect serialPersistentFields Modifier
+Code Correctness: Invalid Call to Object.equals()
+Code Correctness: Macro Misuse
+Code Correctness: Memory Free on Stack Variable
+Code Correctness: Misleading Method Signature
+Code Correctness: Missing [Serializable] Attribute
+Code Correctness: Multiple Stream Commits
+Code Correctness: Negative Content-Length
+Code Correctness: Non-Static Inner Class Implements Serializable
+Code Correctness: Non-Synchronized Method Overrides Synchronized Method
+Code Correctness: null Argument To Equivalence Method
+Code Correctness: Premature Thread Termination
+Code Correctness: readObject() Invokes Overridable Function
+Code Correctness: Readonly Collection Reference
+Code Correctness: Stack Exhaustion
+Code Correctness: String Comparison of Float
+Code Correctness: ToString on Array
+Code Correctness: Failing Assertion
+Code Correctness: Typographical Error

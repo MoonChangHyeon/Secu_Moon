@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::div})}">
+
+<body>
+    <div>
+        <h2 class="mb-4">System Settings</h2>
+
+        <div th:if="${message}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <span th:text="${message}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs" id="settingsTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#general"
+                            type="button" role="tab">General</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="system-tab" data-bs-toggle="tab" data-bs-target="#system"
+                            type="button" role="tab">System Info</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/settings/update}" method="post">
+                    <div class="tab-content" id="settingsTabsContent">
+
+                        <!-- General Settings Tab -->
+                        <div class="tab-pane fade show active" id="general" role="tabpanel">
+                            <h5 class="card-title mb-3">Analysis Configuration</h5>
+
+                            <div class="mb-3">
+                                <label for="fortifyPath" class="form-label">Fortify Executable Path</label>
+                                <input type="text" class="form-control" id="fortifyPath" name="fortify.executable-path"
+                                    th:value="${settings['fortify.executable-path']}">
+                                <div class="form-text">Absolute path to 'sourceanalyzer' executable.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="defaultMemory" class="form-label">Default Scan Memory</label>
+                                <input type="text" class="form-control" id="defaultMemory" name="scan.default.memory"
+                                    th:value="${settings['scan.default.memory']}">
+                                <div class="form-text">Memory limit for analysis (e.g., 4G, 8G). Passed as -Xmx.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="defaultJdk" class="form-label">Default JDK Version</label>
+                                <input type="text" class="form-control" id="defaultJdk" name="scan.default.jdk"
+                                    th:value="${settings['scan.default.jdk']}">
+                                <div class="form-text">Default source version for translation (e.g., 1.8, 11, 17).</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="resultPath" class="form-label">Result Folder Path</label>
+                                <input type="text" class="form-control" id="resultPath" name="result.path"
+                                    th:value="${settings['result.path']}">
+                                <div class="form-text">Directory where analysis results (FPR, logs, source) will be
+                                    stored. Default: ./results</div>
+                            </div>
+                        </div>
+
+                        <!-- System Info Tab (Read-only for now) -->
+                        <div class="tab-pane fade" id="system" role="tabpanel">
+                            <h5 class="card-title mb-3">System Configuration (Read-Only)</h5>
+                            <div class="alert alert-info">
+                                These settings are loaded from <code>application.properties</code>. To change them,
+                                modify the file and restart the server.
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Database URL</label>
+                                <input type="text" class="form-control"
+                                    value="jdbc:mariadb://localhost:3306/vulnscanner_db" disabled>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Max File Upload Size</label>
+                                <input type="text" class="form-control" value="100MB" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary">Save Settings</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

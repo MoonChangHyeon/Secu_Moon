@@ -1,0 +1,133 @@
+package com.example.vulnscanner.service;
+
+import com.example.vulnscanner.entity.AnalysisResult;
+import com.example.vulnscanner.entity.Vulnerability;
+import com.example.vulnscanner.repository.AnalysisRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.stream.Collectors;
+
+@Service
+@RequiredArgsConstructor
+public class StatsService {
+
+    private final AnalysisRepository analysisRepository;
+
+    public Map<String, Object> getOverallStats() {
+        List<AnalysisResult> results = analysisRepository.findAll();
+        long totalScans = results.size();
+        long successCount = results.stream().filter(r -> "SUCCESS".equals(r.getStatus())).count();
+        long totalVulns = results.stream()
+                .filter(r -> r.getVulnerabilities() != null)
+                .mapToLong(r -> r.getVulnerabilities().size())
+                .sum();
+
+        Map<String, Object> stats = new HashMap<>();
+        stats.put("totalScans", totalScans);
+        stats.put("successCount", successCount);
+        stats.put("totalVulns", totalVulns);
+
+        // Calculate average vulnerabilities per scan
+        double avgVulns = successCount > 0 ? (double) totalVulns / successCount : 0;
+        stats.put("avgVulns", String.format("%.1f", avgVulns));
+
+        return stats;
+    }
+
+    public Map<String, Long> getSeverityDistribution() {
+        List<AnalysisResult> results = analysisRepository.findAll();
+        // Use LinkedHashMap to preserve order: Critical -> High -> Medium -> Low
+        Map<String, Long> distribution = new LinkedHashMap<>();
+        distribution.put("Critical", 0L);
+        distribution.put("High", 0L);
+        distribution.put("Medium", 0L);
+        distribution.put("Low", 0L);
+
+        for (AnalysisResult result : results) {
+            if (result.getVulnerabilities() != null) {
+                for (Vulnerability v : result.getVulnerabilities()) {
+                    String priority = v.getPriority();
+                    if (priority != null) {
+                        // Normalize priority string if needed (e.g. "Critical" vs "critical")
+                        String key = capitalize(priority);
+                        if (distribution.containsKey(key)) {
+                            distribution.put(key, distribution.get(key) + 1);
+                        }
+                    }
+                }
+            }
+        }
+        return distribution;
+    }
+
+    public Map<String, Object> getTrendData(int days) {
+        List<AnalysisResult> results = analysisRepository.findAll();
+        LocalDate endDate = LocalDate.now();
+        LocalDate startDate = endDate.minusDays(days - 1);
+
+        Map<LocalDate, Long> trendMap = new TreeMap<>();
+        // Initialize map with 0
+        for (int i = 0; i < days; i++) {
+            trendMap.put(startDate.plusDays(i), 0L);
+        }
+
+        for (AnalysisResult result : results) {
+            if (result.getScanDate() != null) {
+                LocalDate scanDate = result.getScanDate().toLocalDate();
+                if (!scanDate.isBefore(startDate) && !scanDate.isAfter(endDate)) {
+                    long vulnCount = result.getVulnerabilities() != null ? result.getVulnerabilities().size() : 0;
+                    trendMap.put(scanDate, trendMap.get(scanDate) + vulnCount);
+                }
+            }
+        }
+
+        List<String> labels = new ArrayList<>();
+        List<Long> data = new ArrayList<>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd");
+
+        for (Map.Entry<LocalDate, Long> entry : trendMap.entrySet()) {
+            labels.add(entry.getKey().format(formatter));
+            data.add(entry.getValue());
+        }
+
+        Map<String, Object> chartData = new HashMap<>();
+        chartData.put("labels", labels);
+        chartData.put("data", data);
+        return chartData;
+    }
+
+    public Map<String, Long> getTopCategories(int limit) {
+        List<AnalysisResult> results = analysisRepository.findAll();
+        Map<String, Long> categoryCount = new HashMap<>();
+
+        for (AnalysisResult result : results) {
+            if (result.getVulnerabilities() != null) {
+                for (Vulnerability v : result.getVulnerabilities()) {
+                    String category = v.getCategory();
+                    if (category != null) {
+                        categoryCount.put(category, categoryCount.getOrDefault(category, 0L) + 1);
+                    }
+                }
+            }
+        }
+
+        return categoryCount.entrySet().stream()
+                .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
+                .limit(limit)
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1,
+                        LinkedHashMap::new));
+    }
+
+    private String capitalize(String str) {
+        if (str == null || str.isEmpty())
+            return str;
+        return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+    }
+}
