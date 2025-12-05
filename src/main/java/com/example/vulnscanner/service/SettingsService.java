@@ -25,6 +25,9 @@ public class SettingsService {
     public static final String KEY_DEFAULT_MEMORY = "scan.default.memory";
     public static final String KEY_DEFAULT_JDK = "scan.default.jdk";
     public static final String KEY_RESULT_PATH = "result.path";
+    public static final String KEY_LOGIN_MAX_ATTEMPTS = "security.login.max-attempts";
+    public static final String KEY_LOGIN_LOCKOUT_DURATION = "security.login.lockout-duration";
+    public static final String KEY_SESSION_TIMEOUT = "security.session.timeout";
 
     @PostConstruct
     public void init() {
@@ -44,6 +47,17 @@ public class SettingsService {
         if (!systemSettingRepository.existsById(KEY_RESULT_PATH)) {
             systemSettingRepository
                     .save(new SystemSetting(KEY_RESULT_PATH, "./results", "Directory path for analysis results"));
+        }
+        if (!systemSettingRepository.existsById(KEY_LOGIN_MAX_ATTEMPTS)) {
+            systemSettingRepository
+                    .save(new SystemSetting(KEY_LOGIN_MAX_ATTEMPTS, "5", "Max login attempts before lockout"));
+        }
+        if (!systemSettingRepository.existsById(KEY_LOGIN_LOCKOUT_DURATION)) {
+            systemSettingRepository
+                    .save(new SystemSetting(KEY_LOGIN_LOCKOUT_DURATION, "15", "Account lockout duration in minutes"));
+        }
+        if (!systemSettingRepository.existsById(KEY_SESSION_TIMEOUT)) {
+            systemSettingRepository.save(new SystemSetting(KEY_SESSION_TIMEOUT, "30", "Session timeout in minutes"));
         }
     }
 
