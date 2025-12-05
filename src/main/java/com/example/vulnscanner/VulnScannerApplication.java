@@ -1,11 +1,15 @@
 package com.example.vulnscanner;
 
+import com.example.vulnscanner.service.UserService;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @EnableAsync
+@EnableJpaAuditing
 @SpringBootApplication
 public class VulnScannerApplication {
 
@@ -13,4 +17,10 @@ public class VulnScannerApplication {
         SpringApplication.run(VulnScannerApplication.class, args);
     }
 
+    @Bean
+    public CommandLineRunner initAdmin(UserService userService) {
+        return args -> {
+            userService.createAdminIfNotExists();
+        };
+    }
 }

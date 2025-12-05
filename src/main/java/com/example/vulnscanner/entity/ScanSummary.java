@@ -17,6 +17,7 @@ public class ScanSummary {
     private Integer fileCount;
     private String scaEngineVersion;
     private String machineName;
+    private String requester;
 
     @OneToOne
     @JoinColumn(name = "analysis_result_id")
