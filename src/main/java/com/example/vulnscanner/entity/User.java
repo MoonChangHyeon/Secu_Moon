@@ -35,4 +35,9 @@ public class User {
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt;
+
+    @Column(nullable = false)
+    private int failedAttempts = 0;
+
+    private LocalDateTime lockTime;
 }

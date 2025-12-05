@@ -4,14 +4,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import lombok.RequiredArgsConstructor;
+
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+        private final CustomAuthenticationFailureHandler failureHandler;
+        private final CustomAuthenticationSuccessHandler successHandler;
 
         @Bean
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -24,12 +28,16 @@ public class SecurityConfig {
                                                 .anyRequest().authenticated())
                                 .formLogin(form -> form
                                                 .loginPage("/login")
-                                                .defaultSuccessUrl("/", true)
+                                                .successHandler(successHandler)
+                                                .failureHandler(failureHandler)
                                                 .permitAll())
                                 .logout(logout -> logout
                                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                                 .logoutSuccessUrl("/login?logout")
                                                 .permitAll())
+                                .sessionManagement(session -> session
+                                                .maximumSessions(1)
+                                                .expiredUrl("/login?expired"))
                                 .csrf(csrf -> csrf
                                                 .ignoringRequestMatchers("/h2-console/**") // H2 console requires
                                                                                            // disabling CSRF
@@ -44,8 +52,4 @@ public class SecurityConfig {
                 return http.build();
         }
 
-        @Bean
-        public PasswordEncoder passwordEncoder() {
-                return new BCryptPasswordEncoder();
-        }
 }
