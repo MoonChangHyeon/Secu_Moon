@@ -247,7 +247,55 @@
             </div>
         </div>
 
+        <!-- Custom Alert Modal -->
+        <div class="modal fade" id="customAlertModal" tabindex="-1" aria-labelledby="customAlertModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="customAlertModalLabel">알림</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <pre id="customAlertMessage" class="bg-light p-3 border rounded"
+                            style="white-space: pre-wrap; word-break: break-all; max-height: 400px; overflow-y: auto;"></pre>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary" id="copyToClipboardBtn">
+                            <i class="bi bi-clipboard"></i> 복사
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script>
+            function showCustomAlert(message) {
+                const modalElement = document.getElementById('customAlertModal');
+                const messageElement = document.getElementById('customAlertMessage');
+                messageElement.textContent = message;
+
+                const modal = new bootstrap.Modal(modalElement);
+                modal.show();
+
+                // Reset copy button text
+                const copyBtn = document.getElementById('copyToClipboardBtn');
+                copyBtn.innerHTML = '<i class="bi bi-clipboard"></i> 복사';
+
+                // Copy to clipboard logic
+                copyBtn.onclick = function () {
+                    navigator.clipboard.writeText(message).then(() => {
+                        copyBtn.innerHTML = '<i class="bi bi-check"></i> 복사됨!';
+                        setTimeout(() => {
+                            copyBtn.innerHTML = '<i class="bi bi-clipboard"></i> 복사';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+                };
+            }
+
             function reparseAnalysis(id) {
                 if (!confirm('XML 보고서를 다시 파싱하시겠습니까? 기존 데이터는 덮어씌워집니다.')) {
                     return;
@@ -268,13 +316,13 @@
                             }, 500);
                         } else {
                             processingModal.hide();
-                            response.text().then(text => alert('오류: ' + text));
+                            response.text().then(text => showCustomAlert('오류: ' + text));
                         }
                     })
                     .catch(error => {
                         processingModal.hide();
                         console.error('Error:', error);
-                        alert('재파싱 요청 중 오류 발생');
+                        showCustomAlert('재파싱 요청 중 오류 발생');
                     });
             }
         </script>

@@ -25,6 +25,7 @@
                                     <input type="checkbox" id="selectAll" class="form-check-input">
                                 </th>
                                 <th>빌드 ID</th>
+                                <th>요청자</th>
                                 <th>날짜</th>
                                 <th>상태</th>
                                 <th>FPR 파일</th>
@@ -39,6 +40,10 @@
                                 </td>
                                 <td>
                                     <span th:text="${result.analysisOption.buildId}">MyProject</span>
+                                </td>
+                                <td>
+                                    <span
+                                        th:text="${result.scanSummary != null ? result.scanSummary.requester : '-'}">-</span>
                                 </td>
                                 <td th:text="${#temporals.format(result.scanDate, 'yyyy-MM-dd HH:mm')}">2023-10-27 10:00
                                 </td>

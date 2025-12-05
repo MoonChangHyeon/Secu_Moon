@@ -22,15 +22,18 @@ public class AnalysisController {
 
     private final com.example.vulnscanner.service.SettingsService settingsService;
     private final com.example.vulnscanner.service.StatsService statsService;
+    private final com.example.vulnscanner.service.UserService userService;
 
     public AnalysisController(AnalysisService analysisService,
             com.example.vulnscanner.service.FileService fileService,
             com.example.vulnscanner.service.SettingsService settingsService,
-            com.example.vulnscanner.service.StatsService statsService) {
+            com.example.vulnscanner.service.StatsService statsService,
+            com.example.vulnscanner.service.UserService userService) {
         this.analysisService = analysisService;
         this.fileService = fileService;
         this.settingsService = settingsService;
         this.statsService = statsService;
+        this.userService = userService;
     }
 
     @GetMapping("/")
@@ -168,6 +171,33 @@ public class AnalysisController {
 
         AnalysisResult result = analysisService.createAnalysis(analysisOption);
         result.setSourceFilePath(sourceFilePath); // 소스 파일 경로 저장
+
+        // Set Requester
+        String currentUsername = org.springframework.security.core.context.SecurityContextHolder.getContext()
+                .getAuthentication().getName();
+
+        String requesterName = currentUsername;
+        try {
+            com.example.vulnscanner.entity.User user = ((com.example.vulnscanner.service.UserService) userService)
+                    .loadUserEntityByUsername(currentUsername);
+            if (user != null && user.getName() != null && !user.getName().isEmpty()) {
+                requesterName = user.getName();
+            }
+        } catch (Exception e) {
+            System.out.println("Failed to fetch user details for requester name: " + e.getMessage());
+        }
+
+        System.out.println("Current User for Analysis: " + currentUsername + ", Requester Name: " + requesterName); // Debug
+                                                                                                                    // Log
+
+        if (result.getScanSummary() == null) {
+            com.example.vulnscanner.entity.ScanSummary summary = new com.example.vulnscanner.entity.ScanSummary();
+            summary.setAnalysisResult(result); // Set back-reference
+            result.setScanSummary(summary);
+        }
+        result.getScanSummary().setRequester(requesterName);
+        result.getScanSummary().setAnalysisResult(result); // Ensure it's set
+
         analysisService.saveResult(result);
         analysisService.runAnalysis(analysisOption, result.getId());
         return org.springframework.http.ResponseEntity.ok(java.util.Map.of("analysisId", result.getId()));

@@ -125,7 +125,13 @@ public class ReportParserService {
                 vulnerabilities.add(vuln);
             }
         }
-        result.setVulnerabilities(vulnerabilities);
+
+        if (result.getVulnerabilities() == null) {
+            result.setVulnerabilities(new ArrayList<>());
+        } else {
+            result.getVulnerabilities().clear();
+        }
+        result.getVulnerabilities().addAll(vulnerabilities);
 
         analysisRepository.save(result);
         log.info("Parsed and saved {} vulnerabilities for result ID: {}", vulnerabilities.size(), result.getId());

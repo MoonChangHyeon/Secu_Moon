@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
     <title>Vulnerability Scanner</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -150,8 +152,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#newScanModal">분석 요청</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/settings">설정</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="settingsDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            설정
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="settingsDropdown">
+                            <li><a class="dropdown-item" href="/settings">일반 설정</a></li>
+                            <li><a class="dropdown-item" href="/settings/users">사용자 관리</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-danger" href="/logout">로그아웃</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -324,8 +337,15 @@
             this.disabled = true;
             this.textContent = '분석 중...';
 
+            // CSRF Token
+            const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");
+            const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
+
             fetch('/analysis', {
                 method: 'POST',
+                headers: {
+                    [csrfHeader]: csrfToken
+                },
                 body: formData
             })
                 .then(response => response.json())

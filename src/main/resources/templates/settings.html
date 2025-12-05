@@ -3,7 +3,7 @@
 
 <body>
     <div>
-        <h2 class="mb-4">System Settings</h2>
+        <h2 class="mb-4">시스템 설정</h2>
 
         <div th:if="${message}" class="alert alert-success alert-dismissible fade show" role="alert">
             <span th:text="${message}"></span>
@@ -15,11 +15,15 @@
                 <ul class="nav nav-tabs card-header-tabs" id="settingsTabs" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#general"
-                            type="button" role="tab">General</button>
+                            type="button" role="tab">일반 설정</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security"
+                            type="button" role="tab">보안 설정</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="system-tab" data-bs-toggle="tab" data-bs-target="#system"
-                            type="button" role="tab">System Info</button>
+                            type="button" role="tab">시스템 정보</button>
                     </li>
                 </ul>
             </div>
@@ -29,61 +33,87 @@
 
                         <!-- General Settings Tab -->
                         <div class="tab-pane fade show active" id="general" role="tabpanel">
-                            <h5 class="card-title mb-3">Analysis Configuration</h5>
+                            <h5 class="card-title mb-3">분석 설정</h5>
 
                             <div class="mb-3">
-                                <label for="fortifyPath" class="form-label">Fortify Executable Path</label>
+                                <label for="fortifyPath" class="form-label">Fortify 실행 파일 경로</label>
                                 <input type="text" class="form-control" id="fortifyPath" name="fortify.executable-path"
                                     th:value="${settings['fortify.executable-path']}">
-                                <div class="form-text">Absolute path to 'sourceanalyzer' executable.</div>
+                                <div class="form-text">'sourceanalyzer' 실행 파일의 절대 경로입니다.</div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="defaultMemory" class="form-label">Default Scan Memory</label>
+                                <label for="defaultMemory" class="form-label">기본 스캔 메모리</label>
                                 <input type="text" class="form-control" id="defaultMemory" name="scan.default.memory"
                                     th:value="${settings['scan.default.memory']}">
-                                <div class="form-text">Memory limit for analysis (e.g., 4G, 8G). Passed as -Xmx.</div>
+                                <div class="form-text">분석에 사용할 메모리 제한입니다 (예: 4G, 8G). -Xmx 옵션으로 전달됩니다.</div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="defaultJdk" class="form-label">Default JDK Version</label>
+                                <label for="defaultJdk" class="form-label">기본 JDK 버전</label>
                                 <input type="text" class="form-control" id="defaultJdk" name="scan.default.jdk"
                                     th:value="${settings['scan.default.jdk']}">
-                                <div class="form-text">Default source version for translation (e.g., 1.8, 11, 17).</div>
+                                <div class="form-text">변환(Translation)에 사용할 기본 소스 버전입니다 (예: 1.8, 11, 17).</div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="resultPath" class="form-label">Result Folder Path</label>
+                                <label for="resultPath" class="form-label">결과 폴더 경로</label>
                                 <input type="text" class="form-control" id="resultPath" name="result.path"
                                     th:value="${settings['result.path']}">
-                                <div class="form-text">Directory where analysis results (FPR, logs, source) will be
-                                    stored. Default: ./results</div>
+                                <div class="form-text">분석 결과(FPR, 로그, 소스)가 저장될 디렉토리입니다. 기본값: ./results</div>
+                            </div>
+                        </div>
+
+                        <!-- Security Settings Tab -->
+                        <div class="tab-pane fade" id="security" role="tabpanel">
+                            <h5 class="card-title mb-3">로그인 보안 설정</h5>
+
+                            <div class="mb-3">
+                                <label for="maxLoginAttempts" class="form-label">최대 로그인 실패 횟수</label>
+                                <input type="number" class="form-control" id="maxLoginAttempts"
+                                    name="security.login.max-attempts"
+                                    th:value="${settings['security.login.max-attempts']}">
+                                <div class="form-text">계정이 잠기기 전까지 허용되는 최대 로그인 실패 횟수입니다.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="lockoutDuration" class="form-label">계정 잠금 시간 (분)</label>
+                                <input type="number" class="form-control" id="lockoutDuration"
+                                    name="security.login.lockout-duration"
+                                    th:value="${settings['security.login.lockout-duration']}">
+                                <div class="form-text">최대 실패 횟수 초과 시 계정이 잠기는 시간입니다.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="sessionTimeout" class="form-label">세션 타임아웃 (분)</label>
+                                <input type="number" class="form-control" id="sessionTimeout"
+                                    name="security.session.timeout" th:value="${settings['security.session.timeout']}">
+                                <div class="form-text">세션이 만료되기 전까지의 비활동 시간입니다.</div>
                             </div>
                         </div>
 
                         <!-- System Info Tab (Read-only for now) -->
                         <div class="tab-pane fade" id="system" role="tabpanel">
-                            <h5 class="card-title mb-3">System Configuration (Read-Only)</h5>
+                            <h5 class="card-title mb-3">시스템 구성 (읽기 전용)</h5>
                             <div class="alert alert-info">
-                                These settings are loaded from <code>application.properties</code>. To change them,
-                                modify the file and restart the server.
+                                이 설정들은 <code>application.properties</code> 파일에서 로드됩니다. 변경하려면 파일을 수정하고 서버를 재시작하세요.
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Database URL</label>
+                                <label class="form-label">데이터베이스 URL</label>
                                 <input type="text" class="form-control"
                                     value="jdbc:mariadb://localhost:3306/vulnscanner_db" disabled>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Max File Upload Size</label>
+                                <label class="form-label">최대 파일 업로드 크기</label>
                                 <input type="text" class="form-control" value="100MB" disabled>
                             </div>
                         </div>
                     </div>
 
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-primary">Save Settings</button>
+                        <button type="submit" class="btn btn-primary">설정 저장</button>
                     </div>
                 </form>
             </div>

@@ -24,6 +24,11 @@ public class SettingsController {
         return "settings";
     }
 
+    @GetMapping("/settings/users")
+    public String userManagement() {
+        return "user_management";
+    }
+
     @PostMapping("/settings/update")
     public String updateSettings(@RequestParam Map<String, String> allParams, RedirectAttributes redirectAttributes) {
         for (Map.Entry<String, String> entry : allParams.entrySet()) {
