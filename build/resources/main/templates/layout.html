@@ -198,19 +198,49 @@
                                 <div id="collapseBasic" class="accordion-collapse collapse show"
                                     aria-labelledby="headingBasic" data-bs-parent="#scanOptionsAccordion">
                                     <div class="accordion-body">
+                                        <!-- Analysis Type Selection -->
                                         <div class="mb-3">
+                                            <label class="form-label">분석 유형</label>
+                                            <div class="btn-group w-100" role="group">
+                                                <input type="radio" class="btn-check" name="analysisType" id="typeSast"
+                                                    value="sast" checked>
+                                                <label class="btn btn-outline-primary" for="typeSast">SAST
+                                                    (Source)</label>
+
+                                                <input type="radio" class="btn-check" name="analysisType" id="typeSbom"
+                                                    value="sbom">
+                                                <label class="btn btn-outline-primary" for="typeSbom">SBOM (Open
+                                                    Source)</label>
+
+                                                <input type="radio" class="btn-check" name="analysisType"
+                                                    id="typeCombined" value="combined">
+                                                <label class="btn btn-outline-primary"
+                                                    for="typeCombined">Combined</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3" id="buildIdGroup">
                                             <label for="modalBuildId" class="form-label">빌드 ID</label>
                                             <input type="text" class="form-control" id="modalBuildId" name="buildId"
                                                 placeholder="예: MyProject" required>
                                             <div class="form-text">이 스캔의 고유 식별자입니다.</div>
                                         </div>
 
-                                        <div class="mb-3">
+                                        <div class="mb-3" id="sourceFileGroup">
                                             <label for="modalFile" class="form-label">소스 코드 (ZIP 또는 단일 파일)</label>
                                             <input type="file" class="form-control" id="modalFile" name="file"
                                                 accept=".zip,.java,.xml,.properties">
                                             <div class="form-text">분석할 소스 코드를 업로드하세요. ZIP 파일인 경우 자동으로 압축이 해제됩니다.
                                             </div>
+                                        </div>
+
+                                        <div class="mb-3 d-none" id="sbomFileGroup">
+                                            <label for="modalSbomFile" class="form-label">소스 코드 (ZIP) 또는 SBOM 파일
+                                                (JSON/XML) - 생성/업로드</label>
+                                            <input type="file" class="form-control" id="modalSbomFile" name="sbomFile"
+                                                accept=".json,.xml,.spdx,.zip">
+                                            <div class="form-text">분석할 소스 코드(ZIP)를 업로드하여 SBOM을 생성하거나, 이미 생성된 SBOM 파일을
+                                                업로드하세요.</div>
                                         </div>
                                     </div>
                                 </div>
@@ -314,17 +344,49 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // New Scan 모달 제출
+        // Analysis Type Toggle Logic
+        const typeRadios = document.querySelectorAll('input[name="analysisType"]');
+        const sourceFileGroup = document.getElementById('sourceFileGroup');
+        const sbomFileGroup = document.getElementById('sbomFileGroup');
+        const phasesAccordion = document.getElementById('headingPhases').parentElement;
+        const advancedAccordion = document.getElementById('headingAdvanced').parentElement;
+
+        typeRadios.forEach(radio => {
+            radio.addEventListener('change', function () {
+                if (this.value === 'sast') {
+                    sourceFileGroup.classList.remove('d-none');
+                    sbomFileGroup.classList.add('d-none');
+                    phasesAccordion.style.display = 'block';
+                    advancedAccordion.style.display = 'block';
+                } else if (this.value === 'sbom') {
+                    sourceFileGroup.classList.add('d-none');
+                    sbomFileGroup.classList.remove('d-none');
+                    phasesAccordion.style.display = 'none'; // Hide SAST specific options
+                    advancedAccordion.style.display = 'none';
+                } else if (this.value === 'combined') {
+                    sourceFileGroup.classList.remove('d-none');
+                    sbomFileGroup.classList.remove('d-none');
+                    phasesAccordion.style.display = 'block';
+                    advancedAccordion.style.display = 'block';
+                }
+            });
+        });
+
+        // New Scan 모달 제출
         document.getElementById('submitScanBtn').addEventListener('click', function () {
             const form = document.getElementById('newScanForm');
             const formData = new FormData(form);
+            const analysisType = document.querySelector('input[name="analysisType"]:checked').value;
 
-            // 체크박스 값 처리
-            formData.set('clean', document.getElementById('modalClean').checked);
-            formData.set('translate', document.getElementById('modalTranslate').checked);
-            formData.set('scan', document.getElementById('modalScan').checked);
-            formData.set('report', document.getElementById('modalReport').checked);
-            formData.set('quickScan', document.getElementById('modalQuickScan').checked);
-            formData.set('debugVerbose', document.getElementById('modalDebugVerbose').checked);
+            // 체크박스 값 처리 (SAST/Combined only)
+            if (analysisType !== 'sbom') {
+                formData.set('clean', document.getElementById('modalClean').checked);
+                formData.set('translate', document.getElementById('modalTranslate').checked);
+                formData.set('scan', document.getElementById('modalScan').checked);
+                formData.set('report', document.getElementById('modalReport').checked);
+                formData.set('quickScan', document.getElementById('modalQuickScan').checked);
+                formData.set('debugVerbose', document.getElementById('modalDebugVerbose').checked);
+            }
 
             // Build ID 필수 확인
             const buildId = document.getElementById('modalBuildId').value.trim();
@@ -341,42 +403,114 @@
             const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");
             const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
 
-            fetch('/analysis', {
+            let url = '/analysis'; // Default SAST
+            if (analysisType === 'sbom') {
+                url = '/analysis/request/sbom';
+            } else if (analysisType === 'combined') {
+                // url = '/analysis/request/combined'; // TODO: Implement Combined Controller
+                alert('Combined analysis is not yet implemented.');
+                this.disabled = false;
+                this.textContent = '분석 시작';
+                return;
+            }
+
+            fetch(url, {
                 method: 'POST',
                 headers: {
                     [csrfHeader]: csrfToken
                 },
                 body: formData
             })
-                .then(response => response.json())
+                .then(async response => {
+                    if (response.redirected) {
+                        window.location.href = response.url;
+                        return;
+                    }
+                    const data = await response.json().catch(() => null);
+
+                    if (!response.ok) {
+                        const errorMessage = data && data.error ? data.error : '서버 오류가 발생했습니다 (' + response.status + ')';
+                        throw new Error(errorMessage);
+                    }
+                    return data;
+                })
                 .then(data => {
+                    if (!data) return; // Redirected case
+
                     if (data.analysisId) {
                         alert('분석이 시작되었습니다!');
-                        // 모달 닫기
                         const modal = bootstrap.Modal.getInstance(document.getElementById('newScanModal'));
                         modal.hide();
-                        // 폼 초기화
                         form.reset();
-                        // 페이지 새로고침 (대시보드인 경우)
                         if (window.location.pathname === '/') {
                             location.reload();
                         } else {
-                            // 대시보드로 이동
                             window.location.href = '/';
                         }
                     } else if (data.error) {
-                        alert('오류: ' + data.error);
+                        showCustomAlert('오류: ' + data.error);
+                    } else if (data.message) {
+                        // For legacy compatibility where message might be returned
+                        window.location.reload();
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('분석 요청 중 오류 발생');
+                    showCustomAlert('요청 실패: ' + error.message);
                 })
                 .finally(() => {
                     this.disabled = false;
                     this.textContent = '분석 시작';
                 });
         });
+    </script>
+    <div class="modal fade" id="customAlertModal" tabindex="-1" aria-labelledby="customAlertModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="customAlertModalLabel">알림</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <pre id="customAlertMessage" class="bg-light p-3 border rounded"
+                        style="white-space: pre-wrap; word-break: break-all; max-height: 400px; overflow-y: auto;"></pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" id="copyToClipboardBtn">
+                        <i class="bi bi-clipboard"></i> 복사
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showCustomAlert(message) {
+            const modalElement = document.getElementById('customAlertModal');
+            const messageElement = document.getElementById('customAlertMessage');
+            messageElement.textContent = message;
+
+            const modal = new bootstrap.Modal(modalElement);
+            modal.show();
+
+            // Reset copy button text
+            const copyBtn = document.getElementById('copyToClipboardBtn');
+            copyBtn.innerHTML = '<i class="bi bi-clipboard"></i> 복사';
+
+            // Copy to clipboard logic
+            copyBtn.onclick = function () {
+                navigator.clipboard.writeText(message).then(() => {
+                    copyBtn.innerHTML = '<i class="bi bi-check"></i> 복사됨!';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = '<i class="bi bi-clipboard"></i> 복사';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+            };
+        }
     </script>
 </body>
 

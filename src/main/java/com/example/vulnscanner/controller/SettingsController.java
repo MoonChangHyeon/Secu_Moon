@@ -39,4 +39,10 @@ public class SettingsController {
         redirectAttributes.addFlashAttribute("message", "Settings updated successfully.");
         return "redirect:/settings";
     }
+
+    @PostMapping("/settings/test-connection")
+    @org.springframework.web.bind.annotation.ResponseBody
+    public java.util.Map<String, Object> testConnection(@RequestParam String url) {
+        return settingsService.testApiConnection(url);
+    }
 }

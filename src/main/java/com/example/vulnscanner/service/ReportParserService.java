@@ -32,11 +32,16 @@ public class ReportParserService {
     private final AnalysisRepository analysisRepository;
 
     @Transactional
-    public void parseAndSave(File xmlFile, AnalysisResult result) throws Exception {
+    public void parseAndSave(File xmlFile, Long analysisId) throws Exception {
+        AnalysisResult result = analysisRepository.findById(analysisId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid analysis ID: " + analysisId));
+
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+        // Allow DOCTYPE but disable external entities for XXE protection
+        factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false);
         factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
         factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+        factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
         factory.setXIncludeAware(false);
         factory.setExpandEntityReferences(false);
         DocumentBuilder builder = factory.newDocumentBuilder();

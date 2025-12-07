@@ -251,6 +251,7 @@ public class AnalysisService {
                     });
                     if (pdfPath != null) {
                         result.setReportPdfPath(pdfPath);
+                        analysisRepository.save(result); // Save immediately
                         logs.append("PDF Report generated: ").append(pdfPath).append("\n");
                     } else {
                         logs.append("PDF Report generation failed.\n");
@@ -262,11 +263,16 @@ public class AnalysisService {
                     });
                     if (xmlPath != null) {
                         result.setReportXmlPath(xmlPath);
+                        analysisRepository.save(result); // Save immediately
                         logs.append("XML Report generated: ").append(xmlPath).append("\n");
 
                         // Parse XML and save to DB
                         try {
-                            reportParserService.parseAndSave(new File(xmlPath), result);
+                            // Reload result to ensure it's attached to the persistence context
+                            // AnalysisResult resultForParsing =
+                            // analysisRepository.findById(analysisId).orElse(result);
+                            // reportParserService.parseAndSave(new File(xmlPath), resultForParsing);
+                            reportParserService.parseAndSave(new File(xmlPath), analysisId);
                             logs.append("XML Report parsed and saved to database.\n");
                         } catch (Exception e) {
                             logs.append("XML Parsing failed: ").append(e.getMessage()).append("\n");
@@ -297,8 +303,15 @@ public class AnalysisService {
             e.printStackTrace();
             updateStatus(result, "FAILED");
         } finally {
-            result.setLogs(logs.toString());
-            analysisRepository.save(result);
+            try {
+                AnalysisResult finalResult = analysisRepository.findById(analysisId).orElse(null);
+                if (finalResult != null) {
+                    finalResult.setLogs(logs.toString());
+                    analysisRepository.save(finalResult);
+                }
+            } catch (Exception e) {
+                log.error("Failed to save logs", e);
+            }
             activeLogs.remove(analysisId);
         }
         return CompletableFuture.completedFuture(null);
@@ -369,6 +382,6 @@ public class AnalysisService {
         analysisRepository.save(result);
 
         // Re-parse
-        reportParserService.parseAndSave(xmlFile, result);
+        reportParserService.parseAndSave(xmlFile, id);
     }
 }

@@ -62,6 +62,24 @@
                                     th:value="${settings['result.path']}">
                                 <div class="form-text">분석 결과(FPR, 로그, 소스)가 저장될 디렉토리입니다. 기본값: ./results</div>
                             </div>
+
+                            <div class="mb-3">
+                                <label for="sbomApiUrl" class="form-label">AI_SBOM API URL</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="sbomApiUrl" name="sbom.api.url"
+                                        th:value="${settings['sbom.api.url']}">
+                                    <button class="btn btn-outline-secondary" type="button" id="testConnectionBtn">연결
+                                        테스트</button>
+                                </div>
+                                <div class="form-text">AI_SBOM 분석을 수행할 외부 API 서버 주소입니다. (예: http://localhost:5000)</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="maxUploadSize" class="form-label">최대 파일 업로드 크기 (MB)</label>
+                                <input type="number" class="form-control" id="maxUploadSize" name="file.upload.max-size"
+                                    th:value="${settings['file.upload.max-size']}">
+                                <div class="form-text">업로드 허용 최대 파일 크기입니다. (단위: MB, 기본값: 100)</div>
+                            </div>
                         </div>
 
                         <!-- Security Settings Tab -->
@@ -105,10 +123,7 @@
                                     value="jdbc:mariadb://localhost:3306/vulnscanner_db" disabled>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">최대 파일 업로드 크기</label>
-                                <input type="text" class="form-control" value="100MB" disabled>
-                            </div>
+
                         </div>
                     </div>
 
@@ -118,6 +133,56 @@
                 </form>
             </div>
         </div>
+        <script>
+            document.getElementById('testConnectionBtn').addEventListener('click', function () {
+                var url = document.getElementById('sbomApiUrl').value;
+                if (!url) {
+                    if (!url) {
+                        showCustomAlert('URL을 입력해주세요.');
+                        return;
+                    }
+                    return;
+                }
+
+                var btn = this;
+                var originalText = btn.textContent;
+                btn.textContent = '테스트 중...';
+                btn.disabled = true;
+
+                var csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");
+                var csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
+
+                fetch('/settings/test-connection', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        [csrfHeader]: csrfToken
+                    },
+                    body: 'url=' + encodeURIComponent(url)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        var output = '';
+                        if (data.requestInfo) {
+                            output += '[' + data.requestInfo + ']\n';
+                        }
+                        if (data.success) {
+                            output += '연결 성공! (' + data.message + ')';
+                        } else {
+                            output += '연결 실패: ' + data.message;
+                        }
+                        showCustomAlert(output);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        showCustomAlert('오류가 발생했습니다.');
+                    })
+                    .finally(() => {
+                        btn.textContent = originalText;
+                        btn.disabled = false;
+                    });
+            });
+        </script>
     </div>
 </body>
 

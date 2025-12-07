@@ -84,6 +84,70 @@
             </div>
         </div>
 
+        <hr class="my-5">
+
+        <h3 class="mb-4">SBOM 통계</h3>
+
+        <!-- SBOM Overall Stats Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card text-center h-100 border-primary">
+                    <div class="card-body">
+                        <h6 class="card-title text-muted">총 SBOM 스캔</h6>
+                        <h2 class="display-4 fw-bold text-primary" th:text="${sbomOverallStats.totalScans}">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center h-100 border-success">
+                    <div class="card-body">
+                        <h6 class="card-title text-muted">성공 횟수</h6>
+                        <h2 class="display-4 fw-bold text-success" th:text="${sbomOverallStats.successCount}">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center h-100 border-info">
+                    <div class="card-body">
+                        <h6 class="card-title text-muted">총 컴포넌트</h6>
+                        <h2 class="display-4 fw-bold text-info" th:text="${sbomOverallStats.totalComponents}">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center h-100 border-danger">
+                    <div class="card-body">
+                        <h6 class="card-title text-muted">총 발견 취약점</h6>
+                        <h2 class="display-4 fw-bold text-danger" th:text="${sbomOverallStats.totalVulns}">0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SBOM Charts -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">상위 10개 컴포넌트</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="sbomComponentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">라이선스 분포</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="sbomLicenseChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Chart.js -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script th:inline="javascript">
@@ -157,6 +221,53 @@
                         scales: {
                             x: {
                                 beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // SBOM Component Chart
+                const sbomComponentCtx = document.getElementById('sbomComponentChart').getContext('2d');
+                new Chart(sbomComponentCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: [[${ sbomComponentLabels }]],
+                        datasets: [{
+                            label: '사용 횟수',
+                            data: [[${ sbomComponentData }]],
+                            backgroundColor: '#6610f2'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // SBOM License Chart
+                const sbomLicenseCtx = document.getElementById('sbomLicenseChart').getContext('2d');
+                new Chart(sbomLicenseCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: [[${ sbomLicenseLabels }]],
+                        datasets: [{
+                            data: [[${ sbomLicenseData }]],
+                            backgroundColor: [
+                                '#0d6efd', '#6610f2', '#6f42c1', '#d63384', '#dc3545',
+                                '#fd7e14', '#ffc107', '#198754', '#20c997', '#0dcaf0'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
                             }
                         }
                     }

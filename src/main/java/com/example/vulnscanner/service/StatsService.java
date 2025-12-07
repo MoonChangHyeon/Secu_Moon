@@ -15,7 +15,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class StatsService {
 
-    private final AnalysisRepository analysisRepository;
+    private final com.example.vulnscanner.repository.AnalysisRepository analysisRepository;
+    private final com.example.vulnscanner.repository.SbomRepository sbomRepository;
+    private final com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
 
     public Map<String, Object> getOverallStats() {
         List<AnalysisResult> results = analysisRepository.findAll();
@@ -34,6 +36,40 @@ public class StatsService {
         // Calculate average vulnerabilities per scan
         double avgVulns = successCount > 0 ? (double) totalVulns / successCount : 0;
         stats.put("avgVulns", String.format("%.1f", avgVulns));
+
+        return stats;
+    }
+
+    public Map<String, Object> getSbomOverallStats() {
+        List<com.example.vulnscanner.entity.SbomResult> results = sbomRepository.findAll();
+        long totalScans = results.size();
+        long successCount = results.stream().filter(r -> "SUCCESS".equals(r.getStatus())).count();
+
+        long totalComponents = 0;
+        long totalVulns = 0;
+
+        for (com.example.vulnscanner.entity.SbomResult result : results) {
+            if ("SUCCESS".equals(result.getStatus()) && result.getLogs() != null) {
+                try {
+                    Map<String, Object> data = objectMapper.readValue(result.getLogs(),
+                            new com.fasterxml.jackson.core.type.TypeReference<Map<String, Object>>() {
+                            });
+                    if (data.containsKey("summary")) {
+                        Map<String, Object> summary = (Map<String, Object>) data.get("summary");
+                        totalComponents += ((Number) summary.getOrDefault("components_count", 0)).longValue();
+                        totalVulns += ((Number) summary.getOrDefault("vulnerabilities_count", 0)).longValue();
+                    }
+                } catch (Exception e) {
+                    // Ignore parsing errors for stats
+                }
+            }
+        }
+
+        Map<String, Object> stats = new HashMap<>();
+        stats.put("totalScans", totalScans);
+        stats.put("successCount", successCount);
+        stats.put("totalComponents", totalComponents);
+        stats.put("totalVulns", totalVulns);
 
         return stats;
     }
@@ -118,6 +154,77 @@ public class StatsService {
         return categoryCount.entrySet().stream()
                 .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
                 .limit(limit)
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1,
+                        LinkedHashMap::new));
+    }
+
+    public Map<String, Long> getSbomComponentDistribution(int limit) {
+        List<com.example.vulnscanner.entity.SbomResult> results = sbomRepository.findAll();
+        Map<String, Long> componentCount = new HashMap<>();
+
+        for (com.example.vulnscanner.entity.SbomResult result : results) {
+            if ("SUCCESS".equals(result.getStatus()) && result.getLogs() != null) {
+                try {
+                    Map<String, Object> data = objectMapper.readValue(result.getLogs(),
+                            new com.fasterxml.jackson.core.type.TypeReference<Map<String, Object>>() {
+                            });
+                    if (data.containsKey("components")) {
+                        List<Map<String, Object>> components = (List<Map<String, Object>>) data.get("components");
+                        for (Map<String, Object> comp : components) {
+                            String name = (String) comp.get("name");
+                            if (name != null) {
+                                componentCount.put(name, componentCount.getOrDefault(name, 0L) + 1);
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    // Ignore
+                }
+            }
+        }
+
+        return componentCount.entrySet().stream()
+                .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
+                .limit(limit)
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1,
+                        LinkedHashMap::new));
+    }
+
+    public Map<String, Long> getSbomLicenseDistribution() {
+        List<com.example.vulnscanner.entity.SbomResult> results = sbomRepository.findAll();
+        Map<String, Long> licenseCount = new HashMap<>();
+
+        for (com.example.vulnscanner.entity.SbomResult result : results) {
+            if ("SUCCESS".equals(result.getStatus()) && result.getLogs() != null) {
+                try {
+                    Map<String, Object> data = objectMapper.readValue(result.getLogs(),
+                            new com.fasterxml.jackson.core.type.TypeReference<Map<String, Object>>() {
+                            });
+                    if (data.containsKey("licenses")) {
+                        List<Map<String, Object>> licenses = (List<Map<String, Object>>) data.get("licenses");
+                        for (Map<String, Object> lic : licenses) {
+                            String type = (String) lic.get("license_type");
+                            if (type != null) {
+                                licenseCount.put(type, licenseCount.getOrDefault(type, 0L) + 1);
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    // Ignore
+                }
+            }
+        }
+
+        // Sort by count desc
+        return licenseCount.entrySet().stream()
+                .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
+                .limit(10) // Top 10 licenses
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         Map.Entry::getValue,

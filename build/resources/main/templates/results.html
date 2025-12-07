@@ -25,6 +25,7 @@
                                     <input type="checkbox" id="selectAll" class="form-check-input">
                                 </th>
                                 <th>빌드 ID</th>
+                                <th>유형</th>
                                 <th>요청자</th>
                                 <th>날짜</th>
                                 <th>상태</th>
@@ -39,11 +40,14 @@
                                         th:data-id="${result.id}">
                                 </td>
                                 <td>
-                                    <span th:text="${result.analysisOption.buildId}">MyProject</span>
+                                    <span th:text="${result.buildId}">MyProject</span>
                                 </td>
                                 <td>
-                                    <span
-                                        th:text="${result.scanSummary != null ? result.scanSummary.requester : '-'}">-</span>
+                                    <span th:text="${result.type}"
+                                        th:class="${result.type == 'SAST' ? 'badge bg-primary' : 'badge bg-info'}">Type</span>
+                                </td>
+                                <td>
+                                    <span th:text="${result.requester}">-</span>
                                 </td>
                                 <td th:text="${#temporals.format(result.scanDate, 'yyyy-MM-dd HH:mm')}">2023-10-27 10:00
                                 </td>
@@ -52,11 +56,11 @@
                                         th:class="${result.status == 'SUCCESS' ? 'badge bg-success' : (result.status == 'FAILED' ? 'badge bg-danger' : 'badge bg-warning text-dark')}">
                                     </span>
                                 </td>
-                                <td th:text="${result.fprPath}">result.fpr</td>
+                                <td th:text="${result.fprPath != null ? result.fprPath : '-'}">result.fpr</td>
                                 <td>
                                     <div class="btn-group" role="group">
                                         <!-- Detail Button -->
-                                        <a th:href="@{/results/{id}(id=${result.id})}"
+                                        <a th:href="@{${result.type == 'SAST' ? '/results/' + result.id : '/sbom/results/' + result.id}}"
                                             class="btn btn-sm btn-outline-primary">
                                             <i class="bi bi-search"></i> 상세
                                         </a>
@@ -67,8 +71,8 @@
                                             <i class="bi bi-file-text"></i> 로그
                                         </button>
 
-                                        <!-- Download Dropdown -->
-                                        <div class="btn-group" role="group">
+                                        <!-- Download Dropdown (SAST Only for now) -->
+                                        <div class="btn-group" role="group" th:if="${result.type == 'SAST'}">
                                             <button type="button"
                                                 class="btn btn-sm btn-outline-secondary dropdown-toggle"
                                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -119,7 +123,7 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title">스캔 로그 - <span
-                                                            th:text="${result.analysisOption.buildId}"></span></h5>
+                                                            th:text="${result.buildId}"></span></h5>
                                                     <button type="button" class="btn-close"
                                                         data-bs-dismiss="modal"></button>
                                                 </div>
@@ -200,10 +204,15 @@
                         if (selectedIds.length === 0) return;
 
                         if (confirm(`선택한 ${selectedIds.length}개의 항목을 삭제하시겠습니까?`)) {
+                            // CSRF Token
+                            const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");
+                            const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
+
                             fetch('/api/analysis/batch', {
                                 method: 'DELETE',
                                 headers: {
-                                    'Content-Type': 'application/json'
+                                    'Content-Type': 'application/json',
+                                    [csrfHeader]: csrfToken
                                 },
                                 body: JSON.stringify(selectedIds)
                             })
@@ -229,8 +238,15 @@
                         const id = btn.getAttribute('data-id');
                         console.log('Delete single:', id);
                         if (id && confirm('정말 이 분석 결과를 삭제하시겠습니까?')) {
+                            // CSRF Token
+                            const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");
+                            const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
+
                             fetch('/api/analysis/' + id, {
-                                method: 'DELETE'
+                                method: 'DELETE',
+                                headers: {
+                                    [csrfHeader]: csrfToken
+                                }
                             })
                                 .then(response => {
                                     if (response.ok) {
@@ -247,19 +263,79 @@
                     }
                 });
 
-                // Auto Refresh for Running Scans
-                const hasRunningScans = document.querySelector('.badge.bg-primary') !== null;
-                if (hasRunningScans) {
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 5000); // 5 seconds
+                // Polling for Status Updates
+                function pollStatus() {
+                    fetch('/api/analysis/status')
+                        .then(response => response.json())
+                        .then(data => {
+                            const statusMap = new Map(data.map(item => [item.id, item.status]));
+                            let shouldReload = false;
+
+                            document.querySelectorAll('.analysis-row').forEach(row => {
+                                const id = parseInt(row.querySelector('.row-checkbox').getAttribute('data-id'));
+                                const currentStatus = row.getAttribute('data-status');
+                                const newStatus = statusMap.get(id);
+
+                                if (newStatus && newStatus !== currentStatus) {
+                                    console.log(`Status changed for ID ${id}: ${currentStatus} -> ${newStatus}`);
+
+                                    // Update badge
+                                    const badge = row.querySelector('td:nth-child(6) span');
+                                    if (badge) {
+                                        badge.textContent = newStatus;
+                                        badge.className = newStatus === 'SUCCESS' ? 'badge bg-success' :
+                                            (newStatus === 'FAILED' ? 'badge bg-danger' : 'badge bg-warning text-dark');
+                                    }
+                                    row.setAttribute('data-status', newStatus);
+
+                                    // Check if we need to reload (transition to final state)
+                                    if ((currentStatus !== 'SUCCESS' && currentStatus !== 'FAILED') &&
+                                        (newStatus === 'SUCCESS' || newStatus === 'FAILED')) {
+                                        shouldReload = true;
+                                    }
+                                }
+                            });
+
+                            if (shouldReload) {
+                                // Check if New Scan Modal is open
+                                const newScanModal = document.getElementById('newScanModal');
+                                const isModalOpen = newScanModal && newScanModal.classList.contains('show');
+
+                                if (!isModalOpen) {
+                                    window.location.reload();
+                                }
+                            }
+                        })
+                        .catch(error => console.error('Error polling status:', error));
+                }
+
+                // Start polling if there are running scans
+                const hasRunningScans = document.querySelector('.badge.bg-warning') !== null; // Check for any non-final status
+                // Actually, we should poll if there are ANY running scans. 
+                // The badge class might be bg-warning for all running states?
+                // Let's just poll every 5 seconds regardless, or check if we have any row that is not SUCCESS/FAILED.
+
+                const pendingRows = Array.from(document.querySelectorAll('.analysis-row')).some(row => {
+                    const status = row.getAttribute('data-status');
+                    return status !== 'SUCCESS' && status !== 'FAILED';
+                });
+
+                if (pendingRows) {
+                    setInterval(pollStatus, 5000);
                 }
 
                 // Global Delete Function for Dropdown
                 window.deleteAnalysis = function (id) {
                     if (id && confirm('정말 이 분석 결과를 삭제하시겠습니까?')) {
+                        // CSRF Token
+                        const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");
+                        const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
+
                         fetch('/api/analysis/' + id, {
-                            method: 'DELETE'
+                            method: 'DELETE',
+                            headers: {
+                                [csrfHeader]: csrfToken
+                            }
                         })
                             .then(response => {
                                 if (response.ok) {

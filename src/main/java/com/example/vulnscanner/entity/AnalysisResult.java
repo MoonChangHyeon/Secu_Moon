@@ -21,6 +21,7 @@ public class AnalysisResult {
     @Lob
     @Column(columnDefinition = "TEXT")
     private String logs;
+    private String requester; // 분석 요청자
     private String buildLogFilePath;
     private String scanLogFilePath;
     private String sourceFilePath; // 업로드된 소스 파일 경로

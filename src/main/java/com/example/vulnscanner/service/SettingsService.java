@@ -28,6 +28,8 @@ public class SettingsService {
     public static final String KEY_LOGIN_MAX_ATTEMPTS = "security.login.max-attempts";
     public static final String KEY_LOGIN_LOCKOUT_DURATION = "security.login.lockout-duration";
     public static final String KEY_SESSION_TIMEOUT = "security.session.timeout";
+    public static final String KEY_SBOM_API_URL = "sbom.api.url";
+    public static final String KEY_MAX_UPLOAD_SIZE = "file.upload.max-size";
 
     @PostConstruct
     public void init() {
@@ -48,6 +50,10 @@ public class SettingsService {
             systemSettingRepository
                     .save(new SystemSetting(KEY_RESULT_PATH, "./results", "Directory path for analysis results"));
         }
+        if (!systemSettingRepository.existsById(KEY_SBOM_API_URL)) {
+            systemSettingRepository
+                    .save(new SystemSetting(KEY_SBOM_API_URL, "http://localhost:5000", "AI_SBOM API URL"));
+        }
         if (!systemSettingRepository.existsById(KEY_LOGIN_MAX_ATTEMPTS)) {
             systemSettingRepository
                     .save(new SystemSetting(KEY_LOGIN_MAX_ATTEMPTS, "5", "Max login attempts before lockout"));
@@ -58,6 +64,9 @@ public class SettingsService {
         }
         if (!systemSettingRepository.existsById(KEY_SESSION_TIMEOUT)) {
             systemSettingRepository.save(new SystemSetting(KEY_SESSION_TIMEOUT, "30", "Session timeout in minutes"));
+        }
+        if (!systemSettingRepository.existsById(KEY_MAX_UPLOAD_SIZE)) {
+            systemSettingRepository.save(new SystemSetting(KEY_MAX_UPLOAD_SIZE, "100", "Max file upload size in MB"));
         }
     }
 
@@ -76,6 +85,34 @@ public class SettingsService {
         } else {
             systemSettingRepository.save(new SystemSetting(key, value, ""));
         }
+    }
+
+    public Map<String, Object> testApiConnection(String urlStr) {
+        Map<String, Object> result = new HashMap<>();
+        String requestInfo = "";
+        try {
+            java.net.URL url = new java.net.URL(urlStr);
+            requestInfo = "Request: GET " + url + " (Timeout: 3000ms)";
+            result.put("requestInfo", requestInfo);
+
+            java.net.HttpURLConnection connection = (java.net.HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setConnectTimeout(3000);
+            connection.setReadTimeout(3000);
+
+            int code = connection.getResponseCode();
+            result.put("statusCode", code);
+            // Accept 404 and 403 as valid "connection" proofs (server is reachable)
+            result.put("success", (code >= 200 && code < 300) || code == 404 || code == 403);
+            result.put("message", "Status: " + code);
+        } catch (Exception e) {
+            result.put("statusCode", -1);
+            result.put("requestInfo", requestInfo.isEmpty() ? "Request generation failed for: " + urlStr : requestInfo);
+            result.put("success", false);
+            result.put("message", e.getClass().getName() + ": " + e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
     }
 
     public Map<String, String> getAllSettings() {

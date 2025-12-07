@@ -23,17 +23,20 @@ public class AnalysisController {
     private final com.example.vulnscanner.service.SettingsService settingsService;
     private final com.example.vulnscanner.service.StatsService statsService;
     private final com.example.vulnscanner.service.UserService userService;
+    private final com.example.vulnscanner.service.SbomService sbomService;
 
     public AnalysisController(AnalysisService analysisService,
             com.example.vulnscanner.service.FileService fileService,
             com.example.vulnscanner.service.SettingsService settingsService,
             com.example.vulnscanner.service.StatsService statsService,
-            com.example.vulnscanner.service.UserService userService) {
+            com.example.vulnscanner.service.UserService userService,
+            com.example.vulnscanner.service.SbomService sbomService) {
         this.analysisService = analysisService;
         this.fileService = fileService;
         this.settingsService = settingsService;
         this.statsService = statsService;
         this.userService = userService;
+        this.sbomService = sbomService;
     }
 
     @GetMapping("/")
@@ -90,7 +93,11 @@ public class AnalysisController {
         // Monthly (30 days)
         Map<String, Object> monthlyTrend = calculateTrend(allResults, today, 30);
         model.addAttribute("monthlyTrendLabels", monthlyTrend.get("labels"));
+        model.addAttribute("monthlyTrendLabels", monthlyTrend.get("labels"));
         model.addAttribute("monthlyTrendData", monthlyTrend.get("data"));
+
+        // 5. Recent SBOM Scans
+        model.addAttribute("recentSbomScans", sbomService.getRecentScans());
 
         return "dashboard";
     }
@@ -119,7 +126,32 @@ public class AnalysisController {
 
     @GetMapping("/results")
     public String results(Model model) {
-        model.addAttribute("results", analysisService.getAllResults());
+        List<AnalysisResult> sastResults = analysisService.getAllResults();
+        List<com.example.vulnscanner.entity.SbomResult> sbomResults = sbomService.getAllSbomResults();
+
+        List<com.example.vulnscanner.dto.UnifiedResultDto> unifiedResults = new java.util.ArrayList<>();
+
+        // Convert SAST results
+        for (AnalysisResult r : sastResults) {
+            String requester = r.getRequester() != null ? r.getRequester() : "-";
+            unifiedResults.add(new com.example.vulnscanner.dto.UnifiedResultDto(
+                    r.getId(), "SAST", r.getAnalysisOption().getBuildId(), r.getScanDate(), r.getStatus(), requester,
+                    r.getLogs(), r.getFprPath(), r.getReportPdfPath(), r.getReportXmlPath()));
+        }
+
+        // Convert SBOM results
+        for (com.example.vulnscanner.entity.SbomResult r : sbomResults) {
+            // Requester for SBOM is not explicitly stored yet, default to "-"
+            String requester = "-";
+            unifiedResults.add(new com.example.vulnscanner.dto.UnifiedResultDto(
+                    r.getId(), "SBOM", r.getAnalysisOption().getBuildId(), r.getScanDate(), r.getStatus(), requester,
+                    r.getLogs(), null, null, null));
+        }
+
+        // Sort by date descending
+        unifiedResults.sort((r1, r2) -> r2.getScanDate().compareTo(r1.getScanDate()));
+
+        model.addAttribute("results", unifiedResults);
         return "results";
     }
 
@@ -146,6 +178,23 @@ public class AnalysisController {
         String sourceFilePath = null;
         try {
             if (file != null && !file.isEmpty()) {
+                // Check File Size dynamically
+                String maxSizeStr = settingsService
+                        .getSetting(com.example.vulnscanner.service.SettingsService.KEY_MAX_UPLOAD_SIZE);
+                long maxSizeBytes = 100 * 1024 * 1024; // Default 100MB
+                if (maxSizeStr != null && !maxSizeStr.isEmpty()) {
+                    try {
+                        maxSizeBytes = Long.parseLong(maxSizeStr) * 1024 * 1024;
+                    } catch (NumberFormatException e) {
+                        // ignore
+                    }
+                }
+                if (file.getSize() > maxSizeBytes) {
+                    return org.springframework.http.ResponseEntity.badRequest()
+                            .body(java.util.Map.of("error",
+                                    "파일 크기가 너무 큽니다. (제한: " + (maxSizeBytes / 1024 / 1024) + "MB)"));
+                }
+
                 // Get result path from settings
                 String resultPath = settingsService
                         .getSetting(com.example.vulnscanner.service.SettingsService.KEY_RESULT_PATH);
@@ -195,6 +244,7 @@ public class AnalysisController {
             summary.setAnalysisResult(result); // Set back-reference
             result.setScanSummary(summary);
         }
+        result.setRequester(requesterName);
         result.getScanSummary().setRequester(requesterName);
         result.getScanSummary().setAnalysisResult(result); // Ensure it's set
 
@@ -423,6 +473,17 @@ public class AnalysisController {
         model.addAttribute("categoryLabels", topCategories.keySet());
         model.addAttribute("categoryData", topCategories.values());
 
+        // SBOM Stats
+        model.addAttribute("sbomOverallStats", statsService.getSbomOverallStats());
+
+        Map<String, Long> sbomComponents = statsService.getSbomComponentDistribution(10);
+        model.addAttribute("sbomComponentLabels", sbomComponents.keySet());
+        model.addAttribute("sbomComponentData", sbomComponents.values());
+
+        Map<String, Long> sbomLicenses = statsService.getSbomLicenseDistribution();
+        model.addAttribute("sbomLicenseLabels", sbomLicenses.keySet());
+        model.addAttribute("sbomLicenseData", sbomLicenses.values());
+
         return "stats";
     }
 
@@ -438,6 +499,14 @@ public class AnalysisController {
             return org.springframework.http.ResponseEntity.internalServerError()
                     .body("Error reparsing analysis: " + e.getMessage());
         }
+    }
+
+    @GetMapping("/api/analysis/status")
+    @ResponseBody
+    public List<Map<String, ?>> getAnalysisStatuses() {
+        return analysisService.getAllResults().stream()
+                .map(r -> Map.of("id", r.getId(), "status", r.getStatus()))
+                .collect(java.util.stream.Collectors.toList());
     }
 
 }

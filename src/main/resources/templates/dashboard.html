@@ -5,32 +5,101 @@
     <div>
         <h2 class="mb-4">Dashboard</h2>
 
-        <!-- Summary Cards -->
-        <div class="row mb-4">
-            <div class="col-md-4">
-                <div class="card text-white bg-primary mb-3">
-                    <div class="card-header">총 스캔 수</div>
-                    <div class="card-body">
-                        <h5 class="card-title display-4" th:text="${totalScans}">0</h5>
-                        <p class="card-text">수행된 총 분석 횟수입니다.</p>
+        <!-- Dashboard Tabs -->
+        <ul class="nav nav-tabs mb-4" id="dashboardTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="sast-tab" data-bs-toggle="tab" data-bs-target="#sast-content"
+                    type="button" role="tab">SAST (Source Code)</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="sbom-tab" data-bs-toggle="tab" data-bs-target="#sbom-content" type="button"
+                    role="tab">SBOM (Open Source)</button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="dashboardTabContent">
+            <!-- SAST Content -->
+            <div class="tab-pane fade show active" id="sast-content" role="tabpanel">
+                <!-- Summary Cards -->
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="card text-white bg-primary mb-3">
+                            <div class="card-header">총 스캔 수</div>
+                            <div class="card-body">
+                                <h5 class="card-title display-4" th:text="${totalScans}">0</h5>
+                                <p class="card-text">수행된 총 분석 횟수입니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-white bg-success mb-3">
+                            <div class="card-header">성공률</div>
+                            <div class="card-body">
+                                <h5 class="card-title display-4" th:text="${successRate} + '%'">0%</h5>
+                                <p class="card-text">성공한 스캔의 비율입니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-white bg-info mb-3">
+                            <div class="card-header">최근 활동 (24h)</div>
+                            <div class="card-body">
+                                <h5 class="card-title display-4" th:text="${recentCount}">0</h5>
+                                <p class="card-text">지난 24시간 동안의 스캔 수입니다.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card text-white bg-success mb-3">
-                    <div class="card-header">성공률</div>
-                    <div class="card-body">
-                        <h5 class="card-title display-4" th:text="${successRate} + '%'">0%</h5>
-                        <p class="card-text">성공한 스캔의 비율입니다.</p>
+
+            <!-- SBOM Content -->
+            <div class="tab-pane fade" id="sbom-content" role="tabpanel">
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">최근 SBOM 스캔 목록</h5>
+                        <!-- <a href="/sbom/results" class="btn btn-sm btn-outline-primary">전체 보기</a> -->
                     </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card text-white bg-info mb-3">
-                    <div class="card-header">최근 활동 (24h)</div>
                     <div class="card-body">
-                        <h5 class="card-title display-4" th:text="${recentCount}">0</h5>
-                        <p class="card-text">지난 24시간 동안의 스캔 수입니다.</p>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>빌드 ID</th>
+                                        <th>날짜</th>
+                                        <th>상태</th>
+                                        <th>작업</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="scan : ${recentSbomScans}"
+                                        th:attr="data-id=${scan.id},data-status=${scan.status}">
+                                        <td th:text="${scan.id}">1</td>
+                                        <td th:text="${scan.analysisOption.buildId}">Project</td>
+                                        <td th:text="${#temporals.format(scan.scanDate, 'yyyy-MM-dd HH:mm')}">Date</td>
+                                        <td>
+                                            <span th:if="${scan.status == 'SUCCESS'}"
+                                                class="badge bg-success status-badge">SUCCESS</span>
+                                            <span th:if="${scan.status == 'FAILED'}"
+                                                class="badge bg-danger status-badge">FAILED</span>
+                                            <span th:if="${scan.status != 'SUCCESS' and scan.status != 'FAILED'}"
+                                                class="badge bg-primary status-badge">RUNNING</span>
+                                        </td>
+                                        <td class="action-cell">
+                                            <!-- <a th:href="@{/sbom/results/{id}(id=${scan.id})}" class="btn btn-sm btn-outline-secondary">
+                                                <i class="bi bi-search"></i> 상세
+                                            </a> -->
+                                            <span class="text-muted" th:if="${scan.status == 'SUCCESS'}">완료 (상세 페이지
+                                                준비중)</span>
+                                            <span class="text-muted" th:if="${scan.status != 'SUCCESS'}">진행 중</span>
+                                        </td>
+                                    </tr>
+                                    <tr th:if="${#lists.isEmpty(recentSbomScans)}">
+                                        <td colspan="5" class="text-center text-muted py-3">최근 SBOM 스캔 기록이 없습니다.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -115,104 +184,140 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Chart.js -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script th:inline="javascript">
-            document.addEventListener('DOMContentLoaded', function () {
-                // Trend Chart Data
-                const weeklyLabels = /*[[${trendLabels}]]*/[];
-                const weeklyData = /*[[${trendData}]]*/[];
-                const monthlyLabels = /*[[${monthlyTrendLabels}]]*/[];
-                const monthlyData = /*[[${monthlyTrendData}]]*/[];
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script th:inline="javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            // Trend Chart Data
+            const weeklyLabels = /*[[${trendLabels}]]*/[];
+            const weeklyData = /*[[${trendData}]]*/[];
+            const monthlyLabels = /*[[${monthlyTrendLabels}]]*/[];
+            const monthlyData = /*[[${monthlyTrendData}]]*/[];
 
-                const trendCtx = document.getElementById('trendChart').getContext('2d');
+            const trendCtx = document.getElementById('trendChart').getContext('2d');
 
-                const trendChart = new Chart(trendCtx, {
-                    type: 'bar',
-                    data: {
-                        labels: weeklyLabels,
-                        datasets: [{
-                            label: '스캔 수',
-                            data: weeklyData,
-                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                            borderColor: 'rgba(54, 162, 235, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    stepSize: 1
-                                }
+            const trendChart = new Chart(trendCtx, {
+                type: 'bar',
+                data: {
+                    labels: weeklyLabels,
+                    datasets: [{
+                        label: '스캔 수',
+                        data: weeklyData,
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
                             }
                         }
                     }
-                });
-
-                // Toggle Logic
-                const btnWeekly = document.getElementById('btnWeekly');
-                const btnMonthly = document.getElementById('btnMonthly');
-
-                btnWeekly.addEventListener('click', function () {
-                    if (this.classList.contains('active')) return;
-
-                    this.classList.add('active');
-                    btnMonthly.classList.remove('active');
-
-                    trendChart.data.labels = weeklyLabels;
-                    trendChart.data.datasets[0].data = weeklyData;
-                    trendChart.update();
-                });
-
-                btnMonthly.addEventListener('click', function () {
-                    if (this.classList.contains('active')) return;
-
-                    this.classList.add('active');
-                    btnWeekly.classList.remove('active');
-
-                    trendChart.data.labels = monthlyLabels;
-                    trendChart.data.datasets[0].data = monthlyData;
-                    trendChart.update();
-                });
-
-                // Status Chart
-                const statusCtx = document.getElementById('statusChart').getContext('2d');
-                const statusLabels = /*[[${statusLabels}]]*/[];
-                const statusData = /*[[${statusData}]]*/[];
-
-                const backgroundColors = statusLabels.map(label => {
-                    if (label === 'SUCCESS') return 'rgba(75, 192, 192, 0.6)';
-                    if (label === 'FAILED') return 'rgba(255, 99, 132, 0.6)';
-                    return 'rgba(255, 206, 86, 0.6)';
-                });
-
-                new Chart(statusCtx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: statusLabels,
-                        datasets: [{
-                            data: statusData,
-                            backgroundColor: backgroundColors,
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom'
-                            }
-                        }
-                    }
-                });
+                }
             });
-        </script>
+
+            // Toggle Logic
+            const btnWeekly = document.getElementById('btnWeekly');
+            const btnMonthly = document.getElementById('btnMonthly');
+
+            btnWeekly.addEventListener('click', function () {
+                if (this.classList.contains('active')) return;
+
+                this.classList.add('active');
+                btnMonthly.classList.remove('active');
+
+                trendChart.data.labels = weeklyLabels;
+                trendChart.data.datasets[0].data = weeklyData;
+                trendChart.update();
+            });
+
+            btnMonthly.addEventListener('click', function () {
+                if (this.classList.contains('active')) return;
+
+                this.classList.add('active');
+                btnWeekly.classList.remove('active');
+
+                trendChart.data.labels = monthlyLabels;
+                trendChart.data.datasets[0].data = monthlyData;
+                trendChart.update();
+            });
+
+            // Status Chart
+            const statusCtx = document.getElementById('statusChart').getContext('2d');
+            const statusLabels = /*[[${statusLabels}]]*/[];
+            const statusData = /*[[${statusData}]]*/[];
+
+            const backgroundColors = statusLabels.map(label => {
+                if (label === 'SUCCESS') return 'rgba(75, 192, 192, 0.6)';
+                if (label === 'FAILED') return 'rgba(255, 99, 132, 0.6)';
+                return 'rgba(255, 206, 86, 0.6)';
+            });
+
+            new Chart(statusCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: statusLabels,
+                    datasets: [{
+                        data: statusData,
+                        backgroundColor: backgroundColors,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        });
+        // SBOM Status Polling
+        function pollSbomStatus() {
+            const runningRows = document.querySelectorAll('#sbom-content tr[data-status="RUNNING"]');
+            runningRows.forEach(row => {
+                const id = row.getAttribute('data-id');
+                if (!id) return;
+
+                fetch(`/api/sbom/status/${id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'SUCCESS') {
+                            row.setAttribute('data-status', 'SUCCESS');
+                            row.querySelector('.status-badge').className = 'badge bg-success status-badge';
+                            row.querySelector('.status-badge').textContent = 'SUCCESS';
+                            // Update Action button
+                            const actionCell = row.querySelector('.action-cell');
+                            // actionCell.innerHTML = `<a href="/sbom/results/${id}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-search"></i> 상세</a>`;
+                            actionCell.innerHTML = `<span class="text-muted">완료 (상세 페이지 준비중)</span>`;
+                        } else if (data.status === 'FAILED') {
+                            row.setAttribute('data-status', 'FAILED');
+                            row.querySelector('.status-badge').className = 'badge bg-danger status-badge';
+                            row.querySelector('.status-badge').textContent = 'FAILED';
+                        }
+                    })
+                    .catch(console.error);
+            });
+        }
+
+        // Poll every 5 seconds if SBOM tab is active
+        setInterval(() => {
+            const sbomTab = document.getElementById('sbom-tab');
+            if (sbomTab && sbomTab.classList.contains('active')) {
+                pollSbomStatus();
+            }
+        }, 5000);
+    </script>
     </div>
 </body>
 
