@@ -337,36 +337,46 @@ public class AnalysisController {
                 zos.putNextEntry(zipEntry);
                 byte[] bytes = new byte[1024];
                 int length;
-                while ((length = fis.read(bytes)) >= 0) {
-                    zos.write(bytes, 0, length);
-                }
-                zos.closeEntry();
             }
         }
     }
 
+    // 단일 삭제
     @org.springframework.web.bind.annotation.DeleteMapping("/api/analysis/{id}")
-    @ResponseBody
     public org.springframework.http.ResponseEntity<String> deleteAnalysis(
-            @org.springframework.web.bind.annotation.PathVariable Long id) {
+            @org.springframework.web.bind.annotation.PathVariable Long id,
+            @org.springframework.web.bind.annotation.RequestParam(defaultValue = "SAST") String type) {
         try {
-            analysisService.deleteResult(id);
+            if ("SBOM".equalsIgnoreCase(type)) {
+                sbomService.deleteSbomResult(id);
+            } else {
+                analysisService.deleteResult(id);
+            }
             return org.springframework.http.ResponseEntity.ok("Deleted");
         } catch (Exception e) {
             return org.springframework.http.ResponseEntity.internalServerError().body("Error deleting analysis");
         }
     }
 
+    public static class BatchDeleteRequest {
+        public Long id;
+        public String type;
+    }
+
     // 그룹 삭제
     @org.springframework.web.bind.annotation.DeleteMapping("/api/analysis/batch")
     @ResponseBody
     public org.springframework.http.ResponseEntity<String> deleteBatch(
-            @org.springframework.web.bind.annotation.RequestBody java.util.List<Long> ids) {
+            @org.springframework.web.bind.annotation.RequestBody java.util.List<BatchDeleteRequest> items) {
         try {
-            for (Long id : ids) {
-                analysisService.deleteResult(id);
+            for (BatchDeleteRequest item : items) {
+                if ("SBOM".equalsIgnoreCase(item.type)) {
+                    sbomService.deleteSbomResult(item.id);
+                } else {
+                    analysisService.deleteResult(item.id);
+                }
             }
-            return org.springframework.http.ResponseEntity.ok("Deleted " + ids.size() + " items");
+            return org.springframework.http.ResponseEntity.ok("Deleted " + items.size() + " items");
         } catch (Exception e) {
             return org.springframework.http.ResponseEntity.internalServerError().body("Error deleting analyses");
         }

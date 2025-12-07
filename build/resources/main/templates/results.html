@@ -34,7 +34,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="result : ${results}" class="analysis-row" th:data-status="${result.status}">
+                            <tr th:each="result : ${results}" class="analysis-row" th:data-status="${result.status}"
+                                th:data-type="${result.type}">
                                 <td>
                                     <input type="checkbox" class="form-check-input row-checkbox"
                                         th:data-id="${result.id}">
@@ -195,15 +196,26 @@
                 // Batch Delete
                 if (deleteSelectedBtn) {
                     deleteSelectedBtn.addEventListener('click', function () {
-                        const selectedIds = Array.from(rowCheckboxes)
+                        const selectedItems = Array.from(rowCheckboxes)
                             .filter(cb => cb.checked)
-                            .map(cb => parseInt(cb.getAttribute('data-id')));
+                            .map(cb => {
+                                // Find the row to get the type
+                                const row = cb.closest('tr');
+                                // Determine type from the badge text usually, but better to put specific attribute on checkbox or row
+                                // Let's check row status or content. 
+                                // Actually, we should add data-type to the checkbox or row.
+                                const type = row.getAttribute('data-type');
+                                return {
+                                    id: parseInt(cb.getAttribute('data-id')),
+                                    type: type
+                                };
+                            });
 
-                        console.log('Delete selected:', selectedIds);
+                        console.log('Delete selected:', selectedItems);
 
-                        if (selectedIds.length === 0) return;
+                        if (selectedItems.length === 0) return;
 
-                        if (confirm(`선택한 ${selectedIds.length}개의 항목을 삭제하시겠습니까?`)) {
+                        if (confirm(`선택한 ${selectedItems.length}개의 항목을 삭제하시겠습니까?`)) {
                             // CSRF Token
                             const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");
                             const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
@@ -214,7 +226,7 @@
                                     'Content-Type': 'application/json',
                                     [csrfHeader]: csrfToken
                                 },
-                                body: JSON.stringify(selectedIds)
+                                body: JSON.stringify(selectedItems)
                             })
                                 .then(response => {
                                     if (response.ok) {
@@ -236,13 +248,16 @@
                     const btn = e.target.closest('.btn-delete');
                     if (btn) {
                         const id = btn.getAttribute('data-id');
-                        console.log('Delete single:', id);
+                        const row = btn.closest('tr');
+                        const type = row ? row.getAttribute('data-type') : 'SAST'; // Fallback
+                        console.log('Delete single:', id, type);
+
                         if (id && confirm('정말 이 분석 결과를 삭제하시겠습니까?')) {
                             // CSRF Token
                             const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");
                             const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
 
-                            fetch('/api/analysis/' + id, {
+                            fetch('/api/analysis/' + id + '?type=' + type, {
                                 method: 'DELETE',
                                 headers: {
                                     [csrfHeader]: csrfToken
@@ -326,12 +341,30 @@
 
                 // Global Delete Function for Dropdown
                 window.deleteAnalysis = function (id) {
+                    // Try to find the type from the DOM if not passed
+                    // Since this is called from onclick inside a dropdown, we might need a better way.
+                    // But for now, we can try to find the row by iterating (inefficient but works) or just pass it.
+                    // Best is to change the onclick in the HTML.
+
+                    // Let's modify the HTML generation to pass type as well, but first let's try to find the row.
+                    // The dropdown is inside the row.
+                    /* 
+                       Wait, the onclick is generated as: deleteAnalysis(id)
+                       We can change it in the HTML loop below.
+                    */
+                    // For now, let's assume SAST because the dropdown only exists for SAST in the current HTML logic!
+                    // wait, the dropdown is `th:if="${result.type == 'SAST'}"`. 
+                    // So for SBOM, there is no dropdown delete action currently?
+                    // Checking HTML... Yes, line 75: th:if="${result.type == 'SAST'}"
+                    // So the dropdown delete is ONLY for SAST. So defaulting to SAST is safe here.
+                    // However, for consistency, let's send type=SAST.
+
                     if (id && confirm('정말 이 분석 결과를 삭제하시겠습니까?')) {
                         // CSRF Token
                         const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");
                         const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
 
-                        fetch('/api/analysis/' + id, {
+                        fetch('/api/analysis/' + id + '?type=SAST', {
                             method: 'DELETE',
                             headers: {
                                 [csrfHeader]: csrfToken
