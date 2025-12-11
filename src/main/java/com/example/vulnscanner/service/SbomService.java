@@ -176,4 +176,28 @@ public class SbomService {
             return null;
         return sbomRepository.findById(id).orElse(null);
     }
+
+    @Transactional
+    public void deleteSbomResult(Long id) {
+        sbomRepository.findById(id).ifPresent(result -> {
+            // Delete uploaded SBOM file
+            if (result.getSbomFilePath() != null) {
+                try {
+                    Files.deleteIfExists(Paths.get(result.getSbomFilePath()));
+                } catch (IOException e) {
+                    System.err.println("Failed to delete SBOM file: " + e.getMessage());
+                }
+            }
+            // Delete report files if any (future proofing)
+            if (result.getReportPath() != null) {
+                try {
+                    Files.deleteIfExists(Paths.get(result.getReportPath()));
+                } catch (IOException e) {
+                    System.err.println("Failed to delete SBOM report file: " + e.getMessage());
+                }
+            }
+
+            sbomRepository.delete(result);
+        });
+    }
 }
