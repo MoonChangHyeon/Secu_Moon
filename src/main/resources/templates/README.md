@@ -1,5 +1,19 @@
 # 템플릿 (Templates)
 
+## 목차 (Table of Contents)
+- [파일 목록 및 설명](#파일-목록-및-설명)
+    - [layout.html](#layouthtml)
+    - [index.html (또는 dashboard.html)](#indexhtml-또는-dashboardhtml)
+    - [results.html](#resultshtml)
+    - [result_detail.html](#result_detailhtml)
+    - [sbom_result_detail.html](#sbom_result_detailhtml)
+    - [stats.html](#statshtml)
+    - [settings.html](#settingshtml)
+    - [user_management.html](#user_managementhtml)
+    - [login.html](#loginhtml)
+
+---
+
 이 디렉토리는 사용자 인터페이스(UI) 구성을 위한 **Thymeleaf HTML 템플릿** 파일들을 포함합니다. 서버 사이드 렌더링을 통해 동적인 웹 페이지를 생성합니다.
 
 ## 파일 목록 및 설명

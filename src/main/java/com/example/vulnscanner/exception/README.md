@@ -1,5 +1,11 @@
 # 예외 처리 (Exception)
 
+## 목차 (Table of Contents)
+- [파일 목록 및 설명](#파일-목록-및-설명)
+    - [GlobalExceptionHandler.java](#globalexceptionhandlerjava)
+
+---
+
 이 디렉토리는 애플리케이션 전역에서 발생하는 예외를 공통으로 처리하기 위한 클래스들을 포함합니다.
 
 ## 파일 목록 및 설명

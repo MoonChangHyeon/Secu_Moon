@@ -1,36 +1,49 @@
-# 설정 (Config)
+# Configuration Module (설정 모듈)
 
-이 디렉토리는 애플리케이션의 전반적인 환경 설정, 특히 **보안(Spring Security)** 및 **인증(Authentication)**과 관련된 설정 파일들을 포함하고 있습니다.
+## 목차 (Table of Contents)
+- [주요 클래스 (Key Classes)](#주요-클래스-key-classes)
+    - [1. Database Configuration (Dual DB Setup)](#1-database-configuration-dual-db-setup)
+    - [2. Security & Web](#2-security--web)
+- [설정 파일 (Application Properties)](#설정-파일-application-properties)
 
-## 파일 목록 및 설명
+---
 
-### `SecurityConfig.java`
-- **역할**: Spring Security의 핵심설정 파일입니다.
-- **주요 기능**:
-  - HTTP 요청에 대한 접근 권한 설정 (URL별 권한 제어).
-  - 로그인 및 로그아웃 프로세스 설정.
-  - CSRF 보안 설정.
-  - 패스워드 인코더(BCrypt) 빈 등록.
+이 디렉토리는 Spring Boot 애플리케이션의 핵심 설정을 담당하는 클래스들을 포함합니다. 보안(Security), 웹 MVC 설정, 그리고 멀티 데이터소스(Database) 설정이 포함되어 있습니다.
 
-### `AuthenticationEventListener.java`
-- **역할**: 인증 관련 이벤트 리스너입니다.
-- **주요 기능**:
-  - 로그인 성공/실패 이벤트를 감지하여 로그를 기록하거나 추가적인 보안 로직(예: 실패 횟수 집계 등)을 트리거할 수 있습니다.
+## 주요 클래스 (Key Classes)
 
-### `CustomAuthenticationSuccessHandler.java`
-- **역할**: 로그인 성공 시 실행되는 핸들러입니다.
-- **주요 기능**:
-  - 로그인 성공 후 사용자의 실패 횟수를 초기화합니다.
-  - 사용자 역할(Role)에 따라 리다이렉트할 페이지를 결정합니다.
+### 1. Database Configuration (Dual DB Setup)
+본 프로젝트는 **Dual DB 전략**을 사용하며, 이를 위해 두 개의 데이터소스 설정 클래스를 제공합니다.
 
-### `CustomAuthenticationFailureHandler.java`
-- **역할**: 로그인 실패 시 실행되는 핸들러입니다.
-- **주요 기능**:
-  - 로그인 실패 횟수를 증가시킵니다.
-  - 최대 허용 횟수 초과 시 계정을 잠급니다(Lock).
-  - 실패 원인에 따라 적절한 에러 메시지를 생성하여 로그인 페이지로 전달합니다.
+- **[PrimaryDbConfig.java](PrimaryDbConfig.java)**
+  - **대상 DB**: `vulnscanner_db` (Primary)
+  - **역할**: 애플리케이션의 메인 데이터 저장소 (CRUD).
+  - **설정**:
+    - `DataSource`: `primaryDataSource` (Prefix: `spring.datasource.primary`)
+    - `EntityManagerFactory`: `primaryEntityManagerFactory` (Entity 패키지: `com.example.vulnscanner.entity`)
+    - `TransactionManager`: `primaryTransactionManager` (@Primary)
 
-### `PasswordConfig.java`
-- **역할**: 비밀번호 암호화 빈 설정입니다.
-- **주요 기능**:
-  - `PasswordEncoder`(BCryptPasswordEncoder)를 스프링 컨테이너에 등록하여, 안전한 비밀번호 저장을 지원합니다.
+- **[MochaDbConfig.java](MochaDbConfig.java)**
+  - **대상 DB**: `mocha_dev` (Secondary)
+  - **역할**: 보안 취약점 마스터 데이터 참조 (Read-Only).
+  - **설정**:
+    - `DataSource`: `mochaDataSource` (Prefix: `spring.datasource.mocha`)
+    - `EntityManagerFactory`: `mochaEntityManagerFactory` (Entity 패키지: `com.example.vulnscanner.mocha.entity`)
+    - `TransactionManager`: `mochaTransactionManager`
+
+### 2. Security & Web
+- **[SecurityConfig.java](SecurityConfig.java)**
+  - Spring Security 필터 체인 설정.
+  - 로그인/로그아웃 로직, 권한 제어(Role-based Access Control), 정적 리소스 허용 등 보안 정책 정의.
+  - `UserDetailsService` 빈 등록.
+
+- **[WebConfig.java](WebConfig.java)**
+  - CORS(Cross-Origin Resource Sharing) 설정.
+  - 리소스 핸들러 등 웹 관련 전역 설정.
+
+- **[PasswordEncoderConfig.java](PasswordEncoderConfig.java)**
+  - 비밀번호 암호화를 위한 `BCryptPasswordEncoder` 빈 등록.
+
+## 설정 파일 (Application Properties)
+- `src/main/resources/application.properties` 파일에서 실제 접속 정보(URL, Username, Password)를 관리합니다.
+- HikariCP를 사용하므로 URL 설정 시 **`jdbc-url`** 키를 사용해야 함에 유의하세요.

@@ -1,44 +1,38 @@
-# 엔티티 (Entity)
+# Entity Module (도메인 모델)
 
-이 디렉토리는 데이터베이스 테이블과 매핑되는 **JPA Entity** 클래스들을 포함합니다. 애플리케이션의 핵심 도메인 모델을 정의합니다.
+## 목차 (Table of Contents)
+- [패키지 구조 (Package Structure)](#패키지-구조-package-structure)
+    - [1. Primary Entities](#1-primary-entities-comexamplevulnscannerentity)
+    - [2. Mocha Entities](#2-mocha-entities-comexamplevulnscannermochaentity)
 
-## 파일 목록 및 설명
+---
 
-### `User.java`
-- **역할**: 사용자 정보 엔티티.
-- **매핑 테이블**: `users`
-- **속성**: 사용자명(ID), 비밀번호, 이름, 이메일, 역할(Role), 팀, 계정 잠금 상태 등.
+이 디렉토리는 데이터베이스 테이블과 매핑되는 JPA Entity 클래스들을 포함합니다.
+**Dual DB 전략**에 따라 엔티티 패키지가 물리적으로 분리되어 있습니다.
 
-### `AnalysisResult.java`
-- **역할**: SAST(정적 취약점) 분석 결과 엔티티.
-- **매핑 테이블**: `analysis_results`
-- **속성**: 빌드 ID, 분석 상태, 시작/종료 시간, 로그 파일 경로, 보고서(PDF/XML) 경로 등.
-- **관계**: `ScanSummary`, `Vulnerability`와 연관 관계를 가짐.
+## 패키지 구조 (Package Structure)
 
-### `AnalysisOption.java`
-- **역할**: 분석 시 사용된 옵션 정보 (Embeddable).
-- **속성**: 소스 경로, 빌드 ID, 메모리 설정, JDK 버전 등 분석 요청 시 입력된 파라미터.
+### 1. Primary Entities (`com.example.vulnscanner.entity`)
+애플리케이션의 핵심 비즈니스 로직에서 생성되고 관리되는 데이터입니다. (`vulnscanner_db`)
 
-### `ScanSummary.java`
-- **역할**: 분석 결과 요약 정보 엔티티.
-- **매핑 테이블**: `scan_summary`
-- **속성**: 전체 파일 수, 코드 라인 수(LOC), 발견된 총 취약점 수, 심각도별(Critical/High/Medium/Low) 개수 등.
+- **분석 결과 관련**
+  - **[SbomResult.java](SbomResult.java)**: SBOM 분석 요청 및 결과 헤더 정보.
+  - **[SbomComponent.java](SbomComponent.java)**: 분석된 라이브러리/컴포넌트 정보.
+  - **[SbomVulnerability.java](SbomVulnerability.java)**: (New) `mocha_dev`에서 보강된 취약점 상세 정보 저장.
+  - **[SbomLicense.java](SbomLicense.java)**: (New) `mocha_dev`에서 보강된 라이선스 상세 정보 저장.
+  - **AnalysisResult.java**: (Legacy) 소스 코드 분석(SAST) 결과.
 
-### `Vulnerability.java`
-- **역할**: 발견된 개별 취약점 상세 정보 엔티티.
-- **매핑 테이블**: `vulnerabilities`
-- **속성**: 취약점 카테고리, 파일명, 라인 번호, 심각도 등 상세 내용.
+- **사용자 및 설정**
+  - **Users.java**: 사용자 계정 정보.
+  - **SystemSetting.java**: 시스템 전역 설정값.
 
-### `SbomResult.java`
-- **역할**: SBOM(오픈소스) 분석 결과 엔티티.
-- **매핑 테이블**: `sbom_results`
-- **속성**: 분석 상태, 외부 API Job ID, 결과 JSON 데이터(Logs에 저장), 생성된 SBOM 파일 경로 등.
+### 2. Mocha Entities (`com.example.vulnscanner.mocha.entity`)
+외부 보안 취약점 마스터 데이터를 참조하기 위한 엔티티입니다. (`mocha_dev`)
+이 엔티티들은 주로 **읽기 전용(Read-Only)**으로 사용되며, 분석 시점에 데이터를 조회하여 Primary Entity로 복사하는 데 사용됩니다.
 
-### `SbomComponent.java`
-- **역할**: SBOM 분석에서 식별된 오픈소스 컴포넌트 정보.
-- **속성**: 컴포넌트 이름, 버전, 라이선스, PURL(Package URL) 등. (현재 로직에 따라 JSON 파싱 후 DB 저장 여부 결정)
-
-### `SystemSetting.java`
-- **역할**: 시스템 동적 설정 값 엔티티.
-- **매핑 테이블**: `system_settings`
-- **속성**: 설정 키(Key), 설정 값(Value), 설명. (예: 파일 업로드 제한, 외부 API URL 등 저장)
+- **[MochaCve.java](../mocha/entity/MochaCve.java)**
+  - `cve` 테이블 매핑. 표준 CVE 정보 (Title, Description, Status 등).
+- **[MochaGhsa.java](../mocha/entity/MochaGhsa.java)**
+  - `ghsa_advisory` 테이블 매핑. GitHub Security Advisory 정보.
+- **[MochaSpdxLicense.java](../mocha/entity/MochaSpdxLicense.java)**
+  - `spdx_licenses` 테이블 매핑. 오픈소스 라이선스 상세 및 위험도 정보.
