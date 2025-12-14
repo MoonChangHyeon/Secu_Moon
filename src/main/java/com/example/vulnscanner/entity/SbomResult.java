@@ -20,11 +20,13 @@ public class SbomResult {
     private String status; // SUCCESS, FAILED, RUNNING
 
     private String jobId; // AI_SBOM API Job ID
+    private String requester; // 요청자 (User ID/Name)
 
     @Lob
     @Column(columnDefinition = "TEXT")
     private String logs;
 
+    private String resultJsonPath; // Path to the raw JSON result file
     private String sbomFilePath; // Uploaded or generated SBOM file path
     private String reportPath; // Path to the generated report
 

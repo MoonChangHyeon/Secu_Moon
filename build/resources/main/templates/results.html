@@ -278,21 +278,29 @@
                     }
                 });
 
-                // Polling for Status Updates
                 function pollStatus() {
                     fetch('/api/analysis/status')
                         .then(response => response.json())
                         .then(data => {
-                            const statusMap = new Map(data.map(item => [item.id, item.status]));
+                            // Map using unique key: type + "_" + id
+                            const statusMap = new Map(data.map(item => [item.type + "_" + item.id, item.status]));
                             let shouldReload = false;
 
                             document.querySelectorAll('.analysis-row').forEach(row => {
-                                const id = parseInt(row.querySelector('.row-checkbox').getAttribute('data-id'));
+                                const id = row.getAttribute('data-type') === 'SAST'
+                                    ? parseInt(row.querySelector('.row-checkbox').getAttribute('data-id')) // SAST usually has ID in checkbox
+                                    : parseInt(row.querySelector('.row-checkbox').getAttribute('data-id'));
+
+                                // Actually, getting it from row-checkbox data-id is fine, but we need the type from data-type attribute
+                                const type = row.getAttribute('data-type');
+                                const rowId = parseInt(row.querySelector('.row-checkbox').getAttribute('data-id'));
+                                const key = type + "_" + rowId;
+
                                 const currentStatus = row.getAttribute('data-status');
-                                const newStatus = statusMap.get(id);
+                                const newStatus = statusMap.get(key);
 
                                 if (newStatus && newStatus !== currentStatus) {
-                                    console.log(`Status changed for ID ${id}: ${currentStatus} -> ${newStatus}`);
+                                    console.log(`Status changed for ${key}: ${currentStatus} -> ${newStatus}`);
 
                                     // Update badge
                                     const badge = row.querySelector('td:nth-child(6) span');

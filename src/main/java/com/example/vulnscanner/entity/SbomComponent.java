@@ -23,4 +23,10 @@ public class SbomComponent {
 
     @Column(columnDefinition = "TEXT")
     private String description;
+
+    @OneToMany(mappedBy = "component", cascade = CascadeType.ALL, orphanRemoval = true)
+    private java.util.List<SbomVulnerability> vulnerabilities = new java.util.ArrayList<>();
+
+    @OneToMany(mappedBy = "component", cascade = CascadeType.ALL, orphanRemoval = true)
+    private java.util.List<SbomLicense> licenses = new java.util.ArrayList<>();
 }

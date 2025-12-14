@@ -130,8 +130,14 @@
                 logOutput.textContent = 'Initializing analysis...';
 
                 try {
+                    const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");
+                    const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
+
                     const response = await fetch(form.action, {
                         method: 'POST',
+                        headers: {
+                            [csrfHeader]: csrfToken
+                        },
                         body: formData
                     });
 

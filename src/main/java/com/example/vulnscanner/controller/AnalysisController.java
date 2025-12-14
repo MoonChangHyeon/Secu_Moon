@@ -141,8 +141,7 @@ public class AnalysisController {
 
         // Convert SBOM results
         for (com.example.vulnscanner.entity.SbomResult r : sbomResults) {
-            // Requester for SBOM is not explicitly stored yet, default to "-"
-            String requester = "-";
+            String requester = r.getRequester() != null ? r.getRequester() : "-";
             unifiedResults.add(new com.example.vulnscanner.dto.UnifiedResultDto(
                     r.getId(), "SBOM", r.getAnalysisOption().getBuildId(), r.getScanDate(), r.getStatus(), requester,
                     r.getLogs(), null, null, null));
@@ -513,10 +512,30 @@ public class AnalysisController {
 
     @GetMapping("/api/analysis/status")
     @ResponseBody
-    public List<Map<String, ?>> getAnalysisStatuses() {
-        return analysisService.getAllResults().stream()
-                .map(r -> Map.of("id", r.getId(), "status", r.getStatus()))
-                .collect(java.util.stream.Collectors.toList());
+    public List<Map<String, Object>> getAnalysisStatuses() {
+        List<Map<String, Object>> statuses = new java.util.ArrayList<>();
+
+        // SAST Results
+        analysisService.getAllResults().forEach(r -> {
+            statuses.add(Map.of("id", r.getId(), "type", "SAST", "status", r.getStatus()));
+        });
+
+        // SBOM Results
+        sbomService.getAllSbomResults().forEach(r -> {
+            // Trigger status update if running
+            if ("RUNNING".equals(r.getStatus())) {
+                sbomService.updateSbomStatus(r.getId());
+                // Refresh entity after update
+                com.example.vulnscanner.entity.SbomResult updated = sbomService.getSbomResult(r.getId());
+                if (updated != null) {
+                    statuses.add(Map.of("id", updated.getId(), "type", "SBOM", "status", updated.getStatus()));
+                }
+            } else {
+                statuses.add(Map.of("id", r.getId(), "type", "SBOM", "status", r.getStatus()));
+            }
+        });
+
+        return statuses;
     }
 
 }
