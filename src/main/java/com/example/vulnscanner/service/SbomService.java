@@ -45,7 +45,7 @@ public class SbomService {
         this.mochaGhsaRepository = mochaGhsaRepository;
         this.mochaSpdxLicenseRepository = mochaSpdxLicenseRepository;
         this.webClient = webClientBuilder
-                .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024)) // 10MB
+                .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(50 * 1024 * 1024)) // Increased to 50MB
                 .build();
     }
 
@@ -165,7 +165,8 @@ public class SbomService {
                     .block();
 
             // Log raw response for debugging
-            System.out.println("SBOM Results Fetch Raw Response: " + rawResponse);
+            System.out.println(
+                    "SBOM Results Fetch Raw Response Length: " + (rawResponse != null ? rawResponse.length() : "null"));
 
             if (rawResponse != null && !rawResponse.isEmpty()) {
                 // 1. Save raw JSON to file
@@ -183,27 +184,118 @@ public class SbomService {
 
                 // 2. Parse JSON and save to DB
                 ObjectMapper mapper = new ObjectMapper();
+
+                // DEBUG: Check database counts
+                try {
+                    long cveCount = mochaCveRepository.count();
+                    long ghsaCount = mochaGhsaRepository.count();
+                    System.out.println("DEBUG: Mocha DB Check - CVE Count: " + cveCount);
+                    System.out.println("DEBUG: Mocha DB Check - GHSA Count: " + ghsaCount);
+                } catch (Exception e) {
+                    System.err.println("DEBUG: Failed to count Mocha DB records: " + e.getMessage());
+                }
+
                 try {
                     com.fasterxml.jackson.databind.JsonNode rootNode = mapper.readTree(rawResponse);
+
+                    // Temp storage for 2-pass parsing
+                    java.util.Map<String, com.example.vulnscanner.entity.SbomComponent> componentMap = new java.util.HashMap<>();
                     List<com.example.vulnscanner.entity.SbomComponent> newComponents = new java.util.ArrayList<>();
 
+                    com.fasterxml.jackson.databind.JsonNode componentsNode = null;
+                    com.fasterxml.jackson.databind.JsonNode vulnerabilitiesNode = null;
+                    com.fasterxml.jackson.databind.JsonNode licensesNode = null;
+
                     if (rootNode.isArray()) {
-                        System.out.println("Result is a JSON Array. Parsing as component list.");
-                        for (com.fasterxml.jackson.databind.JsonNode node : rootNode) {
-                            newComponents.add(parseComponent(result, node));
+                        // Find sections
+                        for (com.fasterxml.jackson.databind.JsonNode section : rootNode) {
+                            if (section.has("components"))
+                                componentsNode = section.get("components");
+                            if (section.has("vulnerabilities"))
+                                vulnerabilitiesNode = section.get("vulnerabilities");
+                            if (section.has("licenses"))
+                                licensesNode = section.get("licenses");
+                            if (section.has("summary")) {
+                                com.fasterxml.jackson.databind.JsonNode summaryNode = section.get("summary");
+                                if (summaryNode.has("vulnerabilities_count"))
+                                    result.setVulnerabilitiesCount(summaryNode.get("vulnerabilities_count").asInt());
+                                if (summaryNode.has("licenses_count"))
+                                    result.setLicensesCount(summaryNode.get("licenses_count").asInt());
+                                if (summaryNode.has("components_count"))
+                                    result.setComponentsCount(summaryNode.get("components_count").asInt());
+                            }
                         }
                     } else if (rootNode.isObject()) {
-                        System.out.println("Result is a JSON Object.");
-                        if (rootNode.has("components")) {
-                            com.fasterxml.jackson.databind.JsonNode componentsNode = rootNode.get("components");
-                            if (componentsNode.isArray()) {
-                                for (com.fasterxml.jackson.databind.JsonNode node : componentsNode) {
-                                    newComponents.add(parseComponent(result, node));
+                        if (rootNode.has("components"))
+                            componentsNode = rootNode.get("components");
+                        if (rootNode.has("vulnerabilities"))
+                            vulnerabilitiesNode = rootNode.get("vulnerabilities");
+                        if (rootNode.has("licenses"))
+                            licensesNode = rootNode.get("licenses");
+                    }
+
+                    // Pass 1: Parse Components
+                    if (componentsNode != null && componentsNode.isArray()) {
+                        System.out.println("Processing " + componentsNode.size() + " components...");
+                        for (com.fasterxml.jackson.databind.JsonNode node : componentsNode) {
+                            try {
+                                com.example.vulnscanner.entity.SbomComponent comp = parseComponent(result, node);
+                                newComponents.add(comp);
+                                if (comp.getPurl() != null && !comp.getPurl().isEmpty()) {
+                                    componentMap.put(comp.getPurl(), comp);
                                 }
+                            } catch (Exception e) {
+                                System.err.println("Warning: Failed to parse component: " + e.getMessage());
                             }
                         }
                     } else {
-                        System.err.println("Warning: fetched JSON is neither Array nor Object.");
+                        System.out.println("No 'components' section found.");
+                    }
+
+                    // Pass 2: Parse and Link Vulnerabilities
+                    if (vulnerabilitiesNode != null && vulnerabilitiesNode.isArray()) {
+                        System.out.println("Processing " + vulnerabilitiesNode.size() + " vulnerabilities...");
+                        for (com.fasterxml.jackson.databind.JsonNode node : vulnerabilitiesNode) {
+                            try {
+                                String pkgName = getText(node, "package_name");
+                                com.example.vulnscanner.entity.SbomComponent comp = componentMap.get(pkgName);
+                                if (comp != null) {
+                                    com.example.vulnscanner.entity.SbomVulnerability vuln = parseAndEnrichVulnerability(
+                                            node);
+                                    vuln.setComponent(comp);
+                                    comp.getVulnerabilities().add(vuln);
+                                } else {
+                                    System.out.println("Warning: Vulnerability found for unknown package: " + pkgName);
+                                }
+                            } catch (Exception e) {
+                                System.err.println("Warning: Failed to parse vulnerability: " + e.getMessage());
+                            }
+                        }
+                    }
+
+                    // Pass 3: Parse Licenses
+                    if (licensesNode != null && licensesNode.isArray()) {
+                        System.out.println("Processing " + licensesNode.size() + " licenses...");
+                        for (com.fasterxml.jackson.databind.JsonNode node : licensesNode) {
+                            try {
+                                String pkgName = getText(node, "package_name");
+                                com.example.vulnscanner.entity.SbomComponent comp = componentMap.get(pkgName);
+
+                                if (comp != null) {
+                                    com.example.vulnscanner.entity.SbomLicense lic = new com.example.vulnscanner.entity.SbomLicense();
+                                    lic.setComponent(comp);
+                                    lic.setName(getText(node, "license_type"));
+                                    lic.setLocation(getText(node, "location"));
+
+                                    if (comp.getLicenses() == null) {
+                                        comp.setLicenses(new java.util.ArrayList<>());
+                                    }
+                                    comp.getLicenses().add(lic);
+                                }
+                            } catch (Exception e) {
+                                System.err.println("Warning: Failed to parse license: " + e.getMessage());
+                            }
+                        }
                     }
 
                     if (!newComponents.isEmpty()) {
@@ -213,9 +305,7 @@ public class SbomService {
                             result.getComponents().clear();
                         }
                         result.getComponents().addAll(newComponents);
-                        System.out.println("Parsed " + newComponents.size() + " components.");
-                    } else {
-                        System.out.println("No components found to parse.");
+                        System.out.println("Successfully parsed " + newComponents.size() + " components.");
                     }
 
                 } catch (Exception e) {
@@ -237,34 +327,64 @@ public class SbomService {
 
     private com.example.vulnscanner.entity.SbomComponent parseComponent(SbomResult result,
             com.fasterxml.jackson.databind.JsonNode node) {
+
         com.example.vulnscanner.entity.SbomComponent component = new com.example.vulnscanner.entity.SbomComponent();
         component.setSbomResult(result);
-        component.setName(getText(node, "name"));
-        component.setVersion(getText(node, "version"));
-        component.setType(getText(node, "type"));
-        component.setPurl(getText(node, "purl"));
 
-        // Parse and Enrich Vulnerabilities
-        if (node.has("vulnerabilities") && node.get("vulnerabilities").isArray()) {
-            for (com.fasterxml.jackson.databind.JsonNode vulnNode : node.get("vulnerabilities")) {
-                com.example.vulnscanner.entity.SbomVulnerability vuln = parseAndEnrichVulnerability(vulnNode);
-                if (vuln != null) {
-                    vuln.setComponent(component);
-                    component.getVulnerabilities().add(vuln);
+        String type = "";
+        String name = "";
+        String version = "";
+
+        // Parse "package_name" which is a PURL: pkg:pypi/cookiecutter@1.7.3
+        String purl = getText(node, "package_name");
+        component.setPurl(purl);
+
+        if (purl != null && purl.startsWith("pkg:")) {
+            try {
+                // Simple parser without dependency
+                String remainder = purl.substring(4); // Remove pkg:
+
+                int slashIndex = remainder.indexOf("/");
+                if (slashIndex > 0) {
+                    type = remainder.substring(0, slashIndex);
+                    remainder = remainder.substring(slashIndex + 1);
+                } else {
+                    // unexpected format pkg:name@ver?
+                    int atIndex = remainder.indexOf("@");
+                    if (atIndex > 0) {
+                        type = "generic"; // fallback
+                        // continue parsing name/ver
+                    }
                 }
+
+                // Now remainder is namespace/name@version or just name@version
+                int atIndex = remainder.lastIndexOf("@");
+                if (atIndex > 0) {
+                    version = remainder.substring(atIndex + 1);
+                    name = remainder.substring(0, atIndex); // includes namespace if present
+                } else {
+                    name = remainder;
+                }
+
+            } catch (Exception e) {
+                System.err.println("Error parsing PURL: " + purl);
+                name = purl; // fallback
             }
+        } else {
+            // Fallback try standard fields
+            name = getText(node, "name");
+            if (name.isEmpty())
+                name = getText(node, "Name");
+            version = getText(node, "version");
+            type = getText(node, "type");
         }
 
-        // Parse and Enrich Licenses
-        if (node.has("licenses") && node.get("licenses").isArray()) {
-            for (com.fasterxml.jackson.databind.JsonNode licenseNode : node.get("licenses")) {
-                com.example.vulnscanner.entity.SbomLicense license = parseAndEnrichLicense(licenseNode);
-                if (license != null) {
-                    license.setComponent(component);
-                    component.getLicenses().add(license);
-                }
-            }
-        }
+        component.setName(name);
+        component.setVersion(version);
+        component.setType(type);
+
+        // Location mapping?
+        // component.setDescription(getText(node, "location"));
 
         return component;
     }
@@ -272,97 +392,72 @@ public class SbomService {
     private com.example.vulnscanner.entity.SbomVulnerability parseAndEnrichVulnerability(
             com.fasterxml.jackson.databind.JsonNode node) {
         com.example.vulnscanner.entity.SbomVulnerability vuln = new com.example.vulnscanner.entity.SbomVulnerability();
-        String id = getText(node, "id"); // e.g., CVE-2023-1234
-        String source = getText(node, "source_name"); // e.g., NVD, GHSA
 
-        if (id == null || id.isEmpty()) {
-            // Try to find ID in other fields if structure differs
-            if (node.has("cve"))
-                id = getText(node, "cve");
+        String id = getText(node, "cve");
+        String ghsaId = getText(node, "vulnerability_id");
+
+        // Clean up array string ["CVE-2022..."]
+        if (id != null && id.startsWith("[")) {
+            id = id.replaceAll("[\"\\[\\]]", ""); // remove " [ ]
+            if (id.contains(",")) {
+                id = id.split(",")[0].trim(); // take first if multiple
+            }
         }
+        if ("N/A".equals(id))
+            id = null;
 
-        final String finalId = id;
+        String finalId = (id != null && !id.isEmpty()) ? id : ghsaId;
+
         vuln.setVulnId(finalId);
-        vuln.setSource(source);
-        vuln.setUrl(getText(node, "url"));
+        vuln.setVendorId(ghsaId); // Set vendorId (GHSA, OSV etc.)
+        vuln.setSource(ghsaId != null && !ghsaId.isEmpty() ? "GHSA" : "NVD"); // Assumption based on data
+        // link to GHSA if provided
 
         // Enrichment from Mocha DB
-        if (finalId != null) {
+        boolean enriched = false;
+        if (finalId != null && !finalId.isEmpty()) {
+            System.out.println("DEBUG: Attempting to enrich vulnerability with ID: [" + finalId + "]");
             if (finalId.startsWith("CVE")) {
-                mochaCveRepository.findById(finalId).ifPresent(cve -> {
+                mochaCveRepository.findById(finalId).ifPresentOrElse(cve -> {
+                    System.out.println("DEBUG: Found CVE in DB: " + finalId);
                     vuln.setTitle(cve.getTitle());
                     vuln.setDescription(
                             cve.getDescriptionKr() != null ? cve.getDescriptionKr() : cve.getDescriptionEn());
-                    vuln.setSeverity(cve.getVulnStatus()); // Mapping check needed, using status for now or need
-                                                           // severity field in Cve
-                    // Note: Schema analysis showed 'vuln_status' in CVE table, GHSA has 'severity'.
-                    // If CVE table lacks severity, we might need NVD data or just leave it.
-                    // Checking implementation_plan, MochaCve has vulnStatus. MochaGhsa has
-                    // severity.
-                });
-            } else if (finalId.startsWith("GHSA")) {
-                mochaGhsaRepository.findById(finalId).ifPresent(ghsa -> {
+                    vuln.setSeverity(cve.getVulnStatus());
+                }, () -> System.out.println("DEBUG: CVE NOT found in DB: " + finalId));
+                enriched = true;
+            } else if (finalId.startsWith("GHSA")) { // Keep basic check, maybe extend to other vendor IDs
+                mochaGhsaRepository.findById(finalId).ifPresentOrElse(ghsa -> {
+                    System.out.println("DEBUG: Found GHSA in DB: " + finalId);
                     vuln.setTitle(ghsa.getTitle());
                     vuln.setDescription(ghsa.getSummaryKr() != null ? ghsa.getSummaryKr() : ghsa.getSummaryEn());
                     vuln.setSeverity(ghsa.getSeverity());
-                    if (vuln.getUrl() == null || vuln.getUrl().isEmpty()) {
-                        vuln.setUrl("https://github.com/advisories/" + finalId);
-                    }
-                });
+                }, () -> System.out.println("DEBUG: GHSA NOT found in DB: " + finalId));
+                enriched = true;
             }
         }
 
-        // Fallback: If no enrichment, use data from JSON if available
-        if (vuln.getDescription() == null)
-            vuln.setDescription(getText(node, "description"));
-        if (vuln.getSeverity() == null) {
-            // Try to find severity in JSON
-            if (node.has("ratings") && node.get("ratings").isArray()) {
-                for (com.fasterxml.jackson.databind.JsonNode rating : node.get("ratings")) {
-                    if (rating.has("severity")) {
-                        vuln.setSeverity(getText(rating, "severity"));
-                        break;
-                    }
-                }
-            }
+        if (!enriched) {
+            // Basic population if not found in DB
+            vuln.setTitle(finalId);
+            vuln.setDescription("Location: " + getText(node, "location"));
+        }
+
+        // Ensure Url is checked
+        if (vuln.getUrl() == null && finalId != null) {
+            if (finalId.startsWith("GHSA"))
+                vuln.setUrl("https://github.com/advisories/" + finalId);
+            else if (finalId.startsWith("CVE"))
+                vuln.setUrl("https://nvd.nist.gov/vuln/detail/" + finalId);
         }
 
         return vuln;
     }
 
+    // Keep getText and parseAndEnrichLicense (simplified)
     private com.example.vulnscanner.entity.SbomLicense parseAndEnrichLicense(
             com.fasterxml.jackson.databind.JsonNode node) {
-        com.example.vulnscanner.entity.SbomLicense license = new com.example.vulnscanner.entity.SbomLicense();
-
-        // Structure might be { "license": { "id": "Apache-2.0" } } or just { "id":
-        // "Apache-2.0" }
-        String licenseId = "";
-        String name = "";
-
-        if (node.has("license")) {
-            com.fasterxml.jackson.databind.JsonNode inner = node.get("license");
-            licenseId = getText(inner, "id");
-            name = getText(inner, "name");
-        } else {
-            licenseId = getText(node, "id");
-            name = getText(node, "name");
-        }
-
-        license.setLicenseId(licenseId);
-        license.setName(name);
-
-        // Enrichment
-        if (licenseId != null && !licenseId.isEmpty()) {
-            mochaSpdxLicenseRepository.findByLicenseId(licenseId).ifPresent(spdx -> {
-                if (license.getName() == null || license.getName().isEmpty()) {
-                    license.setName(spdx.getName());
-                }
-                license.setSeverity(spdx.getSeverity());
-                license.setUrl(spdx.getDetailsUrl());
-            });
-        }
-
-        return license;
+        return null; // Impl if needed
     }
 
     private String getText(com.fasterxml.jackson.databind.JsonNode node, String fieldName) {

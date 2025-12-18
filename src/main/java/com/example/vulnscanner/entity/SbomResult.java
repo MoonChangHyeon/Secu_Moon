@@ -19,6 +19,11 @@ public class SbomResult {
     private LocalDateTime scanDate;
     private String status; // SUCCESS, FAILED, RUNNING
 
+    // Summary Counts
+    private Integer vulnerabilitiesCount;
+    private Integer licensesCount;
+    private Integer componentsCount;
+
     private String jobId; // AI_SBOM API Job ID
     private String requester; // 요청자 (User ID/Name)
 
@@ -31,5 +36,6 @@ public class SbomResult {
     private String reportPath; // Path to the generated report
 
     @OneToMany(mappedBy = "sbomResult", cascade = CascadeType.ALL, orphanRemoval = true)
+    @lombok.ToString.Exclude
     private List<SbomComponent> components;
 }
