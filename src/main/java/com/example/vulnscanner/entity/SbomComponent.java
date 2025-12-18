@@ -13,6 +13,7 @@ public class SbomComponent {
 
     @ManyToOne
     @JoinColumn(name = "sbom_result_id")
+    @lombok.ToString.Exclude
     private SbomResult sbomResult;
 
     private String name;

@@ -49,8 +49,12 @@ public class ReportParserService {
         XPath xPath = XPathFactory.newInstance().newXPath();
 
         // 1. Parse Scan Summary
-        ScanSummary summary = new ScanSummary();
-        summary.setAnalysisResult(result);
+        ScanSummary summary = result.getScanSummary();
+        if (summary == null) {
+            summary = new ScanSummary();
+            summary.setAnalysisResult(result);
+            result.setScanSummary(summary);
+        }
 
         // Scan Date
         String execSummaryText = (String) xPath.evaluate(
@@ -73,8 +77,6 @@ public class ReportParserService {
         summary.setScaEngineVersion(extractString(scanInfoText, "SCA Engine version:"));
         summary.setMachineName(extractString(scanInfoText, "Machine Name:"));
         summary.setScanTime(extractString(scanInfoText, "Scan time:"));
-
-        result.setScanSummary(summary);
 
         // 2. Parse Vulnerabilities
         List<Vulnerability> vulnerabilities = new ArrayList<>();

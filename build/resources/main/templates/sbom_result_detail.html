@@ -17,6 +17,12 @@
                 </p>
             </div>
             <div>
+                <form th:action="@{/sboms/reparse/{id}(id=${result.id})}" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-outline-warning me-2"
+                        onclick="return confirm('Are you sure you want to re-parse this SBOM? existing data will be overwritten.');">
+                        <i class="bi bi-arrow-repeat"></i> Re-parse
+                    </button>
+                </form>
                 <a href="/" class="btn btn-outline-secondary">
                     <i class="bi bi-arrow-left"></i> Back to Dashboard
                 </a>
@@ -95,17 +101,25 @@
                             <thead>
                                 <tr>
                                     <th>CVE</th>
-                                    <th>GHSA ID</th>
+                                    <th>Vendor ID</th>
                                     <th>Package</th>
-                                    <!-- <th>Severity</th> -->
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr th:each="vuln : ${sbomData.vulnerabilities}">
                                     <td th:text="${vuln.cve != 'N/A' ? vuln.cve : '-'}">CVE-XXX</td>
-                                    <td th:text="${vuln.ghsa_id}">GHSA-XXX</td>
+                                    <td th:text="${vuln.vendor_id}">GHSA-XXX</td>
                                     <td th:text="${vuln.package_name}">Package</td>
-                                    <!-- <td><span class="badge bg-danger">High</span></td> -->
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+                                            data-bs-target="#vulnDetailModal" th:data-cve="${vuln.cve}"
+                                            th:data-vendor="${vuln.vendor_id}" th:data-title="${vuln.title}"
+                                            th:data-desc="${vuln.description}" th:data-severity="${vuln.severity}"
+                                            th:data-url="${vuln.url}">
+                                            Detail
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr th:if="${#lists.isEmpty(sbomData.vulnerabilities)}">
                                     <td colspan="3" class="text-center">No vulnerabilities found.</td>
@@ -150,15 +164,17 @@
                                 <tr>
                                     <th>Package</th>
                                     <th>License</th>
+                                    <th>Location</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr th:each="lic : ${sbomData.licenses}">
                                     <td th:text="${lic.package_name}">Package</td>
                                     <td th:text="${lic.license_type}">License</td>
+                                    <td th:text="${lic.location}">Location</td>
                                 </tr>
                                 <tr th:if="${#lists.isEmpty(sbomData.licenses)}">
-                                    <td colspan="2" class="text-center">No license information found.</td>
+                                    <td colspan="3" class="text-center">No license information found.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -171,7 +187,70 @@
             <p>Analysis completed successfully, but no result data could be parsed.</p>
             <pre th:text="${result.logs}"></pre>
         </div>
+
+        <!-- Vulnerability Detail Modal -->
+        <div class="modal fade" id="vulnDetailModal" tabindex="-1" aria-labelledby="vulnDetailModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="vulnDetailModalLabel">Vulnerability Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>ID:</strong> <span id="modalVulnId"></span> / <span id="modalVendorId"></span></p>
+                        <p><strong>Severity:</strong> <span id="modalSeverity" class="badge bg-secondary"></span></p>
+                        <hr>
+                        <h6>Title</h6>
+                        <div class="p-2 bg-light border rounded mb-3" id="modalTitle"></div>
+                        <h6>Description (KR)</h6>
+                        <div class="p-2 bg-light border rounded mb-3" id="modalDesc" style="white-space: pre-wrap;">
+                        </div>
+                        <hr>
+                        <a id="modalUrl" href="#" target="_blank" class="btn btn-primary btn-sm">
+                            <i class="bi bi-box-arrow-up-right"></i> View External Reference
+                        </a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script th:inline="javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            var vulnDetailModal = document.getElementById('vulnDetailModal');
+            vulnDetailModal.addEventListener('show.bs.modal', function (event) {
+                var button = event.relatedTarget;
+                var cve = button.getAttribute('data-cve');
+                var vendor = button.getAttribute('data-vendor');
+                var title = button.getAttribute('data-title');
+                var desc = button.getAttribute('data-desc');
+                var severity = button.getAttribute('data-severity');
+                var url = button.getAttribute('data-url');
+
+                var modal = this;
+                modal.querySelector('#modalVulnId').textContent = cve && cve !== 'N/A' ? cve : '-';
+                modal.querySelector('#modalVendorId').textContent = vendor && vendor !== '-' ? vendor : '-';
+                modal.querySelector('#modalTitle').textContent = title ? title : 'No Title';
+                modal.querySelector('#modalDesc').textContent = desc ? desc : '상세 설명이 없습니다.';
+
+                var sevBadge = modal.querySelector('#modalSeverity');
+                sevBadge.textContent = severity ? severity : 'UNKNOWN';
+                sevBadge.className = 'badge ' + (severity === 'CRITICAL' || severity === 'HIGH' ? 'bg-danger' : (severity === 'MEDIUM' ? 'bg-warning' : 'bg-info'));
+
+                var urlBtn = modal.querySelector('#modalUrl');
+                if (url) {
+                    urlBtn.href = url;
+                    urlBtn.style.display = 'inline-block';
+                } else {
+                    urlBtn.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

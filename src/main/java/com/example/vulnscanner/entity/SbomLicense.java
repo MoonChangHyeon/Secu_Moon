@@ -30,4 +30,7 @@ public class SbomLicense {
 
     @Column(name = "url")
     private String url;
+
+    @Column(name = "location")
+    private String location;
 }
