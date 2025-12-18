@@ -16,8 +16,14 @@
   - 데이터베이스 테이블과 매핑되는 핵심 데이터 모델.
 - **[DTO (데이터 전송 객체)](src/main/java/com/example/vulnscanner/dto/README.md)**
   - 계층 간 데이터 교환을 위한 순수 데이터 객체.
+- **[Mocha (보안 데이터)](src/main/java/com/example/vulnscanner/mocha/README.md)**
+  - `mocha_dev` DB 연동을 위한 엔티티 및 리포지토리 (CVE, GHSA, SPDX License).
+- **[Util (유틸리티)](src/main/java/com/example/vulnscanner/util/README.md)**
+  - 비밀번호 검증 등 공통 유틸리티 클래스.
 - **[Exception (예외 처리)](src/main/java/com/example/vulnscanner/exception/README.md)**
   - 전역 예외 처리(Global Exception Handling) 로직.
+- **[Test (테스트)](src/test/README.md)**
+  - 단위 테스트 및 통합 테스트 코드.
 
 ### Frontend (View Layer)
 - **[Templates (화면 템플릿)](src/main/resources/templates/README.md)**

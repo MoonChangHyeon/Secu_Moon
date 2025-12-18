@@ -1,17 +1,10 @@
-# DTO (Data Transfer Object)
+# DTO Module (데이터 전송 객체)
 
-## 목차 (Table of Contents)
-- [파일 목록 및 설명](#파일-목록-및-설명)
-    - [UnifiedResultDto.java](#unifiedresultdtojava)
+## 개요
+DTO (Data Transfer Object)는 계층 간(Controller ↔ Service ↔ Repository)에 데이터를 전달하기 위해 사용되는 순수 데이터 객체입니다. 엔티티(Entity)를 직접 노출하지 않고 필요한 데이터만 선별하여 클라이언트에 전달하거나 입력을 받기 위해 사용합니다.
 
----
-
-이 디렉토리는 계층 간 데이터 교환을 위해 사용되는 객체들을 포함합니다. 엔티티(Entity)와 달리 순수하게 데이터를 전달하는 목적을 가집니다.
-
-## 파일 목록 및 설명
-
-### `UnifiedResultDto.java`
-- **역할**: 통합 분석 결과 DTO.
-- **주요 기능**:
-  - SAST(정적 분석) 결과와 SBOM(오픈소스) 분석 결과를 통합된 형태로 화면에 보여주기 위해 사용됩니다.
-  - `AnalysisResult`(SAST)와 `SbomResult`(SBOM) 엔티티의 공통 필드를 추출하여 목록 페이지 등에서 일관된 포맷으로 데이터를 전달합니다.
+## 주요 DTO
+- **[UserUpdateDto](UserUpdateDto.java)**: 사용자 정보 수정 요청 시 사용되는 DTO.
+- **[PasswordChangeDto](PasswordChangeDto.java)**: 비밀번호 변경 요청 데이터.
+- **[SettingsDto](SettingsDto.java)**: 시스템 설정 정보 전송용.
+- **[SbomDetailDto](SbomDetailDto.java)**: SBOM 상세 결과 화면에 표시할 복합 데이터 객체.
