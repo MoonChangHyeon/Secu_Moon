@@ -1,21 +1,45 @@
-# Controller Module (웹 계층)
+# Controller Package
 
-## 개요
-사용자의 HTTP 요청을 처리하고, 적절한 View(Thymeleaf Template)를 반환하거나 API 응답(JSON)을 제공하는 계층입니다.
+이 패키지는 웹 프레젠테이션 계층(Web Presentation Layer)을 담당합니다. 클라이언트(사용자)의 요청을 받아 적절한 서비스를 호출하고, 결과를 View(Thymeleaf) 또는 API 응답(JSON)으로 반환합니다.
 
-## 주요 컨트롤러
-- **[MainController](MainController.java)**
-  - 대시보드 및 메인 페이지 라우팅.
-  - 로그인 페이지 처리.
-- **[AnalysisController](AnalysisController.java)**
-  - 취약점 분석 요청 처리.
-  - 분석 결과 리스트 조회 및 상세 페이지 이동.
-  - 분석 결과 삭제 및 재분석 요청 핸들링.
-- **[SbomController](SbomController.java)**
-  - SBOM 분석 결과 조회 및 상세 페이지.
-  - SBOM 데이터 보강(Enrichment) 요청 처리.
-- **[UserController](UserController.java)**
-  - 사용자 관리(목록 조회, 수정, 삭제).
-  - 마이페이지(내 정보 수정).
-- **[SettingsController](SettingsController.java)**
-  - 시스템 환경 설정(DB 접속 정보, 외부 도구 경로 등) 관리.
+## 주요 Controller 구조 및 역할
+
+### 1. 분석 요청 및 결과 처리
+
+#### **`AnalysisController.java`**
+SAST(정적 분석)와 관련된 모든 웹 요청을 처리합니다.
+- **주요 경로**: `/`, `/analysis`, `/results`
+- **주요 기능**:
+    - **대시보드 (`/`)**: 전체 분석 현황, 트렌드 차트, 최근 활동 로그를 표시합니다.
+    - **분석 실행 (`/analysis` POST)**: 파일 업로드 및 분석 옵션을 받아 분석을 시작합니다.
+    - **결과 조회 (`/results/{id}`)**: 분석 결과 상세 페이지를 보여줍니다.
+    - **다운로드**: 소스 코드, 로그 파일, PDF/XML 리포트 파일 다운로드 기능을 제공합니다.
+    - **재파싱 (`/results/reparse/{id}`)**: 분석 결과 XML을 수동으로 다시 파싱 합니다.
+
+#### **`SbomController.java`**
+SBOM(소프트웨어 자재 명세서) 분석 요청을 처리합니다.
+- **주요 경로**: `/sbom`
+- **주요 기능**:
+    - **분석 요청 (`/sbom/analyze`)**: 빌드 ID 또는 SBOM 파일을 받아 AI 분석을 요청합니다.
+    - **상세 조회 (`/sbom/results/{id}`)**: 파싱 된 SBOM 결과(컴포넌트, 라이선스, 취약점)를 보여줍니다.
+    - **상태 확인**: 비동기 분석의 진행 상황을 확인하는 API를 제공합니다.
+
+### 2. 설정 및 관리
+
+#### **`SettingsController.java`**
+시스템 설정 관리를 담당합니다.
+- **주요 경로**: `/settings`
+- **주요 기능**:
+    - 분석 도구(Fortify) 경로, 스캔 옵션 기본값 등을 조회하고 수정하는 페이지를 제공합니다.
+
+#### **`UserManagementController.java`**
+관리자가 사용자를 관리하는 기능을 제공합니다.
+- **주요 경로**: `/users`
+- **주요 기능**:
+    - 사용자 목록 조회, 권한 수정, 계정 잠금 해제 등을 수행합니다.
+
+### 3. 인증
+
+#### **`LoginController.java`** (또는 관련 인증 컨트롤러)
+로그인 페이지 및 인증 프로세스를 처리합니다.
+- **주요 기능**: 로그인 폼 및 접근 거부 페이지 등을 렌더링합니다.

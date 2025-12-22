@@ -1,0 +1,227 @@
+[2025-12-18 17:35:33.213 INFO  ]
+Starting Main vSNAPSHOT using Java 17.0.14 with PID 95037 (/Users/munchanghyeon/Documents/Workspce/SCA/25.3/Core/flight/engine/engine-impl.jar started by munchanghyeon in /Volumes/Moon/1125/vulnscanner)
+   logger:flight.engine.application.Main marker:DEV thread:main-1
+   MDC:{} NDC:[]
+[2025-12-18 17:35:33.217 INFO  ]
+The following 17 profiles are active: "macos", "arm64", "engine", "ansible", "java", "solidity", "iac", "bicep", "terraform", "json", "yaml", "cloudformation", "sql", "langclass", "typescript", "rulePackExporter", "user"
+   logger:flight.engine.application.Main marker:DEV thread:main-1
+   MDC:{} NDC:[]
+[2025-12-18 17:35:38.427 INFO  ]
+Started Main in 6.029 seconds (process running for 7.857)
+   logger:flight.engine.application.Main marker:DEV thread:main-1
+   MDC:{} NDC:[]
+[2025-12-18 17:35:38.535 INFO  ]
+Force Bicep Compiler Update: false
+   logger:flight.bicep.common.BicepFrontendArgs marker:DEV thread:main-1
+   MDC:{buildId=default, processor=InputProcessor, projectId=b67ea2a4-bb4e-4ba0-a299-be03ea0533c5} NDC:[]
+[2025-12-18 17:35:38.536 INFO  ]
+Log raw Bicep wrapper messages: false
+   logger:flight.bicep.common.BicepFrontendArgs marker:DEV thread:main-1
+   MDC:{buildId=default, processor=InputProcessor, projectId=b67ea2a4-bb4e-4ba0-a299-be03ea0533c5} NDC:[]
+[2025-12-18 17:35:38.538 INFO  ]
+Determined SQL language from option --sql-language=plsql
+   logger:flight.sql.common.SQLApplicationArgumentParser marker:DEV thread:main-1
+   MDC:{buildId=default, processor=InputProcessor, projectId=b67ea2a4-bb4e-4ba0-a299-be03ea0533c5} NDC:[]
+[2025-12-18 17:35:38.711 INFO  ]
+Detected 0 Solidity file(s).
+   logger:flight.solidity.s2_translate.PragmaSolidityParsingProcessor marker:DEV thread:main-1
+   MDC:{buildId=default, processor=PragmaSolidityParsingProcessor, projectId=b67ea2a4-bb4e-4ba0-a299-be03ea0533c5} NDC:[]
+[2025-12-18 17:35:38.712 INFO  ]
+No SQL files detected.
+   logger:flight.sql.s2_translate.SQLTranslationProcessor marker:DEV thread:main-1
+   MDC:{buildId=default, processor=SQLTranslationProcessor, projectId=b67ea2a4-bb4e-4ba0-a299-be03ea0533c5} NDC:[]
+[2025-12-18 17:35:38.771 INFO  ]
+Detected 0 Bicep file(s).
+   logger:flight.bicep.s2_translate.BicepTranslationProcessor marker:DEV thread:main-1
+   MDC:{buildId=default, processor=BicepTranslationProcessor, projectId=b67ea2a4-bb4e-4ba0-a299-be03ea0533c5} NDC:[]
+[2025-12-18 17:35:38.845 INFO  ]
+Detected 0 Solidity file(s).
+   logger:flight.solidity.s2_translate.SolidityTranslationProcessor marker:DEV thread:main-1
+   MDC:{buildId=default, processor=SolidityTranslationProcessor, projectId=b67ea2a4-bb4e-4ba0-a299-be03ea0533c5} NDC:[]
+[2025-12-18 17:35:39.407 INFO  ]
+Detected 0 Solidity file(s).
+   logger:flight.solidity.s4_adhoc.SolidityCompilerVersionProcessor marker:DEV thread:main-1
+   MDC:{buildId=default, processor=SolidityCompilerVersionProcessor, projectId=b67ea2a4-bb4e-4ba0-a299-be03ea0533c5} NDC:[]
+[2025-12-18 17:35:39.615 INFO  ]
+engine#pipeline.invoking_processor:          00:01 [1079]        00:01 [1114]
+engine#sourceset.determining_charset:        00:00 [0]           00:00 [16]
+engine#sourceset.determining_charset.icu4j:  00:00 [16]          00:00 [16]
+engine#sourceset.determining_encoding:       00:00 [19]          00:00 [35]
+flight_total:                                00:06 [6161]        00:07 [7275]
+
+   logger:flight.engine.common.recorder.ActivityTimers marker:DEV thread:main-1
+   MDC:{} NDC:[]
+[2025-12-18 17:35:39.617 INFO  ]
+logger:flight.solidity.s2_translate.SolidityTranslationProcessor  count:1
+   level:INFO count:1
+logger:flight.bicep.s2_translate.BicepTranslationProcessor  count:1
+   level:INFO count:1
+logger:flight.sql.s2_translate.SQLTranslationProcessor  count:1
+   level:INFO count:1
+logger:flight.engine.application.Main  count:3
+   level:INFO count:3
+logger:flight.bicep.common.BicepFrontendArgs  count:2
+   level:INFO count:2
+logger:flight.solidity.s2_translate.PragmaSolidityParsingProcessor  count:1
+   level:INFO count:1
+logger:flight.engine.common.recorder.ActivityTimers  count:1
+   level:INFO count:1
+logger:flight.solidity.s4_adhoc.SolidityCompilerVersionProcessor  count:1
+   level:INFO count:1
+logger:flight.sql.common.SQLApplicationArgumentParser  count:1
+   level:INFO count:1
+
+   logger:flight.engine.common.recorder.LogCounters marker:DEV thread:main-1
+   MDC:{} NDC:[]
+[2025-12-18 17:35:39.640 INFO  ]
+Heap: [free:] 50,486,656 [max:] 4,294,967,296 [total:] 203,423,744
+ClassLoadingMXBean: 
+  LoadedClassCount: 12146
+  TotalLoadedClassCount: 12146
+  UnloadedClassCount: 0
+  Verbose: false
+CompilationMXBean: HotSpot 64-Bit Tiered Compilers
+  CompilationTimeMonitoringSupported: true
+  TotalCompilationTime: 10963
+[GarbageCollectorMXBeans]
+  GarbageCollectorMXBean: 
+  GarbageCollectorMXBean: 
+[MemoryManagerMXBeans]
+  MemoryManagerMXBean: CodeCacheManager
+    MemoryPoolNames: [CodeHeap 'non-nmethods', CodeHeap 'profiled nmethods', CodeHeap 'non-profiled nmethods']
+    Valid: true
+  MemoryManagerMXBean: Metaspace Manager
+    MemoryPoolNames: [Metaspace, Compressed Class Space]
+    Valid: true
+  MemoryManagerMXBean: 
+  MemoryManagerMXBean: 
+MemoryMXBean: 
+  HeapMemoryUsage: init = 402653184(393216K) used = 152937088(149352K) committed = 203423744(198656K) max = 4294967296(4194304K)
+  NonHeapMemoryUsage: init = 7667712(7488K) used = 76386096(74595K) committed = 80281600(78400K) max = -1(-1K)
+  ObjectPendingFinalizationCount: 0
+  Verbose: false
+[MemoryPoolMXBeans]
+  MemoryPoolMXBean: CodeHeap 'non-nmethods'
+    MemoryManagerNames: [CodeCacheManager]
+    PeakUsage: init = 2555904(2496K) used = 1463040(1428K) committed = 2555904(2496K) max = 5849088(5712K)
+    Type: Non-heap memory
+    Usage: init = 2555904(2496K) used = 1311744(1281K) committed = 2555904(2496K) max = 5849088(5712K)
+    UsageThreshold: 0
+    UsageThresholdCount: 0
+    UsageThresholdExceeded: false
+  MemoryPoolMXBean: Metaspace
+    MemoryManagerNames: [Metaspace Manager]
+    PeakUsage: init = 0(0K) used = 53584344(52328K) committed = 54067200(52800K) max = -1(-1K)
+    Type: Non-heap memory
+    Usage: init = 0(0K) used = 53584344(52328K) committed = 54067200(52800K) max = -1(-1K)
+    UsageThreshold: 0
+    UsageThresholdCount: 0
+    UsageThresholdExceeded: false
+  MemoryPoolMXBean: CodeHeap 'profiled nmethods'
+    MemoryManagerNames: [CodeCacheManager]
+    PeakUsage: init = 2555904(2496K) used = 13156992(12848K) committed = 13238272(12928K) max = 122896384(120016K)
+    Type: Non-heap memory
+    Usage: init = 2555904(2496K) used = 11420032(11152K) committed = 13238272(12928K) max = 122896384(120016K)
+    UsageThreshold: 0
+    UsageThresholdCount: 0
+    UsageThresholdExceeded: false
+  MemoryPoolMXBean: Compressed Class Space
+    MemoryManagerNames: [Metaspace Manager]
+    PeakUsage: init = 0(0K) used = 7635456(7456K) committed = 7864320(7680K) max = 1073741824(1048576K)
+    Type: Non-heap memory
+    Usage: init = 0(0K) used = 7635456(7456K) committed = 7864320(7680K) max = 1073741824(1048576K)
+    UsageThreshold: 0
+    UsageThresholdCount: 0
+    UsageThresholdExceeded: false
+  MemoryPoolMXBean: G1 Eden Space
+    CollectionUsage: init = 25165824(24576K) used = 0(0K) committed = 94371840(92160K) max = -1(-1K)
+    CollectionUsageThreshold: 0
+    CollectionUsageThresholdCount: 0
+    CollectionUsageThresholdExceeded: false
+    MemoryManagerNames: [G1 Old Generation, G1 Young Generation]
+    PeakUsage: init = 25165824(24576K) used = 239075328(233472K) committed = 251658240(245760K) max = -1(-1K)
+    Type: Heap memory
+    Usage: init = 25165824(24576K) used = 83886080(81920K) committed = 94371840(92160K) max = -1(-1K)
+  MemoryPoolMXBean: G1 Old Gen
+    CollectionUsage: init = 377487360(368640K) used = 0(0K) committed = 0(0K) max = 4294967296(4194304K)
+    CollectionUsageThreshold: 3865470566
+    CollectionUsageThresholdCount: 0
+    CollectionUsageThresholdExceeded: false
+    MemoryManagerNames: [G1 Old Generation, G1 Young Generation]
+    PeakUsage: init = 377487360(368640K) used = 65955840(64410K) committed = 381681664(372736K) max = 4294967296(4194304K)
+    Type: Heap memory
+    Usage: init = 377487360(368640K) used = 65955840(64410K) committed = 104857600(102400K) max = 4294967296(4194304K)
+    UsageThreshold: 0
+    UsageThresholdCount: 0
+    UsageThresholdExceeded: false
+  MemoryPoolMXBean: G1 Survivor Space
+    CollectionUsage: init = 0(0K) used = 3095168(3022K) committed = 4194304(4096K) max = -1(-1K)
+    CollectionUsageThreshold: 0
+    CollectionUsageThresholdCount: 0
+    CollectionUsageThresholdExceeded: false
+    MemoryManagerNames: [G1 Old Generation, G1 Young Generation]
+    PeakUsage: init = 0(0K) used = 31457280(30720K) committed = 31457280(30720K) max = -1(-1K)
+    Type: Heap memory
+    Usage: init = 0(0K) used = 3095168(3022K) committed = 4194304(4096K) max = -1(-1K)
+  MemoryPoolMXBean: CodeHeap 'non-profiled nmethods'
+    MemoryManagerNames: [CodeCacheManager]
+    PeakUsage: init = 2555904(2496K) used = 2466176(2408K) committed = 2555904(2496K) max = 122912768(120032K)
+    Type: Non-heap memory
+    Usage: init = 2555904(2496K) used = 2443648(2386K) committed = 2555904(2496K) max = 122912768(120032K)
+    UsageThreshold: 0
+    UsageThresholdCount: 0
+    UsageThresholdExceeded: false
+OperatingSystemMXBean: Mac OS X
+  Arch: aarch64
+  AvailableProcessors: 8
+  CommittedVirtualMemorySize: 427732992000
+  CpuLoad: 0.0
+  FreeMemorySize: 173441024
+  FreePhysicalMemorySize: 174260224
+  FreeSwapSpaceSize: 320995328
+  MaxFileDescriptorCount: 1048576
+  OpenFileDescriptorCount: 37
+  ProcessCpuLoad: 0.0
+  ProcessCpuTime: 10824562000
+  SystemCpuLoad: NaN
+  SystemLoadAverage: 40.177734375
+  TotalMemorySize: 25769803776
+  TotalPhysicalMemorySize: 25769803776
+  TotalSwapSpaceSize: 10737418240
+  Version: 26.1
+RuntimeMXBean: 95037@munchanghyeon-ui-MacBookAir
+  BootClassPathSupported: false
+  ClassPath: /Users/munchanghyeon/Documents/Workspce/SCA/25.3/Core/flight/engine/engine-impl.jar:/Users/munchanghyeon/Documents/Workspce/SCA/25.3/Core/flight/config
+  LibraryPath: /Users/munchanghyeon/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+  ManagementSpecVersion: 3.0
+  Pid: 95037
+  SpecName: Java Virtual Machine Specification
+  SpecVendor: Oracle Corporation
+  SpecVersion: 17
+  StartTime: 1766046930597
+  Uptime: 9061
+  VmName: OpenJDK 64-Bit Server VM
+  VmVendor: Azul Systems, Inc.
+  VmVersion: 17.0.14+7-LTS
+ThreadMXBean: 
+  Thread 1 [main]
+    ThreadCpuTime: 4500212000
+    ThreadUserTime: 4111667000
+  Thread 2 [Reference Handler]
+    ThreadCpuTime: 2970000
+    ThreadUserTime: 2765000
+  Thread 3 [Finalizer]
+    ThreadCpuTime: 297000
+    ThreadUserTime: 218000
+  Thread 4 [Signal Dispatcher]
+    ThreadCpuTime: 66000
+    ThreadUserTime: 14000
+  Thread 12 [Notification Thread]
+    ThreadCpuTime: 53000
+    ThreadUserTime: 13000
+  Thread 13 [Common-Cleaner]
+    ThreadCpuTime: 5868000
+    ThreadUserTime: 4833000
+
+   logger:flight.engine.common.recorder.VmMonitor marker:DEV thread:main-1
+   MDC:{} NDC:[]

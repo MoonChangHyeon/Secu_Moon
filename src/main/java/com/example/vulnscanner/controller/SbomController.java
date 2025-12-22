@@ -25,6 +25,7 @@ public class SbomController {
     private final SbomService sbomService;
     private final com.example.vulnscanner.service.SettingsService settingsService;
     private final SbomRepository sbomRepository;
+    private final com.example.vulnscanner.service.UserService userService;
 
     @PostMapping("/analysis/request/sbom")
     @ResponseBody
@@ -55,8 +56,18 @@ public class SbomController {
             option.setBuildId(buildId);
 
             // Get Current User
-            String requester = org.springframework.security.core.context.SecurityContextHolder.getContext()
+            String username = org.springframework.security.core.context.SecurityContextHolder.getContext()
                     .getAuthentication().getName();
+
+            String requester = username;
+            try {
+                com.example.vulnscanner.entity.User user = userService.loadUserEntityByUsername(username);
+                if (user != null && user.getName() != null && !user.getName().isEmpty()) {
+                    requester = user.getName();
+                }
+            } catch (Exception e) {
+                // Ignore and use username
+            }
 
             SbomResult result = sbomService.createSbomAnalysis(option, sbomFile, requester);
             return ResponseEntity.ok(Map.of("analysisId", result.getId()));
@@ -236,6 +247,10 @@ public class SbomController {
                     globalVulnMap.put("title", vuln.getTitle());
                     globalVulnMap.put("description", vuln.getDescription());
                     globalVulnMap.put("url", vuln.getUrl());
+
+                    System.out.println("DEBUG: Controller Mapping - CVE=" + vulnId +
+                            " Title=" + (vuln.getTitle() != null ? vuln.getTitle().length() : "null") +
+                            " Desc=" + (vuln.getDescription() != null ? vuln.getDescription().length() : "null"));
 
                     allVulnerabilities.add(globalVulnMap);
 

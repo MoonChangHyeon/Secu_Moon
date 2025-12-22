@@ -257,6 +257,9 @@ public class SbomService {
                         System.out.println("Processing " + vulnerabilitiesNode.size() + " vulnerabilities...");
                         for (com.fasterxml.jackson.databind.JsonNode node : vulnerabilitiesNode) {
                             try {
+                                // DEBUG LOG
+                                System.out.println("DEBUG: Raw Vulnerability Node: " + node.toString());
+
                                 String pkgName = getText(node, "package_name");
                                 com.example.vulnscanner.entity.SbomComponent comp = componentMap.get(pkgName);
                                 if (comp != null) {
@@ -393,65 +396,101 @@ public class SbomService {
             com.fasterxml.jackson.databind.JsonNode node) {
         com.example.vulnscanner.entity.SbomVulnerability vuln = new com.example.vulnscanner.entity.SbomVulnerability();
 
-        String id = getText(node, "cve");
-        String ghsaId = getText(node, "vulnerability_id");
+        String rawCve = getText(node, "cve");
+        String rawVulnId = getText(node, "vulnerability_id");
 
-        // Clean up array string ["CVE-2022..."]
-        if (id != null && id.startsWith("[")) {
-            id = id.replaceAll("[\"\\[\\]]", ""); // remove " [ ]
-            if (id.contains(",")) {
-                id = id.split(",")[0].trim(); // take first if multiple
-            }
-        }
-        if ("N/A".equals(id))
-            id = null;
+        // Normalize IDs
+        String cveId = normalizeId(rawCve);
+        String vendorId = normalizeId(rawVulnId);
 
-        String finalId = (id != null && !id.isEmpty()) ? id : ghsaId;
+        // Determine Final ID (Prioritize CVE)
+        String finalId = (cveId != null && !cveId.isEmpty()) ? cveId : vendorId;
 
         vuln.setVulnId(finalId);
-        vuln.setVendorId(ghsaId); // Set vendorId (GHSA, OSV etc.)
-        vuln.setSource(ghsaId != null && !ghsaId.isEmpty() ? "GHSA" : "NVD"); // Assumption based on data
-        // link to GHSA if provided
+        vuln.setVendorId(vendorId); // Keep vendor ID (GHSA, etc.)
+        vuln.setSource((vendorId != null && vendorId.startsWith("GHSA")) ? "GHSA" : "NVD");
 
         // Enrichment from Mocha DB
         boolean enriched = false;
         if (finalId != null && !finalId.isEmpty()) {
-            System.out.println("DEBUG: Attempting to enrich vulnerability with ID: [" + finalId + "]");
+            System.out.println("DEBUG: Attempting to enrich vulnerability. FinalID=[" + finalId + "], RawID=[" + rawCve
+                    + "], VendorID=[" + rawVulnId + "]");
+
             if (finalId.startsWith("CVE")) {
-                mochaCveRepository.findById(finalId).ifPresentOrElse(cve -> {
-                    System.out.println("DEBUG: Found CVE in DB: " + finalId);
+                com.example.vulnscanner.mocha.entity.MochaCve cve = mochaCveRepository.findById(finalId).orElse(null);
+                if (cve != null) {
+                    System.out.println("DEBUG: >>> Found CVE in Mocha DB: " + finalId);
                     vuln.setTitle(cve.getTitle());
-                    vuln.setDescription(
-                            cve.getDescriptionKr() != null ? cve.getDescriptionKr() : cve.getDescriptionEn());
-                    vuln.setSeverity(cve.getVulnStatus());
-                }, () -> System.out.println("DEBUG: CVE NOT found in DB: " + finalId));
-                enriched = true;
-            } else if (finalId.startsWith("GHSA")) { // Keep basic check, maybe extend to other vendor IDs
-                mochaGhsaRepository.findById(finalId).ifPresentOrElse(ghsa -> {
-                    System.out.println("DEBUG: Found GHSA in DB: " + finalId);
+                    // Use KR description if available and not empty, otherwise EN
+                    String descKr = cve.getDescriptionKr();
+                    if (descKr != null && !descKr.trim().isEmpty()) {
+                        // Store raw JSON string for frontend parsing
+                        vuln.setDescription(descKr);
+                    } else {
+                        vuln.setDescription(cve.getDescriptionEn());
+                    }
+                    vuln.setSeverity(cve.getVulnStatus()); // Map status to severity for now
+                    enriched = true;
+                } else {
+                    System.out.println("DEBUG: >>> CVE NOT found in Mocha DB: " + finalId);
+                }
+            } else if (finalId.startsWith("GHSA")) {
+                com.example.vulnscanner.mocha.entity.MochaGhsa ghsa = mochaGhsaRepository.findById(finalId)
+                        .orElse(null);
+                if (ghsa != null) {
+                    System.out.println("DEBUG: >>> Found GHSA in Mocha DB: " + finalId);
                     vuln.setTitle(ghsa.getTitle());
-                    vuln.setDescription(ghsa.getSummaryKr() != null ? ghsa.getSummaryKr() : ghsa.getSummaryEn());
+                    String sumKr = ghsa.getSummaryKr();
+                    if (sumKr != null && !sumKr.trim().isEmpty()) {
+                        vuln.setDescription(sumKr);
+                    } else {
+                        vuln.setDescription(ghsa.getSummaryEn());
+                    }
                     vuln.setSeverity(ghsa.getSeverity());
-                }, () -> System.out.println("DEBUG: GHSA NOT found in DB: " + finalId));
-                enriched = true;
+                    enriched = true;
+                } else {
+                    System.out.println("DEBUG: >>> GHSA NOT found in Mocha DB: " + finalId);
+                }
             }
+        } else {
+            System.out.println("DEBUG: No valid Vulnerability ID found to enrich.");
         }
 
         if (!enriched) {
             // Basic population if not found in DB
-            vuln.setTitle(finalId);
-            vuln.setDescription("Location: " + getText(node, "location"));
+            vuln.setTitle(finalId != null ? finalId : "Unknown Vulnerability");
+            String loc = getText(node, "location");
+            vuln.setDescription("Details not found in local DB.\nLocation: " + (loc.isEmpty() ? "N/A" : loc));
         }
 
-        // Ensure Url is checked
-        if (vuln.getUrl() == null && finalId != null) {
-            if (finalId.startsWith("GHSA"))
-                vuln.setUrl("https://github.com/advisories/" + finalId);
-            else if (finalId.startsWith("CVE"))
-                vuln.setUrl("https://nvd.nist.gov/vuln/detail/" + finalId);
+        // URL Generation
+        if (vuln.getUrl() == null || vuln.getUrl().isEmpty()) {
+            if (finalId != null) {
+                if (finalId.startsWith("GHSA"))
+                    vuln.setUrl("https://github.com/advisories/" + finalId);
+                else if (finalId.startsWith("CVE"))
+                    vuln.setUrl("https://nvd.nist.gov/vuln/detail/" + finalId);
+            }
         }
 
         return vuln;
+    }
+
+    private String normalizeId(String id) {
+        if (id == null)
+            return null;
+        String normalized = id.trim();
+        // Handle array format ["CVE-XXX"]
+        if (normalized.startsWith("[")) {
+            normalized = normalized.replaceAll("[\"\\[\\]]", "");
+            if (normalized.contains(",")) {
+                normalized = normalized.split(",")[0].trim();
+            }
+        }
+        if ("N/A".equalsIgnoreCase(normalized) || "-".equals(normalized) || normalized.isEmpty()) {
+            return null;
+        }
+        return normalized;
     }
 
     // Keep getText and parseAndEnrichLicense (simplified)

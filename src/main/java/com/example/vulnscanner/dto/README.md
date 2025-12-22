@@ -1,10 +1,7 @@
-# DTO Module (데이터 전송 객체)
+# DTO Package
 
-## 개요
-DTO (Data Transfer Object)는 계층 간(Controller ↔ Service ↔ Repository)에 데이터를 전달하기 위해 사용되는 순수 데이터 객체입니다. 엔티티(Entity)를 직접 노출하지 않고 필요한 데이터만 선별하여 클라이언트에 전달하거나 입력을 받기 위해 사용합니다.
+이 패키지는 계층 간 데이터 교환을 위한 객체(Data Transfer Object)를 정의합니다. 엔티티와 달리 로직을 포함하지 않으며, 주로 View Layer에 데이터를 전달하거나 API 응답 구조를 정의하는 데 사용됩니다.
 
-## 주요 DTO
-- **[UserUpdateDto](UserUpdateDto.java)**: 사용자 정보 수정 요청 시 사용되는 DTO.
-- **[PasswordChangeDto](PasswordChangeDto.java)**: 비밀번호 변경 요청 데이터.
-- **[SettingsDto](SettingsDto.java)**: 시스템 설정 정보 전송용.
-- **[SbomDetailDto](SbomDetailDto.java)**: SBOM 상세 결과 화면에 표시할 복합 데이터 객체.
+## 주요 클래스
+
+- **`UnifiedResultDto.java`**: 서로 다른 분석 결과(SAST, SBOM)를 통일된 형식으로 클라이언트에 전달하기 위한 DTO입니다. 대시보드나 통합 리포트 등에서 활용될 수 있습니다.

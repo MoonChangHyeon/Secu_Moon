@@ -1,0 +1,12 @@
+[2025-12-18 17:35:08.359 INFO  1460]
+Deleted intermediate files for Build ID TEST_01
+[2025-12-18 17:35:12.205 INFO  1470]
+Translating /Users/munchanghyeon/.fortify/sca25.3/build/TEST_01/_fortify_libraries_/lib.js
+[2025-12-18 17:35:12.540 INFO  1450]
+Processing /Volumes/Moon/1125/vulnscanner/results/2025/12/18/TEST_01/source/javascript_extracted/javascript/sample.js
+[2025-12-18 17:35:25.852 INFO  1450]
+Processing /Volumes/Moon/1125/vulnscanner/results/2025/12/18/TEST_01/source/javascript_extracted/javascript/module.js
+[2025-12-18 17:35:26.047 INFO  1470]
+Translating /Volumes/Moon/1125/vulnscanner/results/2025/12/18/TEST_01/source/javascript_extracted/javascript/sample.js
+[2025-12-18 17:35:26.198 INFO  1470]
+Translating /Volumes/Moon/1125/vulnscanner/results/2025/12/18/TEST_01/source/javascript_extracted/javascript/module.js

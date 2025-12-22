@@ -142,7 +142,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="comp : ${sbomData.components}">
+                                <tr th:each="comp : ${sbomData.components}"
+                                    th:if="${comp.name != null and !#strings.isEmpty(comp.name) and comp.name != 'N/A' and comp.name.trim() != 'N/A'}">
                                     <td th:text="${comp.name}">Name</td>
                                     <td th:text="${comp.version}">Version</td>
                                     <td th:text="${comp.type}">Type</td>
@@ -198,59 +199,184 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p><strong>ID:</strong> <span id="modalVulnId"></span> / <span id="modalVendorId"></span></p>
-                        <p><strong>Severity:</strong> <span id="modalSeverity" class="badge bg-secondary"></span></p>
-                        <hr>
-                        <h6>Title</h6>
-                        <div class="p-2 bg-light border rounded mb-3" id="modalTitle"></div>
-                        <h6>Description (KR)</h6>
-                        <div class="p-2 bg-light border rounded mb-3" id="modalDesc" style="white-space: pre-wrap;">
+                        <div class="modal-body">
+                            <!-- ID & Basic Info Table -->
+                            <table class="table table-bordered mb-3">
+                                <tbody>
+                                    <tr>
+                                        <th style="width: 150px; background-color: #f8f9fa;">ID (CVE)</th>
+                                        <td id="modalVulnId" class="fw-bold"></td>
+                                    </tr>
+                                    <tr id="rowVendorId">
+                                        <th style="background-color: #f8f9fa;">Vendor ID</th>
+                                        <td id="modalVendorId"></td>
+                                    </tr>
+                                    <tr>
+                                        <th style="background-color: #f8f9fa;">Severity</th>
+                                        <td><span id="modalSeverity" class="badge bg-secondary"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <hr>
+
+                            <!-- Title -->
+                            <div class="mb-3">
+                                <h6 class="text-secondary">Title</h6>
+                                <div class="p-2 bg-light border rounded fw-bold" id="modalTitle"></div>
+                            </div>
+
+                            <!-- Description Area -->
+                            <h6 class="text-secondary">Description (KR)</h6>
+
+                            <!-- 1. Plain Text View (Default) -->
+                            <div class="p-3 bg-light border rounded mb-3" id="modalDescPlain"
+                                style="white-space: pre-wrap;"></div>
+
+                            <!-- 2. Structured JSON View (Hidden by default) -->
+                            <div id="modalDescStructured" style="display: none;">
+                                <div class="card mb-2">
+                                    <div class="card-header bg-white fw-bold text-primary">Title</div>
+                                    <div class="card-body py-2" id="structTitle"></div>
+                                </div>
+                                <div class="card mb-2">
+                                    <div class="card-header bg-white fw-bold text-success">Summary</div>
+                                    <div class="card-body py-2" id="structSummary"></div>
+                                </div>
+                                <div class="card mb-2">
+                                    <div class="card-header bg-white fw-bold text-danger">Cause</div>
+                                    <div class="card-body py-2" id="structCause"></div>
+                                </div>
+                                <div class="card mb-2">
+                                    <div class="card-header bg-white fw-bold text-warning">Attack Scenario</div>
+                                    <div class="card-body py-2" id="structAttackScenario"></div>
+                                </div>
+                                <div class="card mb-2">
+                                    <div class="card-header bg-white fw-bold text-info">Impact (For Everyone)</div>
+                                    <div class="card-body py-2" id="structForEveryone"></div>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <a id="modalUrl" href="#" target="_blank" class="btn btn-primary btn-sm">
+                                <i class="bi bi-box-arrow-up-right"></i> View External Reference
+                            </a>
                         </div>
-                        <hr>
-                        <a id="modalUrl" href="#" target="_blank" class="btn btn-primary btn-sm">
-                            <i class="bi bi-box-arrow-up-right"></i> View External Reference
-                        </a>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <!-- JS Script inside the fragment block -->
+            <script th:inline="javascript">
+                // Ensure script runs after DOM loaded
+                document.addEventListener('DOMContentLoaded', function () {
+                    console.log("SBOM Detail Script Loaded.");
 
-    <script th:inline="javascript">
-        document.addEventListener('DOMContentLoaded', function () {
-            var vulnDetailModal = document.getElementById('vulnDetailModal');
-            vulnDetailModal.addEventListener('show.bs.modal', function (event) {
-                var button = event.relatedTarget;
-                var cve = button.getAttribute('data-cve');
-                var vendor = button.getAttribute('data-vendor');
-                var title = button.getAttribute('data-title');
-                var desc = button.getAttribute('data-desc');
-                var severity = button.getAttribute('data-severity');
-                var url = button.getAttribute('data-url');
+                    var vulnDetailModal = document.getElementById('vulnDetailModal');
+                    if (vulnDetailModal) {
+                        vulnDetailModal.addEventListener('show.bs.modal', function (event) {
+                            try {
+                                var button = event.relatedTarget;
+                                if (!button) {
+                                    console.warn("No button found");
+                                    return;
+                                }
 
-                var modal = this;
-                modal.querySelector('#modalVulnId').textContent = cve && cve !== 'N/A' ? cve : '-';
-                modal.querySelector('#modalVendorId').textContent = vendor && vendor !== '-' ? vendor : '-';
-                modal.querySelector('#modalTitle').textContent = title ? title : 'No Title';
-                modal.querySelector('#modalDesc').textContent = desc ? desc : '상세 설명이 없습니다.';
+                                // Extract info from data-* attributes
+                                var cve = button.getAttribute('data-cve');
+                                var vendor = button.getAttribute('data-vendor');
+                                var title = button.getAttribute('data-title');
+                                var desc = button.getAttribute('data-desc');
+                                var severity = button.getAttribute('data-severity');
+                                var url = button.getAttribute('data-url');
 
-                var sevBadge = modal.querySelector('#modalSeverity');
-                sevBadge.textContent = severity ? severity : 'UNKNOWN';
-                sevBadge.className = 'badge ' + (severity === 'CRITICAL' || severity === 'HIGH' ? 'bg-danger' : (severity === 'MEDIUM' ? 'bg-warning' : 'bg-info'));
+                                console.log("Detail Modal Triggered:", { cve, vendor, title, desc });
 
-                var urlBtn = modal.querySelector('#modalUrl');
-                if (url) {
-                    urlBtn.href = url;
-                    urlBtn.style.display = 'inline-block';
-                } else {
-                    urlBtn.style.display = 'none';
-                }
-            });
-        });
-    </script>
+                                // Update Modal Content
+                                var modal = this;
+                                var setContent = function (selector, value, defaultVal) {
+                                    var el = modal.querySelector(selector);
+                                    if (el) el.textContent = (value && value !== 'N/A' && value !== '-' && value.trim() !== '') ? value : defaultVal;
+                                };
+
+                                // 1. ID Table Logic
+                                setContent('#modalVulnId', cve, '-');
+
+                                var elVendorRow = modal.querySelector('#rowVendorId');
+                                var elVendorId = modal.querySelector('#modalVendorId');
+                                if (vendor && vendor !== '-' && vendor !== 'N/A' && vendor.trim() !== '') {
+                                    if (elVendorRow) elVendorRow.style.display = '';
+                                    if (elVendorId) elVendorId.textContent = vendor;
+                                } else {
+                                    // Hide vendor row if empty
+                                    if (elVendorRow) elVendorRow.style.display = 'none';
+                                }
+
+                                setContent('#modalTitle', title, 'No Title Available');
+
+                                // 2. Description Logic (JSON Parsing)
+                                var elPlain = modal.querySelector('#modalDescPlain');
+                                var elStruct = modal.querySelector('#modalDescStructured');
+
+                                var isJson = false;
+                                try {
+                                    if (desc && desc.trim().startsWith('{')) {
+                                        var jsonDesc = JSON.parse(desc);
+                                        isJson = true;
+
+                                        // Show Structured View
+                                        if (elStruct) elStruct.style.display = 'block';
+                                        if (elPlain) elPlain.style.display = 'none';
+
+                                        // Map JSON fields
+                                        setContent('#structTitle', jsonDesc.title, '-');
+                                        setContent('#structSummary', jsonDesc.summary, '-');
+                                        setContent('#structCause', jsonDesc.cause, '-');
+                                        setContent('#structAttackScenario', jsonDesc.attack_scenario, '-');
+                                        setContent('#structForEveryone', jsonDesc.for_everyone, '-'); // map 'for_everyone'
+                                    }
+                                } catch (e) {
+                                    console.warn("Description is not valid JSON:", e);
+                                    isJson = false;
+                                }
+
+                                if (!isJson) {
+                                    // Show Plain Text View
+                                    if (elStruct) elStruct.style.display = 'none';
+                                    if (elPlain) {
+                                        elPlain.style.display = 'block';
+                                        elPlain.textContent = (desc && desc.trim() !== '') ? desc : '상세 설명이 존재하지 않습니다.';
+                                    }
+                                }
+
+                                // 3. Severity Badge
+                                var elSev = modal.querySelector('#modalSeverity');
+                                if (elSev) {
+                                    elSev.textContent = severity ? severity : 'UNKNOWN';
+                                    elSev.className = 'badge ' +
+                                        (severity === 'CRITICAL' ? 'bg-danger' :
+                                            severity === 'HIGH' ? 'bg-warning text-dark' :
+                                                severity === 'MEDIUM' ? 'bg-info text-dark' :
+                                                    'bg-secondary');
+                                }
+
+                                var elUrl = modal.querySelector('#modalUrl');
+                                if (elUrl) {
+                                    elUrl.href = url && url.startsWith('http') ? url : '#';
+                                }
+                            } catch (e) {
+                                console.error("Error updating modal:", e);
+                                alert("Error: " + e.message);
+                            }
+                        });
+                    } else {
+                        console.error("Modal element #vulnDetailModal not found in DOM");
+                    }
+                });
+            </script>
+        </div> <!-- End of container-fluid -->
 </body>
 
 </html>
