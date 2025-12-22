@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::div})}">
+
+<head>
+    <title>룰팩 버전 비교</title>
+    <style>
+        .diff-added {
+            background-color: #d4edda;
+        }
+
+        .diff-deleted {
+            background-color: #f8d7da;
+        }
+
+        .diff-modified {
+            background-color: #fff3cd;
+        }
+
+        .diff-badge {
+            font-size: 0.75rem;
+        }
+
+        .metric-card {
+            transition: all 0.2s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">룰팩 버전 비교</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <a href="/compliance" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> 목록으로
+                </a>
+            </div>
+        </div>
+
+        <!-- Selection Form -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form id="compareForm" class="row g-3 align-items-end">
+                    <div class="col-md-5">
+                        <label for="basePack" class="form-label">기본 버전 (구 버전)</label>
+                        <select class="form-select" id="basePack" required>
+                            <option value="" selected disabled>기본 버전을 선택하세요...</option>
+                            <option th:each="pack : ${packs}" th:value="${pack.id}"
+                                th:text="${pack.version} + ' (' + ${pack.name} + ')'"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <i class="bi bi-arrow-right fs-4"></i>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="targetPack" class="form-label">대상 버전 (신 버전)</label>
+                        <select class="form-select" id="targetPack" required>
+                            <option value="" selected disabled>대상 버전을 선택하세요...</option>
+                            <option th:each="pack : ${packs}" th:value="${pack.id}"
+                                th:text="${pack.version} + ' (' + ${pack.name} + ')'"></option>
+                        </select>
+                    </div>
+                    <div class="col-12 text-end mt-3">
+                        <button type="button" class="btn btn-primary" onclick="performComparison()">
+                            <i class="bi bi-search"></i> 비교하기
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Results Area -->
+        <div id="compareResults" class="d-none">
+            <!-- Summary Cards -->
+            <div class="alert alert-light border mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0">
+                        <i class="bi bi-bar-chart-fill me-2"></i>비교 요약
+                    </h5>
+                    <div class="text-muted">
+                        <span id="verBase" class="fw-bold"></span> vs <span id="verTarget" class="fw-bold"></span>
+                    </div>
+                </div>
+                <div class="row text-center g-3">
+                    <div class="col-md-4">
+                        <div class="card bg-success-subtle border-success metric-card h-100">
+                            <div class="card-body">
+                                <h3 class="card-title text-success fw-bold" id="countAdded">0</h3>
+                                <p class="card-text text-success">추가된 항목</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-danger-subtle border-danger metric-card h-100">
+                            <div class="card-body">
+                                <h3 class="card-title text-danger fw-bold" id="countDeleted">0</h3>
+                                <p class="card-text text-danger">삭제된 항목</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-warning-subtle border-warning metric-card h-100">
+                            <div class="card-body">
+                                <h3 class="card-title text-warning-emphasis fw-bold" id="countModified">0</h3>
+                                <p class="card-text text-warning-emphasis">변경된 항목</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter/Controls (Optional) -->
+            <!-- <div class="d-flex justify-content-end mb-2"> ... </div> -->
+
+            <!-- Accordion List -->
+            <div class="accordion mb-4" id="diffAccordion">
+                <!-- Dynamic Content -->
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation" id="paginationNav">
+                <ul class="pagination justify-content-center" id="paginationList">
+                    <!-- Dynamic Content -->
+                </ul>
+            </nav>
+        </div>
+
+        <script th:inline="javascript">
+            let currentData = null;
+            let currentPage = 1;
+            const itemsPerPage = 10;
+
+            function performComparison() {
+                const baseId = document.getElementById('basePack').value;
+                const targetId = document.getElementById('targetPack').value;
+
+                if (!baseId || !targetId) {
+                    alert('두 버전을 모두 선택해주세요.');
+                    return;
+                }
+
+                if (baseId === targetId) {
+                    alert('서로 다른 버전을 선택해주세요.');
+                    return;
+                }
+
+                const btn = document.querySelector('#compareForm button');
+                const originalText = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> 분석 중...';
+
+                fetch(`/api/compliance/compare?baseId=${baseId}&targetId=${targetId}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        currentData = data;
+                        currentPage = 1;
+                        renderSummary(data);
+                        renderPage(currentPage);
+                        renderPagination();
+                        document.getElementById('compareResults').classList.remove('d-none');
+                    })
+                    .catch(err => {
+                        alert('비교 실패: ' + err);
+                    })
+                    .finally(() => {
+                        btn.disabled = false;
+                        btn.innerHTML = originalText;
+                    });
+            }
+
+            function renderSummary(data) {
+                document.getElementById('verBase').textContent = data.versionBase;
+                document.getElementById('verTarget').textContent = data.versionTarget;
+
+                // Simple counting logic (Standards level)
+                // You might want to count categories/mappings deeper if needed, 
+                // but usually top-level change count is a good start, or sum up internal diffs.
+                // Let's count Standards stats.
+                let added = 0, deleted = 0, modified = 0;
+
+                data.standards.forEach(std => {
+                    if (std.diffType === 'ADDED') added++;
+                    else if (std.diffType === 'DELETED') deleted++;
+                    else if (std.diffType === 'MODIFIED') modified++;
+                });
+
+                document.getElementById('countAdded').textContent = added;
+                document.getElementById('countDeleted').textContent = deleted;
+                document.getElementById('countModified').textContent = modified;
+            }
+
+            function renderPage(page) {
+                const container = document.getElementById('diffAccordion');
+                container.innerHTML = '';
+
+                if (!currentData || currentData.standards.length === 0) {
+                    container.innerHTML = '<div class="alert alert-success text-center">두 버전 간에 차이가 없습니다.</div>';
+                    return;
+                }
+
+                const start = (page - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                const pageItems = currentData.standards.slice(start, end);
+
+                pageItems.forEach((std, index) => {
+                    const uniqueId = `diff-${start + index}`;
+                    const diffColor = getDiffColor(std.diffType);
+                    const headerBg = getDiffHeaderBg(std.diffType);
+
+                    // Content for Accordion Header
+                    const badge = getDiffBadge(std.diffType);
+                    const headerContent = `
+                    <div class="d-flex justify-content-between align-items-center w-100 me-3">
+                        <span class="${std.diffType === 'DELETED' ? 'text-decoration-line-through' : ''}">
+                            <strong>${std.name}</strong> 
+                            <span class="text-muted small ms-2">(${std.externalListId || 'N/A'})</span>
+                        </span>
+                        <span class="badge ${badge}">${std.diffType}</span>
+                    </div>
+                `;
+
+                    // Accordion Item
+                    const item = document.createElement('div');
+                    item.className = `accordion-item border-${diffColor}`;
+
+                    let bodyContent = '';
+
+                    if (std.diffType === 'MODIFIED' || std.diffType === 'ADDED') {
+                        if (std.categories && std.categories.length > 0) {
+                            bodyContent += '<div class="accordion-body bg-light">';
+                            bodyContent += '<h6 class="text-muted mb-3 small fw-bold text-uppercase">카테고리 변경 내역</h6>';
+
+                            std.categories.forEach(cat => {
+                                const catBadge = getDiffBadge(cat.diffType);
+                                bodyContent += `
+                                <div class="card mb-2 ${cat.diffType === 'ADDED' ? 'border-success' : (cat.diffType === 'DELETED' ? 'border-danger' : 'border-warning')}">
+                                    <div class="card-header py-1 px-3 d-flex justify-content-between align-items-center ${cat.diffType === 'ADDED' ? 'bg-success-subtle' : (cat.diffType === 'DELETED' ? 'bg-danger-subtle' : 'bg-warning-subtle')}">
+                                        <span class="fw-bold small">${cat.name}</span>
+                                        <span class="badge ${catBadge} scale-75">${cat.diffType}</span>
+                                    </div>
+                             `;
+
+                                // Mappings inside Category
+                                if (cat.mappings && cat.mappings.length > 0) {
+                                    bodyContent += '<div class="card-body py-2">';
+                                    bodyContent += '<div class="d-flex flex-wrap gap-1">';
+                                    cat.mappings.forEach(map => {
+                                        bodyContent += `
+                                        <span class="badge ${map.diffType === 'ADDED' ? 'bg-success' : 'bg-danger'} bg-opacity-75" title="${map.diffType}">
+                                            ${map.diffType === 'ADDED' ? '+' : '-'} ${map.internalCategory}
+                                        </span>
+                                      `;
+                                    });
+                                    bodyContent += '</div></div>';
+                                }
+                                bodyContent += '</div>'; // end card
+                            });
+                            bodyContent += '</div>'; // end accordion-body
+                        } else {
+                            bodyContent = '<div class="accordion-body text-muted small">카테고리 변경사항이 없거나, 메타데이터만 변경되었습니다.</div>';
+                        }
+                    } else if (std.diffType === 'DELETED') {
+                        bodyContent = '<div class="accordion-body text-danger small">이 표준은 삭제되었습니다.</div>';
+                    }
+
+                    item.innerHTML = `
+                    <h2 class="accordion-header" id="heading-${uniqueId}">
+                        <button class="accordion-button collapsed ${headerBg}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-${uniqueId}">
+                            ${headerContent}
+                        </button>
+                    </h2>
+                    <div id="collapse-${uniqueId}" class="accordion-collapse collapse" data-bs-parent="#diffAccordion">
+                        ${bodyContent}
+                    </div>
+                `;
+                    container.appendChild(item);
+                });
+            }
+
+            function renderPagination() {
+                const paginationList = document.getElementById('paginationList');
+                paginationList.innerHTML = '';
+
+                if (!currentData || currentData.standards.length === 0) return;
+
+                const totalPages = Math.ceil(currentData.standards.length / itemsPerPage);
+                if (totalPages <= 1) return;
+
+                // Previous
+                const prevLi = document.createElement('li');
+                prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+                prevLi.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage - 1})">이전</a>`;
+                paginationList.appendChild(prevLi);
+
+                // Numbers (Show partial range if too many pages, but simple loop for now)
+                let startPage = Math.max(1, currentPage - 2);
+                let endPage = Math.min(totalPages, startPage + 4);
+
+                if (endPage - startPage < 4) {
+                    startPage = Math.max(1, endPage - 4);
+                }
+
+                for (let i = startPage; i <= endPage; i++) {
+                    const li = document.createElement('li');
+                    li.className = `page-item ${i === currentPage ? 'active' : ''}`;
+                    li.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
+                    paginationList.appendChild(li);
+                }
+
+                // Next
+                const nextLi = document.createElement('li');
+                nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+                nextLi.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage + 1})">다음</a>`;
+                paginationList.appendChild(nextLi);
+            }
+
+            window.changePage = function (page) {
+                if (page < 1 || page > Math.ceil(currentData.standards.length / itemsPerPage)) return;
+                currentPage = page;
+                renderPage(currentPage);
+                renderPagination();
+            }
+
+            function getDiffColor(type) {
+                if (type === 'ADDED') return 'success';
+                if (type === 'DELETED') return 'danger';
+                if (type === 'MODIFIED') return 'warning';
+                return 'light';
+            }
+
+            function getDiffHeaderBg(type) {
+                if (type === 'ADDED') return 'bg-success-subtle';
+                if (type === 'DELETED') return 'bg-danger-subtle';
+                if (type === 'MODIFIED') return 'bg-warning-subtle';
+                return 'bg-light';
+            }
+
+            function getDiffBadge(type) {
+                if (type === 'ADDED') return 'bg-success';
+                if (type === 'DELETED') return 'bg-danger';
+                if (type === 'MODIFIED') return 'bg-warning text-dark';
+                return 'bg-secondary';
+            }
+        </script>
+    </div>
+</body>
+
+</html>
