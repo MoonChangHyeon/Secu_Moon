@@ -1,30 +1,35 @@
-# Repository Package
+# Repositories (Data Access Layer)
 
-이 패키지는 데이터베이스 접근 계층(Data Access Layer)을 담당합니다. Spring Data JPA를 사용하여 Entity 객체에 대한 CRUD 작업 및 데이터베이스 쿼리를 수행합니다.
+이 패키지는 Spring Data JPA를 기반으로 데이터베이스 CRUD 작업을 수행하는 인터페이스들을 포함합니다.
 
-## 주요 Repository 구조 및 역할
+## 📋 주요 리포지토리 (Key Repositories)
 
-### 1. 분석 결과 Repository
+### 1. Compliance (규정 준수) 관련 <!-- New -->
+- **`PackInfoRepository`**: 업로드된 룰팩 버전 정보(`PackInfo`) 관리.
+- **`ComplianceStandardRepository`**:
+  - 표준 정보(`ComplianceStandard`) 조회.
+  - **Pagination**: `findByPackInfoId(Long packInfoId, Pageable pageable)` 지원.
+- **`ComplianceCategoryRepository`**: 표준 하위의 카테고리 정보 관리.
+- **`ComplianceMappingRepository`**: 카테고리와 내부 취약점 간의 매핑 정보 관리.
 
-#### **`AnalysisRepository.java`**
-`AnalysisResult` 엔티티를 관리하는 리포지토리입니다.
-- **역할**: SAST 분석 결과의 저장, 조회, 삭제를 담당합니다.
-- **주요 기능**: 기본적인 JpaRepository 메소드를 사용합니다.
+### 2. Analysis (분석 결과) 관련
+- **`AnalysisResultRepository`**: 통합 분석 결과(SAST, SBOM) 저장.
+- **`SbomResultRepository`**: SBOM 분석 메타데이터 저장.
+- **`SbomComponentRepository`**: 식별된 오픈소스 컴포넌트 저장.
+- **`SbomVulnerabilityRepository`**: 컴포넌트별 취약점(CVE) 정보 저장.
+- **`SbomLicenseRepository`**: 라이선스 정보 저장.
 
-#### **`SbomRepository.java`**
-`SbomResult` 엔티티를 관리하는 리포지토리입니다.
-- **역할**: SBOM 분석 결과의 영속성을 관리합니다.
-- **주요 쿼리 메소드**:
-    - `findTop5ByOrderByScanDateDesc()`: 대시보드 표시 등을 위해 최근 분석된 SBOM 결과 5건을 스캔 날짜 역순으로 조회합니다.
+### 3. User & System (사용자/시스템)
+- **`UserRepository`**: 사용자 계정 조회 및 관리.
+- **`CodeSettingsRepository`**: 시스템 설정 정보 관리.
 
-### 2. 시스템 및 사용자 Repository
+### 4. Mocha (보안 DB - Secondary)
+`src/main/java/com/example/vulnscanner/mocha` 패키지에 별도로 위치하지만, 역할상 리포지토리로 분류됩니다.
+- **`MochaCveRepository`**: `mocha_dev` DB의 CVE 마스터 데이터 조회.
+- **`MochaGhsaRepository`**: GHSA 마스터 데이터 조회.
+- **`MochaLicenseRepository`**: 라이선스 마스터 데이터 조회.
 
-#### **`UserRepository.java`**
-`User` 엔티티를 관리하는 리포지토리입니다.
-- **역할**: 사용자 정보 조회 및 인증 시 데이터 접근을 지원합니다.
-- **주요 쿼리 메소드**:
-    - `findByUsername(String username)`: 로그인 ID(username)를 기반으로 사용자 정보를 조회합니다 (Optional 반환).
-
-#### **`SystemSettingRepository.java`**
-`SystemSetting` 엔티티를 관리하는 리포지토리입니다.
-- **역할**: 키-값 쌍으로 저장된 시스템 설정 정보를 관리합니다.
+---
+**특징**:
+- 대부분 `JpaRepository`를 상속받아 표준 CRUD 메서드를 제공합니다.
+- 복잡한 조회 쿼리는 JPQL 또는 QueryDSL(필요시)을 사용하여 구현됩니다.

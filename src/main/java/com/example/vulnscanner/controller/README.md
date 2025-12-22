@@ -1,45 +1,41 @@
-# Controller Package
+# Controllers (API & Web Layer)
 
-이 패키지는 웹 프레젠테이션 계층(Web Presentation Layer)을 담당합니다. 클라이언트(사용자)의 요청을 받아 적절한 서비스를 호출하고, 결과를 View(Thymeleaf) 또는 API 응답(JSON)으로 반환합니다.
+이 패키지는 웹 요청(Web Request)을 처리하고, 적절한 뷰(View)를 반환하거나 RESTful API 응답을 제공하는 컨트롤러 클래스들을 포함합니다.
 
-## 주요 Controller 구조 및 역할
+## 📋 주요 컨트롤러 (Key Controllers)
 
-### 1. 분석 요청 및 결과 처리
+### 1. `MainController`
+- **역할**: 애플리케이션의 진입점 및 메인 대시보드 관리.
+- **기능**:
+  - `/`: 메인 대시보드 페이지 (`dashboard.html`).
+  - 최근 분석 이력, 통계 데이터 조회.
 
-#### **`AnalysisController.java`**
-SAST(정적 분석)와 관련된 모든 웹 요청을 처리합니다.
-- **주요 경로**: `/`, `/analysis`, `/results`
-- **주요 기능**:
-    - **대시보드 (`/`)**: 전체 분석 현황, 트렌드 차트, 최근 활동 로그를 표시합니다.
-    - **분석 실행 (`/analysis` POST)**: 파일 업로드 및 분석 옵션을 받아 분석을 시작합니다.
-    - **결과 조회 (`/results/{id}`)**: 분석 결과 상세 페이지를 보여줍니다.
-    - **다운로드**: 소스 코드, 로그 파일, PDF/XML 리포트 파일 다운로드 기능을 제공합니다.
-    - **재파싱 (`/results/reparse/{id}`)**: 분석 결과 XML을 수동으로 다시 파싱 합니다.
+### 2. `AnalysisResultController`
+- **역할**: SAST(정적 분석) 및 SBOM 분석 결과 관리.
+- **기능**:
+  - 분석 결과 목록 조회 및 삭제.
+  - 상세 결과 조회 (`result_detail.html`, `sbom_result_detail.html`).
+  - 재분석 요청 및 결과 파일 다운로드.
 
-#### **`SbomController.java`**
-SBOM(소프트웨어 자재 명세서) 분석 요청을 처리합니다.
-- **주요 경로**: `/sbom`
-- **주요 기능**:
-    - **분석 요청 (`/sbom/analyze`)**: 빌드 ID 또는 SBOM 파일을 받아 AI 분석을 요청합니다.
-    - **상세 조회 (`/sbom/results/{id}`)**: 파싱 된 SBOM 결과(컴포넌트, 라이선스, 취약점)를 보여줍니다.
-    - **상태 확인**: 비동기 분석의 진행 상황을 확인하는 API를 제공합니다.
+### 3. `ComplianceController` <!-- New -->
+- **역할**: 보안 규정 준수(Compliance) 매핑 정보 관리.
+- **기능**:
+  - **룰팩 관리**: XML 룰팩 파일 업로드 (`/api/rulepacks/upload`) 및 목록 조회.
+  - **뷰어 (Viewer)**: 표준-카테고리-매핑 트리 구조 조회 (`viewer.html`).
+  - **버전 비교**: 두 룰팩 버전 간 차이점(Diff) 비교 (`compare.html`).
+  - **데이터 내보내기**: `downloadStandard` 엔드포인트를 통해 CSV, XML, JSON 포맷 다운로드 지원.
 
-### 2. 설정 및 관리
+### 4. `CodeEditorController`
+- **역할**: `sourceanalyzer.json` 등 설정 파일 편집.
+- **기능**: 웹상에서 분석 도구 설정 파일을 직접 수정하고 저장.
 
-#### **`SettingsController.java`**
-시스템 설정 관리를 담당합니다.
-- **주요 경로**: `/settings`
-- **주요 기능**:
-    - 분석 도구(Fortify) 경로, 스캔 옵션 기본값 등을 조회하고 수정하는 페이지를 제공합니다.
+### 5. `ConfigManagementController`
+- **역할**: 데이터베이스 및 시스템 설정 관리.
+- **기능**: DB 연결 정보, 분석 옵션 등을 동적으로 설정.
 
-#### **`UserManagementController.java`**
-관리자가 사용자를 관리하는 기능을 제공합니다.
-- **주요 경로**: `/users`
-- **주요 기능**:
-    - 사용자 목록 조회, 권한 수정, 계정 잠금 해제 등을 수행합니다.
+### 6. `UserController`
+- **역할**: 사용자 계정 및 권한 관리.
+- **기능**: 사용자 목록 조회, 등록, 정보 수정, 비밀번호 변경.
 
-### 3. 인증
-
-#### **`LoginController.java`** (또는 관련 인증 컨트롤러)
-로그인 페이지 및 인증 프로세스를 처리합니다.
-- **주요 기능**: 로그인 폼 및 접근 거부 페이지 등을 렌더링합니다.
+---
+**참고**: 모든 컨트롤러는 `templates` 폴더 내의 Thymeleaf HTML 파일과 연결되거나, JSON 데이터를 반환합니다.
