@@ -16,17 +16,28 @@
             background-color: #fff3cd;
         }
 
-        .diff-badge {
-            font-size: 0.75rem;
-        }
-
         .metric-card {
             transition: all 0.2s;
+            cursor: pointer;
         }
 
         .metric-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+        }
+
+        .metric-card.active-filter {
+            ring: 2px solid #0d6efd;
+            transform: translateY(-2px);
+        }
+
+        .std-item {
+            cursor: pointer;
+            transition: background-color 0.15s;
+        }
+
+        .std-item:hover {
+            background-color: #f8f9fa;
         }
     </style>
 </head>
@@ -75,13 +86,40 @@
             </div>
         </div>
 
+        <!-- History Section -->
+        <div class="card mb-4">
+            <div class="card-header bg-light">
+                <i class="bi bi-clock-history me-2"></i>비교 이력
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0 align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col" class="text-center" style="width: 5%">#</th>
+                                <th scope="col" style="width: 40%">비교 대상 (기본 <i class="bi bi-arrow-right mx-1"></i> 대상)
+                                </th>
+                                <th scope="col" style="width: 25%">비교 일시</th>
+                                <th scope="col" class="text-center" style="width: 20%">관리</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody">
+                            <tr>
+                                <td colspan="4" class="text-center py-3 text-muted">이력을 불러오는 중...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
         <!-- Results Area -->
         <div id="compareResults" class="d-none">
             <!-- Summary Cards -->
             <div class="alert alert-light border mb-4">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h5 class="mb-0">
-                        <i class="bi bi-bar-chart-fill me-2"></i>비교 요약
+                        <i class="bi bi-bar-chart-fill me-2"></i>비교 결과
                     </h5>
                     <div class="text-muted">
                         <span id="verBase" class="fw-bold"></span> vs <span id="verTarget" class="fw-bold"></span>
@@ -89,7 +127,8 @@
                 </div>
                 <div class="row text-center g-3">
                     <div class="col-md-4">
-                        <div class="card bg-success-subtle border-success metric-card h-100">
+                        <div class="card bg-success-subtle border-success metric-card h-100"
+                            onclick="filterByStatus('ADDED', this)">
                             <div class="card-body">
                                 <h3 class="card-title text-success fw-bold" id="countAdded">0</h3>
                                 <p class="card-text text-success">추가된 항목</p>
@@ -97,7 +136,8 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card bg-danger-subtle border-danger metric-card h-100">
+                        <div class="card bg-danger-subtle border-danger metric-card h-100"
+                            onclick="filterByStatus('DELETED', this)">
                             <div class="card-body">
                                 <h3 class="card-title text-danger fw-bold" id="countDeleted">0</h3>
                                 <p class="card-text text-danger">삭제된 항목</p>
@@ -105,7 +145,8 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card bg-warning-subtle border-warning metric-card h-100">
+                        <div class="card bg-warning-subtle border-warning metric-card h-100"
+                            onclick="filterByStatus('MODIFIED', this)">
                             <div class="card-body">
                                 <h3 class="card-title text-warning-emphasis fw-bold" id="countModified">0</h3>
                                 <p class="card-text text-warning-emphasis">변경된 항목</p>
@@ -113,28 +154,29 @@
                         </div>
                     </div>
                 </div>
+                <div class="text-center mt-2">
+                    <button class="btn btn-sm btn-outline-secondary d-none" id="resetFilterBtn"
+                        onclick="resetFilter()">필터 초기화</button>
+                </div>
             </div>
 
-            <!-- Filter/Controls (Optional) -->
-            <!-- <div class="d-flex justify-content-end mb-2"> ... </div> -->
-
-            <!-- Accordion List -->
-            <div class="accordion mb-4" id="diffAccordion">
-                <!-- Dynamic Content -->
+            <!-- Accordion List (Grouped by Diff Type) -->
+            <div class="accordion mb-4" id="groupAccordion">
+                <!-- Groups will be rendered here dynamically -->
             </div>
 
-            <!-- Pagination -->
-            <nav aria-label="Page navigation" id="paginationNav">
-                <ul class="pagination justify-content-center" id="paginationList">
-                    <!-- Dynamic Content -->
-                </ul>
-            </nav>
+            <div id="noDiffMessage" class="alert alert-success text-center d-none">
+                두 버전 간에 차이가 없습니다.
+            </div>
         </div>
 
         <script th:inline="javascript">
             let currentData = null;
-            let currentPage = 1;
-            const itemsPerPage = 10;
+            let currentFilter = null; // null, 'ADDED', 'MODIFIED', 'DELETED'
+
+            document.addEventListener('DOMContentLoaded', () => {
+                loadHistory();
+            });
 
             function performComparison() {
                 const baseId = document.getElementById('basePack').value;
@@ -159,11 +201,13 @@
                     .then(res => res.json())
                     .then(data => {
                         currentData = data;
-                        currentPage = 1;
                         renderSummary(data);
-                        renderPage(currentPage);
-                        renderPagination();
+                        renderGroups(data);
                         document.getElementById('compareResults').classList.remove('d-none');
+                        loadHistory(); // Refresh history
+                        resetFilter();
+
+                        document.getElementById('compareResults').scrollIntoView({ behavior: 'smooth' });
                     })
                     .catch(err => {
                         alert('비교 실패: ' + err);
@@ -174,157 +218,245 @@
                     });
             }
 
+            function loadHistory() {
+                fetch('/api/compliance/history')
+                    .then(res => res.json())
+                    .then(data => {
+                        const tbody = document.getElementById('historyTableBody');
+                        tbody.innerHTML = '';
+
+                        if (data.length === 0) {
+                            tbody.innerHTML = '<tr><td colspan="4" class="text-center py-3 text-muted">이력이 없습니다.</td></tr>';
+                            return;
+                        }
+
+                        data.forEach((item, index) => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td class="text-center">${index + 1}</td>
+                                <td>
+                                    <span class="badge bg-secondary me-1">Base</span> ${item.basePackVersion} (${item.basePackName}) <br>
+                                    <i class="bi bi-arrow-down short-arrow text-muted d-block my-1" style="font-size: 0.8rem"></i>
+                                    <span class="badge bg-primary me-1">Target</span> ${item.targetPackVersion} (${item.targetPackName})
+                                </td>
+                                <td class="small text-muted">${new Date(item.comparedAt).toLocaleString()}</td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-outline-primary me-1" onclick='viewHistory(${JSON.stringify(item.resultJson).replace(/'/g, "&#39;")})'>
+                                        <i class="bi bi-eye"></i> 결과 보기
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="deleteHistory(${item.id})">
+                                        <i class="bi bi-trash"></i> 삭제
+                                    </button>
+                                </td>
+                            `;
+                            tbody.appendChild(row);
+                        });
+                    })
+                    .catch(e => console.error(e));
+            }
+
+            function viewHistory(jsonString) {
+                try {
+                    const data = (typeof jsonString === 'string') ? JSON.parse(jsonString) : jsonString;
+                    currentData = data;
+                    renderSummary(data);
+                    renderGroups(data);
+                    document.getElementById('compareResults').classList.remove('d-none');
+                    document.getElementById('compareResults').scrollIntoView({ behavior: 'smooth' });
+                    resetFilter();
+                } catch (e) {
+                    alert('결과 데이터를 불러오는 중 오류가 발생했습니다.');
+                    console.error(e);
+                }
+            }
+
+            function deleteHistory(id) {
+                if (!confirm('정말 이 기록을 삭제하시겠습니까?')) return;
+
+                const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");
+                const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
+
+                fetch(`/api/compliance/history/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        [csrfHeader]: csrfToken
+                    }
+                })
+                    .then(res => {
+                        if (res.ok) {
+                            loadHistory();
+                        } else {
+                            alert('삭제 실패');
+                        }
+                    })
+                    .catch(e => alert('오류 발생: ' + e));
+            }
+
+            function filterByStatus(status, cardElement) {
+                if (currentFilter === status) {
+                    resetFilter();
+                    return;
+                }
+                currentFilter = status;
+                document.querySelectorAll('.metric-card').forEach(c => c.classList.remove('active-filter'));
+                if (cardElement) cardElement.classList.add('active-filter');
+                document.getElementById('resetFilterBtn').classList.remove('d-none');
+                renderGroups(currentData);
+            }
+
+            function resetFilter() {
+                currentFilter = null;
+                document.querySelectorAll('.metric-card').forEach(c => c.classList.remove('active-filter'));
+                document.getElementById('resetFilterBtn').classList.add('d-none');
+                renderGroups(currentData);
+            }
+
             function renderSummary(data) {
                 document.getElementById('verBase').textContent = data.versionBase;
                 document.getElementById('verTarget').textContent = data.versionTarget;
-
-                // Simple counting logic (Standards level)
-                // You might want to count categories/mappings deeper if needed, 
-                // but usually top-level change count is a good start, or sum up internal diffs.
-                // Let's count Standards stats.
                 let added = 0, deleted = 0, modified = 0;
-
-                data.standards.forEach(std => {
-                    if (std.diffType === 'ADDED') added++;
-                    else if (std.diffType === 'DELETED') deleted++;
-                    else if (std.diffType === 'MODIFIED') modified++;
-                });
-
+                if (data.standards) {
+                    data.standards.forEach(std => {
+                        if (std.diffType === 'ADDED') added++;
+                        else if (std.diffType === 'DELETED') deleted++;
+                        else if (std.diffType === 'MODIFIED') modified++;
+                    });
+                }
                 document.getElementById('countAdded').textContent = added;
                 document.getElementById('countDeleted').textContent = deleted;
                 document.getElementById('countModified').textContent = modified;
             }
 
-            function renderPage(page) {
-                const container = document.getElementById('diffAccordion');
+            function renderGroups(data) {
+                const container = document.getElementById('groupAccordion');
                 container.innerHTML = '';
+                const noDiffMessage = document.getElementById('noDiffMessage');
 
-                if (!currentData || currentData.standards.length === 0) {
-                    container.innerHTML = '<div class="alert alert-success text-center">두 버전 간에 차이가 없습니다.</div>';
+                if (!data.standards || data.standards.length === 0) {
+                    noDiffMessage.classList.remove('d-none');
+                    return;
+                }
+                noDiffMessage.classList.add('d-none');
+
+                // Filter
+                let standardsToRender = data.standards;
+                if (currentFilter) {
+                    standardsToRender = standardsToRender.filter(s => s.diffType === currentFilter);
+                }
+                if (standardsToRender.length === 0) {
+                    container.innerHTML = '<div class="alert alert-secondary text-center">선택한 필터에 해당하는 항목이 없습니다.</div>';
                     return;
                 }
 
-                const start = (page - 1) * itemsPerPage;
-                const end = start + itemsPerPage;
-                const pageItems = currentData.standards.slice(start, end);
+                // 1. Group by DiffType
+                const groupedByDiff = {
+                    'ADDED': [],
+                    'MODIFIED': [],
+                    'DELETED': []
+                };
 
-                pageItems.forEach((std, index) => {
-                    const uniqueId = `diff-${start + index}`;
-                    const diffColor = getDiffColor(std.diffType);
-                    const headerBg = getDiffHeaderBg(std.diffType);
-
-                    // Content for Accordion Header
-                    const badge = getDiffBadge(std.diffType);
-                    const headerContent = `
-                    <div class="d-flex justify-content-between align-items-center w-100 me-3">
-                        <span class="${std.diffType === 'DELETED' ? 'text-decoration-line-through' : ''}">
-                            <strong>${std.name}</strong> 
-                            <span class="text-muted small ms-2">(${std.externalListId || 'N/A'})</span>
-                        </span>
-                        <span class="badge ${badge}">${std.diffType}</span>
-                    </div>
-                `;
-
-                    // Accordion Item
-                    const item = document.createElement('div');
-                    item.className = `accordion-item border-${diffColor}`;
-
-                    let bodyContent = '';
-
-                    if (std.diffType === 'MODIFIED' || std.diffType === 'ADDED') {
-                        if (std.categories && std.categories.length > 0) {
-                            bodyContent += '<div class="accordion-body bg-light">';
-                            bodyContent += '<h6 class="text-muted mb-3 small fw-bold text-uppercase">카테고리 변경 내역</h6>';
-
-                            std.categories.forEach(cat => {
-                                const catBadge = getDiffBadge(cat.diffType);
-                                bodyContent += `
-                                <div class="card mb-2 ${cat.diffType === 'ADDED' ? 'border-success' : (cat.diffType === 'DELETED' ? 'border-danger' : 'border-warning')}">
-                                    <div class="card-header py-1 px-3 d-flex justify-content-between align-items-center ${cat.diffType === 'ADDED' ? 'bg-success-subtle' : (cat.diffType === 'DELETED' ? 'bg-danger-subtle' : 'bg-warning-subtle')}">
-                                        <span class="fw-bold small">${cat.name}</span>
-                                        <span class="badge ${catBadge} scale-75">${cat.diffType}</span>
-                                    </div>
-                             `;
-
-                                // Mappings inside Category
-                                if (cat.mappings && cat.mappings.length > 0) {
-                                    bodyContent += '<div class="card-body py-2">';
-                                    bodyContent += '<div class="d-flex flex-wrap gap-1">';
-                                    cat.mappings.forEach(map => {
-                                        bodyContent += `
-                                        <span class="badge ${map.diffType === 'ADDED' ? 'bg-success' : 'bg-danger'} bg-opacity-75" title="${map.diffType}">
-                                            ${map.diffType === 'ADDED' ? '+' : '-'} ${map.internalCategory}
-                                        </span>
-                                      `;
-                                    });
-                                    bodyContent += '</div></div>';
-                                }
-                                bodyContent += '</div>'; // end card
-                            });
-                            bodyContent += '</div>'; // end accordion-body
-                        } else {
-                            bodyContent = '<div class="accordion-body text-muted small">카테고리 변경사항이 없거나, 메타데이터만 변경되었습니다.</div>';
-                        }
-                    } else if (std.diffType === 'DELETED') {
-                        bodyContent = '<div class="accordion-body text-danger small">이 표준은 삭제되었습니다.</div>';
+                standardsToRender.forEach(std => {
+                    if (groupedByDiff[std.diffType]) {
+                        groupedByDiff[std.diffType].push(std);
                     }
+                });
 
-                    item.innerHTML = `
-                    <h2 class="accordion-header" id="heading-${uniqueId}">
-                        <button class="accordion-button collapsed ${headerBg}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-${uniqueId}">
-                            ${headerContent}
-                        </button>
-                    </h2>
-                    <div id="collapse-${uniqueId}" class="accordion-collapse collapse" data-bs-parent="#diffAccordion">
-                        ${bodyContent}
+                const renderDiffGroup = (diffType, list) => {
+                    if (list.length === 0) return;
+
+                    const groupTitle = diffType === 'ADDED' ? '추가된 항목' : (diffType === 'MODIFIED' ? '변경된 항목' : '삭제된 항목');
+                    const groupColor = getDiffColor(diffType);
+                    const bgClass = getDiffHeaderBg(diffType);
+                    const textClass = diffType === 'ADDED' ? 'text-success' : (diffType === 'DELETED' ? 'text-danger' : 'text-warning-emphasis');
+
+                    const groupItem = document.createElement('div');
+                    groupItem.className = `accordion-item border-${groupColor} mb-2`;
+
+                    const groupHeaderId = `headingGroup${diffType}`;
+                    const groupCollapseId = `collapseGroup${diffType}`;
+
+                    groupItem.innerHTML = `
+                        <h2 class="accordion-header" id="${groupHeaderId}">
+                            <button class="accordion-button ${bgClass} ${textClass} fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#${groupCollapseId}" aria-expanded="true" aria-controls="${groupCollapseId}">
+                                ${groupTitle} (${list.length})
+                            </button>
+                        </h2>
+                        <div id="${groupCollapseId}" class="accordion-collapse collapse show" aria-labelledby="${groupHeaderId}">
+                            <div class="accordion-body p-2">
+                                <div class="list-group list-group-flush" id="list${diffType}">
+                                    <!-- List items here -->
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    container.appendChild(groupItem);
+                    const listContainer = groupItem.querySelector(`#list${diffType}`);
+
+                    // 2. Group by Standard Type
+                    const groupedByType = {};
+                    list.forEach(std => {
+                        let type = "Others";
+                        if (std.name) {
+                            const parts = std.name.split(' ');
+                            if (parts.length > 0) type = parts[0];
+                        }
+                        if (!groupedByType[type]) groupedByType[type] = [];
+                        groupedByType[type].push(std);
+                    });
+
+                    Object.keys(groupedByType).sort().forEach(type => {
+                        const typeList = groupedByType[type];
+
+                        const typeHeader = document.createElement('div');
+                        typeHeader.className = "list-group-item bg-light fw-bold small text-secondary py-1";
+                        typeHeader.textContent = type;
+                        listContainer.appendChild(typeHeader);
+
+                        typeList.forEach((std, idx) => {
+                            listContainer.appendChild(createStandardListItem(std, idx + type, groupColor));
+                        });
+                    });
+                };
+
+                if (currentFilter && currentFilter !== 'ADDED') { } else renderDiffGroup('ADDED', groupedByDiff['ADDED']);
+                if (currentFilter && currentFilter !== 'MODIFIED') { } else renderDiffGroup('MODIFIED', groupedByDiff['MODIFIED']);
+                if (currentFilter && currentFilter !== 'DELETED') { } else renderDiffGroup('DELETED', groupedByDiff['DELETED']);
+            }
+
+            function createStandardListItem(std, index, groupColor) {
+                // Item wrapper - List Group Item
+                const item = document.createElement('div');
+                item.className = 'list-group-item std-item d-flex justify-content-between align-items-center mb-0';
+
+                // Add click event for standard details
+                if (std.id) {
+                    item.onclick = function () {
+                        // Use basePackId and targetPackId from currentData
+                        const baseId = currentData.basePackId;
+                        const targetId = currentData.targetPackId;
+                        const url = `/compliance/compare/${baseId}/${targetId}/standard/${std.id}`;
+                        window.open(url, '_blank', 'width=1000,height=800');
+                    };
+                    item.title = "클릭하여 상세 변경 내역 보기";
+                }
+
+                const badge = getDiffBadge(std.diffType);
+
+                // Content
+                item.innerHTML = `
+                    <div class="d-flex align-items-center text-truncate">
+                        <span class="${std.diffType === 'DELETED' ? 'text-decoration-line-through text-muted' : ''}">
+                            <span class="fw-bold me-2">${std.name}</span>
+                            <small class="text-muted">(${std.externalListId || 'N/A'})</small>
+                        </span>
+                    </div>
+                    <div>
+                         <span class="badge ${badge}">${std.diffType}</span>
+                         ${std.id ? '<i class="bi bi-chevron-right text-muted ms-2 small"></i>' : ''}
                     </div>
                 `;
-                    container.appendChild(item);
-                });
-            }
-
-            function renderPagination() {
-                const paginationList = document.getElementById('paginationList');
-                paginationList.innerHTML = '';
-
-                if (!currentData || currentData.standards.length === 0) return;
-
-                const totalPages = Math.ceil(currentData.standards.length / itemsPerPage);
-                if (totalPages <= 1) return;
-
-                // Previous
-                const prevLi = document.createElement('li');
-                prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
-                prevLi.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage - 1})">이전</a>`;
-                paginationList.appendChild(prevLi);
-
-                // Numbers (Show partial range if too many pages, but simple loop for now)
-                let startPage = Math.max(1, currentPage - 2);
-                let endPage = Math.min(totalPages, startPage + 4);
-
-                if (endPage - startPage < 4) {
-                    startPage = Math.max(1, endPage - 4);
-                }
-
-                for (let i = startPage; i <= endPage; i++) {
-                    const li = document.createElement('li');
-                    li.className = `page-item ${i === currentPage ? 'active' : ''}`;
-                    li.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
-                    paginationList.appendChild(li);
-                }
-
-                // Next
-                const nextLi = document.createElement('li');
-                nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
-                nextLi.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage + 1})">다음</a>`;
-                paginationList.appendChild(nextLi);
-            }
-
-            window.changePage = function (page) {
-                if (page < 1 || page > Math.ceil(currentData.standards.length / itemsPerPage)) return;
-                currentPage = page;
-                renderPage(currentPage);
-                renderPagination();
+                return item;
             }
 
             function getDiffColor(type) {

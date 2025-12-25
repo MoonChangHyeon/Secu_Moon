@@ -1,6 +1,6 @@
 package com.example.vulnscanner;
 
-import com.example.vulnscanner.service.UserService;
+import com.example.vulnscanner.module.user.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

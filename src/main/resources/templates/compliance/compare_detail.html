@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::div})}">
+
+<head>
+    <title>표준 비교 상세</title>
+    <style>
+        .badge-added {
+            background-color: #198754;
+        }
+
+        .badge-deleted {
+            background-color: #dc3545;
+        }
+
+        .badge-modified {
+            background-color: #ffc107;
+            color: #000;
+        }
+
+        .bg-added-subtle {
+            background-color: #d1e7dd;
+        }
+
+        .bg-deleted-subtle {
+            background-color: #f8d7da;
+        }
+
+        .bg-modified-subtle {
+            background-color: #fff3cd;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">표준 상세 변경 내역</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <button onclick="window.close()" class="btn btn-sm btn-outline-secondary me-2">
+                    <i class="bi bi-x-lg"></i> 닫기
+                </button>
+            </div>
+        </div>
+
+        <!-- Summary Stats Card -->
+        <div class="row mb-4 text-center">
+            <div class="col-md-4">
+                <div class="card border-success bg-white shadow-sm h-100">
+                    <div class="card-body py-2">
+                        <small class="text-success text-uppercase fw-bold">Added</small>
+                        <div class="display-6 fw-bold text-success" th:text="${standard.addedCount}">0</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-danger bg-white shadow-sm h-100">
+                    <div class="card-body py-2">
+                        <small class="text-danger text-uppercase fw-bold">Deleted</small>
+                        <div class="display-6 fw-bold text-danger" th:text="${standard.deletedCount}">0</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-warning bg-white shadow-sm h-100">
+                    <div class="card-body py-2">
+                        <small class="text-warning-emphasis text-uppercase fw-bold">Modified</small>
+                        <div class="display-6 fw-bold text-warning-emphasis" th:text="${standard.modifiedCount}">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4"
+            th:classappend="${standard.diffType.name() == 'ADDED' ? 'border-success' : (standard.diffType.name() == 'DELETED' ? 'border-danger' : 'border-warning')}">
+            <div class="card-header d-flex justify-content-between align-items-center"
+                th:classappend="${standard.diffType.name() == 'ADDED' ? 'bg-success-subtle' : (standard.diffType.name() == 'DELETED' ? 'bg-danger-subtle' : 'bg-warning-subtle')}">
+                <div>
+                    <h4 class="mb-0 fw-bold">
+                        <span th:if="${standard.diffType.name() == 'DELETED'}" class="text-decoration-line-through"
+                            th:text="${standard.name}"></span>
+                        <span th:unless="${standard.diffType.name() == 'DELETED'}" th:text="${standard.name}"></span>
+                    </h4>
+                    <small class="text-secondary" th:text="${standard.externalListId} ?: 'No ID'"></small>
+                </div>
+                <span class="badge"
+                    th:classappend="${standard.diffType.name() == 'ADDED' ? 'bg-success' : (standard.diffType.name() == 'DELETED' ? 'bg-danger' : 'bg-warning text-dark')}"
+                    th:text="${standard.diffType}">
+                </span>
+            </div>
+
+            <div class="card-body">
+                <div th:if="${standard.diffType.name() == 'DELETED'}" class="alert alert-danger">
+                    <i class="bi bi-exclamation-circle-fill me-2"></i>이 표준은 삭제되었습니다.
+                </div>
+
+                <div th:if="${standard.diffType.name() != 'DELETED'}">
+                    <h5 class="card-title border-bottom pb-2 mb-3">카테고리 변경 내역</h5>
+
+                    <div th:if="${#lists.isEmpty(standard.categories)}" class="text-muted text-center py-4">
+                        변경되거나 추가된 카테고리 내역이 없습니다. (메타데이터 수정 등)
+                    </div>
+
+                    <div th:each="cat : ${standard.categories}" class="card mb-3">
+                        <div class="card-header py-2 d-flex justify-content-between align-items-center"
+                            th:classappend="${cat.diffType.name() == 'ADDED' ? 'bg-success-subtle' : (cat.diffType.name() == 'DELETED' ? 'bg-danger-subtle' : 'bg-warning-subtle')}">
+                            <span class="fw-bold" th:text="${cat.name}">Category Name</span>
+                            <span class="badge"
+                                th:classappend="${cat.diffType.name() == 'ADDED' ? 'bg-success' : (cat.diffType.name() == 'DELETED' ? 'bg-danger' : 'bg-warning text-dark')}"
+                                th:text="${cat.diffType}">
+                            </span>
+                        </div>
+                        <div class="card-body py-2" th:if="${!#lists.isEmpty(cat.mappings)}">
+                            <h6 class="card-subtitle mb-2 text-muted small">매핑된 내부 카테고리</h6>
+
+                            <!-- Grouping Logic Applied -->
+                            <div class="d-flex flex-wrap gap-3">
+                                <div th:each="entry : ${cat.groupedMappings}" class="border rounded p-2 bg-light">
+                                    <div class="text-secondary small fw-bold mb-1 border-bottom pb-1"
+                                        th:text="${entry.key}">Group Name</div>
+                                    <div class="d-flex flex-wrap gap-1">
+                                        <span th:each="map : ${entry.value}" class="badge p-2 bg-opacity-75"
+                                            th:classappend="${map.diffType.name() == 'ADDED' ? 'bg-success' : 'bg-danger'}"
+                                            th:title="${map.diffType}">
+                                            <i class="bi"
+                                                th:classappend="${map.diffType.name() == 'ADDED' ? 'bi-plus-lg' : 'bi-dash-lg'}"></i>
+                                            <span th:text="${map.subCategoryName}"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
