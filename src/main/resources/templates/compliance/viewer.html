@@ -4,51 +4,24 @@
 <head>
     <title>룰팩 상세 정보</title>
     <style>
-        .mapping-badge {
-            font-size: 0.8em;
-            margin-right: 5px;
-            margin-bottom: 3px;
-            display: inline-block;
+        .group-name {
+            font-size: 1.1em;
         }
 
-        .category-card {
-            border-left: 4px solid #0d6efd;
-            transition: all 0.2s;
+        .search-item:hover {
+            background-color: #f8f9fa;
         }
 
-        .category-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
-        }
-
-        .btn-copy {
-            opacity: 0.5;
-            transition: opacity 0.2s;
-            padding: 0 5px;
-        }
-
-        .btn-copy:hover {
-            opacity: 1;
-            color: #0d6efd;
-        }
-
-        .id-badge {
-            font-size: 0.75rem;
-            font-weight: normal;
-            color: black;
-        }
-
-        .toast-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1060;
+        .accordion-button:not(.collapsed) {
+            background-color: #e7f1ff;
+            color: #0c63e4;
         }
     </style>
 </head>
 
 <body>
     <div>
+        <!-- Header Section -->
         <div
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <div>
@@ -56,8 +29,8 @@
                     <span th:text="${pack.name}"></span>
                     <span class="badge bg-secondary fs-6 align-middle" th:text="${pack.version}"></span>
                 </h1>
-                <p class="text-muted" th:text="'업로드 일시: ' + ${#temporals.format(pack.uploadDate, 'yyyy-MM-dd HH:mm')}">
-                </p>
+                <p class="text-muted mb-0"
+                    th:text="'업로드 일시: ' + ${#temporals.format(pack.uploadDate, 'yyyy-MM-dd HH:mm')}"></p>
             </div>
             <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="btn-group me-2">
@@ -76,140 +49,106 @@
             </div>
         </div>
 
-        <!-- Standards Accordion -->
-        <div class="accordion" id="standardsAccordion">
-            <div class="accordion-item" th:each="std, stdStat : ${standards.content}">
-                <h2 class="accordion-header" th:id="'heading' + ${std.id}">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        th:data-bs-target="'#collapse' + ${std.id}" aria-expanded="false"
-                        th:aria-controls="'collapse' + ${std.id}">
-                        <span class="fw-bold me-2" th:text="${std.name}"></span>
-                        <button class="btn btn-link btn-copy" th:data-copy-value="${std.name}"
-                            onclick="copyToClipboard(event, this.getAttribute('data-copy-value'))" title="표준명 복사">
-                            <i class="bi bi-clipboard"></i>
-                        </button>
-                        <span class="badge bg-light border ms-2 id-badge" th:text="${std.externalListId}"></span>
-                    </button>
-                </h2>
-                <div th:id="'collapse' + ${std.id}" class="accordion-collapse collapse"
-                    th:aria-labelledby="'heading' + ${std.id}" data-bs-parent="#standardsAccordion">
-                    <div class="accordion-body bg-light">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <p class="text-muted fst-italic mb-0 me-3" th:text="${std.description}"></p>
-                            <div class="dropdown">
-                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
-                                    id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-download me-1"></i>데이터 내보내기
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item"
-                                            th:href="@{/api/compliance/export/standard/{id}(id=${std.id}, type='csv')}">CSV
-                                            다운로드</a></li>
-                                    <li><a class="dropdown-item"
-                                            th:href="@{/api/compliance/export/standard/{id}(id=${std.id}, type='xml')}">XML
-                                            다운로드</a></li>
-                                    <li><a class="dropdown-item"
-                                            th:href="@{/api/compliance/export/standard/{id}(id=${std.id}, type='json')}">JSON
-                                            다운로드</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Categories Grid -->
-                        <div class="row row-cols-1 row-cols-md-2 g-4">
-                            <div class="col" th:each="cat : ${std.categories}">
-                                <div class="card h-100 category-card shadow-sm">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-start">
-                                            <h6 class="card-title fw-bold" th:text="${cat.name}"></h6>
-                                            <button class="btn btn-link btn-copy" th:data-copy-value="${cat.name}"
-                                                onclick="copyToClipboard(event, this.getAttribute('data-copy-value'))"
-                                                title="카테고리명 복사">
-                                                <i class="bi bi-clipboard"></i>
-                                            </button>
-                                        </div>
-                                        <p class="card-text small text-muted" th:text="${cat.description}"></p>
-
-                                        <hr th:if="${!#lists.isEmpty(cat.mappings)}">
-
-                                        <div th:if="${!#lists.isEmpty(cat.mappings)}">
-                                            <small class="d-block text-secondary mb-2 fst-italic">매핑된 Fortify
-                                                카테고리:</small>
-                                            <span th:each="map : ${cat.mappings}" class="badge bg-dark mapping-badge"
-                                                th:text="${map.internalCategory}"></span>
-                                        </div>
-                                        <div th:if="${#lists.isEmpty(cat.mappings)}"
-                                            class="text-muted small fst-italic">
-                                            매핑 정보 없음.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Controls Toolbar -->
+        <div class="row mb-4 align-items-center g-2">
+            <div class="col-12">
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                    <input type="text" id="searchInput" class="form-control" placeholder="표준명 검색...">
                 </div>
             </div>
         </div>
 
         <!-- Empty State -->
-        <div th:if="${standards.empty}" class="text-center py-5">
+        <div th:if="${groupedStandards.empty}" class="text-center py-5">
             <p class="text-muted">표시할 표준 정보가 없습니다.</p>
         </div>
 
-        <!-- Pagination -->
-        <nav aria-label="Page navigation" class="mt-4" th:if="${standards.totalPages > 1}">
-            <ul class="pagination justify-content-center">
-                <li class="page-item" th:classappend="${!standards.hasPrevious()} ? 'disabled'">
-                    <a class="page-link"
-                        th:href="@{'/compliance/viewer/' + ${pack.id}(page=${standards.number - 1})}">이전</a>
-                </li>
-
-                <li class="page-item" th:each="i : ${#numbers.sequence(0, standards.totalPages - 1)}"
-                    th:classappend="${i == standards.number} ? 'active'"
-                    th:if="${i >= standards.number - 2 and i <= standards.number + 2}">
-                    <a class="page-link" th:href="@{'/compliance/viewer/' + ${pack.id}(page=${i})}"
-                        th:text="${i + 1}">1</a>
-                </li>
-
-                <li class="page-item" th:classappend="${!standards.hasNext()} ? 'disabled'">
-                    <a class="page-link"
-                        th:href="@{'/compliance/viewer/' + ${pack.id}(page=${standards.number + 1})}">다음</a>
-                </li>
-            </ul>
-            <div class="text-center text-muted small mt-2">
-                Total <span th:text="${standards.totalElements}">0</span> items (Page <span
-                    th:text="${standards.number + 1}">1</span> of <span th:text="${standards.totalPages}">1</span>)
-            </div>
-        </nav>
-
-        <!-- Toast Container -->
-        <div class="toast-container">
-            <div id="copyToast" class="toast align-items-center text-white bg-success border-0" role="alert"
-                aria-live="assertive" aria-atomic="true">
-                <div class="d-flex">
-                    <div class="toast-body">
-                        <i class="bi bi-check-circle me-2"></i> 클립보드에 복사되었습니다.
+        <!-- Grouped Accordion View -->
+        <div class="accordion" id="orgAccordion" th:unless="${groupedStandards.empty}">
+            <div class="accordion-item search-group" th:each="entry : ${groupedStandards}">
+                <h2 class="accordion-header" th:id="'heading' + ${#strings.replace(entry.key, ' ', '_')}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        th:data-bs-target="'#collapse' + ${#strings.replace(entry.key, ' ', '_')}" aria-expanded="false"
+                        th:aria-controls="'collapse' + ${#strings.replace(entry.key, ' ', '_')}">
+                        <i class="bi bi-folder2-open me-2 text-warning"></i>
+                        <span class="fw-bold me-2 group-name" th:text="${entry.key}"></span>
+                        <span class="badge bg-light text-dark border" th:text="${entry.value.size()} + ' Items'"></span>
+                    </button>
+                </h2>
+                <div th:id="'collapse' + ${#strings.replace(entry.key, ' ', '_')}" class="accordion-collapse collapse"
+                    th:aria-labelledby="'heading' + ${#strings.replace(entry.key, ' ', '_')}">
+                    <div class="accordion-body p-0">
+                        <div class="list-group list-group-flush">
+                            <a th:each="std : ${entry.value}"
+                                th:href="@{/compliance/viewer/{packId}/standard/{stdId}(packId=${pack.id}, stdId=${std.id})}"
+                                class="list-group-item list-group-item-action py-3 search-item">
+                                <div class="d-flex w-100 justify-content-between align-items-center">
+                                    <h6 class="mb-1 fw-bold text-primary search-target" th:text="${std.name}"></h6>
+                                    <i class="bi bi-chevron-right text-muted small"></i>
+                                </div>
+                                <p class="mb-1 text-muted small text-truncate search-target"
+                                    th:text="${std.description}"></p>
+                            </a>
+                        </div>
                     </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                        aria-label="Close"></button>
                 </div>
             </div>
         </div>
 
         <script th:inline="javascript">
-            function copyToClipboard(event, text) {
-                // Prevent accordion toggle when clicking copy button
-                event.stopPropagation();
+            // --- Search Functionality ---
+            document.addEventListener('DOMContentLoaded', function () {
+                const searchInput = document.getElementById('searchInput');
+                searchInput.addEventListener('keyup', function () {
+                    const filter = this.value.toLowerCase();
+                    const groups = document.querySelectorAll('.search-group');
 
-                navigator.clipboard.writeText(text).then(() => {
-                    const toastEl = document.getElementById('copyToast');
-                    const toast = new bootstrap.Toast(toastEl);
-                    toast.show();
-                }).catch(err => {
-                    console.error('Failed to copy: ', err);
-                    alert('복사 실패');
+                    groups.forEach(group => {
+                        let groupVisible = false;
+                        const items = group.querySelectorAll('.search-item');
+
+                        // Check Group Name Match
+                        const groupName = group.querySelector('.group-name').textContent.toLowerCase();
+                        if (groupName.includes(filter)) {
+                            groupVisible = true;
+                            // Update items visibility? If group matches, maybe show all items? 
+                            // Or still filter items? Let's show all items if group matches.
+                            items.forEach(item => item.style.display = '');
+                        } else {
+                            // Filter individual items
+                            let hasVisibleItem = false;
+                            items.forEach(item => {
+                                const targets = item.querySelectorAll('.search-target');
+                                let match = false;
+                                targets.forEach(t => {
+                                    if (t.textContent.toLowerCase().includes(filter)) match = true;
+                                });
+
+                                if (match) {
+                                    item.style.display = '';
+                                    hasVisibleItem = true;
+                                } else {
+                                    item.style.display = 'none';
+                                }
+                            });
+                            groupVisible = hasVisibleItem;
+                        }
+
+                        if (groupVisible) {
+                            group.style.display = '';
+                            if (filter.length > 0) {
+                                const collapse = group.querySelector('.accordion-collapse');
+                                if (!collapse.classList.contains('show')) {
+                                    new bootstrap.Collapse(collapse, { toggle: true });
+                                }
+                            }
+                        } else {
+                            group.style.display = 'none';
+                        }
+                    });
                 });
-            }
+            });
         </script>
     </div>
 </body>

@@ -151,7 +151,7 @@ public class AnalysisController {
         unifiedResults.sort((r1, r2) -> r2.getScanDate().compareTo(r1.getScanDate()));
 
         model.addAttribute("results", unifiedResults);
-        return "results";
+        return "analysis/list";
     }
 
     @GetMapping("/results/{id}")
@@ -161,13 +161,13 @@ public class AnalysisController {
             return "redirect:/results";
         }
         model.addAttribute("result", result);
-        return "result_detail";
+        return "analysis/detail";
     }
 
     @GetMapping("/analysis")
     public String analysisForm(Model model) {
         model.addAttribute("analysisOption", new AnalysisOption());
-        return "analysis";
+        return "analysis/request";
     }
 
     @PostMapping("/analysis")

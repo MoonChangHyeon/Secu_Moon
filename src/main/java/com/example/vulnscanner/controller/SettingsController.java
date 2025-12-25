@@ -21,12 +21,12 @@ public class SettingsController {
     public String settings(Model model) {
         Map<String, String> settings = settingsService.getAllSettings();
         model.addAttribute("settings", settings);
-        return "settings";
+        return "settings/index";
     }
 
     @GetMapping("/settings/users")
     public String userManagement() {
-        return "user_management";
+        return "user/list";
     }
 
     @PostMapping("/settings/update")

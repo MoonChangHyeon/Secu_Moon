@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::div})}">
+
+<head>
+    <title>표준 상세 정보</title>
+    <style>
+        .group-toggle {
+            cursor: pointer;
+            font-size: 0.9em;
+            user-select: none;
+            display: inline-flex;
+            align-items: center;
+            background-color: #f8f9fa;
+        }
+
+        .group-toggle:hover {
+            background-color: #e9ecef;
+        }
+
+        .group-content {
+            margin-left: 10px;
+            margin-top: 5px;
+            padding-left: 10px;
+            border-left: 2px solid #dee2e6;
+        }
+
+        .mapping-badge {
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- Header -->
+        <div class="d-flex align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <a th:href="@{/compliance/viewer/{id}(id=${pack.id})}" class="btn btn-outline-secondary me-3">
+                <i class="bi bi-arrow-left"></i>
+            </a>
+            <div>
+                <h2 class="h3 mb-0">
+                    <span th:text="${standard.name}"></span>
+                </h2>
+                <div class="text-muted small">
+                    <span th:text="${pack.name}"></span> <span class="badge bg-light text-dark border ms-1"
+                        th:text="${pack.version}"></span>
+                </div>
+            </div>
+
+            <div class="ms-auto btn-group">
+                <a th:href="@{'/api/compliance/export/standard/' + ${standard.id} + '?type=csv'}"
+                    class="btn btn-sm btn-outline-success">
+                    <i class="bi bi-file-earmark-spreadsheet"></i> CSV
+                </a>
+                <a th:href="@{'/api/compliance/export/standard/' + ${standard.id} + '?type=xml'}"
+                    class="btn btn-sm btn-outline-warning">
+                    <i class="bi bi-file-earmark-code"></i> XML
+                </a>
+                <a th:href="@{'/api/compliance/export/standard/' + ${standard.id} + '?type=json'}"
+                    class="btn btn-sm btn-outline-dark">
+                    <i class="bi bi-file-code"></i> JSON
+                </a>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="alert alert-light border mb-4" role="alert" th:if="${standard.description}">
+            <h6 class="alert-heading fw-bold"><i class="bi bi-info-circle me-2"></i>표준 설명</h6>
+            <p class="mb-0 text-muted" th:text="${standard.description}"></p>
+        </div>
+
+        <!-- Categories List -->
+        <div class="row g-4">
+            <div class="col-12" th:each="cat : ${standard.categories}">
+                <div class="card shadow-sm h-100 border-start-primary" style="border-left: 5px solid #0d6efd;">
+                    <div class="card-body">
+                        <h4 class="card-title fw-bold text-primary mb-3" th:text="${cat.name}"></h4>
+
+                        <div class="mb-3">
+                            <h6 class="text-secondary small text-uppercase fw-bold">설명</h6>
+                            <p class="card-text text-muted" th:text="${cat.description ?: '설명이 없습니다.'}"></p>
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h6 class="text-secondary small text-uppercase fw-bold mb-2">매핑된 Fortify 카테고리</h6>
+
+                            <div th:if="${!#lists.isEmpty(cat.mappings)}" class="mapping-container"
+                                th:data-mappings="${#strings.listJoin(cat.mappings.![internalCategory], ',')}">
+                                <!-- JS will render groups here -->
+                            </div>
+                            <div th:if="${#lists.isEmpty(cat.mappings)}" class="text-muted fst-italic small">
+                                매핑 정보 없음.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script th:inline="javascript">
+            document.addEventListener('DOMContentLoaded', function () {
+                renderMappings();
+            });
+
+            function renderMappings() {
+                const containers = document.querySelectorAll('.mapping-container');
+
+                containers.forEach(container => {
+                    const rawData = container.getAttribute('data-mappings');
+                    if (!rawData) return;
+
+                    const items = rawData.split(',').map(s => s.trim()).filter(s => s.length > 0);
+                    if (items.length === 0) return;
+
+                    container.innerHTML = generateGroupedHtml(items);
+                });
+            }
+
+            // Shared Grouping Logic
+            function generateGroupedHtml(items) {
+                const groups = {};
+                const others = [];
+
+                items.forEach(item => {
+                    const splitIndex = item.indexOf(':');
+                    if (splitIndex > 0) {
+                        const key = item.substring(0, splitIndex).trim();
+                        if (!groups[key]) groups[key] = [];
+                        groups[key].push(item);
+                    } else {
+                        others.push(item);
+                    }
+                });
+
+                let html = '';
+
+                // Render Groups
+                // Object.keys might not guarantee order, but it's usually insertion order or consistent. 
+                // Sorting keys alphabetically is better.
+                Object.keys(groups).sort().forEach(key => {
+                    const values = groups[key];
+                    if (values.length >= 2) {
+                        // Collapsible Group
+                        const groupMeta = `<span class="badge bg-light text-dark border me-2 mb-2 group-toggle" onclick="toggleGroup(this)">
+                            <i class="bi bi-folder-fill text-warning me-1"></i> ${key} (${values.length})
+                        </span>`;
+
+                        let contentHtml = `<div class="group-content d-none mb-2">`;
+                        values.forEach(v => {
+                            contentHtml += `<span class="badge bg-secondary mapping-badge me-1" style="font-size: 0.9em;">${v}</span>`;
+                        });
+                        contentHtml += `</div>`;
+
+                        html += `<div>${groupMeta}${contentHtml}</div>`;
+                    } else {
+                        values.forEach(v => others.push(v));
+                    }
+                });
+
+                // Render Others
+                if (others.length > 0) {
+                    html += `<div class="mt-1">`;
+                    others.forEach(item => {
+                        html += `<span class="badge bg-secondary mapping-badge me-1" style="font-size: 0.9em;">${item}</span>`;
+                    });
+                    html += `</div>`;
+                }
+
+                return html;
+            }
+
+            function toggleGroup(element) {
+                const content = element.parentElement.querySelector('.group-content');
+                if (content.classList.contains('d-none')) {
+                    content.classList.remove('d-none');
+                    element.querySelector('i').classList.remove('bi-folder-fill');
+                    element.querySelector('i').classList.add('bi-folder2-open');
+                } else {
+                    content.classList.add('d-none');
+                    element.querySelector('i').classList.add('bi-folder-fill');
+                    element.querySelector('i').classList.remove('bi-folder2-open');
+                }
+            }
+        </script>
+    </div>
+</body>
+
+</html>

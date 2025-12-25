@@ -199,7 +199,7 @@ public class SbomController {
         }
 
         model.addAttribute("result", result);
-        return "sbom_result_detail";
+        return "sbom/detail";
     }
 
     private Map<String, Object> convertResultToMap(SbomResult result) {

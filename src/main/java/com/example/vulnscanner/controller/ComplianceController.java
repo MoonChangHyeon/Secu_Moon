@@ -35,20 +35,42 @@ public class ComplianceController {
     }
 
     @GetMapping("/compliance/viewer/{packId}")
-    public String viewerPage(@PathVariable Long packId,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
+    public String viewerPage(@PathVariable Long packId, Model model) {
+        PackInfo pack = packInfoRepository.findById(packId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Pack ID: " + packId));
+
+        // Fetch all standards for grouping
+        List<ComplianceStandard> allStandards = standardRepository.findByPackInfoId(packId);
+
+        // Group by Organization (First word of name)
+        // Using TreeMap to sort keys (Group Names) alphabetically
+        java.util.Map<String, List<ComplianceStandard>> groupedStandards = allStandards.stream()
+                .collect(java.util.stream.Collectors.groupingBy(std -> {
+                    String name = std.getName();
+                    if (name == null || name.isEmpty())
+                        return "Others";
+                    String[] parts = name.split("\\s+");
+                    return parts.length > 0 ? parts[0] : "Others";
+                }, java.util.TreeMap::new, java.util.stream.Collectors.toList()));
+
+        model.addAttribute("pack", pack);
+        model.addAttribute("groupedStandards", groupedStandards);
+        return "compliance/viewer";
+    }
+
+    @GetMapping("/compliance/viewer/{packId}/standard/{standardId}")
+    public String standardDetailPage(@PathVariable Long packId,
+            @PathVariable Long standardId,
             Model model) {
         PackInfo pack = packInfoRepository.findById(packId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Pack ID: " + packId));
 
-        org.springframework.data.domain.Pageable pageable = org.springframework.data.domain.PageRequest.of(page, size);
-        org.springframework.data.domain.Page<ComplianceStandard> standardsPage = standardRepository
-                .findByPackInfoId(packId, pageable);
+        ComplianceStandard standard = standardRepository.findById(standardId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Standard ID: " + standardId));
 
         model.addAttribute("pack", pack);
-        model.addAttribute("standards", standardsPage);
-        return "compliance/viewer";
+        model.addAttribute("standard", standard);
+        return "compliance/standard_detail";
     }
 
     @GetMapping("/compliance/compare")
