@@ -87,10 +87,14 @@ public class FortifyModuleController {
         if ("json".equalsIgnoreCase(format)) {
             return ResponseEntity.ok()
                     .contentType(MediaType.APPLICATION_JSON)
+                    .header(HttpHeaders.CONTENT_DISPOSITION,
+                            "attachment; filename=\"fortify_" + lang + "_" + date + ".json\"")
                     .body(weaknesses);
         } else if ("xml".equalsIgnoreCase(format)) {
             return ResponseEntity.ok()
                     .contentType(MediaType.APPLICATION_XML)
+                    .header(HttpHeaders.CONTENT_DISPOSITION,
+                            "attachment; filename=\"fortify_" + lang + "_" + date + ".xml\"")
                     .body(weaknesses);
         } else if ("csv".equalsIgnoreCase(format)) {
             String csvContent = generateCsv(weaknesses);

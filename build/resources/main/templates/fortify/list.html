@@ -108,14 +108,41 @@
                             </div>
                         </div>
 
-                        <div class="d-flex justify-content-end mb-2">
-                            <select id="itemsPerPageSelect" class="form-select form-select-sm" style="width: auto;">
-                                <option value="10" selected>10개씩 보기</option>
-                                <option value="20">20개씩 보기</option>
-                                <option value="50">50개씩 보기</option>
-                                <option value="100">100개씩 보기</option>
-                            </select>
+
+                        <div class="d-flex justify-content-between mb-2">
+                            <!-- Export Dropdown -->
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
+                                    id="exportDropdown" data-bs-toggle="dropdown" disabled>
+                                    <i class="bi bi-download"></i> 리포트 다운로드
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="exportDropdown">
+                                    <li><a class="dropdown-item" href="#" onclick="downloadReport('json')">JSON
+                                            (.json)</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="downloadReport('xml')">XML (.xml)</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" onclick="downloadReport('csv')">CSV (.csv)</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="d-flex gx-2 align-items-center">
+                                <!-- Search Input -->
+                                <div class="input-group input-group-sm me-2" style="width: 250px;">
+                                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                    <input type="text" id="searchInput" class="form-control"
+                                        placeholder="ID or Title 검색...">
+                                </div>
+
+                                <select id="itemsPerPageSelect" class="form-select form-select-sm" style="width: auto;">
+                                    <option value="10" selected>10개씩 보기</option>
+                                    <option value="20">20개씩 보기</option>
+                                    <option value="50">50개씩 보기</option>
+                                    <option value="100">100개씩 보기</option>
+                                </select>
+                            </div>
                         </div>
+
                         <div id="weaknessList" class="table-responsive bg-white rounded shadow-sm border p-0">
                             <!-- Table will be injected here -->
                             <div class="text-center p-5 text-muted">언어를 선택하면 취약점 목록이 표시됩니다.</div>
@@ -192,13 +219,20 @@
 
             // Pagination State
             let allWeaknesses = [];
+            let filteredWeaknesses = []; // To store search results
             let currentPage = 1;
             let itemsPerPage = 10;
+            let searchTerm = '';
 
             document.addEventListener('DOMContentLoaded', () => {
                 loadDates(true); // Auto select on initial load
 
                 // Event Listeners
+                document.getElementById('searchInput').addEventListener('input', (e) => {
+                    searchTerm = e.target.value.toLowerCase().trim();
+                    filterWeaknesses();
+                });
+
                 document.getElementById('dateSelect').addEventListener('change', (e) => {
                     selectedDate = e.target.value;
                     loadLanguages(selectedDate);
@@ -208,6 +242,7 @@
                         loadWeaknesses(selectedDate, selectedLang);
                     }
                 });
+
 
                 document.getElementById('btnUpload').addEventListener('click', uploadData);
 
@@ -341,8 +376,12 @@
 
                 allWeaknesses = data;
                 renderSummary(data); // Calculate and show summary
-                currentPage = 1;
-                renderPage();
+                updateExportButtonState();
+
+                // Reset search on new data load
+                document.getElementById('searchInput').value = '';
+                searchTerm = '';
+                filterWeaknesses();
             }
 
             async function loadDiff() {
@@ -352,8 +391,12 @@
 
                 allWeaknesses = data;
                 renderSummary(data); // Calculate and show summary
-                currentPage = 1;
-                renderPage();
+                updateExportButtonState();
+
+                // Reset search on new data load
+                document.getElementById('searchInput').value = '';
+                searchTerm = '';
+                filterWeaknesses();
             }
 
             function renderSummary(items) {
@@ -390,10 +433,24 @@
                 `;
             }
 
+            function filterWeaknesses() {
+                if (!searchTerm) {
+                    filteredWeaknesses = [...allWeaknesses];
+                } else {
+                    filteredWeaknesses = allWeaknesses.filter(item => {
+                        const idMatch = String(item.id).toLowerCase().includes(searchTerm);
+                        const titleMatch = (item.title || '').toLowerCase().includes(searchTerm);
+                        return idMatch || titleMatch;
+                    });
+                }
+                currentPage = 1;
+                renderPage();
+            }
+
             function renderPage() {
                 const start = (currentPage - 1) * itemsPerPage;
                 const end = start + itemsPerPage;
-                const items = allWeaknesses.slice(start, end);
+                const items = filteredWeaknesses.slice(start, end);
 
                 renderWeaknesses(items);
                 renderPaginationControl();
@@ -455,7 +512,7 @@
             }
 
             function renderPaginationControl() {
-                const totalItems = allWeaknesses.length;
+                const totalItems = filteredWeaknesses.length;
                 if (totalItems <= itemsPerPage) {
                     document.getElementById('paginationContainer').style.display = 'none';
                     return;
@@ -507,6 +564,29 @@
                 new bootstrap.Modal(document.getElementById('detailModal')).show();
             };
 
+
+            function downloadReport(format) {
+                if (!selectedDate || !selectedLang) {
+                    alert('날짜와 언어를 먼저 선택해주세요.');
+                    return;
+                }
+                const url = `/fortify/export?date=${selectedDate}&lang=${encodeURIComponent(selectedLang)}&format=${format}`;
+                window.location.href = url;
+            }
+
+            // Enable/Disable export button based on selection
+            function updateExportButtonState() {
+                const btn = document.getElementById('exportDropdown');
+                if (selectedDate && selectedLang) {
+                    btn.removeAttribute('disabled');
+                    btn.classList.remove('btn-outline-secondary');
+                    btn.classList.add('btn-outline-primary');
+                } else {
+                    btn.setAttribute('disabled', 'true');
+                    btn.classList.remove('btn-outline-primary');
+                    btn.classList.add('btn-outline-secondary');
+                }
+            }
             /*]]>*/
         </script>
     </div>
