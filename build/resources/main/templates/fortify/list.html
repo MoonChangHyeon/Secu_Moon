@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Fortify Weakness Explorer</title>
+    <style>
+        .sidebar {
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+            border-right: 1px solid #dee2e6;
+        }
+
+        .main-content {
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .weakness-card {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .weakness-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .badge-compliance {
+            background-color: #28a745;
+            color: white;
+            font-size: 0.8em;
+            margin-left: 5px;
+        }
+
+        .status-new {
+            border-left: 5px solid #28a745;
+        }
+
+        .status-removed {
+            border-left: 5px solid #dc3545;
+            opacity: 0.7;
+        }
+
+        .status-modified {
+            border-left: 5px solid #ffc107;
+        }
+
+        .status-same {
+            border-left: 5px solid #6c757d;
+        }
+    </style>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="row mb-3 align-items-center">
+            <div class="col-md-4">
+                <h3>Fortify Weakness Explorer</h3>
+            </div>
+            <div class="col-md-8 text-end">
+                <div class="d-inline-flex gap-2">
+                    <select id="dateSelect" class="form-select w-auto">
+                        <option value="" disabled selected>날짜 선택</option>
+                    </select>
+
+                    <button class="btn btn-outline-primary" id="btnUploadModal" data-bs-toggle="modal"
+                        data-bs-target="#uploadModal">
+                        <i class="bi bi-upload"></i> 데이터 업로드
+                    </button>
+
+                    <div class="form-check form-switch pt-2 ms-2">
+                        <input class="form-check-input" type="checkbox" id="diffModeToggle">
+                        <label class="form-check-label" for="diffModeToggle">비교 모드</label>
+                    </div>
+
+                    <select id="compareDateSelect" class="form-select w-auto d-none">
+                        <option value="" disabled selected>비교 대상 날짜</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar: Languages -->
+            <div class="col-md-3 sidebar">
+                <h5 class="p-2 border-bottom">Languages</h5>
+                <div class="list-group list-group-flush" id="languageList">
+                    <div class="text-center p-3 text-muted">데이터를 선택해주세요.</div>
+                </div>
+            </div>
+
+            <!-- Main Content: Weaknesses -->
+            <div class="col-md-9 main-content bg-light">
+                <div id="weaknessList" class="row">
+                    <div class="text-center p-5 text-muted">언어를 선택하면 취약점 목록이 표시됩니다.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upload Modal -->
+        <div class="modal fade" id="uploadModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Fortify 데이터 업로드</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="uploadForm">
+                            <div class="mb-3">
+                                <label class="form-label">ZIP 파일 (예: fortify_data_20251226.zip)</label>
+                                <input type="file" class="form-control" name="file" accept=".zip" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                        <button type="button" class="btn btn-primary" id="btnUpload">업로드</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail Modal -->
+        <div class="modal fade" id="detailModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="detailTitle">Title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>ID: <span id="detailId" class="badge bg-secondary"></span></h6>
+                        <hr>
+                        <h6>Abstract</h6>
+                        <p id="detailAbstract"></p>
+                        <hr>
+                        <h6>Supported Languages</h6>
+                        <p id="detailLanguages"></p>
+                        <div class="mt-3 text-end">
+                            <a href="#" id="detailExternalLink" target="_blank" class="btn btn-sm btn-outline-info">
+                                <i class="bi bi-box-arrow-up-right"></i> Fortify VulnCat
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");
+            const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
+
+            // State
+            let selectedDate = null;
+            let compareDate = null;
+            let selectedLang = null;
+            let isDiffMode = false;
+
+            document.addEventListener('DOMContentLoaded', () => {
+                loadDates();
+
+                // Event Listeners
+                document.getElementById('dateSelect').addEventListener('change', (e) => {
+                    selectedDate = e.target.value;
+                    loadLanguages(selectedDate);
+                    if (isDiffMode && compareDate && selectedLang) {
+                        loadDiff();
+                    } else if (selectedLang) {
+                        loadWeaknesses(selectedDate, selectedLang);
+                    }
+                });
+
+                document.getElementById('btnUpload').addEventListener('click', uploadData);
+
+                document.getElementById('diffModeToggle').addEventListener('change', (e) => {
+                    isDiffMode = e.target.checked;
+                    const compareSelect = document.getElementById('compareDateSelect');
+                    if (isDiffMode) {
+                        compareSelect.classList.remove('d-none');
+                    } else {
+                        compareSelect.classList.add('d-none');
+                        // Reset to normal view
+                        if (selectedDate && selectedLang) {
+                            loadWeaknesses(selectedDate, selectedLang);
+                        }
+                    }
+                });
+
+                document.getElementById('compareDateSelect').addEventListener('change', (e) => {
+                    compareDate = e.target.value;
+                    if (isDiffMode && selectedDate && selectedLang) {
+                        loadDiff();
+                    }
+                });
+            });
+
+            async function loadDates() {
+                const res = await fetch('/fortify/dates');
+                const dates = await res.json();
+                const select = document.getElementById('dateSelect');
+                const compareSelect = document.getElementById('compareDateSelect');
+
+                select.innerHTML = '<option value="" disabled selected>날짜 선택</option>';
+                compareSelect.innerHTML = '<option value="" disabled selected>비교 대상 날짜</option>';
+
+                dates.forEach(date => {
+                    const opt1 = document.createElement('option');
+                    opt1.value = date;
+                    opt1.textContent = date;
+                    select.appendChild(opt1);
+
+                    const opt2 = document.createElement('option');
+                    opt2.value = date;
+                    opt2.textContent = date;
+                    compareSelect.appendChild(opt2);
+                });
+            }
+
+            async function uploadData() {
+                const form = document.getElementById('uploadForm');
+                const formData = new FormData(form);
+
+                if (!formData.get('file').name) {
+                    alert('파일을 선택해주세요.');
+                    return;
+                }
+
+                try {
+                    const res = await fetch('/fortify/upload', {
+                        method: 'POST',
+                        headers: { [csrfHeader]: csrfToken },
+                        body: formData
+                    });
+
+                    if (res.ok) {
+                        alert('업로드 성공');
+                        bootstrap.Modal.getInstance(document.getElementById('uploadModal')).hide();
+                        loadDates();
+                    } else {
+                        const msg = await res.text();
+                        alert('업로드 실패: ' + msg);
+                    }
+                } catch (e) {
+                    alert('업로드 중 오류 발생');
+                    console.error(e);
+                }
+            }
+
+            async function loadLanguages(date) {
+                const res = await fetch(`/fortify/languages?date=${date}`);
+                const langs = await res.json();
+                const list = document.getElementById('languageList');
+                list.innerHTML = '';
+
+                langs.forEach(lang => {
+                    const item = document.createElement('a');
+                    item.className = 'list-group-item list-group-item-action';
+                    item.textContent = lang;
+                    item.href = '#';
+                    item.onclick = (e) => {
+                        e.preventDefault();
+                        // Active handling
+                        document.querySelectorAll('#languageList .list-group-item').forEach(i => i.classList.remove('active'));
+                        item.classList.add('active');
+
+                        selectedLang = lang;
+                        if (isDiffMode && compareDate) {
+                            loadDiff();
+                        } else {
+                            loadWeaknesses(date, lang);
+                        }
+                    };
+                    list.appendChild(item);
+                });
+            }
+
+            async function loadWeaknesses(date, lang) {
+                const res = await fetch(`/fortify/weaknesses?date=${date}&lang=${encodeURIComponent(lang)}`);
+                const data = await res.json();
+                renderWeaknesses(data);
+            }
+
+            async function loadDiff() {
+                if (!selectedDate || !compareDate || !selectedLang) return;
+                // date1: Base (Old), date2: Target (New) - user logic might vary, let's assume selected is target
+                // Actually usually Compare A (Base) vs B (Target). 
+                // Let's assume Selected Date is the "Target" (New) and Compare Date is "Base" (Old).
+                const res = await fetch(`/fortify/compare?date1=${compareDate}&date2=${selectedDate}&lang=${encodeURIComponent(selectedLang)}`);
+                const data = await res.json();
+                renderWeaknesses(data);
+            }
+
+            function renderWeaknesses(items) {
+                const container = document.getElementById('weaknessList');
+                container.innerHTML = '';
+
+                if (items.length === 0) {
+                    container.innerHTML = '<div class="text-center p-5 text-muted">취약점 없음</div>';
+                    return;
+                }
+
+                items.forEach(item => {
+                    const col = document.createElement('div');
+                    col.className = 'col-md-12 mb-2';
+
+                    let statusClass = '';
+                    let statusBadge = '';
+                    if (item.diffStatus) {
+                        if (item.diffStatus === 'NEW') { statusClass = 'status-new'; statusBadge = '<span class="badge bg-success me-2">NEW</span>'; }
+                        else if (item.diffStatus === 'REMOVED') { statusClass = 'status-removed'; statusBadge = '<span class="badge bg-danger me-2">REMOVED</span>'; }
+                        else if (item.diffStatus === 'MODIFIED') { statusClass = 'status-modified'; statusBadge = '<span class="badge bg-warning text-dark me-2">MODIFIED</span>'; }
+                        else { statusClass = 'status-same'; }
+                    }
+
+                    const mappedBadge = item.mapped ? '<span class="badge bg-info badge-compliance"><i class="bi bi-shield-check"></i> Compliant</span>' : '';
+
+                    col.innerHTML = `
+                    <div class="card weakness-card ${statusClass}" onclick='showDetail(${JSON.stringify(item)})'>
+                        <div class="card-body p-3">
+                            <h6 class="card-title fw-bold">
+                                ${statusBadge}
+                                ${item.title}
+                                ${mappedBadge}
+                            </h6>
+                            <div class="text-muted small mb-2">ID: ${item.id}</div>
+                            <p class="card-text text-truncate small">${item.abstractContent || ''}</p>
+                        </div>
+                    </div>
+                `;
+                    container.appendChild(col);
+                });
+            }
+
+            window.showDetail = function (item) {
+                document.getElementById('detailTitle').textContent = item.title;
+                document.getElementById('detailId').textContent = item.id;
+                document.getElementById('detailAbstract').textContent = item.abstractContent || '설명 없음';
+                document.getElementById('detailLanguages').textContent = (item.supportedLanguages || []).join(', ');
+                document.getElementById('detailExternalLink').href = item.url || '#';
+
+                new bootstrap.Modal(document.getElementById('detailDetailModal') || document.getElementById('detailModal')).show();
+            };
+
+            /*]]>*/
+        </script>
+    </div>
+</body>
+
+</html>

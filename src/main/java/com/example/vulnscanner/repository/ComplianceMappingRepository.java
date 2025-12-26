@@ -6,4 +6,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ComplianceMappingRepository extends JpaRepository<ComplianceMapping, Long> {
+<<<<<<< Updated upstream:src/main/java/com/example/vulnscanner/repository/ComplianceMappingRepository.java
 }
+=======
+    @org.springframework.data.jpa.repository.Query("SELECT c.internalCategory FROM ComplianceMapping c WHERE c.internalCategory IS NOT NULL")
+    java.util.List<String> findAllInternalCategories();
+}
+>>>>>>> Stashed changes:src/main/java/com/example/vulnscanner/module/compliance/ComplianceMappingRepository.java
