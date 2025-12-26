@@ -27,3 +27,9 @@
     - 외부 API 연결 테스트
 - **[Mocha](mocha/README.md)**
     - 외부 취약점 데이터베이스 스키마 및 엔티티 정의
+<<<<<<< HEAD
+=======
+- **[Fortify (취약점 탐색)](fortify/README.md)**
+    - Fortify SAST 언어별 취약점 데이터 업로드 및 탐색
+    - 날짜별 버전 비교 (Diff) 및 Compliance 매핑 확인
+>>>>>>> 2512W04

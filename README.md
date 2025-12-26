@@ -1,5 +1,13 @@
 # 취약점 점검 시스템 (Vulnerability Scanner)
 
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+## 프로젝트 개요 (Project Overview)
+**Secu_Moon**은 기업 환경을 위한 통합 보안 취약점 점검 및 관리 플랫폼입니다.
+Fortify SAST(정적 분석) 도구와 연동하여 소스 코드의 보안 약점을 분석하고, 별도의 SBOM 분석 엔진을 통해 오픈소스 라이브러리의 취약점(CVE) 및 라이선스 위험을 식별합니다. 또한, 보안 규정 준수(Compliance) 매핑 정보를 시각화하여 감사를 지원합니다.
+=======
+>>>>>>> 2512W04
 **Vulnerability Scanner**는 애플리케이션 보안을 강화하기 위한 통합 관리 시스템입니다. 소스 코드 취약점 분석(SAST), 소프트웨어 구성 분석(SBOM), 그리고 보안 규정 준수(Compliance) 관리를 하나의 플랫폼에서 제공합니다.
 
 ## 📋 목차 (Index)
@@ -13,12 +21,20 @@
 - **[사용자 모듈 (User)](src/main/java/com/example/vulnscanner/module/user/README.md)**: 로그인, 사용자 권한 및 계정 관리.
 - **[설정 모듈 (Settings)](src/main/java/com/example/vulnscanner/module/settings/README.md)**: 시스템 환경 설정, 파일 경로 및 업로드 정책 관리.
 - **[Mocha 모듈](src/main/java/com/example/vulnscanner/module/mocha/README.md)**: 외부 취약점 데이터베이스(Mocha) 연동 엔티티 및 리포지토리.
+<<<<<<< HEAD
+=======
+- **[Fortify 모듈 (Exploration)](src/main/java/com/example/vulnscanner/module/fortify/README.md)**: 언어별 취약점 데이터 업로드/탐색, **데이터 버전 비교(Diff)** 및 Compliance 매핑 연동.
+>>>>>>> 2512W04
 
 ### ⚙️ 공통 및 설정 (Global)
 - **[Global Components](src/main/java/com/example/vulnscanner/global/README.md)**: 전역 설정(Security, JPA), 유틸리티, 예외 처리 핸들러.
 
 ### 🖥️ Frontend
 - **[Templates](src/main/resources/templates/README.md)**: Thymeleaf 뷰 템플릿 구조 및 화면 설명.
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> 2512W04
 
 ---
 
