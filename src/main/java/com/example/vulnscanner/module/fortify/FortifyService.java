@@ -1,6 +1,6 @@
 package com.example.vulnscanner.module.fortify;
 
-import com.example.vulnscanner.module.compliance.ComplianceMappingRepository;
+import com.example.vulnscanner.repository.ComplianceMappingRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

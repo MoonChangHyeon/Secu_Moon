@@ -4,7 +4,6 @@
 
 ## 📂 디렉토리 구조 및 설명
 
-<<<<<<< Updated upstream
 ### 1. `compliance/` (규정 준수 뷰어) <!-- New -->
 - **`list.html`**:
   - 룰팩 XML 파일 업로드 폼.
@@ -15,27 +14,6 @@
 - **`compare.html`**:
   - 두 버전 간의 Diff 결과 시각화.
   - 변경된 항목(추가/삭제/수정) 하이라이팅 및 필터링.
-=======
-- **`dashboard.html`**: 메인 대시보드 페이지 (요약 통계 등)
-- **`layout.html`**: 공통 레이아웃 (헤더, 사이드바, 푸터 포함)
-- **`analysis/`**: 분석 관련 뷰
-    - `request.html`: 분석 요청 폼
-    - `list.html`: 분석 결과 목록
-    - `detail.html`: 분석 상세 결과
-    - `stats.html`: 통계 페이지
-- **`sbom/`**: SBOM 관련 뷰
-    - `detail.html`: SBOM 상세 분석 결과
-- **`compliance/`**: 규정 준수 관련 뷰
-    - `viewer.html`: 룰팩 뷰어 (표준/카테고리/매핑 탐색)
-    - `compare.html`: 룰팩 버전 비교 및 이력 관리
-    - `compare_detail.html`: 표준별 비교 상세 결과 (팝업)
-- **`user/`**: 사용자 관리 뷰
-    - `list.html`: 사용자 목록 및 관리
-- **`settings/`**: 설정 관련 뷰
-    - `index.html`: 설정 관리 페이지
-- **`login.html`**: 로그인 페이지
-- **`error.html`**: 공통 에러 페이지
->>>>>>> Stashed changes
 
 ### 2. `dashboard/` (대시보드)
 - **`dashboard.html`**: 통합 대시보드 화면. 차트 및 요약 테이블 제공.
