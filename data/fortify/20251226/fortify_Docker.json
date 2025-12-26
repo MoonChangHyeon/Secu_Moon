@@ -1,0 +1,74 @@
+{
+  "codelang": "Docker",
+  "total_count_text": 7,
+  "fetched_count": 7,
+  "weaknesses": [
+    {
+      "title": "Dockerfile Misconfiguration: Default User Privilege",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dockerfile%20Misconfiguration&subcategory=Default%20User%20Privilege#Docker",
+      "id": "1055",
+      "abstract": "Dockerfile에 USER가 지정되어 있지 않으므로 기본적으로 루트 사용자로 실행됩니다.",
+      "supported_languages": [
+        "Docker"
+      ]
+    },
+    {
+      "title": "Dockerfile Misconfiguration: Dependency Confusion",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dockerfile%20Misconfiguration&subcategory=Dependency%20Confusion#Docker",
+      "id": "1050",
+      "abstract": "비특정 버전을 사용하여 빌드 종속성을 검색하면 빌드 시스템이 악성 바이너리에 취약해지거나 시스템에서 예기치 않은 동작이 발생할 수 있습니다.",
+      "supported_languages": [
+        "Docker"
+      ]
+    },
+    {
+      "title": "Dockerfile Misconfiguration: Privileged Container",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dockerfile%20Misconfiguration&subcategory=Privileged%20Container#Docker",
+      "id": "1056",
+      "abstract": "Dockerfile이 루트 사용자로 컨테이너를 실행하도록 설정합니다.",
+      "supported_languages": [
+        "Docker"
+      ]
+    },
+    {
+      "title": "Dockerfile Misconfiguration: Privileged Port",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dockerfile%20Misconfiguration&subcategory=Privileged%20Port#Docker",
+      "id": "1057",
+      "abstract": "Dockerfile은 1024개 미만의 컨테이너 포트를 엽니다.",
+      "supported_languages": [
+        "Docker"
+      ]
+    },
+    {
+      "title": "Dockerfile Misconfiguration: Sensitive Host Directory",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dockerfile%20Misconfiguration&subcategory=Sensitive%20Host%20Directory#Docker",
+      "id": "1053",
+      "abstract": "중요한 호스트 디렉터리가 공개되면 공격자가 중요한 시스템 정보에 접근할 수 있음",
+      "supported_languages": [
+        "Docker"
+      ]
+    },
+    {
+      "title": "Dockerfile Misconfiguration: SSH Service",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dockerfile%20Misconfiguration&subcategory=SSH%20Service#Docker",
+      "id": "1054",
+      "abstract": "Docker 컨테이너 안에서 SSH(Secure Shell) 서비스를 실행하지 마십시오.",
+      "supported_languages": [
+        "Docker"
+      ]
+    },
+    {
+      "title": "Password Management: Password in Configuration File",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Password%20in%20Configuration%20File#Docker",
+      "id": "1044",
+      "abstract": "구성 파일에 일반 텍스트 암호를 저장하면 시스템 침해가 발생할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Docker",
+        "Java/JSP",
+        "JSON",
+        "Universal"
+      ]
+    }
+  ]
+}

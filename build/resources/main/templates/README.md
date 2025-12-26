@@ -14,9 +14,9 @@
 - **`sbom/`**: SBOM 관련 뷰
     - `detail.html`: SBOM 상세 분석 결과
 - **`compliance/`**: 규정 준수 관련 뷰
-    - `viewer.html`: 그룹화된 규정 뷰어 (Master Page)
-    - `standard_detail.html`: 표준 상세 페이지 (Detail Page)
-    - `compare.html`: Rulepack 비교 화면
+    - `viewer.html`: 룰팩 뷰어 (표준/카테고리/매핑 탐색)
+    - `compare.html`: 룰팩 버전 비교 및 이력 관리
+    - `compare_detail.html`: 표준별 비교 상세 결과 (팝업)
 - **`user/`**: 사용자 관리 뷰
     - `list.html`: 사용자 목록 및 관리
 - **`settings/`**: 설정 관련 뷰

@@ -1,0 +1,749 @@
+{
+  "codelang": "COBOL",
+  "total_count_text": 27,
+  "fetched_count": 46,
+  "weaknesses": [
+    {
+      "title": "Cross-Site Scripting: Reflected",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Reflected#COBOL",
+      "id": "412",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Header Manipulation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Header%20Manipulation#COBOL",
+      "id": "415",
+      "abstract": "HTTP 응답 헤더에 확인되지 않은 데이터를 포함하면 캐시 감염(cache-poisoning), cross-site scripting, 교차 사용자 변조(cross-user defacement) 또는 페이지 하이재킹(page hijacking), 쿠키 조작 또는 open redirection 공격을 유발할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Integer Overflow",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Integer%20Overflow#COBOL",
+      "id": "701",
+      "abstract": "Integer overflow를 다루지 않으면 로직 오류 또는 buffer overflow가 발생할 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "COBOL",
+        "Solidity"
+      ]
+    },
+    {
+      "title": "Log Forging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Log%20Forging#COBOL",
+      "id": "417",
+      "abstract": "확인되지 않은 사용자 입력을 로그 파일에 쓰면 공격자가 로그 항목을 위조하거나 악성 콘텐트를 로그에 삽입할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Memory Leak",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Memory%20Leak#COBOL",
+      "id": "705",
+      "abstract": "메모리가 할당된 후 해제되지 않습니다.",
+      "supported_languages": [
+        "C/C++",
+        "COBOL",
+        "Objective-C"
+      ]
+    },
+    {
+      "title": "Memory Leak: Reallocation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Memory%20Leak&subcategory=Reallocation#COBOL",
+      "id": "706",
+      "abstract": "프로그램이 할당된 메모리 블록의 크기를 조절합니다. 크기 조절이 실패하는 경우 원래의 블록이 누출됩니다.",
+      "supported_languages": [
+        "C/C++",
+        "COBOL"
+      ]
+    },
+    {
+      "title": "Password Management",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management#COBOL",
+      "id": "454",
+      "abstract": "암호를 일반 텍스트로 저장하면 시스템 침해가 발생할 수 있습니다.",
+      "supported_languages": [
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management: Hardcoded Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Hardcoded%20Password#COBOL",
+      "id": "401",
+      "abstract": "Hardcoded Password는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "Bicep",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP",
+        "YAML"
+      ]
+    },
+    {
+      "title": "Password Management: Password in Comment",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Password%20in%20Comment#COBOL",
+      "id": "429",
+      "abstract": "암호 또는 암호 세부 정보를 시스템 또는 시스템 코드 안에 일반 텍스트로 저장하는 것은 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management: Weak Cryptography",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Weak%20Cryptography#COBOL",
+      "id": "455",
+      "abstract": "암호를 안전하지 못한 인코딩으로 감추는 것으로는 암호를 보호할 수 없습니다.",
+      "supported_languages": [
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Path Manipulation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Path%20Manipulation#COBOL",
+      "id": "419",
+      "abstract": "사용자 입력이 파일 시스템 작업에 사용되는 경로를 제어하는 것을 허용하면 그렇지 않을 때 보호할 수 있는 파일에 공격자가 접근하거나 수정할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Poor Condition Handling: Ignored Condition",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Poor%20Condition%20Handling&subcategory=Ignored%20Condition#COBOL",
+      "id": "709",
+      "abstract": "조건을 무시하면 프로그램이 예기치 못한 상태와 오류를 간과할 수도 있습니다.",
+      "supported_languages": [
+        "COBOL"
+      ]
+    },
+    {
+      "title": "Privacy Violation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Privacy%20Violation#COBOL",
+      "id": "420",
+      "abstract": "고객 암호 또는 주민 등록 번호 등의 개인 정보 취급 부주의는 사용자 개인 정보를 침해할 수 있고 불법인 경우가 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "Bicep",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Process Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Process%20Control#COBOL",
+      "id": "421",
+      "abstract": "신뢰할 수 없는 프로그램이나 트랜잭션 또는 신뢰할 수 없는 환경에서 프로그램 제어를 이동하면 응용 프로그램이 공격자 대신 악의적인 명령을 실행할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Race Condition: File System Access",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Race%20Condition&subcategory=File%20System%20Access#COBOL",
+      "id": "702",
+      "abstract": "파일 속성을 검사하는 시점과 파일을 사용하는 시점 사이의 간격이 권한 상승 공격을 실행하기 위해 익스플로이트될 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "COBOL"
+      ]
+    },
+    {
+      "title": "Resource Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Resource%20Injection#COBOL",
+      "id": "422",
+      "abstract": "사용자 입력이 리소스 ID를 제어하는 것을 허용하면 그렇지 않을 때 보호할 수 있는 시스템 리소스를 공격자가 접근하거나 수정할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Setting Manipulation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Setting%20Manipulation#COBOL",
+      "id": "441",
+      "abstract": "시스템 설정을 외부에서 제어하도록 허용하면 서비스를 손상시키거나 응용 프로그램이 비정상적으로 동작할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "SQL Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=SQL%20Injection#COBOL",
+      "id": "423",
+      "abstract": "신뢰할 수 없는 소스에서 나온 입력을 받아 동적으로 SQL 문을 생성하면 공격자가 해당 문의 의미를 수정하거나 임의의 SQL 명령을 실행할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "System Information Leak: External",
+      "url": "https://vulncat.fortify.com/ko/detail?category=System%20Information%20Leak&subcategory=External#COBOL",
+      "id": "425",
+      "abstract": "시스템 데이터 또는 디버깅 정보가 노출되면 공격자가 시스템을 파악하고 공격 계획을 세우는 것이 수월해집니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "System Information Leak: Internal",
+      "url": "https://vulncat.fortify.com/ko/detail?category=System%20Information%20Leak&subcategory=Internal#COBOL",
+      "id": "426",
+      "abstract": "시스템 데이터 또는 디버깅 정보가 노출되면 공격자가 시스템을 파악하고 공격 계획을 세우는 것이 수월해집니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Unreleased Resource",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unreleased%20Resource#COBOL",
+      "id": "704",
+      "abstract": "프로그램이 시스템 리소스를 해제하지 못할 수도 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "Golang",
+        "Java/JSP",
+        "PLSQL/TSQL"
+      ]
+    },
+    {
+      "title": "Unreleased Resource: Synchronization",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unreleased%20Resource&subcategory=Synchronization#COBOL",
+      "id": "703",
+      "abstract": "프로그램이 유지하고 있는 잠금(lock)을 해제하지 못하면 교착 상태(deadlock)가 될 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "Java/JSP",
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Access Control: Database",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Access%20Control&subcategory=Database#COBOL",
+      "id": "408",
+      "abstract": "적절한 access control 없이 사용자가 제어하는 기본 키를 포함하는 SQL 문을 실행하면 공격자가 허가 받지 않은 레코드를 볼 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Access Control: DLI",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Access%20Control&subcategory=DLI#COBOL",
+      "id": "707",
+      "abstract": "적절한 access control 없이 사용자가 제어하는 기본 키를 포함하는 EXEC DLI 명령을 실행하면 공격자가 허가 받지 않은 레코드를 볼 수 있습니다.",
+      "supported_languages": [
+        "COBOL"
+      ]
+    },
+    {
+      "title": "Access Control: MQ",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Access%20Control&subcategory=MQ#COBOL",
+      "id": "708",
+      "abstract": "사용자 입력이 MQ 개체 설명자의 필드를 제어하는 것을 허용하면 그렇지 않을 때 보호할 수 있는 MQ 리소스를 공격자가 접근하거나 수정할 수 있습니다.",
+      "supported_languages": [
+        "COBOL"
+      ]
+    },
+    {
+      "title": "Command Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Command%20Injection#COBOL",
+      "id": "409",
+      "abstract": "신뢰할 수 없는 소스 또는 신뢰할 수 없는 환경에서 명령을 실행하면 공격자 대신 응용 프로그램이 악의적인 명령을 실행할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Persistent",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Persistent#COBOL",
+      "id": "410",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Poor Validation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Poor%20Validation#Java%2fJSP",
+      "id": "411",
+      "abstract": "사용자 입력을 검증하는 데 HTML, XML 및 기타 인코딩 유형을 사용하면 브라우저가 악성 코드를 실행하게 될 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: SAPUI5 Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=SAPUI5%20Control#JavaScript%2fTypeScript",
+      "id": "910",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Self",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Self#JavaScript%2fTypeScript",
+      "id": "911",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: SOP Bypass",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=SOP%20Bypass#JavaScript%2fTypeScript",
+      "id": "912",
+      "abstract": "사용자 입력이 SOP(동일 출처 정책)를 결정하는 설정을 제어하도록 허용하면 XSS 취약점이 발생할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Untrusted HTML Downloads",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Untrusted%20HTML%20Downloads#JavaScript%2fTypeScript",
+      "id": "1432",
+      "abstract": "noopen으로 설정되는X-Download-Options헤더를 비활성화하면 다운로드된 HTML 페이지가 이를 제공하는 사이트의 보안 컨텍스트에서 실행됩니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site WebSocket Hijacking",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20WebSocket%20Hijacking#Java%2fJSP",
+      "id": "819",
+      "abstract": "서버가 도메인 간 요청을 허용하면서 요청의 출처를 확인하지 못해 공격자는 이러한 도메인 간 요청을 사용하여 양방향 WebSocket 연결을 하이재킹(hijacking)할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dangerous Field",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Field#Java%2fJSP",
+      "id": "521",
+      "abstract": "필드는 위험한 것으로 주석 추가되었습니다. 모든 사용은 플래그 지정됩니다.",
+      "supported_languages": [
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dangerous File Inclusion",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20File%20Inclusion#Java%2fJSP",
+      "id": "784",
+      "abstract": "확인되지 않은 사용자 입력이 HTML 파일에 동적으로 포함되는 파일을 제어하도록 허용하면 악성 코드가 실행될 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "PHP"
+      ]
+    },
+    {
+      "title": "Dangerous File Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20File%20Injection#PHP",
+      "id": "981",
+      "abstract": "공격자가 임의의 콘텐트가 있는 시스템에서 파일을 만들 수 있습니다.",
+      "supported_languages": [
+        "PHP"
+      ]
+    },
+    {
+      "title": "Dangerous Function",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function#C%2fC%2b%2b",
+      "id": "715",
+      "abstract": "안전하게 사용할 수 없는 함수는 사용하지 않는 것이 좋습니다.",
+      "supported_languages": [
+        "C/C++",
+        "PHP",
+        "PLSQL/TSQL",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Dangerous Function: strcpy()",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function&subcategory=strcpy()#C%2fC%2b%2b",
+      "id": "716",
+      "abstract": "안전하게 사용할 수 없는 함수는 사용하지 않는 것이 좋습니다.",
+      "supported_languages": [
+        "C/C++"
+      ]
+    },
+    {
+      "title": "Dangerous Function: Unsafe Regular Expression",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function&subcategory=Unsafe%20Regular%20Expression#PHP",
+      "id": "957",
+      "abstract": "안전하게 사용할 수 없는 함수는 사용하면 안 됩니다.",
+      "supported_languages": [
+        "PHP"
+      ]
+    },
+    {
+      "title": "Dangerous Function: xp_cmdshell",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function&subcategory=xp_cmdshell#PLSQL%2fTSQL",
+      "id": "1042",
+      "abstract": "xp_cmdshell함수는 안전하게 사용할 수 없습니다. 사용하지 않는 것이 좋습니다.",
+      "supported_languages": [
+        "PLSQL/TSQL"
+      ]
+    },
+    {
+      "title": "Dangerous Method",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Method#Java%2fJSP",
+      "id": "520",
+      "abstract": "메서드는 위험한 것으로 주석 추가되었습니다. 이 메서드의 모든 사용은 이슈로 플래그 지정되었습니다.",
+      "supported_languages": [
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dangerous Type",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Type#Java%2fJSP",
+      "id": "522",
+      "abstract": "이 변수는 위험한 것으로 주석 처리된 유형의 변수입니다.",
+      "supported_languages": [
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Data Poisoning: AI Embedding",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Data%20Poisoning&subcategory=AI%20Embedding#JavaScript%2fTypeScript",
+      "id": "1019",
+      "abstract": "검증되지 않은 데이터를 LLM 임베딩 API로 보냅니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript",
+        "Python"
+      ]
+    },
+    {
+      "title": "Data Poisoning: AI Training",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Data%20Poisoning&subcategory=AI%20Training#Python",
+      "id": "1018",
+      "abstract": "검증되지 않은 데이터를 LLM 미세 조정 API로 보냅니다.",
+      "supported_languages": [
+        "Python"
+      ]
+    },
+    {
+      "title": "Database Bad Practices: Use of Restricted Accounts",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Database%20Bad%20Practices&subcategory=Use%20of%20Restricted%20Accounts#PLSQL%2fTSQL",
+      "id": "1039",
+      "abstract": "admin, administrator, guest, root 또는 sa 계정 중 하나를 사용하여 데이터베이스에 연결하려고 했습니다.",
+      "supported_languages": [
+        "PLSQL/TSQL"
+      ]
+    },
+    {
+      "title": "Dead Code",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dead%20Code#C%2fC%2b%2b",
+      "id": "733",
+      "abstract": "이 문은 결코 실행되지 않습니다.",
+      "supported_languages": [
+        "C/C++",
+        "Solidity"
+      ]
+    }
+  ]
+}

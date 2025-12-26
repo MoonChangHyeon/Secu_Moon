@@ -1,0 +1,1911 @@
+{
+  "codelang": "JavaScript/TypeScript",
+  "total_count_text": 110,
+  "fetched_count": 123,
+  "weaknesses": [
+    {
+      "title": "Cross-Site Scripting: Poor Validation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Poor%20Validation#JavaScript%2fTypeScript",
+      "id": "411",
+      "abstract": "사용자 입력을 검증하는 데 HTML, XML 및 기타 인코딩 유형을 사용하면 브라우저가 악성 코드를 실행하게 될 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Reflected",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Reflected#JavaScript%2fTypeScript",
+      "id": "412",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: SAPUI5 Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=SAPUI5%20Control#JavaScript%2fTypeScript",
+      "id": "910",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Self",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Self#JavaScript%2fTypeScript",
+      "id": "911",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: SOP Bypass",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=SOP%20Bypass#JavaScript%2fTypeScript",
+      "id": "912",
+      "abstract": "사용자 입력이 SOP(동일 출처 정책)를 결정하는 설정을 제어하도록 허용하면 XSS 취약점이 발생할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Untrusted HTML Downloads",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Untrusted%20HTML%20Downloads#JavaScript%2fTypeScript",
+      "id": "1432",
+      "abstract": "noopen으로 설정되는X-Download-Options헤더를 비활성화하면 다운로드된 HTML 페이지가 이를 제공하는 사이트의 보안 컨텍스트에서 실행됩니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Data Poisoning: AI Embedding",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Data%20Poisoning&subcategory=AI%20Embedding#JavaScript%2fTypeScript",
+      "id": "1019",
+      "abstract": "검증되지 않은 데이터를 LLM 임베딩 API로 보냅니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript",
+        "Python"
+      ]
+    },
+    {
+      "title": "Denial of Service",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Denial%20of%20Service#JavaScript%2fTypeScript",
+      "id": "413",
+      "abstract": "공격자가 프로그램을 중단할 수 있게 되거나 정식 사용자가 이용할 수 없게 됩니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Denial of Service: Regular Expression",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Denial%20of%20Service&subcategory=Regular%20Expression#JavaScript%2fTypeScript",
+      "id": "440",
+      "abstract": "신뢰할 수 없는 데이터가 응용 프로그램에 전달되어 정규식으로 사용됩니다. 그러면 스레드가 CPU 리소스를 과도하게 사용할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C#/VB.NET/ASP.NET",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "DNS Spoofing",
+      "url": "https://vulncat.fortify.com/ko/detail?category=DNS%20Spoofing#JavaScript%2fTypeScript",
+      "id": "1434",
+      "abstract": "DNS 설정에 대한 외부 제어를 허용하면 서비스를 손상시키거나 응용 프로그램이 비정상적으로 동작할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Dynamic Code Evaluation: Code Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dynamic%20Code%20Evaluation&subcategory=Code%20Injection#JavaScript%2fTypeScript",
+      "id": "414",
+      "abstract": "런타임 시 사용자가 제어하는 명령어를 해석하면 공격자가 악성 코드를 실행할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Dynamic Code Evaluation: Script Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dynamic%20Code%20Evaluation&subcategory=Script%20Injection#JavaScript%2fTypeScript",
+      "id": "816",
+      "abstract": "런타임 시 사용자가 제어하는 명령어를 해석하면 공격자가 악성 코드를 실행할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Dynamic Code Evaluation: Unsafe YAML Deserialization",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dynamic%20Code%20Evaluation&subcategory=Unsafe%20YAML%20Deserialization#JavaScript%2fTypeScript",
+      "id": "1013",
+      "abstract": "사용자 제어 YAML 스트림을 역직렬화하면 공격자가 서버에서 임의 코드를 실행하거나, 응용 프로그램 논리를 남용하거나, DoS(Denial of Service)를 일으킬 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Python"
+      ]
+    },
+    {
+      "title": "GraphQL Bad Practices: GraphiQL Enabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=GraphQL%20Bad%20Practices&subcategory=GraphiQL%20Enabled#JavaScript%2fTypeScript",
+      "id": "989",
+      "abstract": "GraphQL 끝점은 GraphiQL을 활성화하도록 구성되어 있습니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Python"
+      ]
+    },
+    {
+      "title": "GraphQL Bad Practices: Introspection Enabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=GraphQL%20Bad%20Practices&subcategory=Introspection%20Enabled#JavaScript%2fTypeScript",
+      "id": "988",
+      "abstract": "스키마 확인이 비활성화되지 않은 상태로 GraphQL 끝점이 생성됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Python"
+      ]
+    },
+    {
+      "title": "Handlebars Misconfiguration: Escaping Disabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Handlebars%20Misconfiguration&subcategory=Escaping%20Disabled#JavaScript%2fTypeScript",
+      "id": "1435",
+      "abstract": "Handlebars 템플릿에서 이스케이프가 처리가 비활성화되어 여러 가지 새로운 취약점이 발생할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Handlebars Misconfiguration: Prototypes Allowed",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Handlebars%20Misconfiguration&subcategory=Prototypes%20Allowed#JavaScript%2fTypeScript",
+      "id": "1436",
+      "abstract": "Handlebars 템플릿에서 프로토타입이 허용되어 프로토타입 오염 공격에 노출됩니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Header Manipulation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Header%20Manipulation#JavaScript%2fTypeScript",
+      "id": "415",
+      "abstract": "HTTP 응답 헤더에 확인되지 않은 데이터를 포함하면 캐시 감염(cache-poisoning), cross-site scripting, 교차 사용자 변조(cross-user defacement) 또는 페이지 하이재킹(page hijacking), 쿠키 조작 또는 open redirection 공격을 유발할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Header Manipulation: Cookies",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Header%20Manipulation&subcategory=Cookies#JavaScript%2fTypeScript",
+      "id": "416",
+      "abstract": "쿠키에 확인되지 않은 데이터를 포함하면 HTTP 응답 헤더를 조작할 수 있게 되며 캐시 감염(cache-poisoning), cross-site scripting, 교차 사용자 변조(cross-user defacement), 페이지 하이재킹(page hijacking), 쿠키 조작, open redirection 등이 가능해집니다.",
+      "supported_languages": [
+        "ABAP",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "Python",
+        "Scala",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Helmet Misconfiguration: Insecure XSS Filter",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Helmet%20Misconfiguration&subcategory=Insecure%20XSS%20Filter#JavaScript%2fTypeScript",
+      "id": "1650",
+      "abstract": "모든 버전의 Internet Explorer에 대해X-XSS-Protection을1; mode=block으로 설정하면 이전 버전의 브라우저가 Cross-Site Scripting 취약점에 노출됩니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "HTML5: Cross-Site Scripting Protection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=HTML5&subcategory=Cross-Site%20Scripting%20Protection#JavaScript%2fTypeScript",
+      "id": "1645",
+      "abstract": "X-XSS-Protection헤더가 명시적으로 비활성화되어 있어 Cross-Site Scripting 공격의 위험이 증가할 수 있습니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "HTML5: Deprecated Header",
+      "url": "https://vulncat.fortify.com/ko/detail?category=HTML5&subcategory=Deprecated%20Header#JavaScript%2fTypeScript",
+      "id": "856",
+      "abstract": "더 이상 사용되지 않는X-XSS-Protection응답 헤더는 실제로 기존 브라우저를 XSS(Cross-Site Scripting) 취약점에 다시 노출할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Python",
+        "Universal"
+      ]
+    },
+    {
+      "title": "HTML5: Easy-to-Guess Database Name",
+      "url": "https://vulncat.fortify.com/ko/detail?category=HTML5&subcategory=Easy-to-Guess%20Database%20Name#JavaScript%2fTypeScript",
+      "id": "913",
+      "abstract": "Web SQL 데이터베이스 이름을 추측하기 쉬우면 승인되지 않은 사용자가 데이터 도난 및 데이터베이스 손상을 초래할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "HTML5: MIME Sniffing",
+      "url": "https://vulncat.fortify.com/ko/detail?category=HTML5&subcategory=MIME%20Sniffing#JavaScript%2fTypeScript",
+      "id": "768",
+      "abstract": "Application_BeginRequest메서드가 비어 있거나X-Content-Type-Options를nosniff로 설정하는 함수 호출을 포함하지 않거나 해당 헤더를 제거하려고 합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Python"
+      ]
+    },
+    {
+      "title": "HTML5: Overly Permissive Message Posting Policy",
+      "url": "https://vulncat.fortify.com/ko/detail?category=HTML5&subcategory=Overly%20Permissive%20Message%20Posting%20Policy#JavaScript%2fTypeScript",
+      "id": "510",
+      "abstract": "프로그램은 지나치게 허용적인 대상 원본을 사용하여 문서 간 메시지를 게시합니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Insecure Randomness",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Randomness#JavaScript%2fTypeScript",
+      "id": "405",
+      "abstract": "표준 의사 난수 발생기는 암호화 공격을 차단하지 못합니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Insecure SSL: Server Identity Verification Disabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20SSL&subcategory=Server%20Identity%20Verification%20Disabled#JavaScript%2fTypeScript",
+      "id": "500",
+      "abstract": "이로 인해 SSL 연결을 설정할 때 서버 ID 확인이 비활성화됩니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Transport#JavaScript%2fTypeScript",
+      "id": "446",
+      "abstract": "호출에서 비보안 프로토콜을 사용하여 서버와 통신합니다.",
+      "supported_languages": [
+        "ABAP",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Insecure Transport: HSTS not Set",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Transport&subcategory=HSTS%20not%20Set#JavaScript%2fTypeScript",
+      "id": "1006",
+      "abstract": "응용 프로그램이HSTS(HTTP Strict Transport Security) 헤더를 설정하지 않습니다. 이로 인해 공격자가 HTTPS 스트리핑 공격을 통해 SSL/TLS 연결을 일반 HTTP 연결로 바꾸고 민감한 정보를 훔칠 수 있습니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Python"
+      ]
+    },
+    {
+      "title": "Insecure Transport: Insufficient Diffie Hellman Strength",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Transport&subcategory=Insufficient%20Diffie%20Hellman%20Strength#JavaScript%2fTypeScript",
+      "id": "1437",
+      "abstract": "크기가 2048비트 미만인 소수를 포함하는 Diffie-Hellman 그룹을 사용하면 응용 프로그램이 MiTM(Man-in-The-Middle) 공격에 취약해집니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Insecure Transport: Weak SSL Cipher",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Transport&subcategory=Weak%20SSL%20Cipher#JavaScript%2fTypeScript",
+      "id": "849",
+      "abstract": "암호화된 통신을 활성화하기 위해 약한 암호화 알고리즘 집합을 사용하면 공격자가 민감한 정보를 훔칠 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Insecure Transport: Weak SSL Protocol",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Transport&subcategory=Weak%20SSL%20Protocol#JavaScript%2fTypeScript",
+      "id": "62",
+      "abstract": "SSLv2, SSLv23, SSLv3, TLSv1.0 및 TLSv1.1 프로토콜에는 보안을 위협하는 결함이 포함되어 있으므로 민감한 데이터를 전송하는 데 사용해서는 안 됩니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal"
+      ]
+    },
+    {
+      "title": "JavaScript Hijacking",
+      "url": "https://vulncat.fortify.com/ko/detail?category=JavaScript%20Hijacking#JavaScript%2fTypeScript",
+      "id": "1649",
+      "abstract": "민감한 데이터를 전송하도록 JavaScript 주석을 사용하는 응용 프로그램은 JavaScript 하이재킹(hijacking)에 취약하므로 권한이 없는 공격자가 취약한 응용 프로그램의 기밀 데이터를 읽을 수 있습니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "JavaScript Hijacking: Vulnerable Framework",
+      "url": "https://vulncat.fortify.com/ko/detail?category=JavaScript%20Hijacking&subcategory=Vulnerable%20Framework#JavaScript%2fTypeScript",
+      "id": "1644",
+      "abstract": "Microsoft AJAX.NET(Atlas)를 사용하는 응용 프로그램은 JavaScript 하이재킹(hijacking)에 취약하며 권한이 없는 공격자가 기밀 데이터를 읽도록 허용합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "JSON Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=JSON%20Injection#JavaScript%2fTypeScript",
+      "id": "822",
+      "abstract": "이 메서드는 확인되지 않은 입력을 JSON에 작성합니다. 이 호출로 공격자는 JSON 엔티티에 임의의 요소나 속성을 삽입할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Key Management: Empty Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Empty%20Encryption%20Key#JavaScript%2fTypeScript",
+      "id": "395",
+      "abstract": "빈 암호화 키는 쉽게 해결할 수 없는 방식으로 보안을 침해할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "C/C++",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Key Management: Empty HMAC Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Empty%20HMAC%20Key#JavaScript%2fTypeScript",
+      "id": "438",
+      "abstract": "빈 HMAC 키는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Key Management: Empty PBE Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Empty%20PBE%20Password#JavaScript%2fTypeScript",
+      "id": "827",
+      "abstract": "해당 비밀번호 인수에 대해 빈 값을 전달받은 비밀번호 기반 키 파생 함수를 통해 생성된 키를 사용하면 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Key Management: Hardcoded Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Hardcoded%20Encryption%20Key#JavaScript%2fTypeScript",
+      "id": "396",
+      "abstract": "하드코드 암호화 키는 쉽게 해결할 수 없는 방식으로 보안을 침해할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP",
+        "YAML"
+      ]
+    },
+    {
+      "title": "Key Management: Hardcoded HMAC Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Hardcoded%20HMAC%20Key#JavaScript%2fTypeScript",
+      "id": "437",
+      "abstract": "하드코드된 HMAC 키는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Key Management: Hardcoded PBE Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Hardcoded%20PBE%20Password#JavaScript%2fTypeScript",
+      "id": "826",
+      "abstract": "하드코드된 비밀번호는 PBKDF(비밀번호 기반 키 파생 함수)에서 키를 생성하는 데 사용됩니다. PBKDF에 하드코드된 비밀번호를 제공하면 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킵니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Key Management: Null Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Null%20Encryption%20Key#JavaScript%2fTypeScript",
+      "id": "394",
+      "abstract": "Null암호화 키는 쉽게 해결할 수 없는 방식으로 보안을 침해할 수 있습니다.",
+      "supported_languages": [
+        "ActionScript",
+        "C/C++",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Log Forging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Log%20Forging#JavaScript%2fTypeScript",
+      "id": "417",
+      "abstract": "확인되지 않은 사용자 입력을 로그 파일에 쓰면 공격자가 로그 항목을 위조하거나 악성 콘텐트를 로그에 삽입할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Log Forging (debug)",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Log%20Forging%20(debug)#JavaScript%2fTypeScript",
+      "id": "487",
+      "abstract": "확인되지 않은 사용자 입력을 로그 파일에 쓰면 공격자가 로그 항목을 위조하거나 악성 콘텐트를 로그에 삽입할 수 있습니다.",
+      "supported_languages": [
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Python",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "NoSQL Injection: MarsDB",
+      "url": "https://vulncat.fortify.com/ko/detail?category=NoSQL%20Injection&subcategory=MarsDB#JavaScript%2fTypeScript",
+      "id": "1426",
+      "abstract": "신뢰할 수 없는 소스에서 나온 입력을 받아 동적으로 NoSQL 문을 생성하면 공격자가 해당 문의 의미를 수정하거나 임의의 NoSQL 명령을 실행할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Often Misused: Mixing Template Languages",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Often%20Misused&subcategory=Mixing%20Template%20Languages#JavaScript%2fTypeScript",
+      "id": "1438",
+      "abstract": "Cross-Site Scripting 보호를 우회하는 것을 방지하려면 여러 가지 템플릿 언어를 사용하면 안 됩니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Open Redirect",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Open%20Redirect#JavaScript%2fTypeScript",
+      "id": "418",
+      "abstract": "리디렉션에 사용된 URL을 제어하도록 확인되지 않은 입력을 허용하면 피싱 공격에 도움이 됩니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management#JavaScript%2fTypeScript",
+      "id": "454",
+      "abstract": "암호를 일반 텍스트로 저장하면 시스템 침해가 발생할 수 있습니다.",
+      "supported_languages": [
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management: Empty Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Empty%20Password#JavaScript%2fTypeScript",
+      "id": "428",
+      "abstract": "빈 암호는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "Bicep",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management: Hardcoded Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Hardcoded%20Password#JavaScript%2fTypeScript",
+      "id": "401",
+      "abstract": "Hardcoded Password는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "Bicep",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP",
+        "YAML"
+      ]
+    },
+    {
+      "title": "Password Management: Null Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Null%20Password#JavaScript%2fTypeScript",
+      "id": "453",
+      "abstract": "Null암호는 보안을 침해할 수 있습니다.",
+      "supported_languages": [
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management: Password in Comment",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Password%20in%20Comment#JavaScript%2fTypeScript",
+      "id": "429",
+      "abstract": "암호 또는 암호 세부 정보를 시스템 또는 시스템 코드 안에 일반 텍스트로 저장하는 것은 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management: Weak Cryptography",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Weak%20Cryptography#JavaScript%2fTypeScript",
+      "id": "455",
+      "abstract": "암호를 안전하지 못한 인코딩으로 감추는 것으로는 암호를 보호할 수 없습니다.",
+      "supported_languages": [
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Path Manipulation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Path%20Manipulation#JavaScript%2fTypeScript",
+      "id": "419",
+      "abstract": "사용자 입력이 파일 시스템 작업에 사용되는 경로를 제어하는 것을 허용하면 그렇지 않을 때 보호할 수 있는 파일에 공격자가 접근하거나 수정할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Path Manipulation: Zip Entry Overwrite",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Path%20Manipulation&subcategory=Zip%20Entry%20Overwrite#JavaScript%2fTypeScript",
+      "id": "445",
+      "abstract": "사용자 입력이 파일 시스템 작업에 사용되는 경로를 제어할 수 있으면 공격자가 시스템에서 임의로 파일을 덮어쓸 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Poor Logging Practice: Use of a System Output Stream",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Poor%20Logging%20Practice&subcategory=Use%20of%20a%20System%20Output%20Stream#JavaScript%2fTypeScript",
+      "id": "860",
+      "abstract": "전용 로깅 기능 대신Console.Out또는Console.Error를 사용하면 프로그램의 동작을 모니터링하기가 어렵습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Python",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Privacy Violation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Privacy%20Violation#JavaScript%2fTypeScript",
+      "id": "420",
+      "abstract": "고객 암호 또는 주민 등록 번호 등의 개인 정보 취급 부주의는 사용자 개인 정보를 침해할 수 있고 불법인 경우가 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "Bicep",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Process Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Process%20Control#JavaScript%2fTypeScript",
+      "id": "421",
+      "abstract": "신뢰할 수 없는 프로그램이나 트랜잭션 또는 신뢰할 수 없는 환경에서 프로그램 제어를 이동하면 응용 프로그램이 공격자 대신 악의적인 명령을 실행할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Prompt Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Prompt%20Injection#JavaScript%2fTypeScript",
+      "id": "1017",
+      "abstract": "검증되지 않은 데이터를 AI 모델의 시스템 프롬프트로 보낼 경우 공격자가 출력을 조작하거나 무단 작업을 실행하여 시스템 무결성과 데이터 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Python",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Prompt Injection: Persistent",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Prompt%20Injection&subcategory=Persistent#JavaScript%2fTypeScript",
+      "id": "1016",
+      "abstract": "검증되지 않은 데이터를 AI 모델의 시스템 프롬프트로 보낼 경우 공격자가 출력을 조작하거나 무단 작업을 실행하여 시스템 무결성과 데이터 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Python"
+      ]
+    },
+    {
+      "title": "Prototype Pollution",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Prototype%20Pollution#JavaScript%2fTypeScript",
+      "id": "907",
+      "abstract": "그러면 응용 프로그램에서 사용자가 프로토타입을 오염시킬 수 있게 됩니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Race Condition",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Race%20Condition#JavaScript%2fTypeScript",
+      "id": "1427",
+      "abstract": "이러한 콜백이 설정되면 race condition이 발생할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "React Bad Practices: Dangerously Set InnerHTML",
+      "url": "https://vulncat.fortify.com/ko/detail?category=React%20Bad%20Practices&subcategory=Dangerously%20Set%20InnerHTML#JavaScript%2fTypeScript",
+      "id": "1439",
+      "abstract": "dangerouslySetInnerHTML속성이 코드에서 불필요하게 HTML을 설정합니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Resource Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Resource%20Injection#JavaScript%2fTypeScript",
+      "id": "422",
+      "abstract": "사용자 입력이 리소스 ID를 제어하는 것을 허용하면 그렇지 않을 때 보호할 수 있는 시스템 리소스를 공격자가 접근하거나 수정할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "SAPUI5 Misconfiguration: Unsanitized Editor",
+      "url": "https://vulncat.fortify.com/ko/detail?category=SAPUI5%20Misconfiguration&subcategory=Unsanitized%20Editor#JavaScript%2fTypeScript",
+      "id": "914",
+      "abstract": "sanitizeValue를false로 설정하면 삭제되지 않은 입력이 Cross-Site Scripting과 같은 취약점으로 이어질 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Server-Side Request Forgery",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Server-Side%20Request%20Forgery#JavaScript%2fTypeScript",
+      "id": "444",
+      "abstract": "응용 프로그램은 리소스 URI를 조작하는 데 사용자 제어 데이터를 사용하여 타사 시스템과의 네트워크 연결을 시작합니다.",
+      "supported_languages": [
+        "ABAP",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Server-Side Template Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Server-Side%20Template%20Injection#JavaScript%2fTypeScript",
+      "id": "1012",
+      "abstract": "사용자 제어 데이터는 템플릿 엔진의 템플릿으로 사용되어 공격자가 템플릿 컨텍스트에 액세스하고 일부 경우 응용 프로그램 서버에서 임의의 코드를 삽입 및 실행할 수 있도록 합니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Python"
+      ]
+    },
+    {
+      "title": "Setting Manipulation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Setting%20Manipulation#JavaScript%2fTypeScript",
+      "id": "441",
+      "abstract": "시스템 설정을 외부에서 제어하도록 허용하면 서비스를 손상시키거나 응용 프로그램이 비정상적으로 동작할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Setting Manipulation: User-Controlled Allow List",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Setting%20Manipulation&subcategory=User-Controlled%20Allow%20List#JavaScript%2fTypeScript",
+      "id": "1440",
+      "abstract": "응용 프로그램은 사용자가 허용 목록을 정의하도록 허용하므로 사용자가 악의적인 입력을 안전한 입력으로 표시할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Setting Manipulation: User-Controlled Expression Delimiters",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Setting%20Manipulation&subcategory=User-Controlled%20Expression%20Delimiters#JavaScript%2fTypeScript",
+      "id": "1441",
+      "abstract": "응용 프로그램은 사용자가 식 구분 기호를 정의하도록 허용하므로 사용자가 Cross-Site Scripting 보호를 우회할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "SQL Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=SQL%20Injection#JavaScript%2fTypeScript",
+      "id": "423",
+      "abstract": "신뢰할 수 없는 소스에서 나온 입력을 받아 동적으로 SQL 문을 생성하면 공격자가 해당 문의 의미를 수정하거나 임의의 SQL 명령을 실행할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "System Information Leak",
+      "url": "https://vulncat.fortify.com/ko/detail?category=System%20Information%20Leak#JavaScript%2fTypeScript",
+      "id": "424",
+      "abstract": "시스템 데이터 또는 디버깅 정보가 노출되면 공격자가 시스템을 파악하고 공격 계획을 세우는 것이 수월해집니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "System Information Leak: External",
+      "url": "https://vulncat.fortify.com/ko/detail?category=System%20Information%20Leak&subcategory=External#JavaScript%2fTypeScript",
+      "id": "425",
+      "abstract": "시스템 데이터 또는 디버깅 정보가 노출되면 공격자가 시스템을 파악하고 공격 계획을 세우는 것이 수월해집니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "System Information Leak: Internal",
+      "url": "https://vulncat.fortify.com/ko/detail?category=System%20Information%20Leak&subcategory=Internal#JavaScript%2fTypeScript",
+      "id": "426",
+      "abstract": "시스템 데이터 또는 디버깅 정보가 노출되면 공격자가 시스템을 파악하고 공격 계획을 세우는 것이 수월해집니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Template Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Template%20Injection#JavaScript%2fTypeScript",
+      "id": "1443",
+      "abstract": "사용자 제어 데이터가 템플릿 엔진의 템플릿으로 사용되어 공격자가 템플릿 컨텍스트에 액세스하고 경우에 따라 임의 코드를 삽입 및 실행할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Trust Boundary Violation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Trust%20Boundary%20Violation#JavaScript%2fTypeScript",
+      "id": "795",
+      "abstract": "같은 데이터 구조체의 신뢰할 수 있는 데이터와 신뢰할 수 없는 데이터가 혼재하면 프로그래머가 실수로 확인되지 않은 데이터를 신뢰하는 일이 발생합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PLSQL/TSQL",
+        "Python",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Access Control: Azure",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Access%20Control&subcategory=Azure#JavaScript%2fTypeScript",
+      "id": "1428",
+      "abstract": "적절한 access control 없이 사용자가 제어하는 값을 사용하여 Azure 큐/Blob에 접근하는 경우 공격자가 권한 없는 큐/blob 및 해당 메시지/콘텐트를 확인/수정/삭제할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Access Control: Database",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Access%20Control&subcategory=Database#JavaScript%2fTypeScript",
+      "id": "408",
+      "abstract": "적절한 access control 없이 사용자가 제어하는 기본 키를 포함하는 SQL 문을 실행하면 공격자가 허가 받지 않은 레코드를 볼 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "AngularJS Misconfiguration: Dangerous Protocol Allowed",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AngularJS%20Misconfiguration&subcategory=Dangerous%20Protocol%20Allowed#JavaScript%2fTypeScript",
+      "id": "1429",
+      "abstract": "응용 프로그램은 JavaScript를 허용되는 프로토콜로서 허용하므로, Cross-Site Scripting 취약점이 발생할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "AngularJS Misconfiguration: Strict Contextual Escaping Disabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AngularJS%20Misconfiguration&subcategory=Strict%20Contextual%20Escaping%20Disabled#JavaScript%2fTypeScript",
+      "id": "1430",
+      "abstract": "AngularJS 1 응용 프로그램에서 Strict Contextual Escaping이 비활성화되어 있으므로, 여러 새 취약점이 발생할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Client-Side Template Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Client-Side%20Template%20Injection#JavaScript%2fTypeScript",
+      "id": "1442",
+      "abstract": "사용자 제어 데이터가 템플릿 엔진의 템플릿으로 사용되어 공격자가 템플릿 컨텍스트에 액세스하고 경우에 따라 브라우저에서 악성 코드를 삽입 및 실행할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Code Correctness: Negative Content-Length",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Code%20Correctness&subcategory=Negative%20Content-Length#JavaScript%2fTypeScript",
+      "id": "874",
+      "abstract": "Content-Length헤더가 음수로 설정됩니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Command Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Command%20Injection#JavaScript%2fTypeScript",
+      "id": "409",
+      "abstract": "신뢰할 수 없는 소스 또는 신뢰할 수 없는 환경에서 명령을 실행하면 공격자 대신 응용 프로그램이 악의적인 명령을 실행할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Cookie Security: Cookie not Sent Over SSL",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=Cookie%20not%20Sent%20Over%20SSL#JavaScript%2fTypeScript",
+      "id": "534",
+      "abstract": "true로 설정된isSecure매개 변수 없이 쿠키가 생성됩니다.",
+      "supported_languages": [
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Cookie Security: HTTPOnly not Set",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=HTTPOnly%20not%20Set#JavaScript%2fTypeScript",
+      "id": "813",
+      "abstract": "프로그램은 쿠키를 생성하지만HttpOnly플래그를true로 설정하지 못합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "Python",
+        "Scala"
+      ]
+    },
+    {
+      "title": "Cookie Security: Missing SameSite Attribute",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=Missing%20SameSite%20Attribute#JavaScript%2fTypeScript",
+      "id": "535",
+      "abstract": "프로그램이 세션 쿠키에SameSite속성을 설정하지 못합니다.",
+      "supported_languages": [
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "Python",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Cookie Security: Overly Broad Domain",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=Overly%20Broad%20Domain#JavaScript%2fTypeScript",
+      "id": "807",
+      "abstract": "지나치게 광범위한 도메인을 가진 쿠키는 다른 응용 프로그램을 통해 공격할 수 있도록 응용 프로그램을 열어 줍니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Cookie Security: Overly Broad Path",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=Overly%20Broad%20Path#JavaScript%2fTypeScript",
+      "id": "532",
+      "abstract": "동일한 도메인의 다른 응용 프로그램이 Overly Broad Path를 가진 쿠키에 액세스할 수 있습니다.",
+      "supported_languages": [
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Cookie Security: Overly Permissive SameSite Attribute",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=Overly%20Permissive%20SameSite%20Attribute#JavaScript%2fTypeScript",
+      "id": "536",
+      "abstract": "세션 쿠키의SameSite매개 변수가Strict로 설정되지 않았습니다.",
+      "supported_languages": [
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "Python",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Cross-Frame Scripting",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Frame%20Scripting#JavaScript%2fTypeScript",
+      "id": "1005",
+      "abstract": "iframe 내에서 응용 프로그램의 포함을 제한하지 못하면 Cross-Site Request Forgery 공격이나 피싱 공격이 발생할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript",
+        "Python",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Cross-Session Contamination",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Session%20Contamination#JavaScript%2fTypeScript",
+      "id": "906",
+      "abstract": "localStorage및sessionStorage사이의 값을 이동하면 모르는 사이에 민감한 정보가 노출될 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Request Forgery",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Request%20Forgery#JavaScript%2fTypeScript",
+      "id": "537",
+      "abstract": "Visualforce 페이지 작업 메서드 또는 컨트롤러 생성자는 중요한 작업 수행 시 무단 요청으로부터 해당 작업을 보호하지 않습니다.",
+      "supported_languages": [
+        "Apex",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Python",
+        "Scala",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: AI",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=AI#JavaScript%2fTypeScript",
+      "id": "486",
+      "abstract": "검증되지 않은 기계 학습 모델 출력을 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Python",
+        "Scala"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: DOM",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=DOM#JavaScript%2fTypeScript",
+      "id": "909",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: DOM AI",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=DOM%20AI#JavaScript%2fTypeScript",
+      "id": "908",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Handlebars Helper",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Handlebars%20Helper#JavaScript%2fTypeScript",
+      "id": "1431",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Persistent",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Persistent#JavaScript%2fTypeScript",
+      "id": "410",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Hash",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Hash#JavaScript%2fTypeScript",
+      "id": "404",
+      "abstract": "약한 암호화 해시는 데이터의 무결성을 보장할 수 없고 보안이 중요한 컨텍스트에 사용되어서는 안 됩니다.",
+      "supported_languages": [
+        "ABAP",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Hash: Empty PBE Salt",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Hash&subcategory=Empty%20PBE%20Salt#JavaScript%2fTypeScript",
+      "id": "924",
+      "abstract": "빈 솔트는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Hash: Hardcoded PBE Salt",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Hash&subcategory=Hardcoded%20PBE%20Salt#JavaScript%2fTypeScript",
+      "id": "870",
+      "abstract": "하드코드된 솔트는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Hash: Insecure PBE Iteration Count",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Hash&subcategory=Insecure%20PBE%20Iteration%20Count#JavaScript%2fTypeScript",
+      "id": "808",
+      "abstract": "암호 기반 키 파생 함수에서 사용하는 반복 횟수가 지나치게 낮습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Hash: Predictable Salt",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Hash&subcategory=Predictable%20Salt#JavaScript%2fTypeScript",
+      "id": "833",
+      "abstract": "솔트 값은 암호화 의사 난수 발생기를 사용하여 생성해야 합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "JavaScript/TypeScript",
+        "PHP",
+        "Python",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Hash: User-Controlled PBE Salt",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Hash&subcategory=User-Controlled%20PBE%20Salt#JavaScript%2fTypeScript",
+      "id": "831",
+      "abstract": "감염될 수 있는 사용자 입력을 PBKDF에 솔트 매개 변수로 전달해서는 안 됩니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Weak Encryption",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Encryption#JavaScript%2fTypeScript",
+      "id": "403",
+      "abstract": "식별된 호출은 민감한 데이터의 기밀성을 보장할 수 없는 약한 암호화 알고리즘을 사용합니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Weak Encryption: Insecure Initialization Vector",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Encryption&subcategory=Insecure%20Initialization%20Vector#JavaScript%2fTypeScript",
+      "id": "528",
+      "abstract": "암호화 의사 난수 발생기를 사용하여 IV(Initialization Vector)를 생성해야 합니다.",
+      "supported_languages": [
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Weak Encryption: Insecure Mode of Operation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Encryption&subcategory=Insecure%20Mode%20of%20Operation#JavaScript%2fTypeScript",
+      "id": "810",
+      "abstract": "안전하지 않은 작업 모드로 암호화 알고리즘을 사용하지 마십시오.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Weak Encryption: Insufficient Key Size",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Encryption&subcategory=Insufficient%20Key%20Size#JavaScript%2fTypeScript",
+      "id": "490",
+      "abstract": "불충분한 키 크기를 사용하면 강력한 암호화 알고리즘이더라도 무차별 대입 공격에 크게 취약해질 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Weak Encryption: Stream Cipher",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Encryption&subcategory=Stream%20Cipher#JavaScript%2fTypeScript",
+      "id": "861",
+      "abstract": "암호화된 데이터를 디스크에 저장하거나 키를 여러 번 사용할 때 스트림 암호를 사용하는 것은 위험합니다.",
+      "supported_languages": [
+        "Golang",
+        "JavaScript/TypeScript",
+        "Python",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "XML External Entity Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=XML%20External%20Entity%20Injection#JavaScript%2fTypeScript",
+      "id": "447",
+      "abstract": "외부 엔터티 확인을 방지 또는 제한하도록 구성되지 않은 XML 파서를 사용하면 파서가 XML 외부 엔터티 공격에 노출될 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "XML Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=XML%20Injection#JavaScript%2fTypeScript",
+      "id": "450",
+      "abstract": "확인되지 않은 데이터를 XML 문서에 쓰면 공격자가 XML의 구조와 내용을 변경할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Cross-Site WebSocket Hijacking",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20WebSocket%20Hijacking#Java%2fJSP",
+      "id": "819",
+      "abstract": "서버가 도메인 간 요청을 허용하면서 요청의 출처를 확인하지 못해 공격자는 이러한 도메인 간 요청을 사용하여 양방향 WebSocket 연결을 하이재킹(hijacking)할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dangerous Field",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Field#Java%2fJSP",
+      "id": "521",
+      "abstract": "필드는 위험한 것으로 주석 추가되었습니다. 모든 사용은 플래그 지정됩니다.",
+      "supported_languages": [
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dangerous File Inclusion",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20File%20Inclusion#Java%2fJSP",
+      "id": "784",
+      "abstract": "확인되지 않은 사용자 입력이 HTML 파일에 동적으로 포함되는 파일을 제어하도록 허용하면 악성 코드가 실행될 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "PHP"
+      ]
+    },
+    {
+      "title": "Dangerous File Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20File%20Injection#PHP",
+      "id": "981",
+      "abstract": "공격자가 임의의 콘텐트가 있는 시스템에서 파일을 만들 수 있습니다.",
+      "supported_languages": [
+        "PHP"
+      ]
+    },
+    {
+      "title": "Dangerous Function",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function#C%2fC%2b%2b",
+      "id": "715",
+      "abstract": "안전하게 사용할 수 없는 함수는 사용하지 않는 것이 좋습니다.",
+      "supported_languages": [
+        "C/C++",
+        "PHP",
+        "PLSQL/TSQL",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Dangerous Function: strcpy()",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function&subcategory=strcpy()#C%2fC%2b%2b",
+      "id": "716",
+      "abstract": "안전하게 사용할 수 없는 함수는 사용하지 않는 것이 좋습니다.",
+      "supported_languages": [
+        "C/C++"
+      ]
+    },
+    {
+      "title": "Dangerous Function: Unsafe Regular Expression",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function&subcategory=Unsafe%20Regular%20Expression#PHP",
+      "id": "957",
+      "abstract": "안전하게 사용할 수 없는 함수는 사용하면 안 됩니다.",
+      "supported_languages": [
+        "PHP"
+      ]
+    },
+    {
+      "title": "Dangerous Function: xp_cmdshell",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function&subcategory=xp_cmdshell#PLSQL%2fTSQL",
+      "id": "1042",
+      "abstract": "xp_cmdshell함수는 안전하게 사용할 수 없습니다. 사용하지 않는 것이 좋습니다.",
+      "supported_languages": [
+        "PLSQL/TSQL"
+      ]
+    },
+    {
+      "title": "Dangerous Method",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Method#Java%2fJSP",
+      "id": "520",
+      "abstract": "메서드는 위험한 것으로 주석 추가되었습니다. 이 메서드의 모든 사용은 이슈로 플래그 지정되었습니다.",
+      "supported_languages": [
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dangerous Type",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Type#Java%2fJSP",
+      "id": "522",
+      "abstract": "이 변수는 위험한 것으로 주석 처리된 유형의 변수입니다.",
+      "supported_languages": [
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Data Poisoning: AI Training",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Data%20Poisoning&subcategory=AI%20Training#Python",
+      "id": "1018",
+      "abstract": "검증되지 않은 데이터를 LLM 미세 조정 API로 보냅니다.",
+      "supported_languages": [
+        "Python"
+      ]
+    },
+    {
+      "title": "Database Bad Practices: Use of Restricted Accounts",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Database%20Bad%20Practices&subcategory=Use%20of%20Restricted%20Accounts#PLSQL%2fTSQL",
+      "id": "1039",
+      "abstract": "admin, administrator, guest, root 또는 sa 계정 중 하나를 사용하여 데이터베이스에 연결하려고 했습니다.",
+      "supported_languages": [
+        "PLSQL/TSQL"
+      ]
+    },
+    {
+      "title": "Dead Code",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dead%20Code#C%2fC%2b%2b",
+      "id": "733",
+      "abstract": "이 문은 결코 실행되지 않습니다.",
+      "supported_languages": [
+        "C/C++",
+        "Solidity"
+      ]
+    }
+  ]
+}

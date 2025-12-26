@@ -1,0 +1,97 @@
+{
+  "codelang": "Solidity",
+  "total_count_text": 8,
+  "fetched_count": 8,
+  "weaknesses": [
+    {
+      "title": "Dead Code",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dead%20Code#Solidity",
+      "id": "733",
+      "abstract": "이 문은 결코 실행되지 않습니다.",
+      "supported_languages": [
+        "C/C++",
+        "Solidity"
+      ]
+    },
+    {
+      "title": "Denial of Service: External Call",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Denial%20of%20Service&subcategory=External%20Call#Solidity",
+      "id": "1495",
+      "abstract": "공격자가 프로그램을 중단할 수 있게 되거나 정식 사용자가 이용할 수 없게 됩니다.",
+      "supported_languages": [
+        "PLSQL/TSQL",
+        "Solidity"
+      ]
+    },
+    {
+      "title": "Integer Overflow",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Integer%20Overflow#Solidity",
+      "id": "701",
+      "abstract": "Integer overflow를 다루지 않으면 로직 오류 또는 buffer overflow가 발생할 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "COBOL",
+        "Solidity"
+      ]
+    },
+    {
+      "title": "Obsolete",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Obsolete#Solidity",
+      "id": "427",
+      "abstract": "사용이 금지되거나 더 이상 사용되지 않는 함수를 사용하면 코드 무시가 발생할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Java/JSP",
+        "Ruby",
+        "Solidity"
+      ]
+    },
+    {
+      "title": "Poor Style: Confusing Naming",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Poor%20Style&subcategory=Confusing%20Naming#Solidity",
+      "id": "1368",
+      "abstract": "클래스에 이름이 같은 필드와 메서드가 있습니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "Solidity"
+      ]
+    },
+    {
+      "title": "Poor Style: Variable Never Used",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Poor%20Style&subcategory=Variable%20Never%20Used#Solidity",
+      "id": "739",
+      "abstract": "이 변수는 사용되지 않습니다.",
+      "supported_languages": [
+        "C/C++",
+        "Solidity"
+      ]
+    },
+    {
+      "title": "Unchecked Return Value",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unchecked%20Return%20Value#Solidity",
+      "id": "517",
+      "abstract": "메서드의 반환 값을 무시하면 프로그램이 예기치 못한 상태와 조건을 간과할 수도 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "Kotlin",
+        "Solidity"
+      ]
+    },
+    {
+      "title": "Uninitialized Variable",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Uninitialized%20Variable#Solidity",
+      "id": "728",
+      "abstract": "프로그램은 초기화되기 전에 변수를 사용할 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Solidity"
+      ]
+    }
+  ]
+}

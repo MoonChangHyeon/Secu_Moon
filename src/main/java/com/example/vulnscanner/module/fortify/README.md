@@ -22,7 +22,7 @@
 ## 주요 클래스 (Classes)
 
 - **FortifyModuleController**: API 엔드포인트 및 View 반환.
-- **FortifyService**: ZIP 파일 처리, JSON 파싱, 버전 비교 로직 담당.
+- **FortifyModuleService**: ZIP 파일 처리, JSON 파싱, 버전 비교 로직 담당.
 - **WeaknessItem**: 개별 취약점 정보를 담는 DTO.
 - **FortifyWeaknessResponse**: JSON 파일의 최상위 구조 DTO.
 

@@ -1,0 +1,3174 @@
+{
+  "codelang": "C#/VB.NET/ASP.NET",
+  "total_count_text": 233,
+  "fetched_count": 249,
+  "weaknesses": [
+    {
+      "title": "Cross-Site Scripting: Poor Validation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Poor%20Validation#C%23%2fVB.NET%2fASP.NET",
+      "id": "411",
+      "abstract": "사용자 입력을 검증하는 데 HTML, XML 및 기타 인코딩 유형을 사용하면 브라우저가 악성 코드를 실행하게 될 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Reflected",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Reflected#C%23%2fVB.NET%2fASP.NET",
+      "id": "412",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Cross-Site WebSocket Hijacking",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20WebSocket%20Hijacking#C%23%2fVB.NET%2fASP.NET",
+      "id": "819",
+      "abstract": "서버가 도메인 간 요청을 허용하면서 요청의 출처를 확인하지 못해 공격자는 이러한 도메인 간 요청을 사용하여 양방향 WebSocket 연결을 하이재킹(hijacking)할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dangerous File Inclusion",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20File%20Inclusion#C%23%2fVB.NET%2fASP.NET",
+      "id": "784",
+      "abstract": "확인되지 않은 사용자 입력이 HTML 파일에 동적으로 포함되는 파일을 제어하도록 허용하면 악성 코드가 실행될 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "PHP"
+      ]
+    },
+    {
+      "title": "Denial of Service",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Denial%20of%20Service#C%23%2fVB.NET%2fASP.NET",
+      "id": "413",
+      "abstract": "공격자가 프로그램을 중단할 수 있게 되거나 정식 사용자가 이용할 수 없게 됩니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Denial of Service: Regular Expression",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Denial%20of%20Service&subcategory=Regular%20Expression#C%23%2fVB.NET%2fASP.NET",
+      "id": "440",
+      "abstract": "신뢰할 수 없는 데이터가 응용 프로그램에 전달되어 정규식으로 사용됩니다. 그러면 스레드가 CPU 리소스를 과도하게 사용할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C#/VB.NET/ASP.NET",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Denial of Service: Routing",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Denial%20of%20Service&subcategory=Routing#C%23%2fVB.NET%2fASP.NET",
+      "id": "796",
+      "abstract": "공격자가 와일드카드 라우팅 패턴을 조작하면 광범위한 스펙트럼의 URL을 효과적으로 포함하거나 모든 URL에 대한 일치를 얻을 수 있으며, 이로 인해 잠재적으로 DoS(서비스 거부) 공격이 시작될 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Dynamic Code Evaluation: Code Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dynamic%20Code%20Evaluation&subcategory=Code%20Injection#C%23%2fVB.NET%2fASP.NET",
+      "id": "414",
+      "abstract": "런타임 시 사용자가 제어하는 명령어를 해석하면 공격자가 악성 코드를 실행할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Dynamic Code Evaluation: Script Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dynamic%20Code%20Evaluation&subcategory=Script%20Injection#C%23%2fVB.NET%2fASP.NET",
+      "id": "816",
+      "abstract": "런타임 시 사용자가 제어하는 명령어를 해석하면 공격자가 악성 코드를 실행할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Dynamic Code Evaluation: Serializable Delegate",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dynamic%20Code%20Evaluation&subcategory=Serializable%20Delegate#C%23%2fVB.NET%2fASP.NET",
+      "id": "836",
+      "abstract": "지정된 클래스의 직렬화 가능한Delegate필드는 클래스를 역직렬화할 때 임의 코드 실행 취약점을 발생시킵니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Dynamic Code Evaluation: Unsafe Deserialization",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dynamic%20Code%20Evaluation&subcategory=Unsafe%20Deserialization#C%23%2fVB.NET%2fASP.NET",
+      "id": "835",
+      "abstract": "런타임 시 사용자가 제어하는 개체 스트림을 역직렬화하면 공격자가 서버에서 임의의 코드를 실행하거나, 응용 프로그램 로직을 남용하거나, DOS(Denial of Service)를 일으킬 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dynamic Code Evaluation: Unsafe JSON Deserialization",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dynamic%20Code%20Evaluation&subcategory=Unsafe%20JSON%20Deserialization#C%23%2fVB.NET%2fASP.NET",
+      "id": "846",
+      "abstract": "사용자 제어 Json 스트림을 역직렬화하면 공격자가 서버에서 임의 코드를 실행하거나, 응용 프로그램 로직을 남용하거나, DoS(Denial of Service)를 일으킬 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dynamic Code Evaluation: Unsafe YAML Deserialization",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dynamic%20Code%20Evaluation&subcategory=Unsafe%20YAML%20Deserialization#C%23%2fVB.NET%2fASP.NET",
+      "id": "1013",
+      "abstract": "사용자 제어 YAML 스트림을 역직렬화하면 공격자가 서버에서 임의 코드를 실행하거나, 응용 프로그램 논리를 남용하거나, DoS(Denial of Service)를 일으킬 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Python"
+      ]
+    },
+    {
+      "title": "External Content: Content Delivery Network",
+      "url": "https://vulncat.fortify.com/ko/detail?category=External%20Content&subcategory=Content%20Delivery%20Network#C%23%2fVB.NET%2fASP.NET",
+      "id": "786",
+      "abstract": "필수적인 코드를 사용자에게 직접 제공하는 CDN에 의존하면 악성 코드가 실행될 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Formula Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Formula%20Injection#C%23%2fVB.NET%2fASP.NET",
+      "id": "842",
+      "abstract": "공격자는 스프레드시트에 작성된 데이터를 제어할 수 있으므로, 특정 스프레드시트 프로세서에서 파일을 여는 사용자를 대상으로 공격할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "Kotlin"
+      ]
+    },
+    {
+      "title": "GraphQL Bad Practices: Introspection Enabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=GraphQL%20Bad%20Practices&subcategory=Introspection%20Enabled#C%23%2fVB.NET%2fASP.NET",
+      "id": "988",
+      "abstract": "스키마 확인이 비활성화되지 않은 상태로 GraphQL 끝점이 생성됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Python"
+      ]
+    },
+    {
+      "title": "gRPC Metadata Manipulation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=gRPC%20Metadata%20Manipulation#C%23%2fVB.NET%2fASP.NET",
+      "id": "1323",
+      "abstract": "신뢰할 수 없는 소스에서 Google Remote Procedure Call(gRPC)Metadata개체가 생성됩니다. 그러므로 공격자가 중요한 프로토콜 필드를 제어하게 될 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Header Manipulation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Header%20Manipulation#C%23%2fVB.NET%2fASP.NET",
+      "id": "415",
+      "abstract": "HTTP 응답 헤더에 확인되지 않은 데이터를 포함하면 캐시 감염(cache-poisoning), cross-site scripting, 교차 사용자 변조(cross-user defacement) 또는 페이지 하이재킹(page hijacking), 쿠키 조작 또는 open redirection 공격을 유발할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Header Manipulation: Cookies",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Header%20Manipulation&subcategory=Cookies#C%23%2fVB.NET%2fASP.NET",
+      "id": "416",
+      "abstract": "쿠키에 확인되지 않은 데이터를 포함하면 HTTP 응답 헤더를 조작할 수 있게 되며 캐시 감염(cache-poisoning), cross-site scripting, 교차 사용자 변조(cross-user defacement), 페이지 하이재킹(page hijacking), 쿠키 조작, open redirection 등이 가능해집니다.",
+      "supported_languages": [
+        "ABAP",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "Python",
+        "Scala",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Hidden Field",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Hidden%20Field#C%23%2fVB.NET%2fASP.NET",
+      "id": "788",
+      "abstract": "프로그램에서 숨겨진 폼 필드를 생성합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "Universal"
+      ]
+    },
+    {
+      "title": "HTML5: Deprecated Header",
+      "url": "https://vulncat.fortify.com/ko/detail?category=HTML5&subcategory=Deprecated%20Header#C%23%2fVB.NET%2fASP.NET",
+      "id": "856",
+      "abstract": "더 이상 사용되지 않는X-XSS-Protection응답 헤더는 실제로 기존 브라우저를 XSS(Cross-Site Scripting) 취약점에 다시 노출할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Python",
+        "Universal"
+      ]
+    },
+    {
+      "title": "HTML5: MIME Sniffing",
+      "url": "https://vulncat.fortify.com/ko/detail?category=HTML5&subcategory=MIME%20Sniffing#C%23%2fVB.NET%2fASP.NET",
+      "id": "768",
+      "abstract": "Application_BeginRequest메서드가 비어 있거나X-Content-Type-Options를nosniff로 설정하는 함수 호출을 포함하지 않거나 해당 헤더를 제거하려고 합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Python"
+      ]
+    },
+    {
+      "title": "HTML5: Overly Permissive CORS Policy",
+      "url": "https://vulncat.fortify.com/ko/detail?category=HTML5&subcategory=Overly%20Permissive%20CORS%20Policy#C%23%2fVB.NET%2fASP.NET",
+      "id": "778",
+      "abstract": "프로그램은 지나치게 허용적인 CORS(Cross-Origin Resource Sharing) 정책을 정의합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "PHP",
+        "Python",
+        "Scala",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "HTTP Parameter Pollution",
+      "url": "https://vulncat.fortify.com/ko/detail?category=HTTP%20Parameter%20Pollution#C%23%2fVB.NET%2fASP.NET",
+      "id": "821",
+      "abstract": "확인되지 않은 입력을 URL에 연결하면 공격자가 요청 매개 변수의 값을 덮어쓸 수 있습니다. 공격자는 기존 매개 변수 값을 오버라이드하거나, 새 매개 변수를 삽입하거나, 직접 연결로부터 변수를 익스플로이트할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "PHP",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "HTTP Verb Tampering",
+      "url": "https://vulncat.fortify.com/ko/detail?category=HTTP%20Verb%20Tampering#C%23%2fVB.NET%2fASP.NET",
+      "id": "1229",
+      "abstract": "HTTP verb를 지정하는 보안 제약 조건은 흔히 의도한 것보다 더 많은 접근을 허용합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Insecure Randomness",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Randomness#C%23%2fVB.NET%2fASP.NET",
+      "id": "405",
+      "abstract": "표준 의사 난수 발생기는 암호화 공격을 차단하지 못합니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Insecure SSL: Server Identity Verification Disabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20SSL&subcategory=Server%20Identity%20Verification%20Disabled#C%23%2fVB.NET%2fASP.NET",
+      "id": "500",
+      "abstract": "이로 인해 SSL 연결을 설정할 때 서버 ID 확인이 비활성화됩니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Transport#C%23%2fVB.NET%2fASP.NET",
+      "id": "446",
+      "abstract": "호출에서 비보안 프로토콜을 사용하여 서버와 통신합니다.",
+      "supported_languages": [
+        "ABAP",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Insecure Transport: Database",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Transport&subcategory=Database#C%23%2fVB.NET%2fASP.NET",
+      "id": "841",
+      "abstract": "이 응용 프로그램은 암호화되지 않은 채널을 통해 일반 텍스트로 데이터베이스 서버와 통신하여 통신 데이터를 MiTM(Man-in-The-Middle) 공격을 통한 가로채기에 취약하게 만듭니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Python"
+      ]
+    },
+    {
+      "title": "Insecure Transport: gRPC Channel Credentials",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Transport&subcategory=gRPC%20Channel%20Credentials#C%23%2fVB.NET%2fASP.NET",
+      "id": "986",
+      "abstract": "해당 호출에서 인증, ID 또는 암호화가 설정되지 않은 Google Remote Procedure Call(gRPC) 채널의 보안 구성을 지정합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "Python"
+      ]
+    },
+    {
+      "title": "Insecure Transport: Mail Transmission",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Transport&subcategory=Mail%20Transmission#C%23%2fVB.NET%2fASP.NET",
+      "id": "839",
+      "abstract": "메일 서버에 대해 암호화되지 않은 연결을 설정하면 공격자가 MITM(Man-in-the-Middle) 공격을 수행하여 모든 메일 전송을 읽을 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "Python"
+      ]
+    },
+    {
+      "title": "Insecure Transport: Weak SSL Cipher",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Transport&subcategory=Weak%20SSL%20Cipher#C%23%2fVB.NET%2fASP.NET",
+      "id": "849",
+      "abstract": "암호화된 통신을 활성화하기 위해 약한 암호화 알고리즘 집합을 사용하면 공격자가 민감한 정보를 훔칠 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Insecure Transport: Weak SSL Protocol",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Transport&subcategory=Weak%20SSL%20Protocol#C%23%2fVB.NET%2fASP.NET",
+      "id": "62",
+      "abstract": "SSLv2, SSLv23, SSLv3, TLSv1.0 및 TLSv1.1 프로토콜에는 보안을 위협하는 결함이 포함되어 있으므로 민감한 데이터를 전송하는 데 사용해서는 안 됩니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal"
+      ]
+    },
+    {
+      "title": "JavaScript Hijacking: JSONP",
+      "url": "https://vulncat.fortify.com/ko/detail?category=JavaScript%20Hijacking&subcategory=JSONP#C%23%2fVB.NET%2fASP.NET",
+      "id": "864",
+      "abstract": "JSONP는 안전하지 않은 통신 기술이므로 개인 정보 또는 민감한 데이터가 포함되지 않고 콜백 함수를 정화하는 경우에만 사용되어야 합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Scala"
+      ]
+    },
+    {
+      "title": "JavaScript Hijacking: Vulnerable Framework",
+      "url": "https://vulncat.fortify.com/ko/detail?category=JavaScript%20Hijacking&subcategory=Vulnerable%20Framework#C%23%2fVB.NET%2fASP.NET",
+      "id": "1644",
+      "abstract": "Microsoft AJAX.NET(Atlas)를 사용하는 응용 프로그램은 JavaScript 하이재킹(hijacking)에 취약하며 권한이 없는 공격자가 기밀 데이터를 읽도록 허용합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "JSON Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=JSON%20Injection#C%23%2fVB.NET%2fASP.NET",
+      "id": "822",
+      "abstract": "이 메서드는 확인되지 않은 입력을 JSON에 작성합니다. 이 호출로 공격자는 JSON 엔티티에 임의의 요소나 속성을 삽입할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Key Management: Empty HMAC Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Empty%20HMAC%20Key#C%23%2fVB.NET%2fASP.NET",
+      "id": "438",
+      "abstract": "빈 HMAC 키는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Key Management: Empty PBE Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Empty%20PBE%20Password#C%23%2fVB.NET%2fASP.NET",
+      "id": "827",
+      "abstract": "해당 비밀번호 인수에 대해 빈 값을 전달받은 비밀번호 기반 키 파생 함수를 통해 생성된 키를 사용하면 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Key Management: Hardcoded Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Hardcoded%20Encryption%20Key#C%23%2fVB.NET%2fASP.NET",
+      "id": "396",
+      "abstract": "하드코드 암호화 키는 쉽게 해결할 수 없는 방식으로 보안을 침해할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP",
+        "YAML"
+      ]
+    },
+    {
+      "title": "Key Management: Hardcoded HMAC Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Hardcoded%20HMAC%20Key#C%23%2fVB.NET%2fASP.NET",
+      "id": "437",
+      "abstract": "하드코드된 HMAC 키는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Key Management: Hardcoded PBE Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Hardcoded%20PBE%20Password#C%23%2fVB.NET%2fASP.NET",
+      "id": "826",
+      "abstract": "하드코드된 비밀번호는 PBKDF(비밀번호 기반 키 파생 함수)에서 키를 생성하는 데 사용됩니다. PBKDF에 하드코드된 비밀번호를 제공하면 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킵니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "LDAP Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=LDAP%20Injection#C%23%2fVB.NET%2fASP.NET",
+      "id": "799",
+      "abstract": "사용자의 입력을 받아 동적으로 LDAP 필터를 생성하면 공격자가 해당 문의 의미를 수정할 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "PHP"
+      ]
+    },
+    {
+      "title": "LDAP Manipulation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=LDAP%20Manipulation#C%23%2fVB.NET%2fASP.NET",
+      "id": "801",
+      "abstract": "필터 문자열 외부에서 사용자가 제어하는 값이 포함된 LDAP 문을 실행하면 공격자가 해당 문의 의미를 수정하거나 임의의 LDAP 명령을 실행할 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "PHP"
+      ]
+    },
+    {
+      "title": "Log Forging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Log%20Forging#C%23%2fVB.NET%2fASP.NET",
+      "id": "417",
+      "abstract": "확인되지 않은 사용자 입력을 로그 파일에 쓰면 공격자가 로그 항목을 위조하거나 악성 콘텐트를 로그에 삽입할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Log Forging (debug)",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Log%20Forging%20(debug)#C%23%2fVB.NET%2fASP.NET",
+      "id": "487",
+      "abstract": "확인되지 않은 사용자 입력을 로그 파일에 쓰면 공격자가 로그 항목을 위조하거나 악성 콘텐트를 로그에 삽입할 수 있습니다.",
+      "supported_languages": [
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Python",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Mass Assignment: Insecure Binder Configuration",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Mass%20Assignment&subcategory=Insecure%20Binder%20Configuration#C%23%2fVB.NET%2fASP.NET",
+      "id": "823",
+      "abstract": "모델 클래스의 HTTP 요청 매개 변수 바인딩에 사용되는 프레임워크 바인더는 특정 속성을 허용하거나 허용하지 않도록 명백하게 구성되어 있지 않습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Mass Assignment: Request Parameters Bound into Persisted Objects",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Mass%20Assignment&subcategory=Request%20Parameters%20Bound%20into%20Persisted%20Objects#C%23%2fVB.NET%2fASP.NET",
+      "id": "815",
+      "abstract": "요청 매개 변수로 자동 입력되도록 데이터베이스의 지속적인 엔터티를 허용하면 공격자가 연결 엔터티에 의도하지 않은 기록을 작성하거나 엔터티 개체의 의도하지 않은 필드를 업데이트할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Mass Assignment: Request Parameters Bound via Input Formatter",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Mass%20Assignment&subcategory=Request%20Parameters%20Bound%20via%20Input%20Formatter#C%23%2fVB.NET%2fASP.NET",
+      "id": "824",
+      "abstract": "HTTP 요청 매개 변수를 모델 클래스에 바인딩하는 데 사용되는 프레임워크 바인더는[FromBody]주석이 사용되는 경우 Input Formatter에 의존합니다",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Mass Assignment: Sensitive Field Exposure",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Mass%20Assignment&subcategory=Sensitive%20Field%20Exposure#C%23%2fVB.NET%2fASP.NET",
+      "id": "825",
+      "abstract": "민감한 필드는 모델 바인더에 노출됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Memcached Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Memcached%20Injection#C%23%2fVB.NET%2fASP.NET",
+      "id": "1010",
+      "abstract": "신뢰할 수 없는 소스에서 나온 입력을 받아 Memcached 작업을 호출하면 공격자가 Memcached 캐시에 새 키/값 쌍을 주입할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Python"
+      ]
+    },
+    {
+      "title": "Missing Check against Null",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Missing%20Check%20against%20Null#C%23%2fVB.NET%2fASP.NET",
+      "id": "488",
+      "abstract": "프로그램이null을 반환하는 함수의 반환 값을 확인하지 않으므로 null 포인터를 역참조할 수도 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Missing XML Validation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Missing%20XML%20Validation#C%23%2fVB.NET%2fASP.NET",
+      "id": "449",
+      "abstract": "XML 구문 분석에서 검증하지 못하면 공격자에게 악의적인 입력을 제공할 기회를 주게 됩니다.",
+      "supported_languages": [
+        "ABAP",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "NoSQL Injection: Cosmos DB",
+      "url": "https://vulncat.fortify.com/ko/detail?category=NoSQL%20Injection&subcategory=Cosmos%20DB#C%23%2fVB.NET%2fASP.NET",
+      "id": "766",
+      "abstract": "신뢰할 수 없는 소스에서 나온 입력을 사용하여 동적 Azure Cosmos DB 쿼리를 생성하면 공격자가 쿼리의 작업을 수정할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "NoSQL Injection: DynamoDB",
+      "url": "https://vulncat.fortify.com/ko/detail?category=NoSQL%20Injection&subcategory=DynamoDB#C%23%2fVB.NET%2fASP.NET",
+      "id": "1305",
+      "abstract": "신뢰할 수 없는 소스에서 나온 입력을 사용하여 동적 DynamoDB 쿼리를 생성하면 공격자가 해당 문의 의미를 수정할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "NoSQL Injection: MongoDB",
+      "url": "https://vulncat.fortify.com/ko/detail?category=NoSQL%20Injection&subcategory=MongoDB#C%23%2fVB.NET%2fASP.NET",
+      "id": "991",
+      "abstract": "신뢰할 수 없는 소스에서 나온 입력을 사용하여 동적 MongoDB 쿼리를 생성하면 공격자가 해당 문의 의미를 수정할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "Python"
+      ]
+    },
+    {
+      "title": "Null Dereference",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Null%20Dereference#C%23%2fVB.NET%2fASP.NET",
+      "id": "734",
+      "abstract": "프로그램이 null 포인터를 역참조할 가능성이 있기 때문에 조각화 오류가 발생합니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Object Model Violation: Just One of Equals() and GetHashCode() Defined",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Object%20Model%20Violation&subcategory=Just%20One%20of%20Equals()%20and%20GetHashCode()%20Defined#C%23%2fVB.NET%2fASP.NET",
+      "id": "1316",
+      "abstract": "이 클래스는Equals()와GetHashCode()중 하나만 정의합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Obsolete",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Obsolete#C%23%2fVB.NET%2fASP.NET",
+      "id": "427",
+      "abstract": "사용이 금지되거나 더 이상 사용되지 않는 함수를 사용하면 코드 무시가 발생할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Java/JSP",
+        "Ruby",
+        "Solidity"
+      ]
+    },
+    {
+      "title": "Often Misused: Asserting Permissions",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Often%20Misused&subcategory=Asserting%20Permissions#C%23%2fVB.NET%2fASP.NET",
+      "id": "845",
+      "abstract": "이 코드는 호출자에게 특정 권한이 부여되는 것을 어설션하여 잠재적으로 공격자가 보안 제어를 무시할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Often Misused: Authentication",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Often%20Misused&subcategory=Authentication#C%23%2fVB.NET%2fASP.NET",
+      "id": "731",
+      "abstract": "getlogin()함수는 스푸핑하기 쉽습니다. 함수가 반환하는 이름을 신뢰하지 마십시오.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Often Misused: Encoding",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Often%20Misused&subcategory=Encoding#C%23%2fVB.NET%2fASP.NET",
+      "id": "837",
+      "abstract": ".NET Framework에서 클래스를 잘못 오버라이드할 경우 서버에서의 임의의 코드 실행, 응용 프로그램 로직 남용 또는 DoS(Denial of Service)를 야기할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Often Misused: File Upload",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Often%20Misused&subcategory=File%20Upload#C%23%2fVB.NET%2fASP.NET",
+      "id": "814",
+      "abstract": "사용자에게 파일 업로드에 대한 권한이 주어지면 공격자는 위험한 콘텐트나 악성 코드를 삽입하여 서버에서 실행할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Often Misused: SMS",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Often%20Misused&subcategory=SMS#C%23%2fVB.NET%2fASP.NET",
+      "id": "922",
+      "abstract": "응용 프로그램이 iOS에 한정된 SMS 관련 작업을 수행합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Open Redirect",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Open%20Redirect#C%23%2fVB.NET%2fASP.NET",
+      "id": "418",
+      "abstract": "리디렉션에 사용된 URL을 제어하도록 확인되지 않은 입력을 허용하면 피싱 공격에 도움이 됩니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management#C%23%2fVB.NET%2fASP.NET",
+      "id": "454",
+      "abstract": "암호를 일반 텍스트로 저장하면 시스템 침해가 발생할 수 있습니다.",
+      "supported_languages": [
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management: Empty Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Empty%20Password#C%23%2fVB.NET%2fASP.NET",
+      "id": "428",
+      "abstract": "빈 암호는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "Bicep",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management: Empty Password in Configuration File",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Empty%20Password%20in%20Configuration%20File#C%23%2fVB.NET%2fASP.NET",
+      "id": "1127",
+      "abstract": "빈 문자열을 암호로 사용하는 것도 안전하지 않습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Password Management: Hardcoded Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Hardcoded%20Password#C%23%2fVB.NET%2fASP.NET",
+      "id": "401",
+      "abstract": "Hardcoded Password는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "Bicep",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP",
+        "YAML"
+      ]
+    },
+    {
+      "title": "Password Management: Null Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Null%20Password#C%23%2fVB.NET%2fASP.NET",
+      "id": "453",
+      "abstract": "Null암호는 보안을 침해할 수 있습니다.",
+      "supported_languages": [
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management: Password in Comment",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Password%20in%20Comment#C%23%2fVB.NET%2fASP.NET",
+      "id": "429",
+      "abstract": "암호 또는 암호 세부 정보를 시스템 또는 시스템 코드 안에 일반 텍스트로 저장하는 것은 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management: Password in Configuration File",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Password%20in%20Configuration%20File#C%23%2fVB.NET%2fASP.NET",
+      "id": "1044",
+      "abstract": "구성 파일에 일반 텍스트 암호를 저장하면 시스템 침해가 발생할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Docker",
+        "Java/JSP",
+        "JSON",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Password Management: Plain Text Password in Transit",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Plain%20Text%20Password%20in%20Transit#C%23%2fVB.NET%2fASP.NET",
+      "id": "840",
+      "abstract": "응용 프로그램은 암호화되지 않은 채널을 통해 일반 텍스트 암호를 전송하므로 통신된 데이터가 MiTM(Man-in-The-Middle) 공격을 통한 가로채기에 취약해집니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Password Management: Weak Cryptography",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Weak%20Cryptography#C%23%2fVB.NET%2fASP.NET",
+      "id": "455",
+      "abstract": "암호를 안전하지 못한 인코딩으로 감추는 것으로는 암호를 보호할 수 없습니다.",
+      "supported_languages": [
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Path Manipulation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Path%20Manipulation#C%23%2fVB.NET%2fASP.NET",
+      "id": "419",
+      "abstract": "사용자 입력이 파일 시스템 작업에 사용되는 경로를 제어하는 것을 허용하면 그렇지 않을 때 보호할 수 있는 파일에 공격자가 접근하거나 수정할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Path Manipulation: Base Path Overwriting",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Path%20Manipulation&subcategory=Base%20Path%20Overwriting#C%23%2fVB.NET%2fASP.NET",
+      "id": "848",
+      "abstract": "사용자 입력이 파일 시스템 작업에 사용되는 경로를 제어하는 것을 허용하면 그렇지 않을 때 보호할 수 있는 시스템 리소스에 공격자가 액세스하거나 수정할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Path Manipulation: Zip Entry Overwrite",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Path%20Manipulation&subcategory=Zip%20Entry%20Overwrite#C%23%2fVB.NET%2fASP.NET",
+      "id": "445",
+      "abstract": "사용자 입력이 파일 시스템 작업에 사용되는 경로를 제어할 수 있으면 공격자가 시스템에서 임의로 파일을 덮어쓸 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Permission Manipulation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Permission%20Manipulation#C%23%2fVB.NET%2fASP.NET",
+      "id": "844",
+      "abstract": "사용자 입력이 권한을 직접 변경하는 것을 허용하면 공격자가 보호된 시스템 리소스에 접근할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Permission Manipulation: Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Permission%20Manipulation&subcategory=Logging#C%23%2fVB.NET%2fASP.NET",
+      "id": "843",
+      "abstract": "사용자 입력이 감사를 결정하기 위해 권한을 직접 변경하도록 허용하면 공격자가 해당 작업을 숨길 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Poor Error Handling: Empty Catch Block",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Poor%20Error%20Handling&subcategory=Empty%20Catch%20Block#C%23%2fVB.NET%2fASP.NET",
+      "id": "538",
+      "abstract": "예외를 무시하면 프로그램이 예기치 못한 상태와 조건을 간과할 수도 있습니다.",
+      "supported_languages": [
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "PHP",
+        "Python"
+      ]
+    },
+    {
+      "title": "Poor Error Handling: Overly Broad Catch",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Poor%20Error%20Handling&subcategory=Overly%20Broad%20Catch#C%23%2fVB.NET%2fASP.NET",
+      "id": "1318",
+      "abstract": "Catch 블록은 광범위한 예외 사항을 처리하기 때문에 프로그램의 이 시점에서 다루어서는 안 되는 상이한 사안이나 문제를 포착할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Poor Error Handling: Program Catches NullReferenceException",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Poor%20Error%20Handling&subcategory=Program%20Catches%20NullReferenceException#C%23%2fVB.NET%2fASP.NET",
+      "id": "1317",
+      "abstract": "NullReferenceException을 캐치(catch)하는 것은 일반적으로 잘못된 관행입니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Poor Logging Practice: Use of a System Output Stream",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Poor%20Logging%20Practice&subcategory=Use%20of%20a%20System%20Output%20Stream#C%23%2fVB.NET%2fASP.NET",
+      "id": "860",
+      "abstract": "전용 로깅 기능 대신Console.Out또는Console.Error를 사용하면 프로그램의 동작을 모니터링하기가 어렵습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Python",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Portability Flaw: File Separator",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Portability%20Flaw&subcategory=File%20Separator#C%23%2fVB.NET%2fASP.NET",
+      "id": "451",
+      "abstract": "하드코드한 파일 구분 문자는 이식성 문제를 일으킵니다.",
+      "supported_languages": [
+        "ActionScript",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "Python"
+      ]
+    },
+    {
+      "title": "Privacy Violation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Privacy%20Violation#C%23%2fVB.NET%2fASP.NET",
+      "id": "420",
+      "abstract": "고객 암호 또는 주민 등록 번호 등의 개인 정보 취급 부주의는 사용자 개인 정보를 침해할 수 있고 불법인 경우가 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "Bicep",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Privacy Violation: Health Information",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Privacy%20Violation&subcategory=Health%20Information#C%23%2fVB.NET%2fASP.NET",
+      "id": "765",
+      "abstract": "식별된 함수가 건강 정보를 잘못 취급합니다. 이 프로그램은 사용자 개인 정보를 침해할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Privacy Violation: Heap Inspection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Privacy%20Violation&subcategory=Heap%20Inspection#C%23%2fVB.NET%2fASP.NET",
+      "id": "787",
+      "abstract": "중요 데이터를 안전하지 않은 방식으로 저장하기 때문에 힙 검사를 통해 데이터를 추출할 수 있게 됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Privacy Violation: Image",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Privacy%20Violation&subcategory=Image#C%23%2fVB.NET%2fASP.NET",
+      "id": "783",
+      "abstract": "비즈니스 보고서 등의 민감한 정보 취급 부주의는 회사 정보를 침해할 수 있고 불법인 경우가 많습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Privacy Violation: Shoulder Surfing",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Privacy%20Violation&subcategory=Shoulder%20Surfing#C%23%2fVB.NET%2fASP.NET",
+      "id": "472",
+      "abstract": "중요한 정보를 수집하는 API 중 일부는 해당 정보를 부적절하게 처리할 수도 있습니다. 즉, 사용자가 입력 프롬프트에 입력하는 중요한 정보를 사용자에게 다시 돌려 보냅니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Dart",
+        "Java/JSP",
+        "Objective-C",
+        "Swift",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Process Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Process%20Control#C%23%2fVB.NET%2fASP.NET",
+      "id": "421",
+      "abstract": "신뢰할 수 없는 프로그램이나 트랜잭션 또는 신뢰할 수 없는 환경에서 프로그램 제어를 이동하면 응용 프로그램이 공격자 대신 악의적인 명령을 실행할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Race Condition: Roaming Data Access",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Race%20Condition&subcategory=Roaming%20Data%20Access#C%23%2fVB.NET%2fASP.NET",
+      "id": "769",
+      "abstract": "개발자는Windows.Storage.ApplicationData클래스의RoamingFolder또는RoamingSettings속성을 사용하고 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Redundant Null Check",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Redundant%20Null%20Check#C%23%2fVB.NET%2fASP.NET",
+      "id": "735",
+      "abstract": "프로그램이 null 포인터를 역참조할 가능성이 있기 때문에 조각화 오류가 발생합니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Registry Manipulation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Registry%20Manipulation#C%23%2fVB.NET%2fASP.NET",
+      "id": "820",
+      "abstract": "레지스트리 설정을 외부에서 제어하도록 허용하면 서비스를 손상시키거나 응용 프로그램이 비정상적으로 동작할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Resource Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Resource%20Injection#C%23%2fVB.NET%2fASP.NET",
+      "id": "422",
+      "abstract": "사용자 입력이 리소스 ID를 제어하는 것을 허용하면 그렇지 않을 때 보호할 수 있는 시스템 리소스를 공격자가 접근하거나 수정할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Server-Side Request Forgery",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Server-Side%20Request%20Forgery#C%23%2fVB.NET%2fASP.NET",
+      "id": "444",
+      "abstract": "응용 프로그램은 리소스 URI를 조작하는 데 사용자 제어 데이터를 사용하여 타사 시스템과의 네트워크 연결을 시작합니다.",
+      "supported_languages": [
+        "ABAP",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Setting Manipulation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Setting%20Manipulation#C%23%2fVB.NET%2fASP.NET",
+      "id": "441",
+      "abstract": "시스템 설정을 외부에서 제어하도록 허용하면 서비스를 손상시키거나 응용 프로그램이 비정상적으로 동작할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Silverlight Misconfiguration: Overly Permissive Cross-Domain Policy",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Silverlight%20Misconfiguration&subcategory=Overly%20Permissive%20Cross-Domain%20Policy#C%23%2fVB.NET%2fASP.NET",
+      "id": "1060",
+      "abstract": "서비스 호스트의 이 구성 파일은 지나치게 허용적인 도메인 간 정책을 정의합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "SQL Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=SQL%20Injection#C%23%2fVB.NET%2fASP.NET",
+      "id": "423",
+      "abstract": "신뢰할 수 없는 소스에서 나온 입력을 받아 동적으로 SQL 문을 생성하면 공격자가 해당 문의 의미를 수정하거나 임의의 SQL 명령을 실행할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "SQL Injection: Castle ActiveRecord",
+      "url": "https://vulncat.fortify.com/ko/detail?category=SQL%20Injection&subcategory=Castle%20ActiveRecord#C%23%2fVB.NET%2fASP.NET",
+      "id": "1307",
+      "abstract": "신뢰할 수 없는 소스에서 나온 입력을 사용하여 동적 Castle ActiveRecord 문을 생성하면 공격자가 해당 문의 의미를 수정하거나 임의의 SQL 명령을 실행할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "SQL Injection: LINQ",
+      "url": "https://vulncat.fortify.com/ko/detail?category=SQL%20Injection&subcategory=LINQ#C%23%2fVB.NET%2fASP.NET",
+      "id": "792",
+      "abstract": "신뢰할 수 없는 소스에서 나온 입력을 받아 동적으로 LINQ 문을 생성하면 공격자가 해당 문의 의미를 수정하거나 임의의 SQL 명령을 실행할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "SQL Injection: NHibernate",
+      "url": "https://vulncat.fortify.com/ko/detail?category=SQL%20Injection&subcategory=NHibernate#C%23%2fVB.NET%2fASP.NET",
+      "id": "1309",
+      "abstract": "NHibernate를 사용하여 신뢰할 수 없는 소스에서 나온 입력으로 만들어진 동적 SQL 문을 실행하면 공격자가 해당 문의 의미를 수정하거나 임의의 SQL 명령을 실행할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "SQL Injection: PartiQL",
+      "url": "https://vulncat.fortify.com/ko/detail?category=SQL%20Injection&subcategory=PartiQL#C%23%2fVB.NET%2fASP.NET",
+      "id": "983",
+      "abstract": "신뢰할 수 없는 소스에서 나온 입력을 받아 동적으로 PartiQL 문을 생성하면 공격자가 해당 문의 의미를 수정하거나 임의의 PartiQL 명령을 실행할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "Python"
+      ]
+    },
+    {
+      "title": "SQL Injection: SubSonic",
+      "url": "https://vulncat.fortify.com/ko/detail?category=SQL%20Injection&subcategory=SubSonic#C%23%2fVB.NET%2fASP.NET",
+      "id": "1308",
+      "abstract": "신뢰할 수 없는 소스에서 나온 입력을 받아 동적으로 SubSonic 문을 생성하면 공격자가 해당 문의 의미를 수정하거나 임의의 SQL 명령을 실행할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "System Information Leak",
+      "url": "https://vulncat.fortify.com/ko/detail?category=System%20Information%20Leak#C%23%2fVB.NET%2fASP.NET",
+      "id": "424",
+      "abstract": "시스템 데이터 또는 디버깅 정보가 노출되면 공격자가 시스템을 파악하고 공격 계획을 세우는 것이 수월해집니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "System Information Leak: External",
+      "url": "https://vulncat.fortify.com/ko/detail?category=System%20Information%20Leak&subcategory=External#C%23%2fVB.NET%2fASP.NET",
+      "id": "425",
+      "abstract": "시스템 데이터 또는 디버깅 정보가 노출되면 공격자가 시스템을 파악하고 공격 계획을 세우는 것이 수월해집니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "System Information Leak: Internal",
+      "url": "https://vulncat.fortify.com/ko/detail?category=System%20Information%20Leak&subcategory=Internal#C%23%2fVB.NET%2fASP.NET",
+      "id": "426",
+      "abstract": "시스템 데이터 또는 디버깅 정보가 노출되면 공격자가 시스템을 파악하고 공격 계획을 세우는 것이 수월해집니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "System Information Leak: Overly Broad SQL Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=System%20Information%20Leak&subcategory=Overly%20Broad%20SQL%20Logging#C%23%2fVB.NET%2fASP.NET",
+      "id": "761",
+      "abstract": "이 응용 프로그램은 중요한 데이터 로깅을 활성화합니다. 따라서 시스템 정보가 노출되거나 사용자의 개인 데이터가 손상될 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "System Information Leak: SignalR Exposed JavaScript Proxy",
+      "url": "https://vulncat.fortify.com/ko/detail?category=System%20Information%20Leak&subcategory=SignalR%20Exposed%20JavaScript%20Proxy#C%23%2fVB.NET%2fASP.NET",
+      "id": "1321",
+      "abstract": "자동으로 생성된 JavaScript 프록시 파일은 허브에서 노출된 모든 메서드를 나열하기 때문에 시스템 정보가 누출될 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Trust Boundary Violation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Trust%20Boundary%20Violation#C%23%2fVB.NET%2fASP.NET",
+      "id": "795",
+      "abstract": "같은 데이터 구조체의 신뢰할 수 있는 데이터와 신뢰할 수 없는 데이터가 혼재하면 프로그래머가 실수로 확인되지 않은 데이터를 신뢰하는 일이 발생합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PLSQL/TSQL",
+        "Python",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Unchecked Return Value",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unchecked%20Return%20Value#C%23%2fVB.NET%2fASP.NET",
+      "id": "517",
+      "abstract": "메서드의 반환 값을 무시하면 프로그램이 예기치 못한 상태와 조건을 간과할 수도 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "Kotlin",
+        "Solidity"
+      ]
+    },
+    {
+      "title": "Uninitialized Variable",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Uninitialized%20Variable#C%23%2fVB.NET%2fASP.NET",
+      "id": "728",
+      "abstract": "프로그램은 초기화되기 전에 변수를 사용할 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Solidity"
+      ]
+    },
+    {
+      "title": "Unreleased Resource",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unreleased%20Resource#C%23%2fVB.NET%2fASP.NET",
+      "id": "704",
+      "abstract": "프로그램이 시스템 리소스를 해제하지 못할 수도 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "Golang",
+        "Java/JSP",
+        "PLSQL/TSQL"
+      ]
+    },
+    {
+      "title": "Unreleased Resource: Database",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unreleased%20Resource&subcategory=Database#C%23%2fVB.NET%2fASP.NET",
+      "id": "442",
+      "abstract": "프로그램이 데이터베이스 리소스를 해제하지 못할 수도 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Unreleased Resource: Handle Leak",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unreleased%20Resource&subcategory=Handle%20Leak#C%23%2fVB.NET%2fASP.NET",
+      "id": "854",
+      "abstract": "이 프로그램은 핸들을 완전히 해제하는 데 실패하게 됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Unreleased Resource: Handle Owner",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unreleased%20Resource&subcategory=Handle%20Owner#C%23%2fVB.NET%2fASP.NET",
+      "id": "852",
+      "abstract": "이 프로그램은 핸들을 완전히 해제하기 위한 핸들 소유자를 설정하는 데 실패합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Unreleased Resource: Invalid Handle",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unreleased%20Resource&subcategory=Invalid%20Handle#C%23%2fVB.NET%2fASP.NET",
+      "id": "853",
+      "abstract": "이 프로그램은 핸들을 완전히 해제하는 데 실패하게 됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Unreleased Resource: LDAP",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unreleased%20Resource&subcategory=LDAP#C%23%2fVB.NET%2fASP.NET",
+      "id": "838",
+      "abstract": "프로그램이 LDAP 리소스를 해제하지 못할 수도 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Unreleased Resource: Streams",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unreleased%20Resource&subcategory=Streams#C%23%2fVB.NET%2fASP.NET",
+      "id": "794",
+      "abstract": "프로그램이 시스템 리소스를 해제하지 못할 수도 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "Objective-C",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Unreleased Resource: Synchronization",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unreleased%20Resource&subcategory=Synchronization#C%23%2fVB.NET%2fASP.NET",
+      "id": "703",
+      "abstract": "프로그램이 유지하고 있는 잠금(lock)을 해제하지 못하면 교착 상태(deadlock)가 될 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "Java/JSP",
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Unreleased Resource: Unmanaged Object",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unreleased%20Resource&subcategory=Unmanaged%20Object#C%23%2fVB.NET%2fASP.NET",
+      "id": "791",
+      "abstract": "프로그램은 비관리 시스템 리소스를 이용하는 관리 개체를 처리하지 못합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Unsafe Native Invoke",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unsafe%20Native%20Invoke#C%23%2fVB.NET%2fASP.NET",
+      "id": "777",
+      "abstract": "Platform Invocation Services를 잘못 사용하면 관리되는 응용 프로그램이 다른 언어의 보안 결함에 취약해질 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Unsafe Reflection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unsafe%20Reflection#C%23%2fVB.NET%2fASP.NET",
+      "id": "452",
+      "abstract": "공격자가 응용 프로그램을 통해 예기치 못한 제어 흐름 경로를 만들어 보안 검사를 무시할 수 있습니다.",
+      "supported_languages": [
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Value Shadowing",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Value%20Shadowing#C%23%2fVB.NET%2fASP.NET",
+      "id": "811",
+      "abstract": "프로그램이 모호한 방식으로 변수에 액세스하므로 공격에 노출될 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Value Shadowing: Server Variable",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Value%20Shadowing&subcategory=Server%20Variable#C%23%2fVB.NET%2fASP.NET",
+      "id": "812",
+      "abstract": "프로그램이 모호한 방식으로 서버 변수에 액세스하므로 공격에 노출될 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WCF Misconfiguration: Anonymous Message Client",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WCF%20Misconfiguration&subcategory=Anonymous%20Message%20Client#C%23%2fVB.NET%2fASP.NET",
+      "id": "804",
+      "abstract": "authentication이 없는 것은 모든 사용자가 이 서비스에 접근할 수 있음을 의미합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WCF Misconfiguration: Anonymous Transport Client",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WCF%20Misconfiguration&subcategory=Anonymous%20Transport%20Client#C%23%2fVB.NET%2fASP.NET",
+      "id": "803",
+      "abstract": "authentication이 없는 것은 모든 사용자가 이 서비스에 접근할 수 있음을 의미합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WCF Misconfiguration: Debug Information",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WCF%20Misconfiguration&subcategory=Debug%20Information#C%23%2fVB.NET%2fASP.NET",
+      "id": "1146",
+      "abstract": "디버깅 정보는 공격자가 시스템을 파악하고 공격 형태를 계획하는 데 도움이 됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WCF Misconfiguration: Insecure Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WCF%20Misconfiguration&subcategory=Insecure%20Transport#C%23%2fVB.NET%2fASP.NET",
+      "id": "1149",
+      "abstract": "이 응용 프로그램 구성은 민감한 정보에 대한 모든 액세스에 HTTPS가 사용되도록 해야 합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WCF Misconfiguration: Insufficient Audit Failure Handling",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WCF%20Misconfiguration&subcategory=Insufficient%20Audit%20Failure%20Handling#C%23%2fVB.NET%2fASP.NET",
+      "id": "1075",
+      "abstract": "이 프로그램은 감사 로그에 쓰지 못할 때 예외를 생성하지 않도록 구성되었습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WCF Misconfiguration: Insufficient Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WCF%20Misconfiguration&subcategory=Insufficient%20Logging#C%23%2fVB.NET%2fASP.NET",
+      "id": "1209",
+      "abstract": "보안 사고 후 적절한 감사 추적이 없으면 포렌식 작업이 방해를 받을 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WCF Misconfiguration: Metadata",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WCF%20Misconfiguration&subcategory=Metadata#C%23%2fVB.NET%2fASP.NET",
+      "id": "779",
+      "abstract": "메타데이터는 공격자가 시스템 정보를 알아내고 공격 형태를 결정하는 데 도움이 됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WCF Misconfiguration: MSMQ Anonymous Transport Client",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WCF%20Misconfiguration&subcategory=MSMQ%20Anonymous%20Transport%20Client#C%23%2fVB.NET%2fASP.NET",
+      "id": "1073",
+      "abstract": "이 프로그램은 MSMQ 대기열에 연결할 때 인증을 활성화하지 못합니다. 따라서 공격자가 처리를 위한 대기열에 메시지를 익명으로 전송할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WCF Misconfiguration: Security Not Enabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WCF%20Misconfiguration&subcategory=Security%20Not%20Enabled#C%23%2fVB.NET%2fASP.NET",
+      "id": "781",
+      "abstract": "프로그램은 전송 또는 메시지 보안을 정의하지 못합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WCF Misconfiguration: Service Enumeration",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WCF%20Misconfiguration&subcategory=Service%20Enumeration#C%23%2fVB.NET%2fASP.NET",
+      "id": "1188",
+      "abstract": "서비스에 대한 정보를 공개적으로 노출하면 공격자에게 서비스를 악용할 수 있는 방법에 대한 귀중한 통찰력을 제공하게 될 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WCF Misconfiguration: Throttling Not Enabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WCF%20Misconfiguration&subcategory=Throttling%20Not%20Enabled#C%23%2fVB.NET%2fASP.NET",
+      "id": "1210",
+      "abstract": "시스템 리소스 사용에 제한을 두지 않으면 리소스가 고갈되어 궁극적으로 Denial of Service가 발생할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WCF Misconfiguration: Transport Security Enabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WCF%20Misconfiguration&subcategory=Transport%20Security%20Enabled#C%23%2fVB.NET%2fASP.NET",
+      "id": "782",
+      "abstract": "응용 프로그램은 전송 모드 전송 보안을 사용하는 WCF 끝점을 사용합니다. 전송 모드는 최소한의 보안 옵션이며 피해야 합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WCF Misconfiguration: Unauthorized Access",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WCF%20Misconfiguration&subcategory=Unauthorized%20Access#C%23%2fVB.NET%2fASP.NET",
+      "id": "780",
+      "abstract": "이 서비스는 권한 부여 제어를 사용하지 않습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WCF Misconfiguration: Unsafe Revocation Mode",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WCF%20Misconfiguration&subcategory=Unsafe%20Revocation%20Mode#C%23%2fVB.NET%2fASP.NET",
+      "id": "1072",
+      "abstract": "이 프로그램은 인증서 해지 확인을 활성화하지 못하므로 손상된 것으로 알려지거나 의심되는 인증서를 수락하게 됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WCF Misconfiguration: Weak Class Reference",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WCF%20Misconfiguration&subcategory=Weak%20Class%20Reference#C%23%2fVB.NET%2fASP.NET",
+      "id": "1074",
+      "abstract": "이 프로그램은 약한 클래스 참조를 사용합니다. 이는 공격자가 승인되지 않은 코드를 실행하는 것을 허용할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": ".NET Attribute Misuse: Authorization Bypass",
+      "url": "https://vulncat.fortify.com/ko/detail?category=.NET%20Attribute%20Misuse&subcategory=Authorization%20Bypass#C%23%2fVB.NET%2fASP.NET",
+      "id": "767",
+      "abstract": "응용 프로그램이 클래스 또는 메서드 수준에서[AllowAnonymous]속성을 사용하여[Authorize]속성이 부여한 권한 부여를 우회합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": ".NET Bad Practices: BinaryFormatter Enabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=.NET%20Bad%20Practices&subcategory=BinaryFormatter%20Enabled#C%23%2fVB.NET%2fASP.NET",
+      "id": "855",
+      "abstract": "이 응용 프로그램은 더 이상 사용되지 않고 안전하지 않은BinaryFormatter클래스를 활성화합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "JSON"
+      ]
+    },
+    {
+      "title": ".NET Bad Practices: Leftover Debug Code",
+      "url": "https://vulncat.fortify.com/ko/detail?category=.NET%20Bad%20Practices&subcategory=Leftover%20Debug%20Code#C%23%2fVB.NET%2fASP.NET",
+      "id": "789",
+      "abstract": "디버그 코드는 배포 시 의도하지 않은 부작용을 야기할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Access Control: Anonymous LDAP Bind",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Access%20Control&subcategory=Anonymous%20LDAP%20Bind#C%23%2fVB.NET%2fASP.NET",
+      "id": "800",
+      "abstract": "적절한 access control 없이 사용자가 제어하는 값을 포함하는 LDAP 문을 실행하면 공격자가 허가 받지 않은 레코드에 접근할 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "PHP"
+      ]
+    },
+    {
+      "title": "Access Control: Database",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Access%20Control&subcategory=Database#C%23%2fVB.NET%2fASP.NET",
+      "id": "408",
+      "abstract": "적절한 access control 없이 사용자가 제어하는 기본 키를 포함하는 SQL 문을 실행하면 공격자가 허가 받지 않은 레코드를 볼 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Access Control: Form Authentication Bypass",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Access%20Control&subcategory=Form%20Authentication%20Bypass#C%23%2fVB.NET%2fASP.NET",
+      "id": "1276",
+      "abstract": "이 응용 프로그램은 기본 API에 대한 검증되지 않은 입력을 허용하고 공격자가 인증을 우회할 수 있도록 하는 속성을 설정합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Access Control: LDAP",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Access%20Control&subcategory=LDAP#C%23%2fVB.NET%2fASP.NET",
+      "id": "802",
+      "abstract": "적절한 access control 없이 사용자가 제어하는 값을 포함하는 LDAP 문을 실행하면 공격자가 허가 받지 않은 디렉터리 항목에 접근할 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "ASP.NET Bad Practices: Compression Over Encrypted WebSocket Connection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Bad%20Practices&subcategory=Compression%20Over%20Encrypted%20WebSocket%20Connection#C%23%2fVB.NET%2fASP.NET",
+      "id": "850",
+      "abstract": "이 응용 프로그램은 위험한 압축을 활성화합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Bad Practices: Non-Serializable Object Stored in Session",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Bad%20Practices&subcategory=Non-Serializable%20Object%20Stored%20in%20Session#C%23%2fVB.NET%2fASP.NET",
+      "id": "1310",
+      "abstract": "non-serializable 개체를HttpSessionState속성으로 저장하면 응용 프로그램 안정성을 해칠 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Bad Practices: Unminified Code",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Bad%20Practices&subcategory=Unminified%20Code#C%23%2fVB.NET%2fASP.NET",
+      "id": "785",
+      "abstract": "축소되지 않은 JavaScript가 이 파일에 포함되었습니다. 성능상의 이유로 Microsoft는 JavaScript 라이브러리의 축소된 버전을 포함할 것을 권장합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Bad Practices: Unvalidated Web API Model",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Bad%20Practices&subcategory=Unvalidated%20Web%20API%20Model#C%23%2fVB.NET%2fASP.NET",
+      "id": "817",
+      "abstract": "모델을 수신하는 ASP.NET Web API 작업 메서드는 확인되지 않은 입력으로 인한 취약점을 방지할 수 있도록 모델 검증의 통과 여부를 확인해야 합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Bad Practices: Use of Impersonation Context",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Bad%20Practices&subcategory=Use%20of%20Impersonation%20Context#C%23%2fVB.NET%2fASP.NET",
+      "id": "797",
+      "abstract": "가장된 사용자 자격 증명으로 공격자가 보호된 리소스에 무단으로 접근할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Middleware Out of Order: Default Cookie Configuration",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Middleware%20Out%20of%20Order&subcategory=Default%20Cookie%20Configuration#C%23%2fVB.NET%2fASP.NET",
+      "id": "762",
+      "abstract": "응용 프로그램이 ASP.NET 쿠키 정책 미들웨어를 잘못 지정합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Middleware Out of Order: Insecure Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Middleware%20Out%20of%20Order&subcategory=Insecure%20Transport#C%23%2fVB.NET%2fASP.NET",
+      "id": "764",
+      "abstract": "응용 프로그램이 기본 ASP.NET HTTPS 리디렉션 미들웨어를 잘못 지정합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Middleware Out of Order: Insufficient Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Middleware%20Out%20of%20Order&subcategory=Insufficient%20Logging#C%23%2fVB.NET%2fASP.NET",
+      "id": "763",
+      "abstract": "응용 프로그램이 ASP.NET Core 로깅 미들웨어를 잘못 지정합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Certificate Validation Disabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Certificate%20Validation%20Disabled#C%23%2fVB.NET%2fASP.NET",
+      "id": "1138",
+      "abstract": "인증서 확인을 비활성화하면 매우 위험합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Cookie Protection Disabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Cookie%20Protection%20Disabled#C%23%2fVB.NET%2fASP.NET",
+      "id": "1131",
+      "abstract": "공격자가 보호되지 않은 쿠키의 내용을 보거나 수정할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Debug Information",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Debug%20Information#C%23%2fVB.NET%2fASP.NET",
+      "id": "1111",
+      "abstract": "디버깅 메시지는 공격자가 시스템을 파악하고 공격 형태를 계획하는 데 도움이 됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Event Validation Disabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Event%20Validation%20Disabled#C%23%2fVB.NET%2fASP.NET",
+      "id": "1228",
+      "abstract": "ASP.NET 이벤트 유효성 검사를 비활성화하면 공격자가 인증되지 않았거나 악의적인 포스트백 요청을 제출할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Excessive Session Timeout",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Excessive%20Session%20Timeout#C%23%2fVB.NET%2fASP.NET",
+      "id": "1260",
+      "abstract": "인증 시간 초과가 지나치게 길면 공격자가 사용자 계정을 침해할 수 있는 시간이 늘어납니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Header Checking Disabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Header%20Checking%20Disabled#C%23%2fVB.NET%2fASP.NET",
+      "id": "806",
+      "abstract": "헤더 검사를 비활성화하면 공격자가 헤더 조작 공격을 수행할 수 있는 여지가 생깁니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Incomplete Certificate Validation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Incomplete%20Certificate%20Validation#C%23%2fVB.NET%2fASP.NET",
+      "id": "1139",
+      "abstract": "피어 발급 인증서를 허용하면 인증서 확인의 보안 수준이 낮아집니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Incomplete Cookie Protection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Incomplete%20Cookie%20Protection#C%23%2fVB.NET%2fASP.NET",
+      "id": "1132",
+      "abstract": "공격자가 보호되지 않은 쿠키의 내용을 보거나 수정할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Incomplete Role Protection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Incomplete%20Role%20Protection#C%23%2fVB.NET%2fASP.NET",
+      "id": "1134",
+      "abstract": "공격자가 충분히 보호되지 않은 쿠키의 역할 정보를 보거나 수정할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Information Disclosure",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Information%20Disclosure#C%23%2fVB.NET%2fASP.NET",
+      "id": "1059",
+      "abstract": "ASP.NET 웹 서비스의 설명서 프로토콜이 활성화되어 있어 서비스를 오용하는 방법에 대한 정보가 공개될 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Insecure Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Insecure%20Transport#C%23%2fVB.NET%2fASP.NET",
+      "id": "851",
+      "abstract": "ASP.NET Core의 응용 프로그램 구성은 모든 액세스 제어 페이지에 대해 안전한 연결을 요구하지 않습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Logging Sensitive Information",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Logging%20Sensitive%20Information#C%23%2fVB.NET%2fASP.NET",
+      "id": "847",
+      "abstract": "잘못 구성된 W3Clogger 미들웨어로 인해 중요한 정보가 로깅될 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Missing Error Handling",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Missing%20Error%20Handling#C%23%2fVB.NET%2fASP.NET",
+      "id": "1112",
+      "abstract": "ASP .NET 응용 프로그램의 경우, 공격자가 프레임워크의 기본 제공 오류 응답에서 정보를 빼내는 것을 막기 위해 사용자 지정 오류 페이지를 사용해야 합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Missing HMAC Signature",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Missing%20HMAC%20Signature#C%23%2fVB.NET%2fASP.NET",
+      "id": "1277",
+      "abstract": "이 응용 프로그램은 암호화를 사용하도록 구성된 경우 ASP.NET에서 수행하는 서명 확인을 비활성화하는 속성을 설정합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Password Protection Disabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Password%20Protection%20Disabled#C%23%2fVB.NET%2fASP.NET",
+      "id": "1135",
+      "abstract": "암호를 일반 텍스트로 저장하거나 약한 암호화를 사용하면 시스템 침해가 발생할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Persistent Authentication",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Persistent%20Authentication#C%23%2fVB.NET%2fASP.NET",
+      "id": "798",
+      "abstract": "Persistent authentication 티켓은 사용자를 세션 하이재킹에 취약하게 합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Request Validation Disabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Request%20Validation%20Disabled#C%23%2fVB.NET%2fASP.NET",
+      "id": "793",
+      "abstract": "ASP.NET 검증 프레임워크를 사용하여 검증되지 않은 입력 때문에 발생하는 취약점을 예방합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Role Protection Disabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Role%20Protection%20Disabled#C%23%2fVB.NET%2fASP.NET",
+      "id": "1133",
+      "abstract": "공격자가 쿠키의 보호되지 않은 역할 정보를 보거나 수정할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Session Cookies Disabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Session%20Cookies%20Disabled#C%23%2fVB.NET%2fASP.NET",
+      "id": "1233",
+      "abstract": "프로그램은 쿠키를 사용하여 Session Fixation 및 Session Hijacking 공격에 대한 문을 열어줄 수 있는 세션 ID를 전송하지 않습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Trace Output",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Trace%20Output#C%23%2fVB.NET%2fASP.NET",
+      "id": "1137",
+      "abstract": "추적 디버그 정보는 공격자가 시스템을 파악하고 공격 형태를 계획하는 데 도움이 됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Unsafe Header Parsing",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Unsafe%20Header%20Parsing#C%23%2fVB.NET%2fASP.NET",
+      "id": "1261",
+      "abstract": "응용 프로그램은 HTTP 구문 분석 중 검증 오류를 일으키는 속성이 무시되도록 설정합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Use of Impersonation Context",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Use%20of%20Impersonation%20Context#C%23%2fVB.NET%2fASP.NET",
+      "id": "1128",
+      "abstract": "가장 자격 증명으로 실행되도록 ASP.NET 응용 프로그램을 구성하면 응용 프로그램에 불필요한 권한이 부여될 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: ViewStateMac Disabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=ViewStateMac%20Disabled#C%23%2fVB.NET%2fASP.NET",
+      "id": "805",
+      "abstract": "보기 상태 MAC(message authentication check)을 비활성화하면 공격자가 보기 상태를 수정할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET Misconfiguration: Weak Password Protection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20Misconfiguration&subcategory=Weak%20Password%20Protection#C%23%2fVB.NET%2fASP.NET",
+      "id": "1136",
+      "abstract": "암호를 일반 텍스트로 저장하거나 약한 암호화를 사용하면 시스템 침해가 발생할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET MVC Bad Practices: Controller Action Not Restricted to POST",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20MVC%20Bad%20Practices&subcategory=Controller%20Action%20Not%20Restricted%20to%20POST#C%23%2fVB.NET%2fASP.NET",
+      "id": "773",
+      "abstract": "이 컨트롤러 작업은 다음 HTTP 동사 중 하나만 수락하도록 제한하는 것이 좋을 수 있습니다. Post, Put, Patch 또는 Delete.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET MVC Bad Practices: Controller Action Without AntiForgery Validation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20MVC%20Bad%20Practices&subcategory=Controller%20Action%20Without%20AntiForgery%20Validation#C%23%2fVB.NET%2fASP.NET",
+      "id": "772",
+      "abstract": "컨트롤러 작업에서 antiforgery 확인 기능을 활용할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET MVC Bad Practices: Form Without AntiForgery Token",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20MVC%20Bad%20Practices&subcategory=Form%20Without%20AntiForgery%20Token#C%23%2fVB.NET%2fASP.NET",
+      "id": "771",
+      "abstract": "Razor 보기가 폼은 포함하지만 해당 폼을 사용하는 antiforgery 토큰은 포함하지 않아서 cross-site request forgery에 보다 취약할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET MVC Bad Practices: Model With Optional and Required Properties",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20MVC%20Bad%20Practices&subcategory=Model%20With%20Optional%20and%20Required%20Properties#C%23%2fVB.NET%2fASP.NET",
+      "id": "774",
+      "abstract": "모델 클래스는 필수 속성과 비필수 속성을 모두 포함하기 때문에 over-posting 공격에 취약할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET MVC Bad Practices: Model With Required Non-Nullable Property",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20MVC%20Bad%20Practices&subcategory=Model%20With%20Required%20Non-Nullable%20Property#C%23%2fVB.NET%2fASP.NET",
+      "id": "775",
+      "abstract": "모델 클래스는 null이 허용되지 않는 필수 속성을 포함하기 때문에 under-posting 공격에 취약할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "ASP.NET MVC Bad Practices: Optional Submodel With Required Property",
+      "url": "https://vulncat.fortify.com/ko/detail?category=ASP.NET%20MVC%20Bad%20Practices&subcategory=Optional%20Submodel%20With%20Required%20Property#C%23%2fVB.NET%2fASP.NET",
+      "id": "776",
+      "abstract": "모델 클래스는 필수 속성을 포함하며 유형이 상위 모델 유형의 옵션 멤버이므로 under-posting 공격에 취약할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Certificate Management: Certificate in Configuration File",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Certificate%20Management&subcategory=Certificate%20in%20Configuration%20File#C%23%2fVB.NET%2fASP.NET",
+      "id": "1058",
+      "abstract": "구성 또는 매니페스트 파일에 일반 텍스트 인증서를 저장하면 해당 인증서가 손상될 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Code Correctness: Call to GC.Collect()",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Code%20Correctness&subcategory=Call%20to%20GC.Collect()#C%23%2fVB.NET%2fASP.NET",
+      "id": "1311",
+      "abstract": "명시적인 가비지 수집 요청은 성능 문제 발생 가능성을 나타내는 신호입니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Code Correctness: Class Does Not Implement Equivalence Method",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Code%20Correctness&subcategory=Class%20Does%20Not%20Implement%20Equivalence%20Method#C%23%2fVB.NET%2fASP.NET",
+      "id": "1319",
+      "abstract": "Equals()는Equals()를 구현하지 않는 개체에서 호출됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Code Correctness: Class Implements ICloneable",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Code%20Correctness&subcategory=Class%20Implements%20ICloneable#C%23%2fVB.NET%2fASP.NET",
+      "id": "1314",
+      "abstract": "ICloneable인터페이스는 해당Clone메서드에 대해 약한 약정을 지정하므로 피해야 합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Code Correctness: Erroneous Class Compare",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Code%20Correctness&subcategory=Erroneous%20Class%20Compare#C%23%2fVB.NET%2fASP.NET",
+      "id": "790",
+      "abstract": "해당 클래스 이름을 기반으로 개체 유형을 결정하면 예상치 못한 동작이 나타나거나 공격자가 악성 클래스를 삽입할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "Kotlin"
+      ]
+    },
+    {
+      "title": "Code Correctness: Misleading Method Signature",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Code%20Correctness&subcategory=Misleading%20Method%20Signature#C%23%2fVB.NET%2fASP.NET",
+      "id": "1312",
+      "abstract": "이는 일반 .NET 메서드를 덮어쓰려는 것처럼 보이지만 의도한 효과는 나타나지 않습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Code Correctness: Missing [Serializable] Attribute",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Code%20Correctness&subcategory=Missing%20%5BSerializable%5D%20Attribute#C%23%2fVB.NET%2fASP.NET",
+      "id": "1315",
+      "abstract": "ISerializable인터페이스를 구현하지만[Serializable]속성을 선언하지 않는 클래스는 직렬화되지 않습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Code Correctness: null Argument To Equivalence Method",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Code%20Correctness&subcategory=null%20Argument%20To%20Equivalence%20Method#C%23%2fVB.NET%2fASP.NET",
+      "id": "1313",
+      "abstract": "식obj.Equals(null)는 항상 false가 됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Code Correctness: Readonly Collection Reference",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Code%20Correctness&subcategory=Readonly%20Collection%20Reference#C%23%2fVB.NET%2fASP.NET",
+      "id": "1320",
+      "abstract": "읽기 전용 키워드에 변수를 선언한 대로 또는 구성자에서 초기화해야 하고 다른 위치에서 수정할 수 없다는 규칙이 적용됩니다. 이는 값 유형에 대해 예상한 대로 작동하지만 개체 및 목록의 콘텐트는 개인 정보 읽기 전용으로 선언한 경우에도 수정할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Code Correctness: ToString on Array",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Code%20Correctness&subcategory=ToString%20on%20Array#C%23%2fVB.NET%2fASP.NET",
+      "id": "1306",
+      "abstract": "ToString()이 배열에서 호출됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Command Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Command%20Injection#C%23%2fVB.NET%2fASP.NET",
+      "id": "409",
+      "abstract": "신뢰할 수 없는 소스 또는 신뢰할 수 없는 환경에서 명령을 실행하면 공격자 대신 응용 프로그램이 악의적인 명령을 실행할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Connection String Parameter Pollution",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Connection%20String%20Parameter%20Pollution#C%23%2fVB.NET%2fASP.NET",
+      "id": "834",
+      "abstract": "확인되지 않은 입력을 데이터베이스 연결에 연결하면 공격자가 요청 매개 변수의 값을 오버라이드할 수 있습니다. 공격자는 기존 매개 변수 값을 오버라이드하거나, 새 매개 변수를 삽입하거나, 직접 연결로부터 변수를 익스플로이트할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Python",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Cookie Security: Cookie not Sent Over SSL",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=Cookie%20not%20Sent%20Over%20SSL#C%23%2fVB.NET%2fASP.NET",
+      "id": "534",
+      "abstract": "true로 설정된isSecure매개 변수 없이 쿠키가 생성됩니다.",
+      "supported_languages": [
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Cookie Security: HTTPOnly not Set",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=HTTPOnly%20not%20Set#C%23%2fVB.NET%2fASP.NET",
+      "id": "813",
+      "abstract": "프로그램은 쿠키를 생성하지만HttpOnly플래그를true로 설정하지 못합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "Python",
+        "Scala"
+      ]
+    },
+    {
+      "title": "Cookie Security: HTTPOnly not Set on Application Cookie",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=HTTPOnly%20not%20Set%20on%20Application%20Cookie#C%23%2fVB.NET%2fASP.NET",
+      "id": "1076",
+      "abstract": "이 프로그램은HttpCookie.HttpOnly속성을true로 설정하지 않습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Cookie Security: Missing SameSite Attribute",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=Missing%20SameSite%20Attribute#C%23%2fVB.NET%2fASP.NET",
+      "id": "535",
+      "abstract": "프로그램이 세션 쿠키에SameSite속성을 설정하지 못합니다.",
+      "supported_languages": [
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "Python",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Cookie Security: Overly Broad Domain",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=Overly%20Broad%20Domain#C%23%2fVB.NET%2fASP.NET",
+      "id": "807",
+      "abstract": "지나치게 광범위한 도메인을 가진 쿠키는 다른 응용 프로그램을 통해 공격할 수 있도록 응용 프로그램을 열어 줍니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Cookie Security: Overly Broad Path",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=Overly%20Broad%20Path#C%23%2fVB.NET%2fASP.NET",
+      "id": "532",
+      "abstract": "동일한 도메인의 다른 응용 프로그램이 Overly Broad Path를 가진 쿠키에 액세스할 수 있습니다.",
+      "supported_languages": [
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Cookie Security: Overly Permissive SameSite Attribute",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=Overly%20Permissive%20SameSite%20Attribute#C%23%2fVB.NET%2fASP.NET",
+      "id": "536",
+      "abstract": "세션 쿠키의SameSite매개 변수가Strict로 설정되지 않았습니다.",
+      "supported_languages": [
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "Python",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Cookie Security: Persistent Cookie",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=Persistent%20Cookie#C%23%2fVB.NET%2fASP.NET",
+      "id": "533",
+      "abstract": "영구 쿠키에 민감한 데이터를 저장하면 데이터의 기밀성이 침해되거나 계정이 손상될 수 있습니다.",
+      "supported_languages": [
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Cookie Security: Session Cookie not Sent Over SSL",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=Session%20Cookie%20not%20Sent%20Over%20SSL#C%23%2fVB.NET%2fASP.NET",
+      "id": "962",
+      "abstract": "응용 프로그램 세션 쿠키는Secure플래그를true로 설정하지 않은 상태에서 만들어집니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "PHP",
+        "Python"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Inter-Component Communication",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Inter-Component%20Communication#C%23%2fVB.NET%2fASP.NET",
+      "id": "485",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "Kotlin",
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Inter-Component Communication (Cloud)",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Inter-Component%20Communication%20(Cloud)#C%23%2fVB.NET%2fASP.NET",
+      "id": "770",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Python"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Persistent",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Persistent#C%23%2fVB.NET%2fASP.NET",
+      "id": "410",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "WCF Misconfiguration: Weak Token",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WCF%20Misconfiguration&subcategory=Weak%20Token#C%23%2fVB.NET%2fASP.NET",
+      "id": "1166",
+      "abstract": "암호화되지 않은 채널에서 일반 텍스트 암호가 있는 UsernameToken을 사용하면 SOAP 메시지를 염탐할 수 있는 공격자에게 암호가 노출됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Hash",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Hash#C%23%2fVB.NET%2fASP.NET",
+      "id": "404",
+      "abstract": "약한 암호화 해시는 데이터의 무결성을 보장할 수 없고 보안이 중요한 컨텍스트에 사용되어서는 안 됩니다.",
+      "supported_languages": [
+        "ABAP",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Hash: Insecure PBE Iteration Count",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Hash&subcategory=Insecure%20PBE%20Iteration%20Count#C%23%2fVB.NET%2fASP.NET",
+      "id": "808",
+      "abstract": "암호 기반 키 파생 함수에서 사용하는 반복 횟수가 지나치게 낮습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Hash: Predictable Salt",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Hash&subcategory=Predictable%20Salt#C%23%2fVB.NET%2fASP.NET",
+      "id": "833",
+      "abstract": "솔트 값은 암호화 의사 난수 발생기를 사용하여 생성해야 합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "JavaScript/TypeScript",
+        "PHP",
+        "Python",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Hash: User-Controlled Algorithm",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Hash&subcategory=User-Controlled%20Algorithm#C%23%2fVB.NET%2fASP.NET",
+      "id": "828",
+      "abstract": "암호화 해시 내에 사용자가 제어하는 알고리즘을 사용하면 공격자가 약한 암호화 해시 알고리즘을 지정하여 응용 프로그램의 데이터 무결성과 보안을 침해할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Hash: User-Controlled PBE Salt",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Hash&subcategory=User-Controlled%20PBE%20Salt#C%23%2fVB.NET%2fASP.NET",
+      "id": "831",
+      "abstract": "감염될 수 있는 사용자 입력을 PBKDF에 솔트 매개 변수로 전달해서는 안 됩니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Signature: Insufficient Key Size",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Signature&subcategory=Insufficient%20Key%20Size#C%23%2fVB.NET%2fASP.NET",
+      "id": "829",
+      "abstract": "불충분한 키 크기를 사용하면 강력한 암호화 서명 알고리즘이더라도 무차별 대입 공격에 크게 취약해질 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "Python",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Signature: User-Controlled Key Size",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Signature&subcategory=User-Controlled%20Key%20Size#C%23%2fVB.NET%2fASP.NET",
+      "id": "830",
+      "abstract": "키 크기 매개 변수를 사용하는 암호화 서명 함수에 감염된 키 크기 값을 전달해서는 안 됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Weak Encryption",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Encryption#C%23%2fVB.NET%2fASP.NET",
+      "id": "403",
+      "abstract": "식별된 호출은 민감한 데이터의 기밀성을 보장할 수 없는 약한 암호화 알고리즘을 사용합니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Weak Encryption: Inadequate RSA Padding",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Encryption&subcategory=Inadequate%20RSA%20Padding#C%23%2fVB.NET%2fASP.NET",
+      "id": "809",
+      "abstract": "공용 키 RSA 암호화는 OAEP 패딩을 사용하지 않고 수행되므로 암호화가 취약해집니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Weak Encryption: Insecure Initialization Vector",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Encryption&subcategory=Insecure%20Initialization%20Vector#C%23%2fVB.NET%2fASP.NET",
+      "id": "528",
+      "abstract": "암호화 의사 난수 발생기를 사용하여 IV(Initialization Vector)를 생성해야 합니다.",
+      "supported_languages": [
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Weak Encryption: Insecure Mode of Operation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Encryption&subcategory=Insecure%20Mode%20of%20Operation#C%23%2fVB.NET%2fASP.NET",
+      "id": "810",
+      "abstract": "안전하지 않은 작업 모드로 암호화 알고리즘을 사용하지 마십시오.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Weak Encryption: Insufficient Key Size",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Encryption&subcategory=Insufficient%20Key%20Size#C%23%2fVB.NET%2fASP.NET",
+      "id": "490",
+      "abstract": "불충분한 키 크기를 사용하면 강력한 암호화 알고리즘이더라도 무차별 대입 공격에 크게 취약해질 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Weak Encryption: User-Controlled Key Size",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Encryption&subcategory=User-Controlled%20Key%20Size#C%23%2fVB.NET%2fASP.NET",
+      "id": "832",
+      "abstract": "키 크기 매개 변수를 사용하는 암호화 함수에는 감염된 키 크기 값을 전달해서는 안 됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "WSE Misconfiguration: Insufficient Encryption",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WSE%20Misconfiguration&subcategory=Insufficient%20Encryption#C%23%2fVB.NET%2fASP.NET",
+      "id": "1211",
+      "abstract": "서명을 암호화하지 않으면 무차별 대입 공격이 성공할 가능성이 높아집니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WSE Misconfiguration: Missing Authorization",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WSE%20Misconfiguration&subcategory=Missing%20Authorization#C%23%2fVB.NET%2fASP.NET",
+      "id": "1212",
+      "abstract": "<authorization>태그를 명시적으로 설정하지 않으면 권한 에스컬레이션 또는 익명 액세스가 발생할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WSE Misconfiguration: Unsigned Fault Timestamp",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WSE%20Misconfiguration&subcategory=Unsigned%20Fault%20Timestamp#C%23%2fVB.NET%2fASP.NET",
+      "id": "1208",
+      "abstract": "서명되지 않은 타임스탬프는 SOAP 메시지를 변조 및 재생 공격에 노출시킬 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WSE Misconfiguration: Unsigned Request Timestamp",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WSE%20Misconfiguration&subcategory=Unsigned%20Request%20Timestamp#C%23%2fVB.NET%2fASP.NET",
+      "id": "1206",
+      "abstract": "서명되지 않은 타임스탬프는 SOAP 메시지를 변조 및 재생 공격에 노출시킬 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "WSE Misconfiguration: Unsigned Response Timestamp",
+      "url": "https://vulncat.fortify.com/ko/detail?category=WSE%20Misconfiguration&subcategory=Unsigned%20Response%20Timestamp#C%23%2fVB.NET%2fASP.NET",
+      "id": "1207",
+      "abstract": "서명되지 않은 타임스탬프는 SOAP 메시지를 변조 및 재생 공격에 노출시킬 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "XML Entity Expansion Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=XML%20Entity%20Expansion%20Injection#C%23%2fVB.NET%2fASP.NET",
+      "id": "448",
+      "abstract": "DTD(문서 유형 정의) 항목 확인을 차단하거나 제한하도록 구성되지 않은 XML 파서를 사용하면 파서가 XML Entity Expansion Injection에 노출될 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "PHP",
+        "Python",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "XML External Entity Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=XML%20External%20Entity%20Injection#C%23%2fVB.NET%2fASP.NET",
+      "id": "447",
+      "abstract": "외부 엔터티 확인을 방지 또는 제한하도록 구성되지 않은 XML 파서를 사용하면 파서가 XML 외부 엔터티 공격에 노출될 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "XML Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=XML%20Injection#C%23%2fVB.NET%2fASP.NET",
+      "id": "450",
+      "abstract": "확인되지 않은 데이터를 XML 문서에 쓰면 공격자가 XML의 구조와 내용을 변경할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "XML Injection: Open XML",
+      "url": "https://vulncat.fortify.com/ko/detail?category=XML%20Injection&subcategory=Open%20XML#C%23%2fVB.NET%2fASP.NET",
+      "id": "1322",
+      "abstract": "확인되지 않은 데이터를 Open XML 문서에 쓰면 공격자가 기본 XML의 구조와 내용을 변경할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET"
+      ]
+    },
+    {
+      "title": "XPath Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=XPath%20Injection#C%23%2fVB.NET%2fASP.NET",
+      "id": "543",
+      "abstract": "식별된 메서드는 확인되지 않은 입력을 사용하여 만들어진 XPath 쿼리를 호출합니다. 이 호출을 사용하여 공격자는 해당 문의 의미를 수정하거나 임의의 XPath 쿼리를 실행할 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Java/JSP",
+        "Objective-C",
+        "PHP",
+        "Python"
+      ]
+    },
+    {
+      "title": "XQuery Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=XQuery%20Injection#C%23%2fVB.NET%2fASP.NET",
+      "id": "979",
+      "abstract": "사용자 입력을 받아 동적으로 XQuery 식을 생성하면 공격자가 해당 문의 의미를 수정할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "PHP"
+      ]
+    },
+    {
+      "title": "XSLT Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=XSLT%20Injection#C%23%2fVB.NET%2fASP.NET",
+      "id": "818",
+      "abstract": "확인되지 않은 XSL 스타일시트를 처리하면 공격자가 그 결과로 생긴 XML의 구조와 내용을 변경하거나, 파일 시스템에서 임의의 파일을 포함하거나, 임의의 코드를 실행할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "PHP",
+        "Python"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: SAPUI5 Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=SAPUI5%20Control#JavaScript%2fTypeScript",
+      "id": "910",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Self",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Self#JavaScript%2fTypeScript",
+      "id": "911",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: SOP Bypass",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=SOP%20Bypass#JavaScript%2fTypeScript",
+      "id": "912",
+      "abstract": "사용자 입력이 SOP(동일 출처 정책)를 결정하는 설정을 제어하도록 허용하면 XSS 취약점이 발생할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Untrusted HTML Downloads",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Untrusted%20HTML%20Downloads#JavaScript%2fTypeScript",
+      "id": "1432",
+      "abstract": "noopen으로 설정되는X-Download-Options헤더를 비활성화하면 다운로드된 HTML 페이지가 이를 제공하는 사이트의 보안 컨텍스트에서 실행됩니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Dangerous Field",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Field#Java%2fJSP",
+      "id": "521",
+      "abstract": "필드는 위험한 것으로 주석 추가되었습니다. 모든 사용은 플래그 지정됩니다.",
+      "supported_languages": [
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dangerous File Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20File%20Injection#PHP",
+      "id": "981",
+      "abstract": "공격자가 임의의 콘텐트가 있는 시스템에서 파일을 만들 수 있습니다.",
+      "supported_languages": [
+        "PHP"
+      ]
+    },
+    {
+      "title": "Dangerous Function",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function#C%2fC%2b%2b",
+      "id": "715",
+      "abstract": "안전하게 사용할 수 없는 함수는 사용하지 않는 것이 좋습니다.",
+      "supported_languages": [
+        "C/C++",
+        "PHP",
+        "PLSQL/TSQL",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Dangerous Function: strcpy()",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function&subcategory=strcpy()#C%2fC%2b%2b",
+      "id": "716",
+      "abstract": "안전하게 사용할 수 없는 함수는 사용하지 않는 것이 좋습니다.",
+      "supported_languages": [
+        "C/C++"
+      ]
+    },
+    {
+      "title": "Dangerous Function: Unsafe Regular Expression",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function&subcategory=Unsafe%20Regular%20Expression#PHP",
+      "id": "957",
+      "abstract": "안전하게 사용할 수 없는 함수는 사용하면 안 됩니다.",
+      "supported_languages": [
+        "PHP"
+      ]
+    },
+    {
+      "title": "Dangerous Function: xp_cmdshell",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function&subcategory=xp_cmdshell#PLSQL%2fTSQL",
+      "id": "1042",
+      "abstract": "xp_cmdshell함수는 안전하게 사용할 수 없습니다. 사용하지 않는 것이 좋습니다.",
+      "supported_languages": [
+        "PLSQL/TSQL"
+      ]
+    },
+    {
+      "title": "Dangerous Method",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Method#Java%2fJSP",
+      "id": "520",
+      "abstract": "메서드는 위험한 것으로 주석 추가되었습니다. 이 메서드의 모든 사용은 이슈로 플래그 지정되었습니다.",
+      "supported_languages": [
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dangerous Type",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Type#Java%2fJSP",
+      "id": "522",
+      "abstract": "이 변수는 위험한 것으로 주석 처리된 유형의 변수입니다.",
+      "supported_languages": [
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Data Poisoning: AI Embedding",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Data%20Poisoning&subcategory=AI%20Embedding#JavaScript%2fTypeScript",
+      "id": "1019",
+      "abstract": "검증되지 않은 데이터를 LLM 임베딩 API로 보냅니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript",
+        "Python"
+      ]
+    },
+    {
+      "title": "Data Poisoning: AI Training",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Data%20Poisoning&subcategory=AI%20Training#Python",
+      "id": "1018",
+      "abstract": "검증되지 않은 데이터를 LLM 미세 조정 API로 보냅니다.",
+      "supported_languages": [
+        "Python"
+      ]
+    },
+    {
+      "title": "Database Bad Practices: Use of Restricted Accounts",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Database%20Bad%20Practices&subcategory=Use%20of%20Restricted%20Accounts#PLSQL%2fTSQL",
+      "id": "1039",
+      "abstract": "admin, administrator, guest, root 또는 sa 계정 중 하나를 사용하여 데이터베이스에 연결하려고 했습니다.",
+      "supported_languages": [
+        "PLSQL/TSQL"
+      ]
+    },
+    {
+      "title": "Dead Code",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dead%20Code#C%2fC%2b%2b",
+      "id": "733",
+      "abstract": "이 문은 결코 실행되지 않습니다.",
+      "supported_languages": [
+        "C/C++",
+        "Solidity"
+      ]
+    }
+  ]
+}

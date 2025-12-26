@@ -1,0 +1,1895 @@
+{
+  "codelang": "Swift",
+  "total_count_text": 107,
+  "fetched_count": 125,
+  "weaknesses": [
+    {
+      "title": "Cross-Site Scripting: Poor Validation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Poor%20Validation#Swift",
+      "id": "411",
+      "abstract": "사용자 입력을 검증하는 데 HTML, XML 및 기타 인코딩 유형을 사용하면 브라우저가 악성 코드를 실행하게 될 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Reflected",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Reflected#Swift",
+      "id": "412",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Denial of Service: Regular Expression",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Denial%20of%20Service&subcategory=Regular%20Expression#Swift",
+      "id": "440",
+      "abstract": "신뢰할 수 없는 데이터가 응용 프로그램에 전달되어 정규식으로 사용됩니다. 그러면 스레드가 CPU 리소스를 과도하게 사용할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C#/VB.NET/ASP.NET",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Dynamic Code Evaluation: Code Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dynamic%20Code%20Evaluation&subcategory=Code%20Injection#Swift",
+      "id": "414",
+      "abstract": "런타임 시 사용자가 제어하는 명령어를 해석하면 공격자가 악성 코드를 실행할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "File Based Cross-Zone Scripting",
+      "url": "https://vulncat.fortify.com/ko/detail?category=File%20Based%20Cross-Zone%20Scripting#Swift",
+      "id": "501",
+      "abstract": "응용 프로그램의 컨텍스트 내에서 신뢰할 수 없는 스크립트를 실행할 수 있는 파일을 로드하는 것은 위험합니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Header Manipulation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Header%20Manipulation#Swift",
+      "id": "415",
+      "abstract": "HTTP 응답 헤더에 확인되지 않은 데이터를 포함하면 캐시 감염(cache-poisoning), cross-site scripting, 교차 사용자 변조(cross-user defacement) 또는 페이지 하이재킹(page hijacking), 쿠키 조작 또는 open redirection 공격을 유발할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Input Interception: Keyboard Extensions Allowed",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Input%20Interception&subcategory=Keyboard%20Extensions%20Allowed#Swift",
+      "id": "936",
+      "abstract": "응용 프로그램에서 타사 키보드 확장의 설치를 허용합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure IPC: Missing Content Validation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20IPC&subcategory=Missing%20Content%20Validation#Swift",
+      "id": "937",
+      "abstract": "확장 보기 컨트롤러가 호스트 애플리케이션에서 전송된 데이터의 확인에 실패합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure IPC: Missing Sender Verification",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20IPC&subcategory=Missing%20Sender%20Verification#Swift",
+      "id": "930",
+      "abstract": "응용 프로그램이 URL 기반 IPC(Inter-Procedure Communication) 호출의 발신자 확인에 실패합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure IPC: Missing URL Validation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20IPC&subcategory=Missing%20URL%20Validation#Swift",
+      "id": "929",
+      "abstract": "응용 프로그램이 URL 기반 IPC(Inter-Procedure Communication) 호출에서 URL 호출의 확인에 실패합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure IPC: URL Scheme Hijacking",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20IPC&subcategory=URL%20Scheme%20Hijacking#Swift",
+      "id": "928",
+      "abstract": "응용 프로그램이 IPC(Inter-Procedure Communication)에 대해 사용자 지정 URL 스키마를 사용하여 \"URL 스키마 하이재킹\"의 위험이 있습니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure Randomness",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Randomness#Swift",
+      "id": "405",
+      "abstract": "표준 의사 난수 발생기는 암호화 공격을 차단하지 못합니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Insecure SSL: Overly Broad Certificate Trust",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20SSL&subcategory=Overly%20Broad%20Certificate%20Trust#Swift",
+      "id": "504",
+      "abstract": "SSL/TLS 연결은 기본 사전 로드된 시스템 CA(인증 기관)를 사용하여 생성되며 이로 인해 공격자가 손상된 루트 CA로 서명된 인증서를 사용하여 MiTM(Man-in-The-Middle: 메시지 가로채기) 공격을 수행하여 암호화된 통신을 가로챌 수 있습니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "Kotlin",
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure SSL: Server Identity Verification Disabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20SSL&subcategory=Server%20Identity%20Verification%20Disabled#Swift",
+      "id": "500",
+      "abstract": "이로 인해 SSL 연결을 설정할 때 서버 ID 확인이 비활성화됩니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure Storage: Externally Available Keychain",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Storage&subcategory=Externally%20Available%20Keychain#Swift",
+      "id": "933",
+      "abstract": "식별된 메서드는 iCloud 및 암호화되지 않은 iTunes 백업으로 항목을 백업할 수 있도록 허용하는 액세스 가능성 수준을 가진 키 집합에 데이터를 저장합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure Storage: HTTP Response Cache Leak",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Storage&subcategory=HTTP%20Response%20Cache%20Leak#Swift",
+      "id": "511",
+      "abstract": "식별된 메서드는 안전하지 않은 공유 저장소에 HTTP(S) 응답 캐시를 설정합니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure Storage: Insufficient Cache Leak Protection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Storage&subcategory=Insufficient%20Cache%20Leak%20Protection#Swift",
+      "id": "927",
+      "abstract": "응용 프로그램이 디스크 또는 메모리 캐시 용량을 0으로 설정하여 HTTP(S) 캐시를 비활성화하려고 하지만 이 설정이 적용된다는 보장이 없습니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure Storage: Insufficient Data Protection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Storage&subcategory=Insufficient%20Data%20Protection#Swift",
+      "id": "920",
+      "abstract": "식별된 메서드는 약할 가능성이 있는 암호화 설정을 사용하여 파일에 데이터를 작성합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure Storage: Insufficient Keychain Protection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Storage&subcategory=Insufficient%20Keychain%20Protection#Swift",
+      "id": "932",
+      "abstract": "식별된 메서드는 암호화 설정이 충분하지 않을 수 있는 키 집합에 데이터를 저장합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure Storage: Lacking Data Protection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Storage&subcategory=Lacking%20Data%20Protection#Swift",
+      "id": "921",
+      "abstract": "식별된 메서드는 충분한 암호화 설정이 없는 파일에 데이터를 작성합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure Storage: Lacking Keychain Protection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Storage&subcategory=Lacking%20Keychain%20Protection#Swift",
+      "id": "931",
+      "abstract": "식별된 메서드는 충분한 암호화 설정이 없는 키 집합에 데이터를 저장합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure Storage: Missing Database Encryption",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Storage&subcategory=Missing%20Database%20Encryption#Swift",
+      "id": "952",
+      "abstract": "식별된 메서드는 암호화되지 않은 데이터베이스에 대한 연결을 설정합니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure Storage: Missing Encryption on Stored Private Media",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Storage&subcategory=Missing%20Encryption%20on%20Stored%20Private%20Media#Swift",
+      "id": "923",
+      "abstract": "식별된 메서드는 암호화되지 않은 데이터를 iOS의 사진 앨범에 작성합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure Storage: Passcode Policy Unenforced",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Storage&subcategory=Passcode%20Policy%20Unenforced#Swift",
+      "id": "934",
+      "abstract": "식별된 메서드는 사용자에게 이 장치의 암호를 설정하도록 강제하지 않고 키 집합에 데이터를 저장합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure Storage: Persistent Named Pasteboard",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Storage&subcategory=Persistent%20Named%20Pasteboard#Swift",
+      "id": "916",
+      "abstract": "명명된 임시 보드를 영구 항목으로 구성하면 중요한 정보가 노출될 수 있습니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure Storage: Universal Clipboard",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Storage&subcategory=Universal%20Clipboard#Swift",
+      "id": "915",
+      "abstract": "응용 프로그램은 일반 임시 보드에 콘텐츠를 저장합니다. 해당 임시 보드는 같은 iCloud 계정으로 로그인하는 모든 장치에서 자동으로 동기화됩니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure Storage: Unspecified Keychain Access Policy",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Storage&subcategory=Unspecified%20Keychain%20Access%20Policy#Swift",
+      "id": "935",
+      "abstract": "식별된 메서드는 액세스 가능성 수준을 지정하지 않고 키 집합에 데이터를 저장합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Transport#Swift",
+      "id": "446",
+      "abstract": "호출에서 비보안 프로토콜을 사용하여 서버와 통신합니다.",
+      "supported_languages": [
+        "ABAP",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Insecure Transport: Disabled App Transport Security",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Transport&subcategory=Disabled%20App%20Transport%20Security#Swift",
+      "id": "1274",
+      "abstract": "ATS(App Transport Security)를 부분적으로 또는 전체적으로 비활성화하면 응용 프로그램이 네트워크 공격에 노출될 수 있습니다.",
+      "supported_languages": [
+        "Swift"
+      ]
+    },
+    {
+      "title": "Insecure Transport: Weak SSL Cipher",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Transport&subcategory=Weak%20SSL%20Cipher#Swift",
+      "id": "849",
+      "abstract": "암호화된 통신을 활성화하기 위해 약한 암호화 알고리즘 집합을 사용하면 공격자가 민감한 정보를 훔칠 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Insecure Transport: Weak SSL Protocol",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Transport&subcategory=Weak%20SSL%20Protocol#Swift",
+      "id": "62",
+      "abstract": "SSLv2, SSLv23, SSLv3, TLSv1.0 및 TLSv1.1 프로토콜에는 보안을 위협하는 결함이 포함되어 있으므로 민감한 데이터를 전송하는 데 사용해서는 안 됩니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal"
+      ]
+    },
+    {
+      "title": "JSON Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=JSON%20Injection#Swift",
+      "id": "822",
+      "abstract": "이 메서드는 확인되지 않은 입력을 JSON에 작성합니다. 이 호출로 공격자는 JSON 엔티티에 임의의 요소나 속성을 삽입할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Key Management: Empty Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Empty%20Encryption%20Key#Swift",
+      "id": "395",
+      "abstract": "빈 암호화 키는 쉽게 해결할 수 없는 방식으로 보안을 침해할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "C/C++",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Key Management: Empty HMAC Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Empty%20HMAC%20Key#Swift",
+      "id": "438",
+      "abstract": "빈 HMAC 키는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Key Management: Empty PBE Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Empty%20PBE%20Password#Swift",
+      "id": "827",
+      "abstract": "해당 비밀번호 인수에 대해 빈 값을 전달받은 비밀번호 기반 키 파생 함수를 통해 생성된 키를 사용하면 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Key Management: Hardcoded Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Hardcoded%20Encryption%20Key#Swift",
+      "id": "396",
+      "abstract": "하드코드 암호화 키는 쉽게 해결할 수 없는 방식으로 보안을 침해할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP",
+        "YAML"
+      ]
+    },
+    {
+      "title": "Key Management: Hardcoded HMAC Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Hardcoded%20HMAC%20Key#Swift",
+      "id": "437",
+      "abstract": "하드코드된 HMAC 키는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Key Management: Hardcoded PBE Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Hardcoded%20PBE%20Password#Swift",
+      "id": "826",
+      "abstract": "하드코드된 비밀번호는 PBKDF(비밀번호 기반 키 파생 함수)에서 키를 생성하는 데 사용됩니다. PBKDF에 하드코드된 비밀번호를 제공하면 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킵니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Key Management: Null Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Null%20Encryption%20Key#Swift",
+      "id": "394",
+      "abstract": "Null암호화 키는 쉽게 해결할 수 없는 방식으로 보안을 침해할 수 있습니다.",
+      "supported_languages": [
+        "ActionScript",
+        "C/C++",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Key Management: Null PBE Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Null%20PBE%20Password#Swift",
+      "id": "926",
+      "abstract": "null암호를 기반으로 암호화 키를 생성하여 사용하면 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Link Injection: Auto Dial",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Link%20Injection&subcategory=Auto%20Dial#Swift",
+      "id": "1651",
+      "abstract": "식별된 메서드는webview로 페이지를 로드하지만 악성 사이트 방문 시 자동 다이얼링 공격을 방지하는 어떠한 제어도 구현하지 않습니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Link Injection: Missing Validation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Link%20Injection&subcategory=Missing%20Validation#Swift",
+      "id": "944",
+      "abstract": "식별된 메서드는webview로 페이지를 로드하지만 사용자가 클릭할 수 있는 링크를 확인 또는 검증하는 제어를 구현하지 않습니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Log Forging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Log%20Forging#Swift",
+      "id": "417",
+      "abstract": "확인되지 않은 사용자 입력을 로그 파일에 쓰면 공격자가 로그 항목을 위조하거나 악성 콘텐트를 로그에 삽입할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "NoSQL Injection: Realm",
+      "url": "https://vulncat.fortify.com/ko/detail?category=NoSQL%20Injection&subcategory=Realm#Swift",
+      "id": "951",
+      "abstract": "신뢰할 수 없는 소스에서 나온 입력을 사용하여 동적 Realm 쿼리를 생성하면 공격자가 해당 문의 의미를 수정할 수 있습니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Often Misused: Encoding",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Often%20Misused&subcategory=Encoding#Swift",
+      "id": "837",
+      "abstract": ".NET Framework에서 클래스를 잘못 오버라이드할 경우 서버에서의 임의의 코드 실행, 응용 프로그램 로직 남용 또는 DoS(Denial of Service)를 야기할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Often Misused: File System",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Often%20Misused&subcategory=File%20System#Swift",
+      "id": "509",
+      "abstract": "크기가 잘못 할당된 출력 버퍼를 path manipulation 함수에 전달하면 buffer overflow가 발생할 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "Java/JSP",
+        "Objective-C",
+        "Python",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Often Misused: SMS",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Often%20Misused&subcategory=SMS#Swift",
+      "id": "922",
+      "abstract": "응용 프로그램이 iOS에 한정된 SMS 관련 작업을 수행합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Open Redirect",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Open%20Redirect#Swift",
+      "id": "418",
+      "abstract": "리디렉션에 사용된 URL을 제어하도록 확인되지 않은 입력을 허용하면 피싱 공격에 도움이 됩니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management#Swift",
+      "id": "454",
+      "abstract": "암호를 일반 텍스트로 저장하면 시스템 침해가 발생할 수 있습니다.",
+      "supported_languages": [
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management: Empty Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Empty%20Password#Swift",
+      "id": "428",
+      "abstract": "빈 암호는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "Bicep",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management: Hardcoded Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Hardcoded%20Password#Swift",
+      "id": "401",
+      "abstract": "Hardcoded Password는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "Bicep",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP",
+        "YAML"
+      ]
+    },
+    {
+      "title": "Password Management: Null Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Null%20Password#Swift",
+      "id": "453",
+      "abstract": "Null암호는 보안을 침해할 수 있습니다.",
+      "supported_languages": [
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management: Weak Cryptography",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Weak%20Cryptography#Swift",
+      "id": "455",
+      "abstract": "암호를 안전하지 못한 인코딩으로 감추는 것으로는 암호를 보호할 수 없습니다.",
+      "supported_languages": [
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Path Manipulation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Path%20Manipulation#Swift",
+      "id": "419",
+      "abstract": "사용자 입력이 파일 시스템 작업에 사용되는 경로를 제어하는 것을 허용하면 그렇지 않을 때 보호할 수 있는 파일에 공격자가 접근하거나 수정할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Path Manipulation: Zip Entry Overwrite",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Path%20Manipulation&subcategory=Zip%20Entry%20Overwrite#Swift",
+      "id": "445",
+      "abstract": "사용자 입력이 파일 시스템 작업에 사용되는 경로를 제어할 수 있으면 공격자가 시스템에서 임의로 파일을 덮어쓸 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Predicate Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Predicate%20Injection#Swift",
+      "id": "945",
+      "abstract": "신뢰할 수 없는 소스에서 나온 입력으로 동적NSPredicate를 생성하면 공격자는 해당 문의 의미를 수정할 수 있습니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Privacy Violation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Privacy%20Violation#Swift",
+      "id": "420",
+      "abstract": "고객 암호 또는 주민 등록 번호 등의 개인 정보 취급 부주의는 사용자 개인 정보를 침해할 수 있고 불법인 경우가 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "Bicep",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Privacy Violation: Health Information",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Privacy%20Violation&subcategory=Health%20Information#Swift",
+      "id": "765",
+      "abstract": "식별된 함수가 건강 정보를 잘못 취급합니다. 이 프로그램은 사용자 개인 정보를 침해할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Privacy Violation: Heap Inspection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Privacy%20Violation&subcategory=Heap%20Inspection#Swift",
+      "id": "787",
+      "abstract": "중요 데이터를 안전하지 않은 방식으로 저장하기 때문에 힙 검사를 통해 데이터를 추출할 수 있게 됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Privacy Violation: HTTP GET",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Privacy%20Violation&subcategory=HTTP%20GET#Swift",
+      "id": "919",
+      "abstract": "식별된 호출은POST메서드 대신 HTTPGET메서드를 사용하여 데이터를 서버로 보냅니다.",
+      "supported_languages": [
+        "Objective-C",
+        "PHP",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Privacy Violation: iCloud Synchronized Credentials",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Privacy%20Violation&subcategory=iCloud%20Synchronized%20Credentials#Swift",
+      "id": "943",
+      "abstract": "식별된 메서드는 모든 동기화된 장치로 배포되고 Apple의 iCloud 환경에 저장될 새로운 동기화 가능NSURLCredential을 초기화합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Privacy Violation: Incomplete Credential Removal",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Privacy%20Violation&subcategory=Incomplete%20Credential%20Removal#Swift",
+      "id": "942",
+      "abstract": "식별된 메서드는NSURLCredential인스턴스를 로컬에서 제거하지만 다른 장치 및 iCloud에 저장된 복사본을 제거하지 못합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Privacy Violation: Keyboard Caching",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Privacy%20Violation&subcategory=Keyboard%20Caching#Swift",
+      "id": "917",
+      "abstract": "식별된 필드는 iOS의 키보드 캐싱 메커니즘을 비활성화하는 적절한 방법을 취하지 않고 민감한 입력을 허용하여 기밀 정보를 잘못 처리합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Privacy Violation: Screen Caching",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Privacy%20Violation&subcategory=Screen%20Caching#Swift",
+      "id": "918",
+      "abstract": "iOS는 응용 프로그램이 백그라운드 처리되기 전에 자동으로 스크린샷을 저장합니다(예: 응용 프로그램이 활성화된 상태에서 \"홈\" 단추를 누름). 민감한 정보가 표시될 때 이러한 기능은 사용자의 개인 정보를 침해할 수 있습니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Privacy Violation: Sensitive Data Accessible From iTunes",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Privacy%20Violation&subcategory=Sensitive%20Data%20Accessible%20From%20iTunes#Swift",
+      "id": "941",
+      "abstract": "식별된 메서드는 먼저 민감한 데이터를 적절하게 마스킹하지 않고 공개Documents디렉터리에 씁니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Privacy Violation: Shoulder Surfing",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Privacy%20Violation&subcategory=Shoulder%20Surfing#Swift",
+      "id": "472",
+      "abstract": "중요한 정보를 수집하는 API 중 일부는 해당 정보를 부적절하게 처리할 수도 있습니다. 즉, 사용자가 입력 프롬프트에 입력하는 중요한 정보를 사용자에게 다시 돌려 보냅니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Dart",
+        "Java/JSP",
+        "Objective-C",
+        "Swift",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Resource Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Resource%20Injection#Swift",
+      "id": "422",
+      "abstract": "사용자 입력이 리소스 ID를 제어하는 것을 허용하면 그렇지 않을 때 보호할 수 있는 시스템 리소스를 공격자가 접근하거나 수정할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Setting Manipulation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Setting%20Manipulation#Swift",
+      "id": "441",
+      "abstract": "시스템 설정을 외부에서 제어하도록 허용하면 서비스를 손상시키거나 응용 프로그램이 비정상적으로 동작할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "SQL Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=SQL%20Injection#Swift",
+      "id": "423",
+      "abstract": "신뢰할 수 없는 소스에서 나온 입력을 받아 동적으로 SQL 문을 생성하면 공격자가 해당 문의 의미를 수정하거나 임의의 SQL 명령을 실행할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "System Information Leak",
+      "url": "https://vulncat.fortify.com/ko/detail?category=System%20Information%20Leak#Swift",
+      "id": "424",
+      "abstract": "시스템 데이터 또는 디버깅 정보가 노출되면 공격자가 시스템을 파악하고 공격 계획을 세우는 것이 수월해집니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "System Information Leak: External",
+      "url": "https://vulncat.fortify.com/ko/detail?category=System%20Information%20Leak&subcategory=External#Swift",
+      "id": "425",
+      "abstract": "시스템 데이터 또는 디버깅 정보가 노출되면 공격자가 시스템을 파악하고 공격 계획을 세우는 것이 수월해집니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "System Information Leak: Internal",
+      "url": "https://vulncat.fortify.com/ko/detail?category=System%20Information%20Leak&subcategory=Internal#Swift",
+      "id": "426",
+      "abstract": "시스템 데이터 또는 디버깅 정보가 노출되면 공격자가 시스템을 파악하고 공격 계획을 세우는 것이 수월해집니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Trust Boundary Violation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Trust%20Boundary%20Violation#Swift",
+      "id": "795",
+      "abstract": "같은 데이터 구조체의 신뢰할 수 있는 데이터와 신뢰할 수 없는 데이터가 혼재하면 프로그래머가 실수로 확인되지 않은 데이터를 신뢰하는 일이 발생합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PLSQL/TSQL",
+        "Python",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Unreleased Resource: Database",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unreleased%20Resource&subcategory=Database#Swift",
+      "id": "442",
+      "abstract": "프로그램이 데이터베이스 리소스를 해제하지 못할 수도 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Unreleased Resource: Streams",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unreleased%20Resource&subcategory=Streams#Swift",
+      "id": "794",
+      "abstract": "프로그램이 시스템 리소스를 해제하지 못할 수도 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "Objective-C",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Unreleased Resource: Synchronization",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unreleased%20Resource&subcategory=Synchronization#Swift",
+      "id": "703",
+      "abstract": "프로그램이 유지하고 있는 잠금(lock)을 해제하지 못하면 교착 상태(deadlock)가 될 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "Java/JSP",
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Unsafe Reflection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Unsafe%20Reflection#Swift",
+      "id": "452",
+      "abstract": "공격자가 응용 프로그램을 통해 예기치 못한 제어 흐름 경로를 만들어 보안 검사를 무시할 수 있습니다.",
+      "supported_languages": [
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Access Control: Database",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Access%20Control&subcategory=Database#Swift",
+      "id": "408",
+      "abstract": "적절한 access control 없이 사용자가 제어하는 기본 키를 포함하는 SQL 문을 실행하면 공격자가 허가 받지 않은 레코드를 볼 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Authentication Bad Practice: Ignored Authentication Method",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Authentication%20Bad%20Practice&subcategory=Ignored%20Authentication%20Method#Swift",
+      "id": "948",
+      "abstract": "NSURLConnectionDelegate.connection(_:willSendRequestFor:)대리자 콜백 메서드를 구현하면 시스템이NSURLConnectionDelegate.connection(_:canAuthenticateAgainstProtectionSpace:)및NSURLConnectionDelegate.connection(_:didReceive:)메서드를 무시하게 합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Authentication Bad Practice: Missing Certificate Evaluation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Authentication%20Bad%20Practice&subcategory=Missing%20Certificate%20Evaluation#Swift",
+      "id": "946",
+      "abstract": "이 코드는 해당 신뢰 체인을 미리 평가하지 않고 인증서 기반 서버 자격 증명을 초기화합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Authentication Bad Practice: Missing Check against Evaluation Result",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Authentication%20Bad%20Practice&subcategory=Missing%20Check%20against%20Evaluation%20Result#Swift",
+      "id": "950",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Authentication Bad Practice: Missing Check against Protection Space",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Authentication%20Bad%20Practice&subcategory=Missing%20Check%20against%20Protection%20Space#Swift",
+      "id": "947",
+      "abstract": "NSURLConnection대리자는 응용 프로그램이 특정 보호 공간에 대한 인증 챌린지를 처리하는 방법을 알고 있는지를 먼저 확인하지 않고 인증 챌린지를 처리합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Authentication Bad Practice: Missing Host Check",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Authentication%20Bad%20Practice&subcategory=Missing%20Host%20Check#Swift",
+      "id": "949",
+      "abstract": "NSURLConnection또는NSURLSession에 대한 인증 처리 콜백이 어떤 호스트에 자격 증명을 보내는지 확인하지 못합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Biometric Authentication: Insecure Touch ID Implementation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Biometric%20Authentication&subcategory=Insecure%20Touch%20ID%20Implementation#Swift",
+      "id": "938",
+      "abstract": "응용 프로그램이LocalAuthentication프레임워크를 사용하여 사용자를 인증하지만 강화된 보안 제어를 필요로 하는 응용 프로그램에는 충분하지 않을 수 있습니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Biometric Authentication: Insufficient Touch ID Protection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Biometric%20Authentication&subcategory=Insufficient%20Touch%20ID%20Protection#Swift",
+      "id": "939",
+      "abstract": "응용 프로그램이 터치 ID를 사용하여 키 집합에 항목을 저장하지만 유효한 지문을 키 집합 항목 저장 시 사용 가능한 지문으로 제한하지 못합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Biometric Authentication: Missing Operation Message",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Biometric%20Authentication&subcategory=Missing%20Operation%20Message#Swift",
+      "id": "940",
+      "abstract": "응용 프로그램은 정당성을 제공하지 않고 사용자에게 지문을 입력하도록 요청합니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Cookie Security: Cookie not Sent Over SSL",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=Cookie%20not%20Sent%20Over%20SSL#Swift",
+      "id": "534",
+      "abstract": "true로 설정된isSecure매개 변수 없이 쿠키가 생성됩니다.",
+      "supported_languages": [
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Cookie Security: Overly Broad Domain",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=Overly%20Broad%20Domain#Swift",
+      "id": "807",
+      "abstract": "지나치게 광범위한 도메인을 가진 쿠키는 다른 응용 프로그램을 통해 공격할 수 있도록 응용 프로그램을 열어 줍니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Cookie Security: Overly Broad Path",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=Overly%20Broad%20Path#Swift",
+      "id": "532",
+      "abstract": "동일한 도메인의 다른 응용 프로그램이 Overly Broad Path를 가진 쿠키에 액세스할 수 있습니다.",
+      "supported_languages": [
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Cookie Security: Persistent Cookie",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cookie%20Security&subcategory=Persistent%20Cookie#Swift",
+      "id": "533",
+      "abstract": "영구 쿠키에 민감한 데이터를 저장하면 데이터의 기밀성이 침해되거나 계정이 손상될 수 있습니다.",
+      "supported_languages": [
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Inter-Component Communication",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Inter-Component%20Communication#Swift",
+      "id": "485",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "Kotlin",
+        "Objective-C",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Persistent",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Persistent#Swift",
+      "id": "410",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Hash",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Hash#Swift",
+      "id": "404",
+      "abstract": "약한 암호화 해시는 데이터의 무결성을 보장할 수 없고 보안이 중요한 컨텍스트에 사용되어서는 안 됩니다.",
+      "supported_languages": [
+        "ABAP",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Hash: Empty PBE Salt",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Hash&subcategory=Empty%20PBE%20Salt#Swift",
+      "id": "924",
+      "abstract": "빈 솔트는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Hash: Hardcoded PBE Salt",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Hash&subcategory=Hardcoded%20PBE%20Salt#Swift",
+      "id": "870",
+      "abstract": "하드코드된 솔트는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Hash: Insecure PBE Iteration Count",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Hash&subcategory=Insecure%20PBE%20Iteration%20Count#Swift",
+      "id": "808",
+      "abstract": "암호 기반 키 파생 함수에서 사용하는 반복 횟수가 지나치게 낮습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Hash: Null PBE Salt",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Hash&subcategory=Null%20PBE%20Salt#Swift",
+      "id": "925",
+      "abstract": "null(nil) 솔트는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "Objective-C",
+        "Python",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Hash: User-Controlled PBE Salt",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Hash&subcategory=User-Controlled%20PBE%20Salt#Swift",
+      "id": "831",
+      "abstract": "감염될 수 있는 사용자 입력을 PBKDF에 솔트 매개 변수로 전달해서는 안 됩니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Weak Cryptographic Hash: User-Controlled Salt",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Cryptographic%20Hash&subcategory=User-Controlled%20Salt#Swift",
+      "id": "713",
+      "abstract": "솔트가 전달되어 암호화 해시를 생성하는 함수는 감염된 솔트 인수로 호출해서는 안 됩니다.",
+      "supported_languages": [
+        "C/C++",
+        "Golang",
+        "Java/JSP",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Weak Encryption",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Encryption#Swift",
+      "id": "403",
+      "abstract": "식별된 호출은 민감한 데이터의 기밀성을 보장할 수 없는 약한 암호화 알고리즘을 사용합니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Weak Encryption: Inadequate RSA Padding",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Encryption&subcategory=Inadequate%20RSA%20Padding#Swift",
+      "id": "809",
+      "abstract": "공용 키 RSA 암호화는 OAEP 패딩을 사용하지 않고 수행되므로 암호화가 취약해집니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Weak Encryption: Insecure Initialization Vector",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Encryption&subcategory=Insecure%20Initialization%20Vector#Swift",
+      "id": "528",
+      "abstract": "암호화 의사 난수 발생기를 사용하여 IV(Initialization Vector)를 생성해야 합니다.",
+      "supported_languages": [
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Weak Encryption: Insecure Mode of Operation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Encryption&subcategory=Insecure%20Mode%20of%20Operation#Swift",
+      "id": "810",
+      "abstract": "안전하지 않은 작업 모드로 암호화 알고리즘을 사용하지 마십시오.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Weak Encryption: Insufficient Key Size",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Encryption&subcategory=Insufficient%20Key%20Size#Swift",
+      "id": "490",
+      "abstract": "불충분한 키 크기를 사용하면 강력한 암호화 알고리즘이더라도 무차별 대입 공격에 크게 취약해질 수 있습니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Weak Encryption: User-Controlled Key Size",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Weak%20Encryption&subcategory=User-Controlled%20Key%20Size#Swift",
+      "id": "832",
+      "abstract": "키 크기 매개 변수를 사용하는 암호화 함수에는 감염된 키 크기 값을 전달해서는 안 됩니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift"
+      ]
+    },
+    {
+      "title": "XML External Entity Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=XML%20External%20Entity%20Injection#Swift",
+      "id": "447",
+      "abstract": "외부 엔터티 확인을 방지 또는 제한하도록 구성되지 않은 XML 파서를 사용하면 파서가 XML 외부 엔터티 공격에 노출될 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "XML Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=XML%20Injection#Swift",
+      "id": "450",
+      "abstract": "확인되지 않은 데이터를 XML 문서에 쓰면 공격자가 XML의 구조와 내용을 변경할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: SAPUI5 Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=SAPUI5%20Control#JavaScript%2fTypeScript",
+      "id": "910",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Self",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Self#JavaScript%2fTypeScript",
+      "id": "911",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: SOP Bypass",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=SOP%20Bypass#JavaScript%2fTypeScript",
+      "id": "912",
+      "abstract": "사용자 입력이 SOP(동일 출처 정책)를 결정하는 설정을 제어하도록 허용하면 XSS 취약점이 발생할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Untrusted HTML Downloads",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Untrusted%20HTML%20Downloads#JavaScript%2fTypeScript",
+      "id": "1432",
+      "abstract": "noopen으로 설정되는X-Download-Options헤더를 비활성화하면 다운로드된 HTML 페이지가 이를 제공하는 사이트의 보안 컨텍스트에서 실행됩니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site WebSocket Hijacking",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20WebSocket%20Hijacking#Java%2fJSP",
+      "id": "819",
+      "abstract": "서버가 도메인 간 요청을 허용하면서 요청의 출처를 확인하지 못해 공격자는 이러한 도메인 간 요청을 사용하여 양방향 WebSocket 연결을 하이재킹(hijacking)할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dangerous Field",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Field#Java%2fJSP",
+      "id": "521",
+      "abstract": "필드는 위험한 것으로 주석 추가되었습니다. 모든 사용은 플래그 지정됩니다.",
+      "supported_languages": [
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dangerous File Inclusion",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20File%20Inclusion#Java%2fJSP",
+      "id": "784",
+      "abstract": "확인되지 않은 사용자 입력이 HTML 파일에 동적으로 포함되는 파일을 제어하도록 허용하면 악성 코드가 실행될 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "PHP"
+      ]
+    },
+    {
+      "title": "Dangerous File Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20File%20Injection#PHP",
+      "id": "981",
+      "abstract": "공격자가 임의의 콘텐트가 있는 시스템에서 파일을 만들 수 있습니다.",
+      "supported_languages": [
+        "PHP"
+      ]
+    },
+    {
+      "title": "Dangerous Function",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function#C%2fC%2b%2b",
+      "id": "715",
+      "abstract": "안전하게 사용할 수 없는 함수는 사용하지 않는 것이 좋습니다.",
+      "supported_languages": [
+        "C/C++",
+        "PHP",
+        "PLSQL/TSQL",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Dangerous Function: strcpy()",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function&subcategory=strcpy()#C%2fC%2b%2b",
+      "id": "716",
+      "abstract": "안전하게 사용할 수 없는 함수는 사용하지 않는 것이 좋습니다.",
+      "supported_languages": [
+        "C/C++"
+      ]
+    },
+    {
+      "title": "Dangerous Function: Unsafe Regular Expression",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function&subcategory=Unsafe%20Regular%20Expression#PHP",
+      "id": "957",
+      "abstract": "안전하게 사용할 수 없는 함수는 사용하면 안 됩니다.",
+      "supported_languages": [
+        "PHP"
+      ]
+    },
+    {
+      "title": "Dangerous Function: xp_cmdshell",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function&subcategory=xp_cmdshell#PLSQL%2fTSQL",
+      "id": "1042",
+      "abstract": "xp_cmdshell함수는 안전하게 사용할 수 없습니다. 사용하지 않는 것이 좋습니다.",
+      "supported_languages": [
+        "PLSQL/TSQL"
+      ]
+    },
+    {
+      "title": "Dangerous Method",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Method#Java%2fJSP",
+      "id": "520",
+      "abstract": "메서드는 위험한 것으로 주석 추가되었습니다. 이 메서드의 모든 사용은 이슈로 플래그 지정되었습니다.",
+      "supported_languages": [
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dangerous Type",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Type#Java%2fJSP",
+      "id": "522",
+      "abstract": "이 변수는 위험한 것으로 주석 처리된 유형의 변수입니다.",
+      "supported_languages": [
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Data Poisoning: AI Embedding",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Data%20Poisoning&subcategory=AI%20Embedding#JavaScript%2fTypeScript",
+      "id": "1019",
+      "abstract": "검증되지 않은 데이터를 LLM 임베딩 API로 보냅니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript",
+        "Python"
+      ]
+    },
+    {
+      "title": "Data Poisoning: AI Training",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Data%20Poisoning&subcategory=AI%20Training#Python",
+      "id": "1018",
+      "abstract": "검증되지 않은 데이터를 LLM 미세 조정 API로 보냅니다.",
+      "supported_languages": [
+        "Python"
+      ]
+    },
+    {
+      "title": "Database Bad Practices: Use of Restricted Accounts",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Database%20Bad%20Practices&subcategory=Use%20of%20Restricted%20Accounts#PLSQL%2fTSQL",
+      "id": "1039",
+      "abstract": "admin, administrator, guest, root 또는 sa 계정 중 하나를 사용하여 데이터베이스에 연결하려고 했습니다.",
+      "supported_languages": [
+        "PLSQL/TSQL"
+      ]
+    },
+    {
+      "title": "Dead Code",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dead%20Code#C%2fC%2b%2b",
+      "id": "733",
+      "abstract": "이 문은 결코 실행되지 않습니다.",
+      "supported_languages": [
+        "C/C++",
+        "Solidity"
+      ]
+    }
+  ]
+}

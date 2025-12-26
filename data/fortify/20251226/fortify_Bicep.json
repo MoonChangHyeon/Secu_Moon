@@ -1,0 +1,806 @@
+{
+  "codelang": "Bicep",
+  "total_count_text": 52,
+  "fetched_count": 72,
+  "weaknesses": [
+    {
+      "title": "Password Management: Empty Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Empty%20Password#Bicep",
+      "id": "428",
+      "abstract": "빈 암호는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "Bicep",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management: Hardcoded Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Hardcoded%20Password#Bicep",
+      "id": "401",
+      "abstract": "Hardcoded Password는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "Bicep",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP",
+        "YAML"
+      ]
+    },
+    {
+      "title": "Privacy Violation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Privacy%20Violation#Bicep",
+      "id": "420",
+      "abstract": "고객 암호 또는 주민 등록 번호 등의 개인 정보 취급 부주의는 사용자 개인 정보를 침해할 수 있고 불법인 경우가 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "Bicep",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Automation Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Automation%20Missing%20Customer-Managed%20Encryption%20Key#Bicep",
+      "id": "557",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Batch Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Batch%20Missing%20Customer-Managed%20Encryption%20Key#Bicep",
+      "id": "556",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Cognitive Services Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Cognitive%20Services%20Missing%20Customer-Managed%20Encryption%20Key#Bicep",
+      "id": "555",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Databricks Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Databricks%20Missing%20Customer-Managed%20Encryption%20Key#Bicep",
+      "id": "554",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Event Hubs Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Event%20Hubs%20Missing%20Customer-Managed%20Encryption%20Key#Bicep",
+      "id": "552",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Hardcoded Secret",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Hardcoded%20Secret#Bicep",
+      "id": "66",
+      "abstract": "이 템플릿은 보안 유형을 사용하여 매개 변수의 기본값을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper AKS Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20AKS%20Network%20Access%20Control#Bicep",
+      "id": "67",
+      "abstract": "이 템플릿은 Kubernetes API 서버에 대한 액세스를 제한하지 못합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper App Service Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20App%20Service%20Access%20Control#Bicep",
+      "id": "63",
+      "abstract": "이 템플릿은 원격 디버깅이 활성화된 Azure App Service를 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper Blob Storage Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20Blob%20Storage%20Access%20Control#Bicep",
+      "id": "57",
+      "abstract": "이 템플릿은 익명 액세스를 허용하는 Azure Blob Storage 컨테이너를 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper Compute VM Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20Compute%20VM%20Access%20Control#Bicep",
+      "id": "59",
+      "abstract": "이 템플릿은 SSH 기본 인증을 허용하는 VM을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper Container Registry Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20Container%20Registry%20Network%20Access%20Control#Bicep",
+      "id": "58",
+      "abstract": "이 템플릿은 네트워크 액세스가 제한되지 않은 Azure Container Registry를 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper CORS Policy",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20CORS%20Policy#Bicep",
+      "id": "54",
+      "abstract": "이 템플릿은 지나치게 허용적인 CORS 정책을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper Custom Role Access Control Policy",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20Custom%20Role%20Access%20Control%20Policy#Bicep",
+      "id": "83",
+      "abstract": "이 템플릿은 소유자 권한이 있는 역할을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper DocumentDB Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20DocumentDB%20Network%20Access%20Control#Bicep",
+      "id": "53",
+      "abstract": "이 템플릿은 네트워크 액세스가 제한되지 않은 Azure Cosmos DB를 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper KeyVault Access Control Policy",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20KeyVault%20Access%20Control%20Policy#Bicep",
+      "id": "82",
+      "abstract": "이 템플릿은 만료 날짜가 없는 기밀을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper Security Group Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20Security%20Group%20Network%20Access%20Control#Bicep",
+      "id": "55",
+      "abstract": "이 템플릿은 관리 서비스에 대한 액세스를 허용하는 네트워크 보안 그룹을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper SQL Server Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20SQL%20Server%20Network%20Access%20Control#Bicep",
+      "id": "56",
+      "abstract": "이 템플릿은 네트워크 액세스가 제한되지 않은 Azure SQL Database 인스턴스를 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper Storage Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20Storage%20Network%20Access%20Control#Bicep",
+      "id": "32",
+      "abstract": "이 템플릿은 부적절한 네트워크 액세스 권한을 보유한 Azure 스토리지 계정을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Active Directory Domain Service Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Active%20Directory%20Domain%20Service%20Transport#Bicep",
+      "id": "61",
+      "abstract": "이 템플릿은 오래된 TLS 버전의 사용을 허용합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure App Service Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20App%20Service%20Transport#Bicep",
+      "id": "84",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure CDN Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20CDN%20Transport#Bicep",
+      "id": "681",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Database for MySQL Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Database%20for%20MySQL%20Storage#Bicep",
+      "id": "661",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Database for PostgreSQL Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Database%20for%20PostgreSQL%20Storage#Bicep",
+      "id": "660",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure DataBricks Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20DataBricks%20Storage#Bicep",
+      "id": "1456",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "Bicep"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure EventHub Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20EventHub%20Storage#Bicep",
+      "id": "659",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure EventHub Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20EventHub%20Transport#Bicep",
+      "id": "679",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure IoT Hub Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20IoT%20Hub%20Transport#Bicep",
+      "id": "680",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure MySQL Server Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20MySQL%20Server%20Transport#Bicep",
+      "id": "48",
+      "abstract": "이 템플릿은 데이터베이스 전송 암호화를 명시적으로 비활성화합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure PostgreSQL Server Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20PostgreSQL%20Server%20Transport#Bicep",
+      "id": "47",
+      "abstract": "이 템플릿은 데이터베이스 전송 암호화를 명시적으로 비활성화합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Recovery Services Backup Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Recovery%20Services%20Backup%20Storage#Bicep",
+      "id": "657",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Recovery Services Vaults Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Recovery%20Services%20Vaults%20Storage#Bicep",
+      "id": "658",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Redis Enterprise Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Redis%20Enterprise%20Transport#Bicep",
+      "id": "1457",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "Bicep"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Redis Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Redis%20Transport#Bicep",
+      "id": "682",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Service Bus Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Service%20Bus%20Storage#Bicep",
+      "id": "656",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Service Bus Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Service%20Bus%20Transport#Bicep",
+      "id": "678",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Storage Account Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Storage%20Account%20Storage#Bicep",
+      "id": "655",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Storage Account Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Storage%20Account%20Transport#Bicep",
+      "id": "64",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insufficient AKS Monitoring",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insufficient%20AKS%20Monitoring#Bicep",
+      "id": "60",
+      "abstract": "이 템플릿은 로그 이벤트를 Azure Monitor로 보내지 않는 AKS 클러스터를 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insufficient Application Insights Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insufficient%20Application%20Insights%20Logging#Bicep",
+      "id": "50",
+      "abstract": "이 템플릿은 감사 보존 기간이 충분하지 않은 로깅 구성을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insufficient Application Insights Monitoring",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insufficient%20Application%20Insights%20Monitoring#Bicep",
+      "id": "52",
+      "abstract": "이 템플릿은 모든 활동 로그 관리 이벤트를 수집하지 않는 Azure Monitor 로그 프로필을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insufficient Microsoft Defender Monitoring",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insufficient%20Microsoft%20Defender%20Monitoring#Bicep",
+      "id": "65",
+      "abstract": "이 템플릿은 보안 경고에 대한 이메일 알림이 없는 보안 연락처를 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insufficient SQL Server Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insufficient%20SQL%20Server%20Logging#Bicep",
+      "id": "51",
+      "abstract": "이 템플릿은 감사 보존 기간이 충분하지 않은 로깅 구성을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insufficient SQL Server Monitoring",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insufficient%20SQL%20Server%20Monitoring#Bicep",
+      "id": "68",
+      "abstract": "이 템플릿은 감사 로깅이 없는 Azure SQL Server를 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: IoT Hub Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=IoT%20Hub%20Missing%20Customer-Managed%20Encryption%20Key#Bicep",
+      "id": "553",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: NetApp Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=NetApp%20Missing%20Customer-Managed%20Encryption%20Key#Bicep",
+      "id": "551",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Service Bus Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Service%20Bus%20Missing%20Customer-Managed%20Encryption%20Key#Bicep",
+      "id": "550",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Storage Account Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Storage%20Account%20Missing%20Customer-Managed%20Encryption%20Key#Bicep",
+      "id": "549",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Weak App Service Authentication",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Weak%20App%20Service%20Authentication#Bicep",
+      "id": "690",
+      "abstract": "구성이 취약한 인증 메커니즘을 사용합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Weak SignalR Authentication",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Weak%20SignalR%20Authentication#Bicep",
+      "id": "691",
+      "abstract": "구성이 취약한 인증 메커니즘을 사용합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Poor Validation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Poor%20Validation#Java%2fJSP",
+      "id": "411",
+      "abstract": "사용자 입력을 검증하는 데 HTML, XML 및 기타 인코딩 유형을 사용하면 브라우저가 악성 코드를 실행하게 될 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Reflected",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Reflected#Java%2fJSP",
+      "id": "412",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: SAPUI5 Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=SAPUI5%20Control#JavaScript%2fTypeScript",
+      "id": "910",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Self",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Self#JavaScript%2fTypeScript",
+      "id": "911",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: SOP Bypass",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=SOP%20Bypass#JavaScript%2fTypeScript",
+      "id": "912",
+      "abstract": "사용자 입력이 SOP(동일 출처 정책)를 결정하는 설정을 제어하도록 허용하면 XSS 취약점이 발생할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Untrusted HTML Downloads",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Untrusted%20HTML%20Downloads#JavaScript%2fTypeScript",
+      "id": "1432",
+      "abstract": "noopen으로 설정되는X-Download-Options헤더를 비활성화하면 다운로드된 HTML 페이지가 이를 제공하는 사이트의 보안 컨텍스트에서 실행됩니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site WebSocket Hijacking",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20WebSocket%20Hijacking#Java%2fJSP",
+      "id": "819",
+      "abstract": "서버가 도메인 간 요청을 허용하면서 요청의 출처를 확인하지 못해 공격자는 이러한 도메인 간 요청을 사용하여 양방향 WebSocket 연결을 하이재킹(hijacking)할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dangerous Field",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Field#Java%2fJSP",
+      "id": "521",
+      "abstract": "필드는 위험한 것으로 주석 추가되었습니다. 모든 사용은 플래그 지정됩니다.",
+      "supported_languages": [
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dangerous File Inclusion",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20File%20Inclusion#Java%2fJSP",
+      "id": "784",
+      "abstract": "확인되지 않은 사용자 입력이 HTML 파일에 동적으로 포함되는 파일을 제어하도록 허용하면 악성 코드가 실행될 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "PHP"
+      ]
+    },
+    {
+      "title": "Dangerous File Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20File%20Injection#PHP",
+      "id": "981",
+      "abstract": "공격자가 임의의 콘텐트가 있는 시스템에서 파일을 만들 수 있습니다.",
+      "supported_languages": [
+        "PHP"
+      ]
+    },
+    {
+      "title": "Dangerous Function",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function#C%2fC%2b%2b",
+      "id": "715",
+      "abstract": "안전하게 사용할 수 없는 함수는 사용하지 않는 것이 좋습니다.",
+      "supported_languages": [
+        "C/C++",
+        "PHP",
+        "PLSQL/TSQL",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Dangerous Function: strcpy()",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function&subcategory=strcpy()#C%2fC%2b%2b",
+      "id": "716",
+      "abstract": "안전하게 사용할 수 없는 함수는 사용하지 않는 것이 좋습니다.",
+      "supported_languages": [
+        "C/C++"
+      ]
+    },
+    {
+      "title": "Dangerous Function: Unsafe Regular Expression",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function&subcategory=Unsafe%20Regular%20Expression#PHP",
+      "id": "957",
+      "abstract": "안전하게 사용할 수 없는 함수는 사용하면 안 됩니다.",
+      "supported_languages": [
+        "PHP"
+      ]
+    },
+    {
+      "title": "Dangerous Function: xp_cmdshell",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function&subcategory=xp_cmdshell#PLSQL%2fTSQL",
+      "id": "1042",
+      "abstract": "xp_cmdshell함수는 안전하게 사용할 수 없습니다. 사용하지 않는 것이 좋습니다.",
+      "supported_languages": [
+        "PLSQL/TSQL"
+      ]
+    },
+    {
+      "title": "Dangerous Method",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Method#Java%2fJSP",
+      "id": "520",
+      "abstract": "메서드는 위험한 것으로 주석 추가되었습니다. 이 메서드의 모든 사용은 이슈로 플래그 지정되었습니다.",
+      "supported_languages": [
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dangerous Type",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Type#Java%2fJSP",
+      "id": "522",
+      "abstract": "이 변수는 위험한 것으로 주석 처리된 유형의 변수입니다.",
+      "supported_languages": [
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Data Poisoning: AI Embedding",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Data%20Poisoning&subcategory=AI%20Embedding#JavaScript%2fTypeScript",
+      "id": "1019",
+      "abstract": "검증되지 않은 데이터를 LLM 임베딩 API로 보냅니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript",
+        "Python"
+      ]
+    },
+    {
+      "title": "Data Poisoning: AI Training",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Data%20Poisoning&subcategory=AI%20Training#Python",
+      "id": "1018",
+      "abstract": "검증되지 않은 데이터를 LLM 미세 조정 API로 보냅니다.",
+      "supported_languages": [
+        "Python"
+      ]
+    },
+    {
+      "title": "Database Bad Practices: Use of Restricted Accounts",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Database%20Bad%20Practices&subcategory=Use%20of%20Restricted%20Accounts#PLSQL%2fTSQL",
+      "id": "1039",
+      "abstract": "admin, administrator, guest, root 또는 sa 계정 중 하나를 사용하여 데이터베이스에 연결하려고 했습니다.",
+      "supported_languages": [
+        "PLSQL/TSQL"
+      ]
+    },
+    {
+      "title": "Dead Code",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dead%20Code#C%2fC%2b%2b",
+      "id": "733",
+      "abstract": "이 문은 결코 실행되지 않습니다.",
+      "supported_languages": [
+        "C/C++",
+        "Solidity"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2427 @@
+{
+  "codelang": "JSON",
+  "total_count_text": 213,
+  "fetched_count": 233,
+  "weaknesses": [
+    {
+      "title": "Insecure Transport: Weak SSL Protocol",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Insecure%20Transport&subcategory=Weak%20SSL%20Protocol#JSON",
+      "id": "62",
+      "abstract": "SSLv2, SSLv23, SSLv3, TLSv1.0 및 TLSv1.1 프로토콜에는 보안을 위협하는 결함이 포함되어 있으므로 민감한 데이터를 전송하는 데 사용해서는 안 됩니다.",
+      "supported_languages": [
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Objective-C",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal"
+      ]
+    },
+    {
+      "title": "Key Management: Hardcoded Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Key%20Management&subcategory=Hardcoded%20Encryption%20Key#JSON",
+      "id": "396",
+      "abstract": "하드코드 암호화 키는 쉽게 해결할 수 없는 방식으로 보안을 침해할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP",
+        "YAML"
+      ]
+    },
+    {
+      "title": "OpenAPI Misconfiguration: Credential Leakage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=OpenAPI%20Misconfiguration&subcategory=Credential%20Leakage#JSON",
+      "id": "187",
+      "abstract": "해당 OpenAPI 사양은 중요한 클라이언트 자격 증명 교환 시 암호화된 통신을 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "OpenAPI Misconfiguration: Empty Global Security Requirement",
+      "url": "https://vulncat.fortify.com/ko/detail?category=OpenAPI%20Misconfiguration&subcategory=Empty%20Global%20Security%20Requirement#JSON",
+      "id": "191",
+      "abstract": "해당 OpenAPI 사양은 빈 전역security정의를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "OpenAPI Misconfiguration: Empty Operation Security Requirement",
+      "url": "https://vulncat.fortify.com/ko/detail?category=OpenAPI%20Misconfiguration&subcategory=Empty%20Operation%20Security%20Requirement#JSON",
+      "id": "193",
+      "abstract": "해당 OpenAPI 사양에는 API 작업용으로 빈security정의가 포함되어 있습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "OpenAPI Misconfiguration: Insecure Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=OpenAPI%20Misconfiguration&subcategory=Insecure%20Transport#JSON",
+      "id": "186",
+      "abstract": "해당 OpenAPI 사양은 암호화된 통신을 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "OpenAPI Misconfiguration: Missing Error Handling",
+      "url": "https://vulncat.fortify.com/ko/detail?category=OpenAPI%20Misconfiguration&subcategory=Missing%20Error%20Handling#JSON",
+      "id": "195",
+      "abstract": "해당 OpenAPI 사양에는 인증 체계를 사용하는 작업에 대한 보안 관련 상태 코드의 응답이 정의되어 있지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "OpenAPI Misconfiguration: Missing Global Security Requirement",
+      "url": "https://vulncat.fortify.com/ko/detail?category=OpenAPI%20Misconfiguration&subcategory=Missing%20Global%20Security%20Requirement#JSON",
+      "id": "185",
+      "abstract": "해당 OpenAPI 사양에서 전역security정의가 누락되어 있습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "OpenAPI Misconfiguration: Missing Operation Security Requirement",
+      "url": "https://vulncat.fortify.com/ko/detail?category=OpenAPI%20Misconfiguration&subcategory=Missing%20Operation%20Security%20Requirement#JSON",
+      "id": "189",
+      "abstract": "해당 OpenAPI 사양에는 API 작업용security정의가 포함되어 있지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "OpenAPI Misconfiguration: Missing Security Schemes",
+      "url": "https://vulncat.fortify.com/ko/detail?category=OpenAPI%20Misconfiguration&subcategory=Missing%20Security%20Schemes#JSON",
+      "id": "188",
+      "abstract": "해당 OpenAPI 사양에서securitySchemes정의가 누락되어 있습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "OpenAPI Misconfiguration: Optional Global Security Requirement",
+      "url": "https://vulncat.fortify.com/ko/detail?category=OpenAPI%20Misconfiguration&subcategory=Optional%20Global%20Security%20Requirement#JSON",
+      "id": "192",
+      "abstract": "해당 OpenAPI 사양에는 선택적 전역 보안 요구사항이 포함되어 있습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "OpenAPI Misconfiguration: Optional Operation Security Requirement",
+      "url": "https://vulncat.fortify.com/ko/detail?category=OpenAPI%20Misconfiguration&subcategory=Optional%20Operation%20Security%20Requirement#JSON",
+      "id": "194",
+      "abstract": "해당 OpenAPI 사양에는 API 작업의 보안이 선택 사항으로 설정되어 있습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "OpenAPI Misconfiguration: Weak Authentication",
+      "url": "https://vulncat.fortify.com/ko/detail?category=OpenAPI%20Misconfiguration&subcategory=Weak%20Authentication#JSON",
+      "id": "190",
+      "abstract": "해당 OpenAPI 사양은 안전하지 않은 인증 방법을 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "Password Management: Empty Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Empty%20Password#JSON",
+      "id": "428",
+      "abstract": "빈 암호는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "Bicep",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management: Hardcoded Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Hardcoded%20Password#JSON",
+      "id": "401",
+      "abstract": "Hardcoded Password는 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "Bicep",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Dart",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "Universal",
+        "VisualBasic/VBScript/ASP",
+        "YAML"
+      ]
+    },
+    {
+      "title": "Password Management: Null Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Null%20Password#JSON",
+      "id": "453",
+      "abstract": "Null암호는 보안을 침해할 수 있습니다.",
+      "supported_languages": [
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management: Password in Comment",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Password%20in%20Comment#JSON",
+      "id": "429",
+      "abstract": "암호 또는 암호 세부 정보를 시스템 또는 시스템 코드 안에 일반 텍스트로 저장하는 것은 쉽게 해결할 수 없는 방식으로 시스템 보안을 손상시킬 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C/C++",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "JSON",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Universal",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Password Management: Password in Configuration File",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Password%20Management&subcategory=Password%20in%20Configuration%20File#JSON",
+      "id": "1044",
+      "abstract": "구성 파일에 일반 텍스트 암호를 저장하면 시스템 침해가 발생할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Docker",
+        "Java/JSP",
+        "JSON",
+        "Universal"
+      ]
+    },
+    {
+      "title": ".NET Bad Practices: BinaryFormatter Enabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=.NET%20Bad%20Practices&subcategory=BinaryFormatter%20Enabled#JSON",
+      "id": "855",
+      "abstract": "이 응용 프로그램은 더 이상 사용되지 않고 안전하지 않은BinaryFormatter클래스를 활성화합니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Amazon MQ Publicly Accessible",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Amazon%20MQ%20Publicly%20Accessible#JSON",
+      "id": "214",
+      "abstract": "구성이 적절한 액세스 제어를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Athena WorkGroup Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Athena%20WorkGroup%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "1458",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Backup Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Backup%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "209",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: CloudTrail Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=CloudTrail%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "208",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: CloudWatch Logs Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=CloudWatch%20Logs%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "596",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: CodeArtifact Domain Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=CodeArtifact%20Domain%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "1459",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: CodeCommit Repository Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=CodeCommit%20Repository%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "1460",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: DMS Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=DMS%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "607",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: DMS Publicly Accessible",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=DMS%20Publicly%20Accessible#JSON",
+      "id": "213",
+      "abstract": "구성이 적절한 액세스 제어를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: DocumentDB Elastic Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=DocumentDB%20Elastic%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "605",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: DocumentDB Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=DocumentDB%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "606",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: DynamoDB Backup Disabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=DynamoDB%20Backup%20Disabled#JSON",
+      "id": "232",
+      "abstract": "구성이 백업 또는 데이터 복구 기능을 끕니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: DynamoDB Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=DynamoDB%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "1465",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: EC2 Image Builder Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=EC2%20Image%20Builder%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "599",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: EC2 Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=EC2%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "604",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: ECR Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=ECR%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "207",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: EFS Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=EFS%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "603",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: EKS Cluster Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=EKS%20Cluster%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "1461",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: ElastiCache Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=ElastiCache%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "602",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: FinSpace Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=FinSpace%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "601",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: FSx Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=FSx%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "600",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Glue Data Catalog Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Glue%20Data%20Catalog%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "1466",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Glue DataBrew Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Glue%20DataBrew%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "608",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: HealthLake Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=HealthLake%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "1464",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper API Gateway Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20API%20Gateway%20Access%20Control#JSON",
+      "id": "114",
+      "abstract": "이 템플릿은 공개적으로 액세스 가능한 AWS API Gateway 메서드를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper Athena Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20Athena%20Access%20Control#JSON",
+      "id": "268",
+      "abstract": "구성이 적절한 액세스 제어를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper CodeStar Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20CodeStar%20Access%20Control#JSON",
+      "id": "267",
+      "abstract": "구성이 적절한 액세스 제어를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper Cognito Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20Cognito%20Access%20Control#JSON",
+      "id": "266",
+      "abstract": "구성이 적절한 액세스 제어를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper EC2 Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20EC2%20Network%20Access%20Control#JSON",
+      "id": "108",
+      "abstract": "이 템플릿은 액세스 제한이 부족한 보안 그룹을 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper ECS Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20ECS%20Network%20Access%20Control#JSON",
+      "id": "284",
+      "abstract": "구성이 액세스 권한이 지나치게 광범위한 네트워크 규칙을 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper EMR Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20EMR%20Access%20Control#JSON",
+      "id": "265",
+      "abstract": "구성이 적절한 액세스 제어를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper IAM Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20IAM%20Access%20Control#JSON",
+      "id": "117",
+      "abstract": "이 템플릿은 AWS 계정 루트 사용자의 액세스 키를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "Python",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper IAM Access Control Policy",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20IAM%20Access%20Control%20Policy#JSON",
+      "id": "170",
+      "abstract": "이 템플릿이 정의한 액세스 키 순환 기간은 너무 깁니다.",
+      "supported_languages": [
+        "JSON",
+        "Python",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper KMS Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20KMS%20Access%20Control#JSON",
+      "id": "264",
+      "abstract": "구성이 적절한 액세스 제어를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "Python",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper Lambda Access Control Policy",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20Lambda%20Access%20Control%20Policy#JSON",
+      "id": "120",
+      "abstract": "이 템플릿은 와일드카드 Lambda 보안 주체를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper Lambda Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20Lambda%20Network%20Access%20Control#JSON",
+      "id": "283",
+      "abstract": "구성이 액세스 권한이 지나치게 광범위한 네트워크 규칙을 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper Lightsail Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20Lightsail%20Access%20Control#JSON",
+      "id": "646",
+      "abstract": "구성이 적절한 액세스 제어를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper Mainframe Modernization Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20Mainframe%20Modernization%20Access%20Control#JSON",
+      "id": "645",
+      "abstract": "구성이 적절한 액세스 제어를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper QLDB Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20QLDB%20Access%20Control#JSON",
+      "id": "263",
+      "abstract": "구성이 적절한 액세스 제어를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper RDS Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20RDS%20Access%20Control#JSON",
+      "id": "644",
+      "abstract": "구성이 적절한 액세스 제어를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper RDS Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20RDS%20Network%20Access%20Control#JSON",
+      "id": "109",
+      "abstract": "템플릿이 액세스 제한이 충분하지 않은 DBSecurityGroup을 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper Redshift Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20Redshift%20Access%20Control#JSON",
+      "id": "643",
+      "abstract": "구성이 적절한 액세스 제어를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper Redshift Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20Redshift%20Network%20Access%20Control#JSON",
+      "id": "79",
+      "abstract": "이 템플릿은 Amazon Redshift 클러스터에 대한 공개 액세스를 명시적으로 활성화합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper S3 Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20S3%20Access%20Control#JSON",
+      "id": "262",
+      "abstract": "구성이 적절한 액세스 제어를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper S3 Access Control Policy",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20S3%20Access%20Control%20Policy#JSON",
+      "id": "110",
+      "abstract": "AWS IAM 문에 지나치게 광범위한 액세스가 지정되었습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper S3 Bucket Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20S3%20Bucket%20Network%20Access%20Control#JSON",
+      "id": "25",
+      "abstract": "Amazon S3 버킷이 모든 S3 퍼블릭 액세스 차단 설정을 활성화하지 않고 만들어집니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper SageMaker Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20SageMaker%20Access%20Control#JSON",
+      "id": "261",
+      "abstract": "구성이 적절한 액세스 제어를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper SageMaker Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20SageMaker%20Network%20Access%20Control#JSON",
+      "id": "282",
+      "abstract": "구성이 액세스 권한이 지나치게 광범위한 네트워크 규칙을 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper Serverless Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20Serverless%20Network%20Access%20Control#JSON",
+      "id": "281",
+      "abstract": "구성이 액세스 권한이 지나치게 광범위한 네트워크 규칙을 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Improper Transfer Family Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Improper%20Transfer%20Family%20Network%20Access%20Control#JSON",
+      "id": "280",
+      "abstract": "구성이 액세스 권한이 지나치게 광범위한 네트워크 규칙을 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure API Gateway Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20API%20Gateway%20Transport#JSON",
+      "id": "319",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure App Mesh Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20App%20Mesh%20Transport#JSON",
+      "id": "1470",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure CloudFront Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20CloudFront%20Transport#JSON",
+      "id": "318",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure DataSync Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20DataSync%20Transport#JSON",
+      "id": "1471",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure DocumentDB Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20DocumentDB%20Storage#JSON",
+      "id": "121",
+      "abstract": "이 템플릿은 암호화가 없는 Amazon DocumentDB 인스턴스를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure DocumentDB Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20DocumentDB%20Transport#JSON",
+      "id": "49",
+      "abstract": "이 템플릿은 데이터베이스 전송 암호화를 명시적으로 비활성화합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure DynamoDB Accelerator Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20DynamoDB%20Accelerator%20Storage#JSON",
+      "id": "304",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure EBS Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20EBS%20Storage#JSON",
+      "id": "19",
+      "abstract": "이 템플릿은 암호화가 없는 Amazon EBS 볼륨을 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure ECR Supply Chain",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20ECR%20Supply%20Chain#JSON",
+      "id": "307",
+      "abstract": "서비스가 안전하지 않을 수 있는 종속성을 사용합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure EFS Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20EFS%20Storage#JSON",
+      "id": "303",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure ElastiCache Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20ElastiCache%20Storage#JSON",
+      "id": "112",
+      "abstract": "이 템플릿은 암호화가 없는 Amazon ElastiCache 복제 그룹을 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure ElastiCache Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20ElastiCache%20Transport#JSON",
+      "id": "116",
+      "abstract": "템플릿은 전송 암호화가 없는 ElastiCache 복제 그룹을 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure Elasticsearch Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20Elasticsearch%20Storage#JSON",
+      "id": "302",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure Elasticsearch Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20Elasticsearch%20Transport#JSON",
+      "id": "317",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure ELB Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20ELB%20Transport#JSON",
+      "id": "316",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure MemoryDB Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20MemoryDB%20Transport#JSON",
+      "id": "1473",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure MSK Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20MSK%20Transport#JSON",
+      "id": "1472",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure Neptune DB Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20Neptune%20DB%20Storage#JSON",
+      "id": "115",
+      "abstract": "이 템플릿은 미사용 시 데이터 암호화가 없는 Neptune DB 클러스터를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure OpenSearch Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20OpenSearch%20Transport#JSON",
+      "id": "1474",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure RDS Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20RDS%20Storage#JSON",
+      "id": "21",
+      "abstract": "이 템플릿은 암호화가 없는 Amazon RDS 인스턴스를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure RDS Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20RDS%20Transport#JSON",
+      "id": "1475",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure Redshift Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20Redshift%20Storage#JSON",
+      "id": "15",
+      "abstract": "이 템플릿은 암호화가 없는 Amazon Redshift 클러스터를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure Redshift Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20Redshift%20Transport#JSON",
+      "id": "81",
+      "abstract": "이 Amazon Redshift 클러스터는 보안 통신을 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure S3 Bucket Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20S3%20Bucket%20Storage#JSON",
+      "id": "17",
+      "abstract": "Amazon S3 버킷이 기본적으로 미사용 시 암호화를 활성화하지 않고 만들어집니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure S3 Bucket Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20S3%20Bucket%20Transport#JSON",
+      "id": "1476",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure SageMaker Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20SageMaker%20Transport#JSON",
+      "id": "1468",
+      "abstract": "구성이 액세스 권한이 지나치게 광범위한 네트워크 규칙을 정의합니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure SNS Topic Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20SNS%20Topic%20Storage#JSON",
+      "id": "111",
+      "abstract": "이 템플릿은 암호화되지 않은 SNS 주제를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure VPC Lattice Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20VPC%20Lattice%20Transport#JSON",
+      "id": "1477",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insecure WorkSpaces Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insecure%20WorkSpaces%20Storage#JSON",
+      "id": "301",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient API Gateway Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20API%20Gateway%20Logging#JSON",
+      "id": "346",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient App Mesh Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20App%20Mesh%20Logging#JSON",
+      "id": "1478",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient AppSync Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20AppSync%20Logging#JSON",
+      "id": "345",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient CloudFront Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20CloudFront%20Logging#JSON",
+      "id": "344",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient CloudFront Monitoring",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20CloudFront%20Monitoring#JSON",
+      "id": "364",
+      "abstract": "구성이 모니터링되지 않는 리소스를 설정합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient CloudTrail Insights Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20CloudTrail%20Insights%20Logging#JSON",
+      "id": "1479",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient CloudTrail Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20CloudTrail%20Logging#JSON",
+      "id": "169",
+      "abstract": "이 템플릿은 모든 지역에 대해 활성화되지 않는 CloudTrail을 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient CloudTrail Monitoring",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20CloudTrail%20Monitoring#JSON",
+      "id": "363",
+      "abstract": "구성이 모니터링되지 않는 리소스를 설정합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient CodeBuild Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20CodeBuild%20Logging#JSON",
+      "id": "1480",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient Cognito Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20Cognito%20Logging#JSON",
+      "id": "1481",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient Config Monitoring",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20Config%20Monitoring#JSON",
+      "id": "362",
+      "abstract": "구성이 모니터링되지 않는 리소스를 설정합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient ConfigurationRecorder Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20ConfigurationRecorder%20Logging#JSON",
+      "id": "1482",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient DocumentDB Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20DocumentDB%20Logging#JSON",
+      "id": "172",
+      "abstract": "이 템플릿은 로그 모니터링을 구현하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient ECR Monitoring",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20ECR%20Monitoring#JSON",
+      "id": "361",
+      "abstract": "구성이 모니터링되지 않는 리소스를 설정합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient ECS TaskDefinition Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20ECS%20TaskDefinition%20Logging#JSON",
+      "id": "1483",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient EKS Cluster Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20EKS%20Cluster%20Logging#JSON",
+      "id": "1484",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient ElasticLoadBalancing Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20ElasticLoadBalancing%20Logging#JSON",
+      "id": "341",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient Elasticsearch Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20Elasticsearch%20Logging#JSON",
+      "id": "343",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient ELB Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20ELB%20Logging#JSON",
+      "id": "342",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient GuardDuty Monitoring",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20GuardDuty%20Monitoring#JSON",
+      "id": "360",
+      "abstract": "구성이 모니터링되지 않는 리소스를 설정합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient Lambda Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20Lambda%20Logging#JSON",
+      "id": "340",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient Log Group Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20Log%20Group%20Logging#JSON",
+      "id": "113",
+      "abstract": "이 템플릿은 보존 기간이 없는 CloudWatch 로그 그룹을 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient MQ Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20MQ%20Logging#JSON",
+      "id": "347",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient MSK Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20MSK%20Logging#JSON",
+      "id": "339",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient Neptune Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20Neptune%20Logging#JSON",
+      "id": "171",
+      "abstract": "이 템플릿은 로그 모니터링을 구현하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient OpenSearch Service Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20OpenSearch%20Service%20Logging#JSON",
+      "id": "338",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient RDS Monitoring",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20RDS%20Monitoring#JSON",
+      "id": "359",
+      "abstract": "구성이 모니터링되지 않는 리소스를 설정합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient Redshift Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20Redshift%20Logging#JSON",
+      "id": "80",
+      "abstract": "이 템플릿은 감사 로깅이 없는 Amazon Redshift 클러스터를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient Route 53 Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20Route%2053%20Logging#JSON",
+      "id": "337",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient S3 Bucket Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20S3%20Bucket%20Logging#JSON",
+      "id": "118",
+      "abstract": "Amazon S3 버킷이 액세스 로깅을 활성화하지 않고 만들어집니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient Serverless Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20Serverless%20Logging#JSON",
+      "id": "336",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient Stack Monitoring",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20Stack%20Monitoring#JSON",
+      "id": "365",
+      "abstract": "구성이 모니터링되지 않는 리소스를 설정합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient Step Functions Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20Step%20Functions%20Logging#JSON",
+      "id": "1486",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Insufficient Systems Manager Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Insufficient%20Systems%20Manager%20Logging#JSON",
+      "id": "1485",
+      "abstract": "구성이 감사 로깅 기능이 없는 서비스를 정의합니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Kinesis Video Streams Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Kinesis%20Video%20Streams%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "598",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Lambda Denial of Service",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Lambda%20Denial%20of%20Service#JSON",
+      "id": "234",
+      "abstract": "구성이 무제한 리소스 사용을 허용합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Location Service Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Location%20Service%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "597",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Lookout for Equipment Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Lookout%20for%20Equipment%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "1463",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Mainframe Modernization Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Mainframe%20Modernization%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "595",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: MemoryDB Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=MemoryDB%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "594",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Missing CloudTrail Log Validation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Missing%20CloudTrail%20Log%20Validation#JSON",
+      "id": "119",
+      "abstract": "이 템플릿은 로그 파일 검증이 없는 추적을 정의합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Neptune Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Neptune%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "593",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Privileged Batch Container",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Privileged%20Batch%20Container#JSON",
+      "id": "368",
+      "abstract": "구성이 승격된 권한으로 작업을 실행하도록 컨테이너를 설정합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: RDS Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=RDS%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "592",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: RDS Publicly Accessible",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=RDS%20Publicly%20Accessible#JSON",
+      "id": "212",
+      "abstract": "구성이 적절한 액세스 제어를 적용하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Redshift Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Redshift%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "206",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Reduced EC2 Availability",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Reduced%20EC2%20Availability#JSON",
+      "id": "376",
+      "abstract": "구성이 서비스 가용성을 낮춥니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Reduced ElastiCache Availability",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Reduced%20ElastiCache%20Availability#JSON",
+      "id": "374",
+      "abstract": "구성이 서비스 가용성을 낮춥니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Reduced Stack Availability",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Reduced%20Stack%20Availability#JSON",
+      "id": "375",
+      "abstract": "구성이 서비스 가용성을 낮춥니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Rekognition Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Rekognition%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "591",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: S3 Backup Disabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=S3%20Backup%20Disabled#JSON",
+      "id": "231",
+      "abstract": "구성이 백업 또는 데이터 복구 기능을 끕니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: S3 Bucket Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=S3%20Bucket%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "1467",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: SageMaker Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=SageMaker%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "205",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: SageMaker Network Isolation Disabled",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=SageMaker%20Network%20Isolation%20Disabled#JSON",
+      "id": "1469",
+      "abstract": "구성이 액세스 권한이 지나치게 광범위한 네트워크 규칙을 정의합니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Secrets Manager Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Secrets%20Manager%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "204",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Serverless Denial of Service",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Serverless%20Denial%20of%20Service#JSON",
+      "id": "233",
+      "abstract": "구성이 무제한 리소스 사용을 허용합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: SQS Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=SQS%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "203",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Step Functions Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Step%20Functions%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "1462",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Timestream Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Timestream%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "590",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Weak API Gateway Authentication",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Weak%20API%20Gateway%20Authentication#JSON",
+      "id": "391",
+      "abstract": "구성이 취약한 인증 메커니즘을 사용합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Weak Certificate Manager Authentication",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Weak%20Certificate%20Manager%20Authentication#JSON",
+      "id": "390",
+      "abstract": "구성이 취약한 인증 메커니즘을 사용합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Weak IAM Authentication",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Weak%20IAM%20Authentication#JSON",
+      "id": "389",
+      "abstract": "구성이 취약한 인증 메커니즘을 사용합니다.",
+      "supported_languages": [
+        "JSON",
+        "Python",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Weak Lambda Authentication",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Weak%20Lambda%20Authentication#JSON",
+      "id": "388",
+      "abstract": "구성이 취약한 인증 메커니즘을 사용합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Weak RDS Authentication",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Weak%20RDS%20Authentication#JSON",
+      "id": "387",
+      "abstract": "구성이 취약한 인증 메커니즘을 사용합니다.",
+      "supported_languages": [
+        "JSON",
+        "YAML"
+      ]
+    },
+    {
+      "title": "AWS CloudFormation Misconfiguration: Weak Secrets Manager Generated Password",
+      "url": "https://vulncat.fortify.com/ko/detail?category=AWS%20CloudFormation%20Misconfiguration&subcategory=Weak%20Secrets%20Manager%20Generated%20Password#JSON",
+      "id": "1487",
+      "abstract": "구성이 취약한 비밀번호를 허용합니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Automation Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Automation%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "557",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Batch Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Batch%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "556",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Cognitive Services Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Cognitive%20Services%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "555",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Databricks Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Databricks%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "554",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Event Hubs Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Event%20Hubs%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "552",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Hardcoded Secret",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Hardcoded%20Secret#JSON",
+      "id": "66",
+      "abstract": "이 템플릿은 보안 유형을 사용하여 매개 변수의 기본값을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: HTTPS Not Required",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=HTTPS%20Not%20Required#JSON",
+      "id": "1051",
+      "abstract": "HTTP 트래픽이 명시적으로 활성화되어 있습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper AKS Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20AKS%20Network%20Access%20Control#JSON",
+      "id": "67",
+      "abstract": "이 템플릿은 Kubernetes API 서버에 대한 액세스를 제한하지 못합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper App Service Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20App%20Service%20Access%20Control#JSON",
+      "id": "63",
+      "abstract": "이 템플릿은 원격 디버깅이 활성화된 Azure App Service를 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper Blob Storage Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20Blob%20Storage%20Access%20Control#JSON",
+      "id": "57",
+      "abstract": "이 템플릿은 익명 액세스를 허용하는 Azure Blob Storage 컨테이너를 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper Compute VM Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20Compute%20VM%20Access%20Control#JSON",
+      "id": "59",
+      "abstract": "이 템플릿은 SSH 기본 인증을 허용하는 VM을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper Container Registry Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20Container%20Registry%20Network%20Access%20Control#JSON",
+      "id": "58",
+      "abstract": "이 템플릿은 네트워크 액세스가 제한되지 않은 Azure Container Registry를 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper CORS Policy",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20CORS%20Policy#JSON",
+      "id": "54",
+      "abstract": "이 템플릿은 지나치게 허용적인 CORS 정책을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper Custom Role Access Control Policy",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20Custom%20Role%20Access%20Control%20Policy#JSON",
+      "id": "83",
+      "abstract": "이 템플릿은 소유자 권한이 있는 역할을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper DocumentDB Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20DocumentDB%20Network%20Access%20Control#JSON",
+      "id": "53",
+      "abstract": "이 템플릿은 네트워크 액세스가 제한되지 않은 Azure Cosmos DB를 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper KeyVault Access Control Policy",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20KeyVault%20Access%20Control%20Policy#JSON",
+      "id": "82",
+      "abstract": "이 템플릿은 만료 날짜가 없는 기밀을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper Security Group Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20Security%20Group%20Network%20Access%20Control#JSON",
+      "id": "55",
+      "abstract": "이 템플릿은 관리 서비스에 대한 액세스를 허용하는 네트워크 보안 그룹을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper SQL Server Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20SQL%20Server%20Network%20Access%20Control#JSON",
+      "id": "56",
+      "abstract": "이 템플릿은 네트워크 액세스가 제한되지 않은 Azure SQL Database 인스턴스를 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Improper Storage Network Access Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Improper%20Storage%20Network%20Access%20Control#JSON",
+      "id": "32",
+      "abstract": "이 템플릿은 부적절한 네트워크 액세스 권한을 보유한 Azure 스토리지 계정을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Active Directory Domain Service Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Active%20Directory%20Domain%20Service%20Transport#JSON",
+      "id": "61",
+      "abstract": "이 템플릿은 오래된 TLS 버전의 사용을 허용합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure App Service Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20App%20Service%20Transport#JSON",
+      "id": "84",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure CDN Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20CDN%20Transport#JSON",
+      "id": "681",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Database for MySQL Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Database%20for%20MySQL%20Storage#JSON",
+      "id": "661",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Database for PostgreSQL Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Database%20for%20PostgreSQL%20Storage#JSON",
+      "id": "660",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Databricks Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Databricks%20Storage#JSON",
+      "id": "662",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure EventHub Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20EventHub%20Storage#JSON",
+      "id": "659",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure EventHub Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20EventHub%20Transport#JSON",
+      "id": "679",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure IoT Hub Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20IoT%20Hub%20Transport#JSON",
+      "id": "680",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure MySQL Server Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20MySQL%20Server%20Transport#JSON",
+      "id": "48",
+      "abstract": "이 템플릿은 데이터베이스 전송 암호화를 명시적으로 비활성화합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure PostgreSQL Server Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20PostgreSQL%20Server%20Transport#JSON",
+      "id": "47",
+      "abstract": "이 템플릿은 데이터베이스 전송 암호화를 명시적으로 비활성화합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Recovery Services Backup Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Recovery%20Services%20Backup%20Storage#JSON",
+      "id": "657",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Recovery Services Vaults Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Recovery%20Services%20Vaults%20Storage#JSON",
+      "id": "658",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Redis Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Redis%20Transport#JSON",
+      "id": "682",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Service Bus Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Service%20Bus%20Storage#JSON",
+      "id": "656",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Service Bus Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Service%20Bus%20Transport#JSON",
+      "id": "678",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Storage Account Storage",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Storage%20Account%20Storage#JSON",
+      "id": "655",
+      "abstract": "구성이 미사용 시 암호화를 설정하지 않고 리소스를 생성합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insecure Storage Account Transport",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insecure%20Storage%20Account%20Transport#JSON",
+      "id": "64",
+      "abstract": "서비스가 안정적인 전송 중 암호화를 적용하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insufficient AKS Monitoring",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insufficient%20AKS%20Monitoring#JSON",
+      "id": "60",
+      "abstract": "이 템플릿은 로그 이벤트를 Azure Monitor로 보내지 않는 AKS 클러스터를 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insufficient Application Insights Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insufficient%20Application%20Insights%20Logging#JSON",
+      "id": "50",
+      "abstract": "이 템플릿은 감사 보존 기간이 충분하지 않은 로깅 구성을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insufficient Application Insights Monitoring",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insufficient%20Application%20Insights%20Monitoring#JSON",
+      "id": "52",
+      "abstract": "이 템플릿은 모든 활동 로그 관리 이벤트를 수집하지 않는 Azure Monitor 로그 프로필을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insufficient Microsoft Defender Monitoring",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insufficient%20Microsoft%20Defender%20Monitoring#JSON",
+      "id": "65",
+      "abstract": "이 템플릿은 보안 경고에 대한 이메일 알림이 없는 보안 연락처를 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insufficient SQL Server Logging",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insufficient%20SQL%20Server%20Logging#JSON",
+      "id": "51",
+      "abstract": "이 템플릿은 감사 보존 기간이 충분하지 않은 로깅 구성을 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Insufficient SQL Server Monitoring",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Insufficient%20SQL%20Server%20Monitoring#JSON",
+      "id": "68",
+      "abstract": "이 템플릿은 감사 로깅이 없는 Azure SQL Server를 정의합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: IoT Hub Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=IoT%20Hub%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "553",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: NetApp Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=NetApp%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "551",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Public Access Allowed",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Public%20Access%20Allowed#JSON",
+      "id": "1052",
+      "abstract": "저장소 컨테이너 및 blob에 대해 익명 읽기 액세스가 활성화되어 있습니다.",
+      "supported_languages": [
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Service Bus Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Service%20Bus%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "550",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Storage Account Missing Customer-Managed Encryption Key",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Storage%20Account%20Missing%20Customer-Managed%20Encryption%20Key#JSON",
+      "id": "549",
+      "abstract": "구성이 미사용 데이터용 고객 관리형 암호화 키를 지정하지 않습니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Weak App Service Authentication",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Weak%20App%20Service%20Authentication#JSON",
+      "id": "690",
+      "abstract": "구성이 취약한 인증 메커니즘을 사용합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Azure ARM Misconfiguration: Weak SignalR Authentication",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Azure%20ARM%20Misconfiguration&subcategory=Weak%20SignalR%20Authentication#JSON",
+      "id": "691",
+      "abstract": "구성이 취약한 인증 메커니즘을 사용합니다.",
+      "supported_languages": [
+        "Bicep",
+        "JSON"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Poor Validation",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Poor%20Validation#Java%2fJSP",
+      "id": "411",
+      "abstract": "사용자 입력을 검증하는 데 HTML, XML 및 기타 인코딩 유형을 사용하면 브라우저가 악성 코드를 실행하게 될 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Reflected",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Reflected#Java%2fJSP",
+      "id": "412",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "ABAP",
+        "ActionScript",
+        "Apex",
+        "C#/VB.NET/ASP.NET",
+        "COBOL",
+        "ColdFusion",
+        "Golang",
+        "Java/JSP",
+        "JavaScript/TypeScript",
+        "Kotlin",
+        "Objective-C",
+        "PHP",
+        "PLSQL/TSQL",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Swift",
+        "VisualBasic/VBScript/ASP"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: SAPUI5 Control",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=SAPUI5%20Control#JavaScript%2fTypeScript",
+      "id": "910",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Self",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Self#JavaScript%2fTypeScript",
+      "id": "911",
+      "abstract": "검증되지 않은 데이터를 웹 브라우저에 보내면 브라우저가 악성 코드를 실행하는 결과를 초래할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: SOP Bypass",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=SOP%20Bypass#JavaScript%2fTypeScript",
+      "id": "912",
+      "abstract": "사용자 입력이 SOP(동일 출처 정책)를 결정하는 설정을 제어하도록 허용하면 XSS 취약점이 발생할 수 있습니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site Scripting: Untrusted HTML Downloads",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20Scripting&subcategory=Untrusted%20HTML%20Downloads#JavaScript%2fTypeScript",
+      "id": "1432",
+      "abstract": "noopen으로 설정되는X-Download-Options헤더를 비활성화하면 다운로드된 HTML 페이지가 이를 제공하는 사이트의 보안 컨텍스트에서 실행됩니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript"
+      ]
+    },
+    {
+      "title": "Cross-Site WebSocket Hijacking",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Cross-Site%20WebSocket%20Hijacking#Java%2fJSP",
+      "id": "819",
+      "abstract": "서버가 도메인 간 요청을 허용하면서 요청의 출처를 확인하지 못해 공격자는 이러한 도메인 간 요청을 사용하여 양방향 WebSocket 연결을 하이재킹(hijacking)할 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dangerous Field",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Field#Java%2fJSP",
+      "id": "521",
+      "abstract": "필드는 위험한 것으로 주석 추가되었습니다. 모든 사용은 플래그 지정됩니다.",
+      "supported_languages": [
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dangerous File Inclusion",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20File%20Inclusion#Java%2fJSP",
+      "id": "784",
+      "abstract": "확인되지 않은 사용자 입력이 HTML 파일에 동적으로 포함되는 파일을 제어하도록 허용하면 악성 코드가 실행될 수 있습니다.",
+      "supported_languages": [
+        "C#/VB.NET/ASP.NET",
+        "Java/JSP",
+        "PHP"
+      ]
+    },
+    {
+      "title": "Dangerous File Injection",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20File%20Injection#PHP",
+      "id": "981",
+      "abstract": "공격자가 임의의 콘텐트가 있는 시스템에서 파일을 만들 수 있습니다.",
+      "supported_languages": [
+        "PHP"
+      ]
+    },
+    {
+      "title": "Dangerous Function",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function#C%2fC%2b%2b",
+      "id": "715",
+      "abstract": "안전하게 사용할 수 없는 함수는 사용하지 않는 것이 좋습니다.",
+      "supported_languages": [
+        "C/C++",
+        "PHP",
+        "PLSQL/TSQL",
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Dangerous Function: strcpy()",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function&subcategory=strcpy()#C%2fC%2b%2b",
+      "id": "716",
+      "abstract": "안전하게 사용할 수 없는 함수는 사용하지 않는 것이 좋습니다.",
+      "supported_languages": [
+        "C/C++"
+      ]
+    },
+    {
+      "title": "Dangerous Function: Unsafe Regular Expression",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function&subcategory=Unsafe%20Regular%20Expression#PHP",
+      "id": "957",
+      "abstract": "안전하게 사용할 수 없는 함수는 사용하면 안 됩니다.",
+      "supported_languages": [
+        "PHP"
+      ]
+    },
+    {
+      "title": "Dangerous Function: xp_cmdshell",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Function&subcategory=xp_cmdshell#PLSQL%2fTSQL",
+      "id": "1042",
+      "abstract": "xp_cmdshell함수는 안전하게 사용할 수 없습니다. 사용하지 않는 것이 좋습니다.",
+      "supported_languages": [
+        "PLSQL/TSQL"
+      ]
+    },
+    {
+      "title": "Dangerous Method",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Method#Java%2fJSP",
+      "id": "520",
+      "abstract": "메서드는 위험한 것으로 주석 추가되었습니다. 이 메서드의 모든 사용은 이슈로 플래그 지정되었습니다.",
+      "supported_languages": [
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Dangerous Type",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dangerous%20Type#Java%2fJSP",
+      "id": "522",
+      "abstract": "이 변수는 위험한 것으로 주석 처리된 유형의 변수입니다.",
+      "supported_languages": [
+        "Java/JSP"
+      ]
+    },
+    {
+      "title": "Data Poisoning: AI Embedding",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Data%20Poisoning&subcategory=AI%20Embedding#JavaScript%2fTypeScript",
+      "id": "1019",
+      "abstract": "검증되지 않은 데이터를 LLM 임베딩 API로 보냅니다.",
+      "supported_languages": [
+        "JavaScript/TypeScript",
+        "Python"
+      ]
+    },
+    {
+      "title": "Data Poisoning: AI Training",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Data%20Poisoning&subcategory=AI%20Training#Python",
+      "id": "1018",
+      "abstract": "검증되지 않은 데이터를 LLM 미세 조정 API로 보냅니다.",
+      "supported_languages": [
+        "Python"
+      ]
+    },
+    {
+      "title": "Database Bad Practices: Use of Restricted Accounts",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Database%20Bad%20Practices&subcategory=Use%20of%20Restricted%20Accounts#PLSQL%2fTSQL",
+      "id": "1039",
+      "abstract": "admin, administrator, guest, root 또는 sa 계정 중 하나를 사용하여 데이터베이스에 연결하려고 했습니다.",
+      "supported_languages": [
+        "PLSQL/TSQL"
+      ]
+    },
+    {
+      "title": "Dead Code",
+      "url": "https://vulncat.fortify.com/ko/detail?category=Dead%20Code#C%2fC%2b%2b",
+      "id": "733",
+      "abstract": "이 문은 결코 실행되지 않습니다.",
+      "supported_languages": [
+        "C/C++",
+        "Solidity"
+      ]
+    }
+  ]
+}
