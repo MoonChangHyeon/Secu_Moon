@@ -45,6 +45,18 @@ public class UserManagementController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/{id}/approve")
+    public ResponseEntity<Void> approveUser(@PathVariable Long id, @RequestParam Long roleTemplateId) {
+        userService.approveUser(id, roleTemplateId);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/{id}/reject")
+    public ResponseEntity<Void> rejectUser(@PathVariable Long id) {
+        userService.rejectUser(id);
+        return ResponseEntity.ok().build();
+    }
+
     @lombok.Data
     @lombok.NoArgsConstructor
     @lombok.AllArgsConstructor

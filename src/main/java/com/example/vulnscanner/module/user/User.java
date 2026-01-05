@@ -26,7 +26,15 @@ public class User {
     private String password;
 
     @Column(nullable = false)
-    private String role; // ADMIN, USER
+    @Deprecated // Use RoleTemplate instead
+    private String role; // ADMIN, USER - Kept for backward compatibility or simple checks
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_template_id")
+    private RoleTemplate roleTemplate;
+
+    @Column(nullable = false)
+    private String status = "PENDING"; // PENDING, APPROVED, REJECTED, WITHDRAWN
 
     private String name;
     private String team;

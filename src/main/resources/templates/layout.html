@@ -167,10 +167,28 @@
                         <ul class="dropdown-menu" aria-labelledby="settingsDropdown">
                             <li><a class="dropdown-item" href="/settings">일반 설정</a></li>
                             <li><a class="dropdown-item" href="/settings/users">사용자 관리</a></li>
+                            <li><a class="dropdown-item" href="/user/templates">권한 템플릿 관리</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item text-danger" href="/logout">로그아웃</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown" th:if="${uncheckedNotificationCount != null}">
+                        <a class="nav-link" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-bell"></i>
+                            <span class="badge bg-danger rounded-pill" th:if="${uncheckedNotificationCount > 0}"
+                                th:text="${uncheckedNotificationCount}"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown">
+                            <li th:if="${notifications == null || notifications.isEmpty()}"><span
+                                    class="dropdown-item">알림이 없습니다.</span></li>
+                            <li th:each="notification : ${notifications}">
+                                <a class="dropdown-item"
+                                    th:href="@{${notification.link} + '?notifId=' + ${notification.id}}"
+                                    th:text="${notification.message}"></a>
+                            </li>
                         </ul>
                     </li>
                 </ul>

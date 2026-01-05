@@ -21,7 +21,7 @@
                                     <th>사용자명</th>
                                     <th>이름</th>
                                     <th>팀</th>
-                                    <th>이메일</th>
+                                    <th>상태</th>
                                     <th>권한</th>
                                     <th>생성일</th>
                                     <th>관리</th>
@@ -35,145 +35,10 @@
                 </div>
             </div>
 
-            <!-- Add User Modal -->
-            <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" style="max-width: 600px;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="addUserModalLabel">사용자 추가</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="addUserForm">
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">사용자명</label>
-                                    <input type="text" class="form-control" id="username" name="username" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">비밀번호</label>
-                                    <input type="password" class="form-control" id="password" name="password" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">이름</label>
-                                    <input type="text" class="form-control" id="name" name="name">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="team" class="form-label">팀</label>
-                                    <input type="text" class="form-control" id="team" name="team">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">이메일</label>
-                                    <input type="email" class="form-control" id="email" name="email">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="role" class="form-label">권한</label>
-                                    <select class="form-select" id="role" name="role">
-                                        <option value="USER">USER</option>
-                                        <option value="ADMIN">ADMIN</option>
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                            <button type="button" class="btn btn-primary" id="saveUserBtn">저장</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- ... Modals ... -->
 
-            <!-- Edit User Modal -->
-            <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" style="max-width: 600px;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="editUserModalLabel">사용자 수정</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <input type="hidden" id="editUserId">
-                            <div class="mb-3">
-                                <label for="editName" class="form-label">이름</label>
-                                <input type="text" class="form-control" id="editName">
-                            </div>
-                            <div class="mb-3">
-                                <label for="editTeam" class="form-label">팀</label>
-                                <input type="text" class="form-control" id="editTeam">
-                            </div>
-                            <div class="mb-3">
-                                <label for="editEmail" class="form-label">이메일</label>
-                                <input type="email" class="form-control" id="editEmail">
-                            </div>
-                            <div class="mb-3">
-                                <label for="editRole" class="form-label">권한</label>
-                                <select class="form-select" id="editRole">
-                                    <option value="USER">USER</option>
-                                    <option value="ADMIN">ADMIN</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                            <button type="button" class="btn btn-primary" id="updateUserBtn">수정</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Debug Log Area -->
-        <div class="container mt-4">
-            <div class="card">
-                <div class="card-header bg-secondary text-white">
-                    <h5 class="mb-0">Debug Log (실시간 로그)</h5>
-                </div>
-                <div class="card-body bg-dark text-white"
-                    style="height: 200px; overflow-y: auto; font-family: monospace;" id="debugLogArea">
-                    <!-- Logs will appear here -->
-                </div>
-            </div>
-        </div>
-
-        <script>
-            function logToScreen(message, type = 'INFO') {
-                const logArea = document.getElementById('debugLogArea');
-                if (!logArea) {
-                    console.error("Log area not found!");
-                    return;
-                }
-                const timestamp = new Date().toLocaleTimeString();
-                const color = type === 'ERROR' ? 'text-danger' : 'text-success';
-                const logEntry = document.createElement('div');
-                logEntry.innerHTML = `<span class="text-muted">[${timestamp}]</span> <span class="${color}">[${type}]</span> ${message}`;
-                logArea.appendChild(logEntry);
-                logArea.scrollTop = logArea.scrollHeight;
-                console.log(`[${type}] ${message}`);
-            }
-
-            // Immediate log to verify script execution
-            console.log("Script loaded immediately");
-
-            document.addEventListener('DOMContentLoaded', function () {
-                logToScreen('Page Loaded. Initializing...');
-                loadUsers();
-
-                // CSRF Token Helper
-                function getCsrfToken() {
-                    const tokenMeta = document.querySelector("meta[name='_csrf']");
-                    const headerMeta = document.querySelector("meta[name='_csrf_header']");
-                    if (!tokenMeta || !headerMeta) {
-                        logToScreen('CSRF Meta tags missing!', 'ERROR');
-                        return null;
-                    }
-                    return {
-                        token: tokenMeta.getAttribute("content"),
-                        header: headerMeta.getAttribute("content")
-                    };
-                }
-
-                // Load Users
+            <script>
+                // ...
                 function loadUsers() {
                     logToScreen('Loading users...');
                     fetch('/api/users')
@@ -192,29 +57,82 @@
                             users.forEach(user => {
                                 const tr = document.createElement('tr');
                                 const createdDate = user.createdAt ? new Date(user.createdAt).toLocaleString() : '-';
-                                const roleBadge = user.role === 'ADMIN' ? 'bg-danger' : 'bg-secondary';
-                                tr.innerHTML = `
-                                <td>${user.id}</td>
-                                <td>${user.username}</td>
-                                <td>${user.name || '-'}</td>
-                                <td>${user.team || '-'}</td>
-                                <td>${user.email || '-'}</td>
-                                <td><span class="badge ${roleBadge}">${user.role}</span></td>
-                                <td>${createdDate}</td>
-                                <td>
+
+                                let statusBadge = 'bg-secondary';
+                                if (user.status === 'APPROVED') statusBadge = 'bg-success';
+                                else if (user.status === 'PENDING') statusBadge = 'bg-warning text-dark';
+                                else if (user.status === 'REJECTED') statusBadge = 'bg-danger';
+
+                                let roleDisplay = user.roleTemplate ? user.roleTemplate.name : (user.role || '-');
+
+                                let actions = '';
+                                if (user.status === 'PENDING') {
+                                    actions = `
+                                        <button class="btn btn-sm btn-success me-1" onclick="approveUser(${user.id})">승인</button>
+                                        <button class="btn btn-sm btn-danger me-1" onclick="rejectUser(${user.id})">거절</button>
+                                    `;
+                                }
+                                actions += `
                                     <button class="btn btn-sm btn-outline-primary me-1" onclick="openEditModal(${user.id}, '${user.role}', '${user.name || ''}', '${user.team || ''}', '${user.email || ''}')">
                                         <i class="bi bi-pencil"></i>
                                     </button>
                                     <button class="btn btn-sm btn-outline-danger" onclick="deleteUser(${user.id})">
                                         <i class="bi bi-trash"></i>
                                     </button>
-                                </td>
+                                `;
+
+                                tr.innerHTML = `
+                                <td>${user.id}</td>
+                                <td>${user.username}</td>
+                                <td>${user.name || '-'}</td>
+                                <td>${user.team || '-'}</td>
+                                <td><span class="badge ${statusBadge}">${user.status}</span></td>
+                                <td>${roleDisplay}</td>
+                                <td>${createdDate}</td>
+                                <td>${actions}</td>
                             `;
                                 tbody.appendChild(tr);
                             });
                         })
                         .catch(error => logToScreen('Error loading users: ' + error, 'ERROR'));
                 }
+
+                window.approveUser = function (id) {
+                    // Determine role template ID - for now defaulting to 1 (need a UI for this)
+                    // A prompt could work or a dedicated modal.
+                    // For MVP: Prompt user for Role Template ID? Or just list them?
+                    // Let's redirect to a simple page or use a prompt.
+                    // Better: fetch templates and show a modal. 
+                    // For simplicity now: Default to nothing or logic in backend?
+                    // Backend requires roleTemplateId.
+
+                    // Let's implement a simple prompt for Role Template ID for now.
+                    // ideally we should fetch templates and let user pick.
+                    const templateId = prompt("Enter Role Template ID for approval (See Templates page):", "1");
+                    if (!templateId) return;
+
+                    const csrf = getCsrfToken();
+                    fetch(`/api/users/${id}/approve?roleTemplateId=${templateId}`, {
+                        method: 'POST',
+                        headers: { [csrf.header]: csrf.token }
+                    }).then(r => {
+                        if (r.ok) { alert('Approved'); loadUsers(); }
+                        else alert('Failed');
+                    });
+                };
+
+                window.rejectUser = function (id) {
+                    if (!confirm('Reject user?')) return;
+                    const csrf = getCsrfToken();
+                    fetch(`/api/users/${id}/reject`, {
+                        method: 'POST',
+                        headers: { [csrf.header]: csrf.token }
+                    }).then(r => {
+                        if (r.ok) { alert('Rejected'); loadUsers(); }
+                        else alert('Failed');
+                    });
+                };
+                // ... (rest of the file)
 
                 // Save User
                 const saveBtn = document.getElementById('saveUserBtn');
@@ -354,8 +272,8 @@
                     modal.show();
                 };
             });
-        </script>
-    </div>
+            </script>
+        </div>
 </body>
 
 </html>

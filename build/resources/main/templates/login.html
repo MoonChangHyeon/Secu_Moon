@@ -54,8 +54,11 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
-            <div class="d-grid">
+            <div class="d-grid mb-3">
                 <button type="submit" class="btn btn-primary">Sign In</button>
+            </div>
+            <div class="text-center">
+                <p class="mb-0">Don't have an account? <a th:href="@{/signup}">Sign Up</a></p>
             </div>
         </form>
     </div>

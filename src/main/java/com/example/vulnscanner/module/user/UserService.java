@@ -21,6 +21,8 @@ public class UserService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final com.example.vulnscanner.global.util.PasswordValidator passwordValidator;
     private final SettingsService settingsService;
+    private final RoleTemplateService roleTemplateService; // Added
+    private final NotificationService notificationService; // Added
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -37,11 +39,23 @@ public class UserService implements UserDetailsService {
             }
         }
 
+        boolean enabled = "APPROVED".equals(user.getStatus()) || "ADMIN".equals(user.getRole());
+
+        List<org.springframework.security.core.GrantedAuthority> authorities = new java.util.ArrayList<>();
+        if (user.getRoleTemplate() != null) {
+            user.getRoleTemplate().getPrivileges().forEach(p -> authorities
+                    .add(new org.springframework.security.core.authority.SimpleGrantedAuthority(p.getName())));
+        } else if (user.getRole() != null) {
+            authorities.add(
+                    new org.springframework.security.core.authority.SimpleGrantedAuthority("ROLE_" + user.getRole()));
+        }
+
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getUsername())
                 .password(user.getPassword())
-                .roles(user.getRole())
+                .authorities(authorities)
                 .accountLocked(user.getLockTime() != null)
+                .disabled(!enabled) // Block if not approved
                 .build();
     }
 
@@ -49,6 +63,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(username).orElse(null);
     }
 
+    // Used for Admin Creation or Manual Add
     @Transactional
     public User createUser(String username, String password, String role, String name, String team, String email) {
         passwordValidator.validate(password);
@@ -58,11 +73,58 @@ public class UserService implements UserDetailsService {
         User user = new User();
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
-        user.setRole(role);
+        user.setRole(role); // Legacy
         user.setName(name);
         user.setTeam(team);
         user.setEmail(email);
+        user.setStatus("APPROVED"); // Admin created users are auto-approved? Or passed as arg? Assuming APPROVED
+                                    // for backend create.
         return userRepository.save(user);
+    }
+
+    @Transactional
+    public User registerUser(String username, String password, String name, String team, String email) {
+        passwordValidator.validate(password);
+        if (userRepository.findByUsername(username).isPresent()) {
+            throw new IllegalArgumentException("Username already exists");
+        }
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setRole("USER"); // Default legacy role
+        user.setName(name);
+        user.setTeam(team);
+        user.setEmail(email);
+        user.setStatus("PENDING");
+
+        User savedUser = userRepository.save(user);
+
+        // Notify Admins
+        notificationService.createNotification(
+                "New User Registration: " + username,
+                "/user/list",
+                "SIGNUP_REQUEST");
+
+        return savedUser;
+    }
+
+    @Transactional
+    public void approveUser(Long userId, Long roleTemplateId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        RoleTemplate template = roleTemplateService.getTemplate(roleTemplateId);
+
+        user.setStatus("APPROVED");
+        user.setRoleTemplate(template);
+        userRepository.save(user);
+    }
+
+    @Transactional
+    public void rejectUser(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        user.setStatus("REJECTED");
+        userRepository.save(user);
     }
 
     public List<User> getAllUsers() {
@@ -89,20 +151,14 @@ public class UserService implements UserDetailsService {
     @Transactional
     public void createAdminIfNotExists() {
         if (userRepository.findByUsername("admin").isEmpty()) {
-            // Admin password might not meet complexity requirements, so we bypass
-            // validation for initial setup or ensure it meets them.
-            // Here we bypass for simplicity or update the password to meet requirements.
-            // Let's use a compliant password or bypass validation for this specific method
-            // if needed.
-            // For now, let's just create it directly without validation call since it's
-            // internal.
             User user = new User();
             user.setUsername("admin");
-            user.setPassword(passwordEncoder.encode("Admin123!")); // Changed to meet complexity
+            user.setPassword(passwordEncoder.encode("Admin123!"));
             user.setRole("ADMIN");
             user.setName("Administrator");
             user.setTeam("IT Security");
             user.setEmail("admin@example.com");
+            user.setStatus("APPROVED");
             userRepository.save(user);
         }
     }
