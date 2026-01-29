@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Role Templates</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Role Templates</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <a th:href="@{/user/templates/create}" class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-plus-lg"></i> Create Template
+                </a>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Privileges</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="template : ${templates}">
+                        <td th:text="${template.id}"></td>
+                        <td th:text="${template.name}"></td>
+                        <td th:text="${template.description}"></td>
+                        <td>
+                            <span th:each="privilege : ${template.privileges}" class="badge bg-secondary me-1"
+                                th:text="${privilege.name}"></span>
+                        </td>
+                        <td>
+                            <a th:href="@{/user/templates/{id}(id=${template.id})}"
+                                class="btn btn-sm btn-outline-secondary">Edit</a>
+                            <form th:action="@{/user/templates/{id}/delete(id=${template.id})}" method="post"
+                                style="display:inline;">
+                                <button type="submit" class="btn btn-sm btn-outline-danger"
+                                    onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::div})}">
+
+<head>
+    <title>룰팩 상세 정보</title>
+    <style>
+        .group-name {
+            font-size: 1.1em;
+        }
+
+        .search-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: #e7f1ff;
+            color: #0c63e4;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <!-- Header Section -->
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div>
+                <h1 class="h2">
+                    <span th:text="${pack.name}"></span>
+                    <span class="badge bg-secondary fs-6 align-middle" th:text="${pack.version}"></span>
+                </h1>
+                <p class="text-muted mb-0"
+                    th:text="'업로드 일시: ' + ${#temporals.format(pack.uploadDate, 'yyyy-MM-dd HH:mm')}"></p>
+            </div>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <a href="/compliance" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> 목록으로
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar: Categories -->
+            <div class="col-md-3 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-light">
+                        <h6 class="mb-0 fw-bold">Categories</h6>
+                    </div>
+                    <div class="list-group list-group-flush" id="categoryList"
+                        style="max-height: 80vh; overflow-y: auto;">
+                        <a href="#" class="list-group-item list-group-item-action active">Loading...</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content: Weakness List -->
+            <div class="col-md-9">
+                <!-- Toolbar -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="input-group input-group-sm" style="width: 300px;">
+                        <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                        <input type="text" id="searchInput" class="form-control" placeholder="표준명 검색...">
+                    </div>
+
+                    <div class="btn-group">
+                        <a th:href="@{'/api/compliance/export/' + ${pack.id} + '?type=csv'}"
+                            class="btn btn-sm btn-outline-success">
+                            <i class="bi bi-file-earmark-spreadsheet"></i> CSV 다운로드
+                        </a>
+                        <a th:href="@{'/api/compliance/export/' + ${pack.id} + '?type=xml'}"
+                            class="btn btn-sm btn-outline-warning">
+                            <i class="bi bi-file-earmark-code"></i> XML 다운로드
+                        </a>
+                    </div>
+                </div>
+
+                <!-- List Container -->
+                <div id="standardListContainer" class="bg-white rounded shadow-sm border p-0 table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th style="width: 30%;">Name</th>
+                                <th>Description</th>
+                                <th style="width: 50px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="standardTableBody">
+                            <!-- Items injection -->
+                        </tbody>
+                    </table>
+                    <div id="emptyState" class="text-center p-5 text-muted d-none">
+                        표시할 항목이 없습니다.
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <nav aria-label="Page navigation" class="mt-4" id="paginationContainer">
+                    <ul class="pagination justify-content-center" id="pagination"></ul>
+                </nav>
+            </div>
+        </div>
+
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            // Initialize Data safely using Thymeleaf iteration
+            const packId = [[${ pack.id }]];
+            const standardsMap = {};
+
+            /*[# th:each="entry : ${groupedStandards}"]*/
+            // Use key as category name
+            var categoryName = [[${ entry.key }]];
+            standardsMap[categoryName] = [];
+
+            /*[# th:each="std : ${entry.value}"]*/
+            standardsMap[categoryName].push({
+                id: [[${ std.id }]],
+                name: [[${ std.name }]],
+                description: [[${ std.description }]]
+            });
+            /*[/]*/
+            /*[/]*/
+
+            // State
+            let currentCategory = null;
+            let currentItems = [];
+            let filteredItems = [];
+            let currentPage = 1;
+            const itemsPerPage = 10;
+            let searchTerm = '';
+
+            document.addEventListener('DOMContentLoaded', () => {
+                renderSidebar();
+
+                // Select first category by default
+                const categories = Object.keys(standardsMap);
+                if (categories.length > 0) {
+                    selectCategory(categories[0]);
+                }
+
+                // Search Event
+                document.getElementById('searchInput').addEventListener('input', (e) => {
+                    searchTerm = e.target.value.toLowerCase().trim();
+                    filterItems();
+                });
+            });
+
+            function renderSidebar() {
+                const list = document.getElementById('categoryList');
+                list.innerHTML = '';
+
+                Object.keys(standardsMap).forEach(cat => {
+                    const a = document.createElement('a');
+                    a.href = '#';
+                    a.className = 'list-group-item list-group-item-action d-flex justify-content-between align-items-center';
+                    a.onclick = (e) => {
+                        e.preventDefault();
+                        selectCategory(cat);
+                    };
+
+                    const count = standardsMap[cat].length;
+                    a.innerHTML = `
+                        <span class="text-truncate" title="${cat}">${cat}</span>
+                        <span class="badge bg-light text-secondary rounded-pill">${count}</span>
+                    `;
+                    a.dataset.category = cat;
+                    list.appendChild(a);
+                });
+            }
+
+            function selectCategory(category) {
+                currentCategory = category;
+
+                // Update Sidebar Active State
+                document.querySelectorAll('#categoryList .list-group-item').forEach(item => {
+                    if (item.dataset.category === category) {
+                        item.classList.add('active');
+                        item.classList.remove('text-dark');
+                    } else {
+                        item.classList.remove('active');
+                        item.classList.add('text-dark');
+                    }
+                });
+
+                // Load items
+                currentItems = standardsMap[category] || [];
+
+                // Reset Search
+                document.getElementById('searchInput').value = '';
+                searchTerm = '';
+
+                filterItems();
+            }
+
+            function filterItems() {
+                if (!searchTerm) {
+                    filteredItems = [...currentItems];
+                } else {
+                    filteredItems = currentItems.filter(item =>
+                        item.name.toLowerCase().includes(searchTerm) ||
+                        (item.description && item.description.toLowerCase().includes(searchTerm))
+                    );
+                }
+                currentPage = 1;
+                renderPage();
+            }
+
+            function renderPage() {
+                const start = (currentPage - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                const items = filteredItems.slice(start, end);
+
+                const tbody = document.getElementById('standardTableBody');
+                tbody.innerHTML = '';
+
+                const emptyState = document.getElementById('emptyState');
+                const table = document.querySelector('#standardListContainer table');
+
+                if (filteredItems.length === 0) {
+                    table.classList.add('d-none');
+                    emptyState.classList.remove('d-none');
+                    document.getElementById('paginationContainer').style.display = 'none';
+                    return;
+                } else {
+                    table.classList.remove('d-none');
+                    emptyState.classList.add('d-none');
+                    document.getElementById('paginationContainer').style.display = 'block';
+                }
+
+                items.forEach(item => {
+                    const tr = document.createElement('tr');
+                    tr.style.cursor = 'pointer';
+                    // Link to detail page
+                    tr.onclick = () => {
+                        window.location.href = `/compliance/viewer/${packId}/standard/${item.id}`;
+                    };
+
+                    tr.innerHTML = `
+                        <td class="fw-bold text-primary align-middle">${item.name}</td>
+                        <td class="text-muted small align-middle text-truncate" style="max-width: 300px;">${item.description || '-'}</td>
+                        <td class="align-middle text-end"><i class="bi bi-chevron-right text-muted"></i></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+
+                renderPagination();
+            }
+
+            function renderPagination() {
+                const totalItems = filteredItems.length;
+                if (totalItems <= itemsPerPage) {
+                    document.getElementById('paginationContainer').style.display = 'none';
+                    return;
+                }
+
+                const totalPages = Math.ceil(totalItems / itemsPerPage);
+                const paginationUl = document.getElementById('pagination');
+                paginationUl.innerHTML = '';
+
+                // Prev
+                const prevLi = document.createElement('li');
+                prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+                prevLi.innerHTML = `<a class="page-link" href="#">이전</a>`;
+                prevLi.onclick = (e) => { e.preventDefault(); if (currentPage > 1) { currentPage--; renderPage(); } };
+                paginationUl.appendChild(prevLi);
+
+                // Pages
+                let startPage = Math.max(1, currentPage - 2);
+                let endPage = Math.min(totalPages, startPage + 4);
+                if (endPage - startPage < 4) {
+                    startPage = Math.max(1, endPage - 4);
+                }
+
+                for (let i = startPage; i <= endPage; i++) {
+                    const li = document.createElement('li');
+                    li.className = `page-item ${i === currentPage ? 'active' : ''}`;
+                    li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+                    li.onclick = (e) => { e.preventDefault(); currentPage = i; renderPage(); };
+                    paginationUl.appendChild(li);
+                }
+
+                // Next
+                const nextLi = document.createElement('li');
+                nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+                nextLi.innerHTML = `<a class="page-link" href="#">다음</a>`;
+                nextLi.onclick = (e) => { e.preventDefault(); if (currentPage < totalPages) { currentPage++; renderPage(); } };
+                paginationUl.appendChild(nextLi);
+            }
+            /*]]>*/
+        </script>
+    </div>
+</body>
+
+</html>

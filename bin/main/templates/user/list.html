@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::div})}">
+
+<body>
+    <div>
+        <div class="container mt-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>사용자 관리</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                    <i class="bi bi-person-plus"></i> 사용자 추가
+                </button>
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>사용자명</th>
+                                    <th>이름</th>
+                                    <th>팀</th>
+                                    <th>상태</th>
+                                    <th>권한</th>
+                                    <th>생성일</th>
+                                    <th>관리</th>
+                                </tr>
+                            </thead>
+                            <tbody id="userTableBody">
+                                <!-- Users will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ... Modals ... -->
+
+            <script>
+                // ...
+                function loadUsers() {
+                    logToScreen('Loading users...');
+                    fetch('/api/users')
+                        .then(response => {
+                            if (!response.ok) throw new Error('Failed to load users: ' + response.status);
+                            return response.json();
+                        })
+                        .then(users => {
+                            logToScreen(`Loaded ${users.length} users.`);
+                            const tbody = document.getElementById('userTableBody');
+                            tbody.innerHTML = '';
+                            if (users.length === 0) {
+                                tbody.innerHTML = '<tr><td colspan="8" class="text-center">사용자가 없습니다.</td></tr>';
+                                return;
+                            }
+                            users.forEach(user => {
+                                const tr = document.createElement('tr');
+                                const createdDate = user.createdAt ? new Date(user.createdAt).toLocaleString() : '-';
+
+                                let statusBadge = 'bg-secondary';
+                                if (user.status === 'APPROVED') statusBadge = 'bg-success';
+                                else if (user.status === 'PENDING') statusBadge = 'bg-warning text-dark';
+                                else if (user.status === 'REJECTED') statusBadge = 'bg-danger';
+
+                                let roleDisplay = user.roleTemplate ? user.roleTemplate.name : (user.role || '-');
+
+                                let actions = '';
+                                if (user.status === 'PENDING') {
+                                    actions = `
+                                        <button class="btn btn-sm btn-success me-1" onclick="approveUser(${user.id})">승인</button>
+                                        <button class="btn btn-sm btn-danger me-1" onclick="rejectUser(${user.id})">거절</button>
+                                    `;
+                                }
+                                actions += `
+                                    <button class="btn btn-sm btn-outline-primary me-1" onclick="openEditModal(${user.id}, '${user.role}', '${user.name || ''}', '${user.team || ''}', '${user.email || ''}')">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="deleteUser(${user.id})">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                `;
+
+                                tr.innerHTML = `
+                                <td>${user.id}</td>
+                                <td>${user.username}</td>
+                                <td>${user.name || '-'}</td>
+                                <td>${user.team || '-'}</td>
+                                <td><span class="badge ${statusBadge}">${user.status}</span></td>
+                                <td>${roleDisplay}</td>
+                                <td>${createdDate}</td>
+                                <td>${actions}</td>
+                            `;
+                                tbody.appendChild(tr);
+                            });
+                        })
+                        .catch(error => logToScreen('Error loading users: ' + error, 'ERROR'));
+                }
+
+                window.approveUser = function (id) {
+                    // Determine role template ID - for now defaulting to 1 (need a UI for this)
+                    // A prompt could work or a dedicated modal.
+                    // For MVP: Prompt user for Role Template ID? Or just list them?
+                    // Let's redirect to a simple page or use a prompt.
+                    // Better: fetch templates and show a modal. 
+                    // For simplicity now: Default to nothing or logic in backend?
+                    // Backend requires roleTemplateId.
+
+                    // Let's implement a simple prompt for Role Template ID for now.
+                    // ideally we should fetch templates and let user pick.
+                    const templateId = prompt("Enter Role Template ID for approval (See Templates page):", "1");
+                    if (!templateId) return;
+
+                    const csrf = getCsrfToken();
+                    fetch(`/api/users/${id}/approve?roleTemplateId=${templateId}`, {
+                        method: 'POST',
+                        headers: { [csrf.header]: csrf.token }
+                    }).then(r => {
+                        if (r.ok) { alert('Approved'); loadUsers(); }
+                        else alert('Failed');
+                    });
+                };
+
+                window.rejectUser = function (id) {
+                    if (!confirm('Reject user?')) return;
+                    const csrf = getCsrfToken();
+                    fetch(`/api/users/${id}/reject`, {
+                        method: 'POST',
+                        headers: { [csrf.header]: csrf.token }
+                    }).then(r => {
+                        if (r.ok) { alert('Rejected'); loadUsers(); }
+                        else alert('Failed');
+                    });
+                };
+                // ... (rest of the file)
+
+                // Save User
+                const saveBtn = document.getElementById('saveUserBtn');
+                if (saveBtn) {
+                    saveBtn.addEventListener('click', function () {
+                        logToScreen('Save button clicked.');
+                        const form = document.getElementById('addUserForm');
+                        if (!form.checkValidity()) {
+                            logToScreen('Form validation failed.', 'ERROR');
+                            form.reportValidity();
+                            return;
+                        }
+
+                        const csrf = getCsrfToken();
+                        if (!csrf) {
+                            alert('보안 토큰 오류: 페이지를 새로고침하세요.');
+                            return;
+                        }
+
+                        const formData = new FormData(form);
+                        const data = Object.fromEntries(formData.entries());
+
+                        logToScreen(`Attempting to create user: ${data.username}`);
+
+                        fetch('/api/users', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                [csrf.header]: csrf.token
+                            },
+                            body: JSON.stringify(data)
+                        })
+                            .then(async response => {
+                                logToScreen(`Server response status: ${response.status}`);
+                                if (response.ok) {
+                                    logToScreen('User created successfully.');
+                                    const modal = bootstrap.Modal.getInstance(document.getElementById('addUserModal'));
+                                    modal.hide();
+                                    form.reset();
+                                    loadUsers();
+                                    alert('사용자가 성공적으로 추가되었습니다.');
+                                } else {
+                                    const errorText = await response.text();
+                                    logToScreen(`Create user failed: ${errorText}`, 'ERROR');
+                                    alert('사용자 추가 실패: ' + errorText);
+                                }
+                            })
+                            .catch(error => {
+                                logToScreen(`Network error: ${error}`, 'ERROR');
+                                alert('네트워크 오류가 발생했습니다.');
+                            });
+                    });
+                } else {
+                    logToScreen('Save button not found in DOM!', 'ERROR');
+                }
+
+                // Update User
+                const updateBtn = document.getElementById('updateUserBtn');
+                if (updateBtn) {
+                    updateBtn.addEventListener('click', function () {
+                        const id = document.getElementById('editUserId').value;
+                        const name = document.getElementById('editName').value;
+                        const team = document.getElementById('editTeam').value;
+                        const email = document.getElementById('editEmail').value;
+                        const role = document.getElementById('editRole').value;
+                        const csrf = getCsrfToken();
+
+                        if (!csrf) return;
+
+                        logToScreen(`Updating user ${id}...`);
+
+                        const data = {
+                            name: name,
+                            team: team,
+                            email: email,
+                            role: role
+                        };
+
+                        fetch(`/api/users/${id}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                [csrf.header]: csrf.token
+                            },
+                            body: JSON.stringify(data)
+                        })
+                            .then(response => {
+                                if (response.ok) {
+                                    logToScreen('User updated successfully.');
+                                    const modal = bootstrap.Modal.getInstance(document.getElementById('editUserModal'));
+                                    modal.hide();
+                                    loadUsers();
+                                    alert('사용자 정보가 수정되었습니다.');
+                                } else {
+                                    logToScreen('User update failed.', 'ERROR');
+                                    alert('사용자 수정 실패');
+                                }
+                            })
+                            .catch(error => logToScreen('Error updating user: ' + error, 'ERROR'));
+                    });
+                }
+
+                // Global functions for onclick handlers
+                window.deleteUser = function (id) {
+                    if (!confirm('정말 이 사용자를 삭제하시겠습니까?')) return;
+
+                    const csrf = getCsrfToken();
+                    if (!csrf) return;
+
+                    logToScreen(`Deleting user ${id}...`);
+
+                    fetch(`/api/users/${id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            [csrf.header]: csrf.token
+                        }
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                logToScreen('User deleted successfully.');
+                                loadUsers();
+                            } else {
+                                logToScreen('Delete failed.', 'ERROR');
+                                alert('삭제 실패');
+                            }
+                        })
+                        .catch(error => logToScreen('Error deleting user: ' + error, 'ERROR'));
+                };
+
+                window.openEditModal = function (id, role, name, team, email) {
+                    document.getElementById('editUserId').value = id;
+                    document.getElementById('editRole').value = role;
+                    document.getElementById('editName').value = name;
+                    document.getElementById('editTeam').value = team;
+                    document.getElementById('editEmail').value = email;
+                    const modal = new bootstrap.Modal(document.getElementById('editUserModal'));
+                    modal.show();
+                };
+            });
+            </script>
+        </div>
+</body>
+
+</html>

@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::div})}">
+
+<head>
+    <title>Fortify Weakness Explorer</title>
+    <style>
+        .sidebar {
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+            border-right: 1px solid #dee2e6;
+        }
+
+        .main-content {
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .weakness-card {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .weakness-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .badge-compliance {
+            background-color: #28a745;
+            color: white;
+            font-size: 0.8em;
+            margin-left: 5px;
+        }
+
+        .status-new {
+            border-left: 5px solid #28a745;
+        }
+
+        .status-removed {
+            border-left: 5px solid #dc3545;
+            opacity: 0.7;
+        }
+
+        .status-modified {
+            border-left: 5px solid #ffc107;
+        }
+
+        .status-same {
+            border-left: 5px solid #6c757d;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Fortify 취약점 탐색</h1>
+
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="input-group input-group-sm me-2">
+                    <select id="dateSelect" class="form-select form-select-sm" style="min-width: 150px;">
+                        <option value="" disabled selected>날짜 선택</option>
+                    </select>
+                </div>
+
+                <div class="btn-group me-2 align-items-center">
+                    <div class="form-check form-switch me-2 mb-0">
+                        <input class="form-check-input" type="checkbox" id="diffModeToggle">
+                        <label class="form-check-label small" for="diffModeToggle">비교 모드</label>
+                    </div>
+                </div>
+
+                <div class="input-group input-group-sm me-2 d-none" id="compareDateContainer">
+                    <select id="compareDateSelect" class="form-select form-select-sm" style="min-width: 150px;">
+                        <option value="" disabled selected>비교 대상 날짜</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-sm btn-primary" id="btnUploadModal" data-bs-toggle="modal"
+                    data-bs-target="#uploadModal">
+                    <i class="bi bi-upload"></i> 데이터 업로드
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <!-- Sidebar: Languages -->
+                    <div class="col-md-3 sidebar">
+                        <h5 class="p-2 border-bottom">Languages</h5>
+                        <div class="list-group list-group-flush" id="languageList">
+                            <div class="text-center p-3 text-muted">데이터를 선택해주세요.</div>
+                        </div>
+                    </div>
+
+                    <!-- Main Content: Weaknesses -->
+                    <div class="col-md-9 main-content bg-light">
+                        <div id="summaryContainer" class="alert alert-info border-0 shadow-sm mb-3 d-none">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-info-circle-fill fs-4 me-3 text-info"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-1">분석 결과 요약</h6>
+                                    <span id="summaryText" class="small text-muted">데이터를 분석 중입니다...</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="d-flex justify-content-between mb-2">
+                            <!-- Export Dropdown -->
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
+                                    id="exportDropdown" data-bs-toggle="dropdown" disabled>
+                                    <i class="bi bi-download"></i> 리포트 다운로드
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="exportDropdown">
+                                    <li><a class="dropdown-item" href="#" onclick="downloadReport('json')">JSON
+                                            (.json)</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="downloadReport('xml')">XML (.xml)</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" onclick="downloadReport('csv')">CSV (.csv)</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="d-flex gx-2 align-items-center">
+                                <!-- Search Input -->
+                                <div class="input-group input-group-sm me-2" style="width: 250px;">
+                                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                    <input type="text" id="searchInput" class="form-control"
+                                        placeholder="ID or Title 검색...">
+                                </div>
+
+                                <select id="itemsPerPageSelect" class="form-select form-select-sm" style="width: auto;">
+                                    <option value="10" selected>10개씩 보기</option>
+                                    <option value="20">20개씩 보기</option>
+                                    <option value="50">50개씩 보기</option>
+                                    <option value="100">100개씩 보기</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="weaknessList" class="table-responsive bg-white rounded shadow-sm border p-0">
+                            <!-- Table will be injected here -->
+                            <div class="text-center p-5 text-muted">언어를 선택하면 취약점 목록이 표시됩니다.</div>
+                        </div>
+                        <!-- Pagination -->
+                        <nav aria-label="Page navigation" class="mt-4" id="paginationContainer" style="display: none;">
+                            <ul class="pagination justify-content-center" id="pagination"></ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upload Modal -->
+        <div class="modal fade" id="uploadModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Fortify 데이터 업로드</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="uploadForm">
+                            <div class="mb-3">
+                                <label class="form-label">ZIP 파일 (예: fortify_data_20251226.zip)</label>
+                                <input type="file" class="form-control" name="file" accept=".zip" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                        <button type="button" class="btn btn-primary" id="btnUpload">업로드</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail Modal -->
+        <div class="modal fade" id="detailModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="detailTitle">Title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>ID: <span id="detailId" class="badge bg-secondary"></span></h6>
+                        <hr>
+                        <h6>Abstract</h6>
+                        <p id="detailAbstract"></p>
+                        <hr>
+                        <h6>Supported Languages</h6>
+                        <p id="detailLanguages"></p>
+                        <div class="mt-3 text-end">
+                            <a href="#" id="detailExternalLink" target="_blank" class="btn btn-sm btn-outline-info">
+                                <i class="bi bi-box-arrow-up-right"></i> Fortify VulnCat
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");
+            const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
+
+            // State
+            let selectedDate = null;
+            let compareDate = null;
+            let selectedLang = null;
+            let isDiffMode = false;
+
+            // Pagination State
+            let allWeaknesses = [];
+            let filteredWeaknesses = []; // To store search results
+            let currentPage = 1;
+            let itemsPerPage = 10;
+            let searchTerm = '';
+
+            document.addEventListener('DOMContentLoaded', () => {
+                loadDates(true); // Auto select on initial load
+
+                // Event Listeners
+                document.getElementById('searchInput').addEventListener('input', (e) => {
+                    searchTerm = e.target.value.toLowerCase().trim();
+                    filterWeaknesses();
+                });
+
+                document.getElementById('dateSelect').addEventListener('change', (e) => {
+                    selectedDate = e.target.value;
+                    loadLanguages(selectedDate);
+                    if (isDiffMode && compareDate && selectedLang) {
+                        loadDiff();
+                    } else if (selectedLang) {
+                        loadWeaknesses(selectedDate, selectedLang);
+                    }
+                });
+
+
+                document.getElementById('btnUpload').addEventListener('click', uploadData);
+
+                document.getElementById('diffModeToggle').addEventListener('change', (e) => {
+                    isDiffMode = e.target.checked;
+                    const compareContainer = document.getElementById('compareDateContainer');
+                    if (isDiffMode) {
+                        compareContainer.classList.remove('d-none');
+                    } else {
+                        compareContainer.classList.add('d-none');
+                        // Reset to normal view
+                        if (selectedDate && selectedLang) {
+                            loadWeaknesses(selectedDate, selectedLang);
+                        }
+                    }
+                });
+
+                document.getElementById('compareDateSelect').addEventListener('change', (e) => {
+                    compareDate = e.target.value;
+                    if (isDiffMode && selectedDate && selectedLang) {
+                        loadDiff();
+                    }
+                });
+
+                document.getElementById('itemsPerPageSelect').addEventListener('change', (e) => {
+                    itemsPerPage = parseInt(e.target.value);
+                    currentPage = 1;
+                    renderPage();
+                });
+            });
+
+            async function loadDates(autoSelect = false) {
+                const res = await fetch('/fortify/dates');
+                const dates = await res.json();
+                const select = document.getElementById('dateSelect');
+                const compareSelect = document.getElementById('compareDateSelect');
+
+                const currentVal = select.value;
+
+                select.innerHTML = '<option value="" disabled selected>날짜 선택</option>';
+                compareSelect.innerHTML = '<option value="" disabled selected>비교 대상 날짜</option>';
+
+                if (dates.length > 0) {
+                    dates.forEach(date => {
+                        const opt1 = document.createElement('option');
+                        opt1.value = date;
+                        opt1.textContent = date;
+                        select.appendChild(opt1);
+
+                        const opt2 = document.createElement('option');
+                        opt2.value = date;
+                        opt2.textContent = date;
+                        compareSelect.appendChild(opt2);
+                    });
+
+                    // Auto select logic
+                    if (autoSelect) {
+                        select.value = dates[0]; // Select the most recent (first)
+                        // Trigger change event to load languages
+                        select.dispatchEvent(new Event('change'));
+                    } else {
+                        // Restore previous selection if valid
+                        if (currentVal && dates.includes(currentVal)) {
+                            select.value = currentVal;
+                        }
+                    }
+                }
+            }
+
+            async function uploadData() {
+                const form = document.getElementById('uploadForm');
+                const formData = new FormData(form);
+
+                if (!formData.get('file').name) {
+                    alert('파일을 선택해주세요.');
+                    return;
+                }
+
+                try {
+                    const res = await fetch('/fortify/upload', {
+                        method: 'POST',
+                        headers: { [csrfHeader]: csrfToken },
+                        body: formData
+                    });
+
+                    if (res.ok) {
+                        alert('업로드 성공');
+                        bootstrap.Modal.getInstance(document.getElementById('uploadModal')).hide();
+                        loadDates(true); // Auto select uploaded date (assuming it's newest)
+                    } else {
+                        const msg = await res.text();
+                        alert('업로드 실패: ' + msg);
+                    }
+                } catch (e) {
+                    alert('업로드 중 오류 발생');
+                    console.error(e);
+                }
+            }
+
+            async function loadLanguages(date) {
+                const res = await fetch(`/fortify/languages?date=${date}`);
+                const langs = await res.json();
+                const list = document.getElementById('languageList');
+                list.innerHTML = '';
+
+                langs.forEach(lang => {
+                    const item = document.createElement('a');
+                    item.className = 'list-group-item list-group-item-action';
+                    item.textContent = lang;
+                    item.href = '#';
+                    item.onclick = (e) => {
+                        e.preventDefault();
+                        // Active handling
+                        document.querySelectorAll('#languageList .list-group-item').forEach(i => i.classList.remove('active'));
+                        item.classList.add('active');
+
+                        selectedLang = lang;
+                        if (isDiffMode && compareDate) {
+                            loadDiff();
+                        } else {
+                            loadWeaknesses(date, lang);
+                        }
+                    };
+                    list.appendChild(item);
+                });
+            }
+
+            async function loadWeaknesses(date, lang) {
+                const res = await fetch(`/fortify/weaknesses?date=${date}&lang=${encodeURIComponent(lang)}`);
+                const data = await res.json();
+
+                allWeaknesses = data;
+                renderSummary(data); // Calculate and show summary
+                updateExportButtonState();
+
+                // Reset search on new data load
+                document.getElementById('searchInput').value = '';
+                searchTerm = '';
+                filterWeaknesses();
+            }
+
+            async function loadDiff() {
+                if (!selectedDate || !compareDate || !selectedLang) return;
+                const res = await fetch(`/fortify/compare?date1=${compareDate}&date2=${selectedDate}&lang=${encodeURIComponent(selectedLang)}`);
+                const data = await res.json();
+
+                allWeaknesses = data;
+                renderSummary(data); // Calculate and show summary
+                updateExportButtonState();
+
+                // Reset search on new data load
+                document.getElementById('searchInput').value = '';
+                searchTerm = '';
+                filterWeaknesses();
+            }
+
+            function renderSummary(items) {
+                const container = document.getElementById('summaryContainer');
+                if (!items || items.length === 0) {
+                    container.classList.add('d-none');
+                    return;
+                }
+
+                container.classList.remove('d-none');
+
+                // Calculate Total Count
+                const totalCount = items.length;
+
+                // Calculate Top Group
+                const groupCounts = {};
+                items.forEach(item => {
+                    const group = item.title.split(':')[0].trim();
+                    groupCounts[group] = (groupCounts[group] || 0) + 1;
+                });
+
+                let topGroup = '-';
+                let topCount = 0;
+                for (const [group, count] of Object.entries(groupCounts)) {
+                    if (count > topCount) {
+                        topGroup = group;
+                        topCount = count;
+                    }
+                }
+
+                document.getElementById('summaryText').innerHTML = `
+                    총 취약점 수: <strong>${totalCount}개</strong> <span class="mx-2">|</span> 
+                    가장 많은 유형: <strong>${topGroup} (${topCount}건)</strong>
+                `;
+            }
+
+            function filterWeaknesses() {
+                if (!searchTerm) {
+                    filteredWeaknesses = [...allWeaknesses];
+                } else {
+                    filteredWeaknesses = allWeaknesses.filter(item => {
+                        const idMatch = String(item.id).toLowerCase().includes(searchTerm);
+                        const titleMatch = (item.title || '').toLowerCase().includes(searchTerm);
+                        return idMatch || titleMatch;
+                    });
+                }
+                currentPage = 1;
+                renderPage();
+            }
+
+            function renderPage() {
+                const start = (currentPage - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                const items = filteredWeaknesses.slice(start, end);
+
+                renderWeaknesses(items);
+                renderPaginationControl();
+            }
+
+            function renderWeaknesses(items) {
+                const container = document.getElementById('weaknessList');
+                container.innerHTML = '';
+
+                if (items.length === 0 && allWeaknesses.length === 0) {
+                    container.innerHTML = '<div class="text-center p-5 text-muted">취약점 없음</div>';
+                    document.getElementById('paginationContainer').style.display = 'none';
+                    return;
+                }
+
+                // Create Table Structure
+                const table = document.createElement('table');
+                table.className = 'table table-hover table-sm border-top';
+                table.innerHTML = `
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width: 100px;">상태</th>
+                            <th style="width: 80px;">ID</th>
+                            <th>취약점 명</th>
+                            <th style="width: 120px;">Compliance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="weaknessTableBody"></tbody>
+                `;
+                container.appendChild(table);
+                const tbody = table.querySelector('tbody');
+
+                items.forEach(item => {
+                    const tr = document.createElement('tr');
+                    tr.style.cursor = 'pointer';
+                    tr.onclick = () => showDetail(item);
+
+                    let statusBadge = '-';
+                    if (item.diffStatus) {
+                        if (item.diffStatus === 'NEW') { statusBadge = '<span class="badge bg-success">NEW</span>'; }
+                        else if (item.diffStatus === 'REMOVED') { statusBadge = '<span class="badge bg-danger">REMOVED</span>'; }
+                        else if (item.diffStatus === 'MODIFIED') { statusBadge = '<span class="badge bg-warning text-dark">MODIFIED</span>'; }
+                        else { statusBadge = '<span class="badge bg-light text-secondary border">SAME</span>'; }
+                    } else {
+                        // Normal mode
+                        statusBadge = '<span class="badge bg-light text-secondary border">NORMAL</span>';
+                    }
+
+                    const mappedBadge = item.mapped ? '<span class="badge bg-info badge-compliance"><i class="bi bi-shield-check"></i> Compliant</span>' : '';
+
+                    tr.innerHTML = `
+                        <td class="align-middle text-center">${statusBadge}</td>
+                        <td class="align-middle text-center small text-muted">${item.id}</td>
+                        <td class="align-middle fw-bold text-truncate" style="max-width: 0;">${item.title}</td>
+                        <td class="align-middle text-center">${mappedBadge}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+
+            function renderPaginationControl() {
+                const totalItems = filteredWeaknesses.length;
+                if (totalItems <= itemsPerPage) {
+                    document.getElementById('paginationContainer').style.display = 'none';
+                    return;
+                }
+
+                document.getElementById('paginationContainer').style.display = 'block';
+                const totalPages = Math.ceil(totalItems / itemsPerPage);
+                const paginationUl = document.getElementById('pagination');
+                paginationUl.innerHTML = '';
+
+                // Prev
+                const prevLi = document.createElement('li');
+                prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+                prevLi.innerHTML = `<a class="page-link" href="#">이전</a>`;
+                prevLi.onclick = (e) => { e.preventDefault(); if (currentPage > 1) { currentPage--; renderPage(); } };
+                paginationUl.appendChild(prevLi);
+
+                // Pages (Show max 5 pages window)
+                let startPage = Math.max(1, currentPage - 2);
+                let endPage = Math.min(totalPages, startPage + 4);
+                if (endPage - startPage < 4) {
+                    startPage = Math.max(1, endPage - 4);
+                }
+
+                for (let i = startPage; i <= endPage; i++) {
+                    const li = document.createElement('li');
+                    li.className = `page-item ${i === currentPage ? 'active' : ''}`;
+                    li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+                    li.onclick = (e) => { e.preventDefault(); currentPage = i; renderPage(); };
+                    paginationUl.appendChild(li);
+                }
+
+                // Next
+                const nextLi = document.createElement('li');
+                nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+                nextLi.innerHTML = `<a class="page-link" href="#">다음</a>`;
+                nextLi.onclick = (e) => { e.preventDefault(); if (currentPage < totalPages) { currentPage++; renderPage(); } };
+                paginationUl.appendChild(nextLi);
+            }
+
+            window.showDetail = function (item) {
+                document.getElementById('detailTitle').textContent = item.title;
+                document.getElementById('detailId').textContent = item.id;
+                // Fix: Access properties by their JSON keys defined in @JsonProperty
+                document.getElementById('detailAbstract').textContent = item.abstract || '설명 없음';
+                document.getElementById('detailLanguages').textContent = (item.supported_languages || []).join(', ');
+                document.getElementById('detailExternalLink').href = item.url || '#';
+
+                new bootstrap.Modal(document.getElementById('detailModal')).show();
+            };
+
+
+            function downloadReport(format) {
+                if (!selectedDate || !selectedLang) {
+                    alert('날짜와 언어를 먼저 선택해주세요.');
+                    return;
+                }
+                const url = `/fortify/export?date=${selectedDate}&lang=${encodeURIComponent(selectedLang)}&format=${format}`;
+                window.location.href = url;
+            }
+
+            // Enable/Disable export button based on selection
+            function updateExportButtonState() {
+                const btn = document.getElementById('exportDropdown');
+                if (selectedDate && selectedLang) {
+                    btn.removeAttribute('disabled');
+                    btn.classList.remove('btn-outline-secondary');
+                    btn.classList.add('btn-outline-primary');
+                } else {
+                    btn.setAttribute('disabled', 'true');
+                    btn.classList.remove('btn-outline-primary');
+                    btn.classList.add('btn-outline-secondary');
+                }
+            }
+            /*]]>*/
+        </script>
+    </div>
+</body>
+
+</html>

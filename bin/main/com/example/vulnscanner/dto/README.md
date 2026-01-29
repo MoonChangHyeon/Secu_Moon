@@ -1,0 +1,26 @@
+# DTOs (Data Transfer Objects)
+
+이 패키지는 계층 간(Controller ↔ Service ↔ Repository) 데이터 교환을 위해 사용되는 객체들을 포함합니다. 엔티티를 직접 노출하지 않고 필요한 데이터만 캡슐화합니다.
+
+## 📋 주요 DTO (Key DTOs)
+
+### 1. Compliance (규정 준수) 관련 <!-- New -->
+- **`ComplianceDiffDto`**: 두 룰팩 버전 간의 비교(Diff) 결과를 담는 객체.
+  - **`StandardDiff`**: 표준 단위 변경 사항.
+  - **`CategoryDiff`**: 카테고리 단위 변경 사항.
+  - **`MappingDiff`**: 매핑 단위 변경 사항.
+  - **`DiffType`**: 변경 유형 (`ADDED`, `DELETED`, `MODIFIED`, `UNCHANGED` Enum).
+
+### 2. Analysis (분석) 관련
+- **`AnalysisResultDto`**: 분석 결과 요약 정보 전송용.
+- **`SbomAnalysisRequest`**: SBOM 분석 요청 시 필요한 파라미터.
+
+### 3. User (사용자) 관련
+- **`UserDto`**: 사용자 정보 조회 및 수정용.
+- **`UserPasswordDto`**: 비밀번호 변경 요청용.
+
+---
+**사용 목적**:
+- **API 응답**: JSON 직렬화에 최적화된 구조 제공.
+- **입력 검증**: `@Valid` 어노테이션과 함께 요청 데이터 유효성 검증.
+- **보안**: 민감한 정보(엔티티 내부 필드 등) 노출 방지.
