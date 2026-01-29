@@ -4,28 +4,86 @@
 <head>
     <title>표준 상세 정보</title>
     <style>
-        .group-toggle {
+        /* Sidebar Styles */
+        .category-list-item {
             cursor: pointer;
-            font-size: 0.9em;
-            user-select: none;
-            display: inline-flex;
-            align-items: center;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+            font-size: 0.95rem;
+            padding: 12px 20px;
+        }
+
+        .category-list-item:hover {
+            background-color: #f1f3f5;
+        }
+
+        /* Active State matching the reference image (Solid Blue) */
+        .category-list-item.active {
+            background-color: #0d6efd !important;
+            color: white !important;
+            border-left-color: #0a58ca;
+            font-weight: 600;
+        }
+
+        /* Badge color in active state */
+        .category-list-item.active .badge {
+            background-color: rgba(255, 255, 255, 0.2) !important;
+            color: white !important;
+        }
+
+        .scrollable-sidebar {
+            max-height: calc(100vh - 150px);
+            overflow-y: auto;
+            border-right: 1px solid #dee2e6;
+        }
+
+        /* Info Box Style */
+        .info-box {
+            background-color: #e7f1ff;
+            border: 1px solid #cff4fc;
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            color: #055160;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .info-box i {
+            font-size: 1.2rem;
+            margin-right: 10px;
+            margin-top: -2px;
+            color: #0dcaf0;
+        }
+
+        /* DataTables Custom customization to match clean look */
+        .dataTable-wrapper .dataTable-container {
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+        }
+
+        .dataTable-table {
+            border-collapse: collapse;
+        }
+
+        .dataTable-table thead th {
             background-color: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+            color: #495057;
+            font-weight: 600;
         }
 
-        .group-toggle:hover {
-            background-color: #e9ecef;
+        .dataTable-top {
+            padding: 5px 0 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .group-content {
-            margin-left: 10px;
-            margin-top: 5px;
-            padding-left: 10px;
-            border-left: 2px solid #dee2e6;
-        }
-
-        .mapping-badge {
-            margin-bottom: 3px;
+        .dataTable-search .dataTable-input {
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+            padding: 6px 12px;
         }
     </style>
 </head>
@@ -33,154 +91,154 @@
 <body>
     <div class="container-fluid">
         <!-- Header -->
-        <div class="d-flex align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <a th:href="@{/compliance/viewer/{id}(id=${pack.id})}" class="btn btn-outline-secondary me-3">
-                <i class="bi bi-arrow-left"></i>
+        <div class="d-flex align-items-center pt-3 pb-3 mb-4 border-bottom">
+            <a th:href="@{/compliance/viewer/{id}(id=${pack.id})}" class="btn btn-outline-secondary me-3 btn-sm">
+                <i class="bi bi-arrow-left"></i> 목록
             </a>
             <div>
-                <h2 class="h3 mb-0">
+                <h2 class="h4 mb-0 fw-bold">
                     <span th:text="${standard.name}"></span>
                 </h2>
-                <div class="text-muted small">
-                    <span th:text="${pack.name}"></span> <span class="badge bg-light text-dark border ms-1"
-                        th:text="${pack.version}"></span>
+                <div class="text-muted small mt-1">
+                    <span th:text="${pack.name}"></span>
+                    <span class="badge bg-secondary ms-1" th:text="${pack.version}"></span>
                 </div>
             </div>
 
             <div class="ms-auto btn-group">
-                <a th:href="@{'/api/compliance/export/standard/' + ${standard.id} + '?type=csv'}"
-                    class="btn btn-sm btn-outline-success">
-                    <i class="bi bi-file-earmark-spreadsheet"></i> CSV
-                </a>
-                <a th:href="@{'/api/compliance/export/standard/' + ${standard.id} + '?type=xml'}"
-                    class="btn btn-sm btn-outline-warning">
-                    <i class="bi bi-file-earmark-code"></i> XML
-                </a>
-                <a th:href="@{'/api/compliance/export/standard/' + ${standard.id} + '?type=json'}"
-                    class="btn btn-sm btn-outline-dark">
-                    <i class="bi bi-file-code"></i> JSON
-                </a>
+                <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="bi bi-download me-1"></i> 리포트 다운로드
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item"
+                            th:href="@{'/api/compliance/export/standard/' + ${standard.id} + '?type=csv'}"><i
+                                class="bi bi-file-earmark-spreadsheet me-2"></i>CSV (.csv)</a></li>
+                    <li><a class="dropdown-item"
+                            th:href="@{'/api/compliance/export/standard/' + ${standard.id} + '?type=xml'}"><i
+                                class="bi bi-file-earmark-code me-2"></i>XML (.xml)</a></li>
+                    <li><a class="dropdown-item"
+                            th:href="@{'/api/compliance/export/standard/' + ${standard.id} + '?type=json'}"><i
+                                class="bi bi-file-code me-2"></i>JSON (.json)</a></li>
+                </ul>
             </div>
         </div>
 
-        <!-- Description -->
-        <div class="alert alert-light border mb-4" role="alert" th:if="${standard.description}">
-            <h6 class="alert-heading fw-bold"><i class="bi bi-info-circle me-2"></i>표준 설명</h6>
-            <p class="mb-0 text-muted" th:text="${standard.description}"></p>
-        </div>
+        <div class="row g-0 h-100">
+            <!-- Sidebar: Categories List -->
+            <div class="col-md-3 border-end">
+                <div class="bg-white h-100">
+                    <div class="p-3 bg-light border-bottom">
+                        <h6 class="mb-0 fw-bold text-dark">Categories</h6>
+                    </div>
+                    <div class="list-group list-group-flush scrollable-sidebar border-0" id="categoryList">
+                        <a th:each="cat, stat : ${standard.categories}"
+                            class="list-group-item list-group-item-action category-list-item d-flex justify-content-between align-items-center"
+                            th:classappend="${stat.first} ? 'active' : ''"
+                            th:onclick="'showCategory(' + ${stat.index} + ', this)'">
+                            <span th:text="${cat.name}" class="text-truncate"></span>
+                            <span class="badge bg-light text-dark rounded-pill" style="font-size: 0.75rem;"
+                                th:text="${#lists.size(cat.mappings)}"></span>
+                        </a>
+                        <div th:if="${#lists.isEmpty(standard.categories)}"
+                            class="list-group-item text-muted text-center p-3">
+                            항목이 없습니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <!-- Categories List -->
-        <div class="row g-4">
-            <div class="col-12" th:each="cat : ${standard.categories}">
-                <div class="card shadow-sm h-100 border-start-primary" style="border-left: 5px solid #0d6efd;">
-                    <div class="card-body">
-                        <h4 class="card-title fw-bold text-primary mb-3" th:text="${cat.name}"></h4>
+            <!-- Main Content -->
+            <div class="col-md-9 ps-md-4 pt-3">
+                <div th:each="cat, stat : ${standard.categories}" th:id="'cat-content-' + ${stat.index}"
+                    class="category-content-panel h-100" th:classappend="${!stat.first} ? 'd-none' : ''">
 
-                        <div class="mb-3">
-                            <h6 class="text-secondary small text-uppercase fw-bold">설명</h6>
-                            <p class="card-text text-muted" th:text="${cat.description ?: '설명이 없습니다.'}"></p>
+                    <div class="h-100">
+                        <!-- Info Box -->
+                        <div class="info-box shadow-sm">
+                            <i class="bi bi-info-circle-fill"></i>
+                            <div>
+                                <h5 class="fw-bold mb-1" th:text="${cat.name}"></h5>
+                                <p class="mb-0 small" th:text="${cat.description ?: '설명이 없습니다.'}"
+                                    style="white-space: pre-wrap; opacity: 0.9;"></p>
+                            </div>
                         </div>
 
-                        <hr>
-
+                        <!-- DataTables -->
                         <div>
-                            <h6 class="text-secondary small text-uppercase fw-bold mb-2">매핑된 Fortify 카테고리</h6>
+                            <div th:if="${!#lists.isEmpty(cat.mappings)}">
+                                <table class="table table-hover datatable-mapping w-100" style="font-size: 0.95rem;">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 25%">Group</th>
+                                            <th>Description / Vulnerability</th>
+                                            <th style="width: 15%">Compliance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="map : ${cat.mappings}">
+                                            <!-- Group Extraction -->
+                                            <td class="align-middle fw-semibold text-secondary"
+                                                th:with="split=${#strings.arraySplit(map.internalCategory, ':')}"
+                                                th:text="${split.length > 1 ? split[0].trim() : 'General'}"></td>
 
-                            <div th:if="${!#lists.isEmpty(cat.mappings)}" class="mapping-container"
-                                th:data-mappings="${#strings.listJoin(cat.mappings.![internalCategory], ',')}">
-                                <!-- JS will render groups here -->
+                                            <td class="align-middle">
+                                                <div class="fw-bold text-dark" th:text="${map.internalCategory}"></div>
+                                                <!-- <div class="small text-muted">Additional details if available</div> -->
+                                            </td>
+
+                                            <td class="align-middle text-center">
+                                                <span class="badge bg-info text-dark rounded-pill px-3">Compliant</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div th:if="${#lists.isEmpty(cat.mappings)}" class="text-muted fst-italic small">
-                                매핑 정보 없음.
+                            <div th:if="${#lists.isEmpty(cat.mappings)}"
+                                class="alert alert-light border text-center text-muted p-5">
+                                <i class="bi bi-exclamation-circle fs-4 mb-2 d-block"></i>
+                                매핑된 취약점 정보가 없습니다.
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- If no categories -->
+                <div th:if="${#lists.isEmpty(standard.categories)}" class="alert alert-warning text-center mt-5">
+                    표시할 상세 내용이 없습니다.
                 </div>
             </div>
         </div>
 
         <script th:inline="javascript">
             document.addEventListener('DOMContentLoaded', function () {
-                renderMappings();
+                // Initialize Simple-DataTables
+                const tableElements = document.querySelectorAll('.datatable-mapping');
+                tableElements.forEach(el => {
+                    new simpleDatatables.DataTable(el, {
+                        perPage: 10,
+                        perPageSelect: [10, 20, 50, 100],
+                        searchable: true,
+                        labels: {
+                            placeholder: "ID or Title 검색...",
+                            perPage: "개씩 보기",
+                            noRows: "데이터가 없습니다.",
+                            info: "{start} ~ {end} / 전체 {rows} 개",
+                        }
+                    });
+                });
             });
 
-            function renderMappings() {
-                const containers = document.querySelectorAll('.mapping-container');
+            function showCategory(index, element) {
+                // UI Toggle
+                document.querySelectorAll('.category-list-item').forEach(el => el.classList.remove('active'));
+                element.classList.add('active');
 
-                containers.forEach(container => {
-                    const rawData = container.getAttribute('data-mappings');
-                    if (!rawData) return;
-
-                    const items = rawData.split(',').map(s => s.trim()).filter(s => s.length > 0);
-                    if (items.length === 0) return;
-
-                    container.innerHTML = generateGroupedHtml(items);
-                });
-            }
-
-            // Shared Grouping Logic
-            function generateGroupedHtml(items) {
-                const groups = {};
-                const others = [];
-
-                items.forEach(item => {
-                    const splitIndex = item.indexOf(':');
-                    if (splitIndex > 0) {
-                        const key = item.substring(0, splitIndex).trim();
-                        if (!groups[key]) groups[key] = [];
-                        groups[key].push(item);
-                    } else {
-                        others.push(item);
-                    }
-                });
-
-                let html = '';
-
-                // Render Groups
-                // Object.keys might not guarantee order, but it's usually insertion order or consistent. 
-                // Sorting keys alphabetically is better.
-                Object.keys(groups).sort().forEach(key => {
-                    const values = groups[key];
-                    if (values.length >= 2) {
-                        // Collapsible Group
-                        const groupMeta = `<span class="badge bg-light text-dark border me-2 mb-2 group-toggle" onclick="toggleGroup(this)">
-                            <i class="bi bi-folder-fill text-warning me-1"></i> ${key} (${values.length})
-                        </span>`;
-
-                        let contentHtml = `<div class="group-content d-none mb-2">`;
-                        values.forEach(v => {
-                            contentHtml += `<span class="badge bg-secondary mapping-badge me-1" style="font-size: 0.9em;">${v}</span>`;
-                        });
-                        contentHtml += `</div>`;
-
-                        html += `<div>${groupMeta}${contentHtml}</div>`;
-                    } else {
-                        values.forEach(v => others.push(v));
-                    }
-                });
-
-                // Render Others
-                if (others.length > 0) {
-                    html += `<div class="mt-1">`;
-                    others.forEach(item => {
-                        html += `<span class="badge bg-secondary mapping-badge me-1" style="font-size: 0.9em;">${item}</span>`;
-                    });
-                    html += `</div>`;
-                }
-
-                return html;
-            }
-
-            function toggleGroup(element) {
-                const content = element.parentElement.querySelector('.group-content');
-                if (content.classList.contains('d-none')) {
-                    content.classList.remove('d-none');
-                    element.querySelector('i').classList.remove('bi-folder-fill');
-                    element.querySelector('i').classList.add('bi-folder2-open');
-                } else {
-                    content.classList.add('d-none');
-                    element.querySelector('i').classList.add('bi-folder-fill');
-                    element.querySelector('i').classList.remove('bi-folder2-open');
+                // Content Toggle
+                document.querySelectorAll('.category-content-panel').forEach(el => el.classList.add('d-none'));
+                const target = document.getElementById('cat-content-' + index);
+                if (target) {
+                    target.classList.remove('d-none');
                 }
             }
         </script>

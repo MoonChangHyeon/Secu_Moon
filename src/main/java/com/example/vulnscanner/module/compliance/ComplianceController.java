@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import com.example.vulnscanner.module.compliance.CompliancePackDetailsDto;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,7 +24,20 @@ public class ComplianceController {
 
     @GetMapping("/compliance")
     public String listPage(Model model) {
-        model.addAttribute("packs", rulepackService.getAllRulepacks());
+        // Separate packs into internal and custom
+        model.addAttribute("internalPacks", rulepackService.getRulepacksByCustom(false));
+        model.addAttribute("customPacks", rulepackService.getRulepacksByCustom(true));
+
+        // Keep 'packs' for backward compatibility if needed, or remove it.
+        // compare.html uses 'packs' but verify logic there.
+        // Let's add all packs as 'packs' too just in case compare page uses it shared
+        // logic,
+        // but verify compare page uses separate API call? No, compare page uses
+        // Thymeleaf packs.
+        // So for compare page, we might want only Internal packs?
+        // User request: "Compare" usually for Internal.
+        // Let's modify comparePage too.
+
         return "compliance/list";
     }
 
@@ -32,11 +46,8 @@ public class ComplianceController {
         PackInfo pack = packInfoRepository.findById(packId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Pack ID: " + packId));
 
-        // Fetch all standards for grouping
         List<ComplianceStandard> allStandards = standardRepository.findByPackInfoId(packId);
 
-        // Group by Organization (First word of name)
-        // Using TreeMap to sort keys (Group Names) alphabetically
         java.util.Map<String, List<ComplianceStandard>> groupedStandards = allStandards.stream()
                 .collect(java.util.stream.Collectors.groupingBy(std -> {
                     String name = std.getName();
@@ -68,7 +79,9 @@ public class ComplianceController {
 
     @GetMapping("/compliance/compare")
     public String comparePage(Model model) {
-        model.addAttribute("packs", rulepackService.getAllRulepacks());
+        // Only show internal packs for comparison by default?
+        // Or all? Assume comparison is for internal versions.
+        model.addAttribute("packs", rulepackService.getRulepacksByCustom(false));
         return "compliance/compare";
     }
 
@@ -194,11 +207,6 @@ public class ComplianceController {
                     .contentType(org.springframework.http.MediaType.APPLICATION_XML)
                     .body(xml.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));
         } else if ("json".equalsIgnoreCase(type)) {
-            // Simple Manual JSON construction to avoid adding Jackson dependencies if not
-            // present, or use Jackson if available.
-            // Given Spring Boot, Jackson is likely available. Let's use ObjectMapper if
-            // possible, but manual is safer for single endpoint without autowiring.
-            // Manual JSON for robustness here:
             StringBuilder json = new StringBuilder();
             json.append("{\n");
             json.append("  \"standard\": \"").append(escapeJson(standard.getName())).append("\",\n");
@@ -263,11 +271,13 @@ public class ComplianceController {
     // --- API ---
 
     @PostMapping("/api/rulepacks/upload")
-    public ResponseEntity<?> uploadRulepack(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<?> uploadRulepack(@RequestParam("file") MultipartFile file,
+            @RequestParam(value = "isCustom", defaultValue = "false") boolean isCustom) {
         try {
-            PackInfo packInfo = rulepackService.uploadRulepack(file);
+            PackInfo packInfo = rulepackService.uploadRulepack(file, isCustom);
             return ResponseEntity.ok(packInfo);
         } catch (Exception e) {
+            e.printStackTrace(); // Log error for debugging
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
     }
@@ -294,5 +304,45 @@ public class ComplianceController {
     public ResponseEntity<?> deleteHistory(@PathVariable Long id) {
         comparisonService.deleteHistory(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/api/compliance/pack/{packId}")
+    @ResponseBody
+    public ResponseEntity<?> getPackDetails(@PathVariable Long packId) {
+        PackInfo pack = packInfoRepository.findById(packId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Pack ID: " + packId));
+
+        List<ComplianceStandard> standards = standardRepository.findByPackInfoId(packId);
+
+        CompliancePackDetailsDto dto = new CompliancePackDetailsDto();
+        dto.setId(pack.getId());
+        dto.setName(pack.getName());
+        dto.setVersion(pack.getVersion());
+
+        for (ComplianceStandard std : standards) {
+            CompliancePackDetailsDto.StandardDto stdDto = new CompliancePackDetailsDto.StandardDto();
+            stdDto.setId(std.getId());
+            stdDto.setName(std.getName());
+            stdDto.setDescription(std.getDescription());
+            stdDto.setExternalListId(std.getExternalListId());
+
+            for (ComplianceCategory cat : std.getCategories()) {
+                CompliancePackDetailsDto.CategoryDto catDto = new CompliancePackDetailsDto.CategoryDto();
+                catDto.setId(cat.getId());
+                catDto.setName(cat.getName());
+                catDto.setDescription(cat.getDescription());
+
+                for (ComplianceMapping map : cat.getMappings()) {
+                    CompliancePackDetailsDto.MappingDto mapDto = new CompliancePackDetailsDto.MappingDto();
+                    mapDto.setId(map.getId());
+                    mapDto.setInternalCategory(map.getInternalCategory());
+                    catDto.getMappings().add(mapDto);
+                }
+                stdDto.getCategories().add(catDto);
+            }
+            dto.getStandards().add(stdDto);
+        }
+
+        return ResponseEntity.ok(dto);
     }
 }
