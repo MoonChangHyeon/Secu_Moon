@@ -19,4 +19,10 @@ public class ComplianceMapping {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "compliance_category_id")
     private ComplianceCategory category;
+
+    @Column(nullable = false)
+    private boolean isCustom = false; // True if added by user
+
+    @Column(nullable = false)
+    private boolean isActive = true; // False if deleted by user (for system mappings)
 }

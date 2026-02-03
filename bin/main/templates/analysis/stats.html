@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::div})}">
+
+<body>
+    <div>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>통계 대시보드</h2>
+            <button class="btn btn-outline-primary" onclick="location.reload()">
+                <i class="bi bi-arrow-clockwise"></i> 새로고침
+            </button>
+        </div>
+
+        <!-- Overall Stats Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card text-center h-100 border-primary">
+                    <div class="card-body">
+                        <h6 class="card-title text-muted">총 스캔 횟수</h6>
+                        <h2 class="display-4 fw-bold text-primary" th:text="${overallStats.totalScans}">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center h-100 border-success">
+                    <div class="card-body">
+                        <h6 class="card-title text-muted">성공 횟수</h6>
+                        <h2 class="display-4 fw-bold text-success" th:text="${overallStats.successCount}">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center h-100 border-danger">
+                    <div class="card-body">
+                        <h6 class="card-title text-muted">총 발견 취약점</h6>
+                        <h2 class="display-4 fw-bold text-danger" th:text="${overallStats.totalVulns}">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center h-100 border-info">
+                    <div class="card-body">
+                        <h6 class="card-title text-muted">평균 취약점 수</h6>
+                        <h2 class="display-4 fw-bold text-info" th:text="${overallStats.avgVulns}">0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row 1 -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">취약점 심각도 분포</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="severityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">최근 30일 취약점 추이</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row 2 -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">상위 10개 취약점 유형</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="categoryChart" style="max-height: 400px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-5">
+
+        <h3 class="mb-4">SBOM 통계</h3>
+
+        <!-- SBOM Overall Stats Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card text-center h-100 border-primary">
+                    <div class="card-body">
+                        <h6 class="card-title text-muted">총 SBOM 스캔</h6>
+                        <h2 class="display-4 fw-bold text-primary" th:text="${sbomOverallStats.totalScans}">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center h-100 border-success">
+                    <div class="card-body">
+                        <h6 class="card-title text-muted">성공 횟수</h6>
+                        <h2 class="display-4 fw-bold text-success" th:text="${sbomOverallStats.successCount}">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center h-100 border-info">
+                    <div class="card-body">
+                        <h6 class="card-title text-muted">총 컴포넌트</h6>
+                        <h2 class="display-4 fw-bold text-info" th:text="${sbomOverallStats.totalComponents}">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center h-100 border-danger">
+                    <div class="card-body">
+                        <h6 class="card-title text-muted">총 발견 취약점</h6>
+                        <h2 class="display-4 fw-bold text-danger" th:text="${sbomOverallStats.totalVulns}">0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SBOM Charts -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">상위 10개 컴포넌트</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="sbomComponentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">라이선스 분포</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="sbomLicenseChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script th:inline="javascript">
+            document.addEventListener('DOMContentLoaded', function () {
+                // Severity Chart
+                const severityCtx = document.getElementById('severityChart').getContext('2d');
+                new Chart(severityCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: [[${ severityLabels }]],
+                        datasets: [{
+                            data: [[${ severityData }]],
+                            backgroundColor: [
+                                '#dc3545', // Critical - Red
+                                '#ffc107', // High - Yellow
+                                '#0dcaf0', // Medium - Cyan
+                                '#6c757d'  // Low - Gray
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+
+                // Trend Chart
+                const trendCtx = document.getElementById('trendChart').getContext('2d');
+                new Chart(trendCtx, {
+                    type: 'line',
+                    data: {
+                        labels: [[${ trendLabels }]],
+                        datasets: [{
+                            label: '발견된 취약점 수',
+                            data: [[${ trendData }]],
+                            borderColor: '#0d6efd',
+                            tension: 0.1,
+                            fill: true,
+                            backgroundColor: 'rgba(13, 110, 253, 0.1)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // Category Chart
+                const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+                new Chart(categoryCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: [[${ categoryLabels }]],
+                        datasets: [{
+                            label: '발생 빈도',
+                            data: [[${ categoryData }]],
+                            backgroundColor: '#20c997'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // SBOM Component Chart
+                const sbomComponentCtx = document.getElementById('sbomComponentChart').getContext('2d');
+                new Chart(sbomComponentCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: [[${ sbomComponentLabels }]],
+                        datasets: [{
+                            label: '사용 횟수',
+                            data: [[${ sbomComponentData }]],
+                            backgroundColor: '#6610f2'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // SBOM License Chart
+                const sbomLicenseCtx = document.getElementById('sbomLicenseChart').getContext('2d');
+                new Chart(sbomLicenseCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: [[${ sbomLicenseLabels }]],
+                        datasets: [{
+                            data: [[${ sbomLicenseData }]],
+                            backgroundColor: [
+                                '#0d6efd', '#6610f2', '#6f42c1', '#d63384', '#dc3545',
+                                '#fd7e14', '#ffc107', '#198754', '#20c997', '#0dcaf0'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+    </div>
+</body>
+
+</html>

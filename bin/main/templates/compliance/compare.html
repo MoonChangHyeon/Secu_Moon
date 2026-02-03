@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::div})}">
+
+<head>
+    <title>룰팩 버전 비교</title>
+    <style>
+        .diff-added {
+            background-color: #d4edda;
+        }
+
+        .diff-deleted {
+            background-color: #f8d7da;
+        }
+
+        .diff-modified {
+            background-color: #fff3cd;
+        }
+
+        .metric-card {
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+        }
+
+        .metric-card.active-filter {
+            ring: 2px solid #0d6efd;
+            transform: translateY(-2px);
+        }
+
+        .std-item {
+            cursor: pointer;
+            transition: background-color 0.15s;
+        }
+
+        .std-item:hover {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">룰팩 버전 비교</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <a href="/compliance" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> 목록으로
+                </a>
+            </div>
+        </div>
+
+        <!-- Selection Form -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form id="compareForm" class="row g-3 align-items-end">
+                    <div class="col-md-5">
+                        <label for="basePack" class="form-label">기본 버전 (구 버전)</label>
+                        <select class="form-select" id="basePack" required>
+                            <option value="" selected disabled>기본 버전을 선택하세요...</option>
+                            <option th:each="pack : ${packs}" th:value="${pack.id}"
+                                th:text="${pack.version} + ' (' + ${pack.name} + ')'"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <i class="bi bi-arrow-right fs-4"></i>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="targetPack" class="form-label">대상 버전 (신 버전)</label>
+                        <select class="form-select" id="targetPack" required>
+                            <option value="" selected disabled>대상 버전을 선택하세요...</option>
+                            <option th:each="pack : ${packs}" th:value="${pack.id}"
+                                th:text="${pack.version} + ' (' + ${pack.name} + ')'"></option>
+                        </select>
+                    </div>
+                    <div class="col-12 text-end mt-3">
+                        <button type="button" class="btn btn-primary" onclick="performComparison()">
+                            <i class="bi bi-search"></i> 비교하기
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- History Section -->
+        <div class="card mb-4">
+            <div class="card-header bg-light">
+                <i class="bi bi-clock-history me-2"></i>비교 이력
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0 align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col" class="text-center" style="width: 5%">#</th>
+                                <th scope="col" style="width: 40%">비교 대상 (기본 <i class="bi bi-arrow-right mx-1"></i> 대상)
+                                </th>
+                                <th scope="col" style="width: 25%">비교 일시</th>
+                                <th scope="col" class="text-center" style="width: 20%">관리</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody">
+                            <tr>
+                                <td colspan="4" class="text-center py-3 text-muted">이력을 불러오는 중...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Area -->
+        <div id="compareResults" class="d-none">
+            <!-- Summary Cards -->
+            <div class="alert alert-light border mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0">
+                        <i class="bi bi-bar-chart-fill me-2"></i>비교 결과
+                    </h5>
+                    <div class="text-muted">
+                        <span id="verBase" class="fw-bold"></span> vs <span id="verTarget" class="fw-bold"></span>
+                    </div>
+                </div>
+                <div class="row text-center g-3">
+                    <div class="col-md-4">
+                        <div class="card bg-success-subtle border-success metric-card h-100"
+                            onclick="filterByStatus('ADDED', this)">
+                            <div class="card-body">
+                                <h3 class="card-title text-success fw-bold" id="countAdded">0</h3>
+                                <p class="card-text text-success">추가된 항목</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-danger-subtle border-danger metric-card h-100"
+                            onclick="filterByStatus('DELETED', this)">
+                            <div class="card-body">
+                                <h3 class="card-title text-danger fw-bold" id="countDeleted">0</h3>
+                                <p class="card-text text-danger">삭제된 항목</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-warning-subtle border-warning metric-card h-100"
+                            onclick="filterByStatus('MODIFIED', this)">
+                            <div class="card-body">
+                                <h3 class="card-title text-warning-emphasis fw-bold" id="countModified">0</h3>
+                                <p class="card-text text-warning-emphasis">변경된 항목</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-2">
+                    <button class="btn btn-sm btn-outline-secondary d-none" id="resetFilterBtn"
+                        onclick="resetFilter()">필터 초기화</button>
+                </div>
+            </div>
+
+            <!-- Accordion List (Grouped by Diff Type) -->
+            <div class="accordion mb-4" id="groupAccordion">
+                <!-- Groups will be rendered here dynamically -->
+            </div>
+
+            <div id="noDiffMessage" class="alert alert-success text-center d-none">
+                두 버전 간에 차이가 없습니다.
+            </div>
+        </div>
+
+        <script th:inline="javascript">
+            let currentData = null;
+            let currentFilter = null; // null, 'ADDED', 'MODIFIED', 'DELETED'
+
+            document.addEventListener('DOMContentLoaded', () => {
+                loadHistory();
+            });
+
+            function performComparison() {
+                const baseId = document.getElementById('basePack').value;
+                const targetId = document.getElementById('targetPack').value;
+
+                if (!baseId || !targetId) {
+                    alert('두 버전을 모두 선택해주세요.');
+                    return;
+                }
+
+                if (baseId === targetId) {
+                    alert('서로 다른 버전을 선택해주세요.');
+                    return;
+                }
+
+                const btn = document.querySelector('#compareForm button');
+                const originalText = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> 분석 중...';
+
+                fetch(`/api/compliance/compare?baseId=${baseId}&targetId=${targetId}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        currentData = data;
+                        renderSummary(data);
+                        renderGroups(data);
+                        document.getElementById('compareResults').classList.remove('d-none');
+                        loadHistory(); // Refresh history
+                        resetFilter();
+
+                        document.getElementById('compareResults').scrollIntoView({ behavior: 'smooth' });
+                    })
+                    .catch(err => {
+                        alert('비교 실패: ' + err);
+                    })
+                    .finally(() => {
+                        btn.disabled = false;
+                        btn.innerHTML = originalText;
+                    });
+            }
+
+            function loadHistory() {
+                fetch('/api/compliance/history')
+                    .then(res => res.json())
+                    .then(data => {
+                        const tbody = document.getElementById('historyTableBody');
+                        tbody.innerHTML = '';
+
+                        if (data.length === 0) {
+                            tbody.innerHTML = '<tr><td colspan="4" class="text-center py-3 text-muted">이력이 없습니다.</td></tr>';
+                            return;
+                        }
+
+                        data.forEach((item, index) => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td class="text-center">${index + 1}</td>
+                                <td>
+                                    <span class="badge bg-secondary me-1">Base</span> ${item.basePackVersion} (${item.basePackName}) <br>
+                                    <i class="bi bi-arrow-down short-arrow text-muted d-block my-1" style="font-size: 0.8rem"></i>
+                                    <span class="badge bg-primary me-1">Target</span> ${item.targetPackVersion} (${item.targetPackName})
+                                </td>
+                                <td class="small text-muted">${new Date(item.comparedAt).toLocaleString()}</td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-outline-primary me-1" onclick='viewHistory(${JSON.stringify(item.resultJson).replace(/'/g, "&#39;")})'>
+                                        <i class="bi bi-eye"></i> 결과 보기
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="deleteHistory(${item.id})">
+                                        <i class="bi bi-trash"></i> 삭제
+                                    </button>
+                                </td>
+                            `;
+                            tbody.appendChild(row);
+                        });
+                    })
+                    .catch(e => console.error(e));
+            }
+
+            function viewHistory(jsonString) {
+                try {
+                    const data = (typeof jsonString === 'string') ? JSON.parse(jsonString) : jsonString;
+                    currentData = data;
+                    renderSummary(data);
+                    renderGroups(data);
+                    document.getElementById('compareResults').classList.remove('d-none');
+                    document.getElementById('compareResults').scrollIntoView({ behavior: 'smooth' });
+                    resetFilter();
+                } catch (e) {
+                    alert('결과 데이터를 불러오는 중 오류가 발생했습니다.');
+                    console.error(e);
+                }
+            }
+
+            function deleteHistory(id) {
+                if (!confirm('정말 이 기록을 삭제하시겠습니까?')) return;
+
+                const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");
+                const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
+
+                fetch(`/api/compliance/history/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        [csrfHeader]: csrfToken
+                    }
+                })
+                    .then(res => {
+                        if (res.ok) {
+                            loadHistory();
+                        } else {
+                            alert('삭제 실패');
+                        }
+                    })
+                    .catch(e => alert('오류 발생: ' + e));
+            }
+
+            function filterByStatus(status, cardElement) {
+                if (currentFilter === status) {
+                    resetFilter();
+                    return;
+                }
+                currentFilter = status;
+                document.querySelectorAll('.metric-card').forEach(c => c.classList.remove('active-filter'));
+                if (cardElement) cardElement.classList.add('active-filter');
+                document.getElementById('resetFilterBtn').classList.remove('d-none');
+                renderGroups(currentData);
+            }
+
+            function resetFilter() {
+                currentFilter = null;
+                document.querySelectorAll('.metric-card').forEach(c => c.classList.remove('active-filter'));
+                document.getElementById('resetFilterBtn').classList.add('d-none');
+                renderGroups(currentData);
+            }
+
+            function renderSummary(data) {
+                document.getElementById('verBase').textContent = data.versionBase;
+                document.getElementById('verTarget').textContent = data.versionTarget;
+                let added = 0, deleted = 0, modified = 0;
+                if (data.standards) {
+                    data.standards.forEach(std => {
+                        if (std.diffType === 'ADDED') added++;
+                        else if (std.diffType === 'DELETED') deleted++;
+                        else if (std.diffType === 'MODIFIED') modified++;
+                    });
+                }
+                document.getElementById('countAdded').textContent = added;
+                document.getElementById('countDeleted').textContent = deleted;
+                document.getElementById('countModified').textContent = modified;
+            }
+
+            function renderGroups(data) {
+                const container = document.getElementById('groupAccordion');
+                container.innerHTML = '';
+                const noDiffMessage = document.getElementById('noDiffMessage');
+
+                if (!data.standards || data.standards.length === 0) {
+                    noDiffMessage.classList.remove('d-none');
+                    return;
+                }
+                noDiffMessage.classList.add('d-none');
+
+                // Filter
+                let standardsToRender = data.standards;
+                if (currentFilter) {
+                    standardsToRender = standardsToRender.filter(s => s.diffType === currentFilter);
+                }
+                if (standardsToRender.length === 0) {
+                    container.innerHTML = '<div class="alert alert-secondary text-center">선택한 필터에 해당하는 항목이 없습니다.</div>';
+                    return;
+                }
+
+                // 1. Group by DiffType
+                const groupedByDiff = {
+                    'ADDED': [],
+                    'MODIFIED': [],
+                    'DELETED': []
+                };
+
+                standardsToRender.forEach(std => {
+                    if (groupedByDiff[std.diffType]) {
+                        groupedByDiff[std.diffType].push(std);
+                    }
+                });
+
+                const renderDiffGroup = (diffType, list) => {
+                    if (list.length === 0) return;
+
+                    const groupTitle = diffType === 'ADDED' ? '추가된 항목' : (diffType === 'MODIFIED' ? '변경된 항목' : '삭제된 항목');
+                    const groupColor = getDiffColor(diffType);
+                    const bgClass = getDiffHeaderBg(diffType);
+                    const textClass = diffType === 'ADDED' ? 'text-success' : (diffType === 'DELETED' ? 'text-danger' : 'text-warning-emphasis');
+
+                    const groupItem = document.createElement('div');
+                    groupItem.className = `accordion-item border-${groupColor} mb-2`;
+
+                    const groupHeaderId = `headingGroup${diffType}`;
+                    const groupCollapseId = `collapseGroup${diffType}`;
+
+                    groupItem.innerHTML = `
+                        <h2 class="accordion-header" id="${groupHeaderId}">
+                            <button class="accordion-button ${bgClass} ${textClass} fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#${groupCollapseId}" aria-expanded="true" aria-controls="${groupCollapseId}">
+                                ${groupTitle} (${list.length})
+                            </button>
+                        </h2>
+                        <div id="${groupCollapseId}" class="accordion-collapse collapse show" aria-labelledby="${groupHeaderId}">
+                            <div class="accordion-body p-2">
+                                <div class="list-group list-group-flush" id="list${diffType}">
+                                    <!-- List items here -->
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    container.appendChild(groupItem);
+                    const listContainer = groupItem.querySelector(`#list${diffType}`);
+
+                    // 2. Group by Standard Type
+                    const groupedByType = {};
+                    list.forEach(std => {
+                        let type = "Others";
+                        if (std.name) {
+                            const parts = std.name.split(' ');
+                            if (parts.length > 0) type = parts[0];
+                        }
+                        if (!groupedByType[type]) groupedByType[type] = [];
+                        groupedByType[type].push(std);
+                    });
+
+                    Object.keys(groupedByType).sort().forEach(type => {
+                        const typeList = groupedByType[type];
+
+                        const typeHeader = document.createElement('div');
+                        typeHeader.className = "list-group-item bg-light fw-bold small text-secondary py-1";
+                        typeHeader.textContent = type;
+                        listContainer.appendChild(typeHeader);
+
+                        typeList.forEach((std, idx) => {
+                            listContainer.appendChild(createStandardListItem(std, idx + type, groupColor));
+                        });
+                    });
+                };
+
+                if (currentFilter && currentFilter !== 'ADDED') { } else renderDiffGroup('ADDED', groupedByDiff['ADDED']);
+                if (currentFilter && currentFilter !== 'MODIFIED') { } else renderDiffGroup('MODIFIED', groupedByDiff['MODIFIED']);
+                if (currentFilter && currentFilter !== 'DELETED') { } else renderDiffGroup('DELETED', groupedByDiff['DELETED']);
+            }
+
+            function createStandardListItem(std, index, groupColor) {
+                // Item wrapper - List Group Item
+                const item = document.createElement('div');
+                item.className = 'list-group-item std-item d-flex justify-content-between align-items-center mb-0';
+
+                // Add click event for standard details
+                if (std.id) {
+                    item.onclick = function () {
+                        // Use basePackId and targetPackId from currentData
+                        const baseId = currentData.basePackId;
+                        const targetId = currentData.targetPackId;
+                        const url = `/compliance/compare/${baseId}/${targetId}/standard/${std.id}`;
+                        window.open(url, '_blank', 'width=1000,height=800');
+                    };
+                    item.title = "클릭하여 상세 변경 내역 보기";
+                }
+
+                const badge = getDiffBadge(std.diffType);
+
+                // Content
+                item.innerHTML = `
+                    <div class="d-flex align-items-center text-truncate">
+                        <span class="${std.diffType === 'DELETED' ? 'text-decoration-line-through text-muted' : ''}">
+                            <span class="fw-bold me-2">${std.name}</span>
+                            <small class="text-muted">(${std.externalListId || 'N/A'})</small>
+                        </span>
+                    </div>
+                    <div>
+                         <span class="badge ${badge}">${std.diffType}</span>
+                         ${std.id ? '<i class="bi bi-chevron-right text-muted ms-2 small"></i>' : ''}
+                    </div>
+                `;
+                return item;
+            }
+
+            function getDiffColor(type) {
+                if (type === 'ADDED') return 'success';
+                if (type === 'DELETED') return 'danger';
+                if (type === 'MODIFIED') return 'warning';
+                return 'light';
+            }
+
+            function getDiffHeaderBg(type) {
+                if (type === 'ADDED') return 'bg-success-subtle';
+                if (type === 'DELETED') return 'bg-danger-subtle';
+                if (type === 'MODIFIED') return 'bg-warning-subtle';
+                return 'bg-light';
+            }
+
+            function getDiffBadge(type) {
+                if (type === 'ADDED') return 'bg-success';
+                if (type === 'DELETED') return 'bg-danger';
+                if (type === 'MODIFIED') return 'bg-warning text-dark';
+                return 'bg-secondary';
+            }
+        </script>
+    </div>
+</body>
+
+</html>

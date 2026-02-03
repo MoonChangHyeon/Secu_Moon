@@ -12,5 +12,7 @@ import java.util.List;
 public interface ComplianceStandardRepository extends JpaRepository<ComplianceStandard, Long> {
     List<ComplianceStandard> findByPackInfoId(Long packInfoId);
 
+    java.util.Optional<ComplianceStandard> findByPackInfoIdAndName(Long packInfoId, String name);
+
     Page<ComplianceStandard> findByPackInfoId(Long packInfoId, Pageable pageable);
 }

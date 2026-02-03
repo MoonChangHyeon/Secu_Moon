@@ -8,5 +8,7 @@ import java.util.Optional;
 public interface PackInfoRepository extends JpaRepository<PackInfo, Long> {
     Optional<PackInfo> findByVersion(String version);
 
+    Optional<PackInfo> findByName(String name);
+
     boolean existsByVersion(String version);
 }

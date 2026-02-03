@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::content})}">
+
+<head>
+    <title>Mapping Manager - VulnScanner</title>
+</head>
+
+<body>
+    <div th:fragment="content">
+        <style>
+            .manager-container {
+                display: flex;
+                height: 75vh;
+                gap: 20px;
+                padding-bottom: 20px;
+            }
+
+            .column {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background: #f8f9fa;
+            }
+
+            .column-header {
+                padding: 10px;
+                background: #e9ecef;
+                border-bottom: 1px solid #ddd;
+                font-weight: bold;
+            }
+
+            .column-body {
+                flex: 1;
+                overflow-y: auto;
+                padding: 10px;
+            }
+
+            .list-group-item {
+                cursor: pointer;
+                user-select: none;
+            }
+
+            .list-group-item.active {
+                background-color: #0d6efd;
+                color: white;
+            }
+
+            .list-group-item.deleted {
+                text-decoration: line-through;
+                color: #dc3545;
+                background-color: #ffe6e6;
+            }
+
+            .list-group-item.added {
+                font-weight: bold;
+                color: #198754;
+                background-color: #e8f5e9;
+            }
+
+            .draggable-source {
+                cursor: grab;
+            }
+
+            .draggable-source:active {
+                cursor: grabbing;
+            }
+
+            /* Drag & Drop Visuals */
+            .drop-zone {
+                min-height: 100px;
+                border: 2px dashed #ccc;
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #aaa;
+            }
+
+            .drop-zone.drag-over {
+                border-color: #0d6efd;
+                background-color: #e9f2ff;
+                color: #0d6efd;
+            }
+        </style>
+
+        <div class="d-flex justify-content-between align-items-center mt-3 mb-3">
+            <h3><i class="bi bi-diagram-3"></i> Mapping Manager</h3>
+            <div>
+                <input type="file" id="xmlUploadInput" style="display: none;" accept=".xml"
+                    onchange="handleFileUpload(this)">
+                <button class="btn btn-outline-primary me-2" onclick="triggerUpload()">
+                    <i class="bi bi-cloud-upload"></i> Upload XML
+                </button>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown">
+                        <i class="bi bi-download"></i> Export
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{'/api/compliance/export/' + ${packId} + '/xml'}">Format
+                                XML (Fortify)</a></li>
+                        <li><a class="dropdown-item" href="#">List Excel (Coming Soon)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help Guide Accordion -->
+        <div class="accordion mb-4 shadow-sm" id="guideAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingGuide">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseGuide" aria-expanded="false" aria-controls="collapseGuide">
+                        <i class="bi bi-info-circle-fill me-2 text-primary"></i> <strong>사용 가이드 (클릭하여 열기)</strong>
+                    </button>
+                </h2>
+                <div id="collapseGuide" class="accordion-collapse collapse" aria-labelledby="headingGuide"
+                    data-bs-parent="#guideAccordion">
+                    <div class="accordion-body bg-light">
+                        <div class="row">
+                            <div class="col-md-6 border-end">
+                                <h5><i class="bi bi-mouse"></i> 사용 방법</h5>
+                                <ol>
+                                    <li><strong>좌측 (Category)</strong>: 매핑을 관리할 KISA 표준 카테고리를 선택합니다.</li>
+                                    <li><strong>우측 (All Rules)</strong>: 연결할 내부 취약점 룰(Rule)을 검색합니다.</li>
+                                    <li><strong>추가 (Add)</strong>: 우측 룰을 선택 후 <code>Add Selected</code> 버튼을 누르거나,
+                                        <strong>중앙 영역으로 드래그 앤 드롭</strong>합니다.
+                                    </li>
+                                    <li><strong>삭제 (Remove)</strong>: 중앙 목록에서 룰을 선택하고 <code>Remove Selected</code> 버튼을
+                                        누릅니다.</li>
+                                </ol>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="bi bi-palette"></i> 상태 표시</h5>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2">
+                                        <span class="badge bg-success">New</span> <span class="fw-bold text-success">초록색
+                                            텍스트</span><br>
+                                        사용자가 직접 추가한 커스텀 매핑입니다.
+                                    </li>
+                                    <li class="mb-2">
+                                        <span class="badge bg-danger">Deleted</span> <span
+                                            class="text-danger text-decoration-line-through">빨간 취소선</span><br>
+                                        시스템 기본 매핑이지만 사용자가 삭제(비활성화)한 항목입니다. 다시 추가하면 복구됩니다.
+                                    </li>
+                                    <li>
+                                        <span class="text-dark">검정색 기본 텍스트</span><br>
+                                        시스템 기본(Default) 매핑 상태입니다.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alert for Sync -->
+        <div th:if="${needSync}" class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle-fill"></i> System data not found. Please <strong>Upload XML</strong>
+            (e.g., kisa49_metadata.xml) to initialize.
+        </div>
+
+        <div class="manager-container">
+            <!-- Col 1: Categories -->
+            <div class="column shadow-sm" style="flex: 0.8;">
+                <div class="column-header"><i class="bi bi-folder"></i> 1. KISA 49 Categories</div>
+                <div class="column-body">
+                    <input type="text" class="form-control mb-2" placeholder="Search Categories..."
+                        onkeyup="filterList(this, '#categoryList')">
+                    <div class="list-group" id="categoryList">
+                        <th:block th:each="std : ${standards}">
+                            <div class="fw-bold p-2 bg-light text-secondary small" th:text="${std.name}">Standard Name
+                            </div>
+                            <a th:each="cat : ${std.categories}" href="#" class="list-group-item list-group-item-action"
+                                th:onclick="'selectCategory(' + ${cat.id} + ', this)'" th:data-id="${cat.id}">
+                                <span th:text="${cat.name}">Category Name</span>
+                            </a>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Col 2: Mapped Rules (Target) -->
+            <div class="column shadow-sm border-primary" style="border-width: 2px;">
+                <div class="column-header d-flex justify-content-between align-items-center bg-primary text-white">
+                    <span><i class="bi bi-link-45deg"></i> 2. Mapped Rules (Target)</span>
+                    <button class="btn btn-sm btn-light text-danger fw-bold" onclick="removeSelected()" disabled
+                        id="btnRemove">Remove Selected</button>
+                </div>
+                <div class="column-body" id="targetContainer" ondragover="allowDrop(event)" ondrop="drop(event)"
+                    ondragleave="dragLeave(event)">
+                    <div class="text-center text-muted mt-5" id="targetPlaceholder">
+                        <i class="bi bi-arrow-left-circle display-4"></i><br><br>
+                        Select a category from the left<br>to view and manage mappings
+                    </div>
+                    <div class="list-group d-none" id="mappedList">
+                        <!-- Mapped items will be injected here -->
+                    </div>
+                    <div class="drop-zone mt-3 d-none p-3 text-center" id="dropZoneText">
+                        <i class="bi bi-cloud-arrow-down fs-4"></i><br>
+                        Drop rules here to add
+                    </div>
+                </div>
+            </div>
+
+            <!-- Col 3: All Rules (Source) -->
+            <div class="column shadow-sm">
+                <div class="column-header d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-list-ul"></i> 3. All Rules (Source)</span>
+                    <button class="btn btn-sm btn-primary" onclick="addSelected()" disabled id="btnAdd">Add
+                        Selected</button>
+                </div>
+                <div class="column-body">
+                    <input type="text" class="form-control mb-2" placeholder="Search Rules..." id="ruleSearch"
+                        onkeyup="searchRulesDebounced()">
+                    <div class="list-group" id="sourceList">
+                        <!-- Rule items will be injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JS Logic -->
+        <script>
+            let currentCategoryId = null;
+
+            // --- Category Selection ---
+            function selectCategory(id, el) {
+                currentCategoryId = id;
+                // Highlight UI
+                document.querySelectorAll('#categoryList .active').forEach(e => e.classList.remove('active'));
+                el.classList.add('active');
+
+                loadMappings(id);
+                loadRecommendations(id); // New recommendation load
+
+                document.getElementById('targetPlaceholder').classList.add('d-none');
+                document.getElementById('mappedList').classList.remove('d-none');
+                document.getElementById('dropZoneText').classList.remove('d-none');
+            }
+
+            async function loadMappings(catId) {
+                const res = await fetch(`/api/compliance/categories/${catId}/mappings`);
+                const data = await res.json();
+                renderMappedList(data.mappings);
+            }
+
+            let currentRecommendations = [];
+
+            async function loadRecommendations(catId) {
+                try {
+                    const res = await fetch(`/api/compliance/categories/${catId}/recommendations`);
+                    if (res.ok) {
+                        currentRecommendations = await res.json();
+                        // Refresh source list to apply highlighting
+                        const query = document.getElementById('ruleSearch').value;
+                        fetchRules(query);
+                    }
+                } catch (e) {
+                    console.error("Failed to load recommendations", e);
+                }
+            }
+
+            function renderMappedList(mappings) {
+                const list = document.getElementById('mappedList');
+                list.innerHTML = '';
+                mappings.forEach(m => {
+                    const item = document.createElement('label');
+                    item.className = `list-group-item d-flex gap-2 align-items-center ${m.active ? '' : 'deleted'} ${m.custom ? 'added' : ''}`;
+                    item.innerHTML = `
+                        <input class="form-check-input flex-shrink-0" type="checkbox" value="${m.ruleId}" onchange="updateBtnState('mappedList', 'btnRemove')">
+                        <span class="flex-grow-1">
+                            ${m.ruleId}
+                        </span>
+                        ${m.custom ? '<span class="badge bg-success ms-1">New</span>' : ''}
+                        ${!m.active ? '<span class="badge bg-danger ms-1">Deleted</span>' : ''}
+                    `;
+                    list.appendChild(item);
+                });
+                updateBtnState('mappedList', 'btnRemove');
+            }
+
+            // --- Rule Search (Source) ---
+            let debounceTimer;
+            function searchRulesDebounced() {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => {
+                    const query = document.getElementById('ruleSearch').value;
+                    if (query.length < 2) return;
+                    fetchRules(query);
+                }, 300);
+            }
+
+            async function fetchRules(query) {
+                const res = await fetch(`/api/compliance/rules?query=${encodeURIComponent(query)}`);
+                const rules = await res.json();
+                renderSourceList(rules);
+            }
+
+            function renderSourceList(rules) {
+                const list = document.getElementById('sourceList');
+                list.innerHTML = '';
+                rules.forEach(r => {
+                    const item = document.createElement('div');
+                    item.className = 'list-group-item draggable-source d-flex gap-2';
+                    item.setAttribute('draggable', 'true');
+                    item.setAttribute('data-id', r);
+                    item.ondragstart = drag;
+                    item.innerHTML = `
+                        <input class="form-check-input flex-shrink-0" type="checkbox" value="${r}" onchange="updateBtnState('sourceList', 'btnAdd')">
+                        <span>${r}</span>
+                    `;
+                    list.appendChild(item);
+                });
+            }
+
+            // --- Drag & Drop ---
+            function drag(ev) {
+                ev.dataTransfer.setData("text", ev.currentTarget.getAttribute('data-id'));
+            }
+
+            function allowDrop(ev) {
+                ev.preventDefault();
+                document.getElementById('targetContainer').querySelector('.drop-zone').classList.add('drag-over');
+            }
+
+            function dragLeave(ev) {
+                document.getElementById('targetContainer').querySelector('.drop-zone').classList.remove('drag-over');
+            }
+
+            function drop(ev) {
+                ev.preventDefault();
+                document.getElementById('targetContainer').querySelector('.drop-zone').classList.remove('drag-over');
+                var data = ev.dataTransfer.getData("text");
+                if (data && currentCategoryId) {
+                    addMappings([data]);
+                }
+            }
+
+            // --- Actions ---
+            function updateBtnState(listId, btnId) {
+                const checked = document.querySelectorAll(`#${listId} input:checked`).length > 0;
+                document.getElementById(btnId).disabled = !checked;
+            }
+
+            function getCheckedValues(listId) {
+                return Array.from(document.querySelectorAll(`#${listId} input:checked`)).map(cb => cb.value);
+            }
+
+            async function addSelected() {
+                const ruleIds = getCheckedValues('sourceList');
+                if (ruleIds.length > 0 && currentCategoryId) addMappings(ruleIds);
+            }
+
+            async function removeSelected() {
+                const ruleIds = getCheckedValues('mappedList');
+                if (ruleIds.length > 0 && currentCategoryId) {
+                    await fetch(`/api/compliance/categories/${currentCategoryId}/mappings`, {
+                        method: 'DELETE',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(ruleIds)
+                    });
+                    loadMappings(currentCategoryId); // Refresh
+                }
+            }
+
+            async function addMappings(ruleIds) {
+                await fetch(`/api/compliance/categories/${currentCategoryId}/mappings`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(ruleIds)
+                });
+                loadMappings(currentCategoryId); // Refresh
+            }
+
+            function triggerUpload() {
+                document.getElementById('xmlUploadInput').click();
+            }
+
+            async function handleFileUpload(input) {
+                if (input.files && input.files[0]) {
+                    const file = input.files[0];
+                    if (!confirm(`Upload and parse ${file.name}? This will update the system mappings.`)) return;
+
+                    const formData = new FormData();
+                    formData.append('file', file);
+
+                    // CSRF Token
+                    const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");
+                    const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
+
+                    try {
+                        const res = await fetch('/api/compliance/upload', {
+                            method: 'POST',
+                            headers: {
+                                [csrfHeader]: csrfToken
+                            },
+                            body: formData
+                        });
+
+                        if (res.ok) {
+                            alert("Upload Successful!");
+                            location.reload();
+                        } else {
+                            const txt = await res.text();
+                            alert("Upload Failed: " + txt);
+                        }
+                    } catch (e) {
+                        alert("Error: " + e.message);
+                    } finally {
+                        input.value = ''; // Reset
+                    }
+                }
+            }
+
+            // --- Filter Utils ---
+            function filterList(input, selector) {
+                const filter = input.value.toLowerCase();
+                document.querySelectorAll(`${selector} a, ${selector} div`).forEach(el => {
+                    const txt = el.textContent || el.innerText;
+                    el.style.display = txt.toLowerCase().indexOf(filter) > -1 ? "" : "none";
+                });
+            }
+
+            // Initial Load
+            fetchRules(""); // Load initial rules
+        </script>
+    </div>
+</body>
+
+</html>

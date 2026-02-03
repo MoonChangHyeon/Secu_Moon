@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::div})}">
+
+<body>
+    <div>
+        <h2 class="mb-4">Dashboard</h2>
+
+        <!-- Summary Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Scans</h5>
+                        <p class="card-text display-4" th:text="${totalScans}">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Success Rate</h5>
+                        <p class="card-text display-4"><span th:text="${successRate}">0</span>%</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Total LOC</h5>
+                        <p class="card-text display-4" th:text="${totalLoc}">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-danger mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Vulnerabilities</h5>
+                        <p class="card-text display-4" th:text="${totalVulns}">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">Recent Scans</h5>
+                <div>
+                    <button type="button" class="btn btn-danger btn-sm" id="deleteSelectedBtn" style="display: none;">
+                        선택 삭제
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 40px;">
+                                    <input type="checkbox" id="selectAll" class="form-check-input">
+                                </th>
+                                <th>ID</th>
+                                <th>Build ID</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>FPR File</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="result : ${results}" class="analysis-row" th:data-result-id="${result.id}"
+                                th:data-status="${result.status}" style="cursor: pointer;">
+                                <td onclick="event.stopPropagation();">
+                                    <input type="checkbox" class="form-check-input row-checkbox"
+                                        th:data-id="${result.id}">
+                                </td>
+                                <td th:text="${result.id}">1</td>
+                                <td th:text="${result.analysisOption.buildId}">MyProject</td>
+                                <td th:text="${#temporals.format(result.scanDate, 'yyyy-MM-dd HH:mm:ss')}">
+                                    2023-10-27
+                                    10:00:00</td>
+                                <td>
+                                    <div th:switch="${result.status}">
+                                        <span th:case="'SUCCESS'" class="badge bg-success">Success</span>
+                                        <span th:case="'FAILED'" class="badge bg-danger">Failed</span>
+                                        <div th:case="*">
+                                            <div class="spinner-border spinner-border-sm text-primary" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                            <span th:text="${result.status}"
+                                                class="ms-1 fw-bold text-primary">Running</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td th:text="${result.fprPath}">result.fpr</td>
+                                <td onclick="event.stopPropagation();">
+                                    <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="modal"
+                                        th:data-bs-target="'#logModal' + ${result.id}">
+                                        Logs
+                                    </button>
+
+                                    <!-- Download Dropdown -->
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            Download
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li><a class="dropdown-item"
+                                                    th:href="@{/api/analysis/{id}/download-log(id=${result.id}, type='build')}"
+                                                    download>Build Log</a></li>
+                                            <li><a class="dropdown-item"
+                                                    th:href="@{/api/analysis/{id}/download-log(id=${result.id}, type='scan')}"
+                                                    download>Scan Log</a></li>
+                                            <li><a class="dropdown-item"
+                                                    th:href="@{/api/analysis/{id}/download-log(id=${result.id}, type='all')}"
+                                                    download>All Logs (.zip)</a></li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item"
+                                                    th:href="@{/api/analysis/{id}/download-fpr(id=${result.id})}"
+                                                    download>FPR File</a></li>
+                                            <li><a class="dropdown-item"
+                                                    th:href="@{/api/analysis/{id}/download-source(id=${result.id})}"
+                                                    download>Source Files</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <form th:id="'deleteForm' + ${result.id}" style="display: inline;"
+                                        th:onsubmit="|return confirmDelete(${result.id});|">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            Delete
+                                        </button>
+                                    </form>
+
+                                    <!-- Log Modal -->
+                                    <div class="modal fade" th:id="'logModal' + ${result.id}" tabindex="-1">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Scan Logs</h5>
+                                                    <button type="button" class="btn-close"
+                                                        data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <pre th:text="${result.logs}" class="bg-light p-3 border rounded"
+                                                        style="max-height: 500px; overflow-y: auto;"></pre>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Progress Bar Row -->
+                            <tr th:id="'progress-row-' + ${result.id}" class="progress-detail-row"
+                                style="display: none;">
+                                <td colspan="7" class="p-0">
+                                    <div class="card border-0 m-2">
+                                        <div class="card-body">
+                                            <h6 class="mb-3">분석 진행 상황</h6>
+                                            <div class="progress-steps">
+                                                <div class="step" th:id="'step-clean-' + ${result.id}">
+                                                    <div class="step-icon">
+                                                        <i class="bi bi-trash"></i>
+                                                    </div>
+                                                    <div class="step-label">Clean</div>
+                                                </div>
+                                                <div class="step-connector"></div>
+                                                <div class="step" th:id="'step-translate-' + ${result.id}">
+                                                    <div class="step-icon">
+                                                        <i class="bi bi-code-slash"></i>
+                                                    </div>
+                                                    <div class="step-label">Translate</div>
+                                                </div>
+                                                <div class="step-connector"></div>
+                                                <div class="step" th:id="'step-scan-' + ${result.id}">
+                                                    <div class="step-icon">
+                                                        <i class="bi bi-search"></i>
+                                                    </div>
+                                                    <div class="step-label">Scan</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr th:if="${#lists.isEmpty(results)}">
+                                <td colspan="6" class="text-center py-4">No scans found. Start a new scan!</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</body>
+
+</html>

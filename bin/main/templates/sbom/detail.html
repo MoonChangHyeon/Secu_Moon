@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::div})}">
+
+<head>
+    <title>SBOM Analysis Result</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="mb-1">SBOM Analysis Result</h2>
+                <p class="text-muted mb-0">
+                    Build ID: <span class="fw-bold" th:text="${result.analysisOption.buildId}">Project</span> |
+                    Scan Date: <span th:text="${#temporals.format(result.scanDate, 'yyyy-MM-dd HH:mm:ss')}">Date</span>
+                </p>
+            </div>
+            <div>
+                <form th:action="@{/sboms/reparse/{id}(id=${result.id})}" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-outline-warning me-2"
+                        onclick="return confirm('Are you sure you want to re-parse this SBOM? existing data will be overwritten.');">
+                        <i class="bi bi-arrow-repeat"></i> Re-parse
+                    </button>
+                </form>
+                <a href="/" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Back to Dashboard
+                </a>
+            </div>
+        </div>
+
+        <!-- Status Alert -->
+        <div th:if="${result.status == 'FAILED'}" class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Analysis Failed</h4>
+            <p th:text="${result.logs}">Error details</p>
+        </div>
+
+        <div th:if="${result.status == 'RUNNING'}" class="alert alert-info" role="alert">
+            <h4 class="alert-heading">Analysis in Progress</h4>
+            <p>Please wait while the analysis is being processed...</p>
+        </div>
+
+        <!-- Result Tabs -->
+        <div th:if="${result.status == 'SUCCESS' and sbomData != null}">
+            <ul class="nav nav-tabs mb-4" id="resultTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="summary-tab" data-bs-toggle="tab" data-bs-target="#summary"
+                        type="button" role="tab">Summary</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="vulnerabilities-tab" data-bs-toggle="tab"
+                        data-bs-target="#vulnerabilities" type="button" role="tab">Vulnerabilities</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="components-tab" data-bs-toggle="tab" data-bs-target="#components"
+                        type="button" role="tab">Components</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="licenses-tab" data-bs-toggle="tab" data-bs-target="#licenses"
+                        type="button" role="tab">Licenses</button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="resultTabContent">
+                <!-- Summary Tab -->
+                <div class="tab-pane fade show active" id="summary" role="tabpanel">
+                    <div class="row" th:if="${sbomData.summary != null}">
+                        <div class="col-md-4">
+                            <div class="card text-white bg-danger mb-3">
+                                <div class="card-header">Vulnerabilities</div>
+                                <div class="card-body">
+                                    <h5 class="card-title display-4"
+                                        th:text="${sbomData.summary.vulnerabilities_count}">0</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-white bg-warning mb-3">
+                                <div class="card-header">Components</div>
+                                <div class="card-body">
+                                    <h5 class="card-title display-4" th:text="${sbomData.summary.components_count}">0
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-white bg-info mb-3">
+                                <div class="card-header">Licenses</div>
+                                <div class="card-body">
+                                    <h5 class="card-title display-4" th:text="${sbomData.summary.licenses_count}">0</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vulnerabilities Tab -->
+                <div class="tab-pane fade" id="vulnerabilities" role="tabpanel">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>CVE</th>
+                                    <th>Vendor ID</th>
+                                    <th>Package</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="vuln : ${sbomData.vulnerabilities}">
+                                    <td th:text="${vuln.cve != 'N/A' ? vuln.cve : '-'}">CVE-XXX</td>
+                                    <td th:text="${vuln.vendor_id}">GHSA-XXX</td>
+                                    <td th:text="${vuln.package_name}">Package</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+                                            data-bs-target="#vulnDetailModal" th:data-cve="${vuln.cve}"
+                                            th:data-vendor="${vuln.vendor_id}" th:data-title="${vuln.title}"
+                                            th:data-desc="${vuln.description}" th:data-severity="${vuln.severity}"
+                                            th:data-url="${vuln.url}">
+                                            Detail
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(sbomData.vulnerabilities)}">
+                                    <td colspan="3" class="text-center">No vulnerabilities found.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Components Tab -->
+                <div class="tab-pane fade" id="components" role="tabpanel">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Version</th>
+                                    <th>Type</th>
+                                    <th>PURL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="comp : ${sbomData.components}"
+                                    th:if="${comp.name != null and !#strings.isEmpty(comp.name) and comp.name != 'N/A' and comp.name.trim() != 'N/A'}">
+                                    <td th:text="${comp.name}">Name</td>
+                                    <td th:text="${comp.version}">Version</td>
+                                    <td th:text="${comp.type}">Type</td>
+                                    <td th:text="${comp.purl}">pkg:maven/...</td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(sbomData.components)}">
+                                    <td colspan="4" class="text-center">No components found.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Licenses Tab -->
+                <div class="tab-pane fade" id="licenses" role="tabpanel">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Package</th>
+                                    <th>License</th>
+                                    <th>Location</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="lic : ${sbomData.licenses}">
+                                    <td th:text="${lic.package_name}">Package</td>
+                                    <td th:text="${lic.license_type}">License</td>
+                                    <td th:text="${lic.location}">Location</td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(sbomData.licenses)}">
+                                    <td colspan="3" class="text-center">No license information found.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${result.status == 'SUCCESS' and sbomData == null}" class="alert alert-warning">
+            <p>Analysis completed successfully, but no result data could be parsed.</p>
+            <pre th:text="${result.logs}"></pre>
+        </div>
+
+        <!-- Vulnerability Detail Modal -->
+        <div class="modal fade" id="vulnDetailModal" tabindex="-1" aria-labelledby="vulnDetailModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="vulnDetailModalLabel">Vulnerability Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-body">
+                            <!-- ID & Basic Info Table -->
+                            <table class="table table-bordered mb-3">
+                                <tbody>
+                                    <tr>
+                                        <th style="width: 150px; background-color: #f8f9fa;">ID (CVE)</th>
+                                        <td id="modalVulnId" class="fw-bold"></td>
+                                    </tr>
+                                    <tr id="rowVendorId">
+                                        <th style="background-color: #f8f9fa;">Vendor ID</th>
+                                        <td id="modalVendorId"></td>
+                                    </tr>
+                                    <tr>
+                                        <th style="background-color: #f8f9fa;">Severity</th>
+                                        <td><span id="modalSeverity" class="badge bg-secondary"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <hr>
+
+                            <!-- Title -->
+                            <div class="mb-3">
+                                <h6 class="text-secondary">Title</h6>
+                                <div class="p-2 bg-light border rounded fw-bold" id="modalTitle"></div>
+                            </div>
+
+                            <!-- Description Area -->
+                            <h6 class="text-secondary">Description (KR)</h6>
+
+                            <!-- 1. Plain Text View (Default) -->
+                            <div class="p-3 bg-light border rounded mb-3" id="modalDescPlain"
+                                style="white-space: pre-wrap;"></div>
+
+                            <!-- 2. Structured JSON View (Hidden by default) -->
+                            <div id="modalDescStructured" style="display: none;">
+                                <div class="card mb-2">
+                                    <div class="card-header bg-white fw-bold text-primary">Title</div>
+                                    <div class="card-body py-2" id="structTitle"></div>
+                                </div>
+                                <div class="card mb-2">
+                                    <div class="card-header bg-white fw-bold text-success">Summary</div>
+                                    <div class="card-body py-2" id="structSummary"></div>
+                                </div>
+                                <div class="card mb-2">
+                                    <div class="card-header bg-white fw-bold text-danger">Cause</div>
+                                    <div class="card-body py-2" id="structCause"></div>
+                                </div>
+                                <div class="card mb-2">
+                                    <div class="card-header bg-white fw-bold text-warning">Attack Scenario</div>
+                                    <div class="card-body py-2" id="structAttackScenario"></div>
+                                </div>
+                                <div class="card mb-2">
+                                    <div class="card-header bg-white fw-bold text-info">Impact (For Everyone)</div>
+                                    <div class="card-body py-2" id="structForEveryone"></div>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <a id="modalUrl" href="#" target="_blank" class="btn btn-primary btn-sm">
+                                <i class="bi bi-box-arrow-up-right"></i> View External Reference
+                            </a>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- JS Script inside the fragment block -->
+            <script th:inline="javascript">
+                // Ensure script runs after DOM loaded
+                document.addEventListener('DOMContentLoaded', function () {
+                    console.log("SBOM Detail Script Loaded.");
+
+                    var vulnDetailModal = document.getElementById('vulnDetailModal');
+                    if (vulnDetailModal) {
+                        vulnDetailModal.addEventListener('show.bs.modal', function (event) {
+                            try {
+                                var button = event.relatedTarget;
+                                if (!button) {
+                                    console.warn("No button found");
+                                    return;
+                                }
+
+                                // Extract info from data-* attributes
+                                var cve = button.getAttribute('data-cve');
+                                var vendor = button.getAttribute('data-vendor');
+                                var title = button.getAttribute('data-title');
+                                var desc = button.getAttribute('data-desc');
+                                var severity = button.getAttribute('data-severity');
+                                var url = button.getAttribute('data-url');
+
+                                console.log("Detail Modal Triggered:", { cve, vendor, title, desc });
+
+                                // Update Modal Content
+                                var modal = this;
+                                var setContent = function (selector, value, defaultVal) {
+                                    var el = modal.querySelector(selector);
+                                    if (el) el.textContent = (value && value !== 'N/A' && value !== '-' && value.trim() !== '') ? value : defaultVal;
+                                };
+
+                                // 1. ID Table Logic
+                                setContent('#modalVulnId', cve, '-');
+
+                                var elVendorRow = modal.querySelector('#rowVendorId');
+                                var elVendorId = modal.querySelector('#modalVendorId');
+                                if (vendor && vendor !== '-' && vendor !== 'N/A' && vendor.trim() !== '') {
+                                    if (elVendorRow) elVendorRow.style.display = '';
+                                    if (elVendorId) elVendorId.textContent = vendor;
+                                } else {
+                                    // Hide vendor row if empty
+                                    if (elVendorRow) elVendorRow.style.display = 'none';
+                                }
+
+                                setContent('#modalTitle', title, 'No Title Available');
+
+                                // 2. Description Logic (JSON Parsing)
+                                var elPlain = modal.querySelector('#modalDescPlain');
+                                var elStruct = modal.querySelector('#modalDescStructured');
+
+                                var isJson = false;
+                                try {
+                                    if (desc && desc.trim().startsWith('{')) {
+                                        var jsonDesc = JSON.parse(desc);
+                                        isJson = true;
+
+                                        // Show Structured View
+                                        if (elStruct) elStruct.style.display = 'block';
+                                        if (elPlain) elPlain.style.display = 'none';
+
+                                        // Map JSON fields
+                                        setContent('#structTitle', jsonDesc.title, '-');
+                                        setContent('#structSummary', jsonDesc.summary, '-');
+                                        setContent('#structCause', jsonDesc.cause, '-');
+                                        setContent('#structAttackScenario', jsonDesc.attack_scenario, '-');
+                                        setContent('#structForEveryone', jsonDesc.for_everyone, '-'); // map 'for_everyone'
+                                    }
+                                } catch (e) {
+                                    console.warn("Description is not valid JSON:", e);
+                                    isJson = false;
+                                }
+
+                                if (!isJson) {
+                                    // Show Plain Text View
+                                    if (elStruct) elStruct.style.display = 'none';
+                                    if (elPlain) {
+                                        elPlain.style.display = 'block';
+                                        elPlain.textContent = (desc && desc.trim() !== '') ? desc : '상세 설명이 존재하지 않습니다.';
+                                    }
+                                }
+
+                                // 3. Severity Badge
+                                var elSev = modal.querySelector('#modalSeverity');
+                                if (elSev) {
+                                    elSev.textContent = severity ? severity : 'UNKNOWN';
+                                    elSev.className = 'badge ' +
+                                        (severity === 'CRITICAL' ? 'bg-danger' :
+                                            severity === 'HIGH' ? 'bg-warning text-dark' :
+                                                severity === 'MEDIUM' ? 'bg-info text-dark' :
+                                                    'bg-secondary');
+                                }
+
+                                var elUrl = modal.querySelector('#modalUrl');
+                                if (elUrl) {
+                                    elUrl.href = url && url.startsWith('http') ? url : '#';
+                                }
+                            } catch (e) {
+                                console.error("Error updating modal:", e);
+                                alert("Error: " + e.message);
+                            }
+                        });
+                    } else {
+                        console.error("Modal element #vulnDetailModal not found in DOM");
+                    }
+                });
+            </script>
+        </div> <!-- End of container-fluid -->
+</body>
+
+</html>

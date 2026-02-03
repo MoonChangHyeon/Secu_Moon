@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ComplianceCategoryRepository extends JpaRepository<ComplianceCategory, Long> {
+    java.util.Optional<ComplianceCategory> findByStandardIdAndName(Long standardId, String name);
 }

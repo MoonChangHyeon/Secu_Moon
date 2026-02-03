@@ -23,6 +23,8 @@ public class PackInfo {
     private String name;
     private String locale;
 
+    private boolean isCustom; // 커스텀 룰팩 여부
+
     private LocalDateTime uploadDate;
 
     @OneToMany(mappedBy = "packInfo", cascade = CascadeType.ALL, orphanRemoval = true)
