@@ -151,6 +151,33 @@ public class FortifyModuleService {
     }
 
     /**
+     * 특정 언어의 취약점 ID (Internal Category) 목록 조회
+     * 가장 최신 날짜의 데이터를 기준으로 함.
+     */
+    public List<String> getRuleIdsByLanguage(String language) {
+        String latestDate = getLatestDate();
+        if (latestDate == null) {
+            return Collections.emptyList();
+        }
+
+        try {
+            List<WeaknessItem> items = getWeaknessesByLanguage(latestDate, language);
+            return items.stream()
+                    .map(WeaknessItem::getTitle)
+                    .distinct()
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            log.error("Failed to load rules for language: {}", language, e);
+            return Collections.emptyList();
+        }
+    }
+
+    private String getLatestDate() {
+        List<String> dates = getAvailableDates();
+        return dates.isEmpty() ? null : dates.get(0);
+    }
+
+    /**
      * 두 버전 간 취약점 비교
      */
     public List<WeaknessItem> compareVersions(String date1, String date2, String language) throws IOException {

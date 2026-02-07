@@ -75,10 +75,25 @@ public class ComplianceManagerController {
         return ResponseEntity.ok(dataService.getMappingDetails(categoryId));
     }
 
+    @GetMapping("/api/compliance/categories/{categoryId}/recommendations")
+    @ResponseBody
+    public ResponseEntity<?> getRecommendations(@PathVariable Long categoryId) {
+        return ResponseEntity.ok(dataService.getRecommendations(categoryId));
+    }
+
+    @GetMapping("/api/compliance/languages")
+    @ResponseBody
+    public ResponseEntity<?> getLanguages() {
+        return ResponseEntity.ok(dataService.getAvailableLanguages());
+    }
+
     @GetMapping("/api/compliance/rules")
     @ResponseBody
-    public ResponseEntity<?> searchRules(@RequestParam(required = false, defaultValue = "") String query) {
-        return ResponseEntity.ok(dataService.searchRules(query));
+    public ResponseEntity<?> searchRules(@RequestParam(required = false, defaultValue = "") String query,
+            @RequestParam(required = false) String language,
+            @RequestParam(required = false, defaultValue = "false") boolean unmappedOnly,
+            @RequestParam(required = false) Long categoryId) {
+        return ResponseEntity.ok(dataService.searchRules(query, language, unmappedOnly, categoryId));
     }
 
     // Bulk Add

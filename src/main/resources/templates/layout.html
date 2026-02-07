@@ -6,155 +6,264 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="_csrf" th:content="${_csrf.token}" />
     <meta name="_csrf_header" th:content="${_csrf.headerName}" />
-    <title>Vulnerability Scanner</title>
+    <title>SecuriGuard Enterprise</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+
+    <script>
+        // Init Theme immediately to prevent flash
+        (function () {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-bs-theme', savedTheme);
+        })();
+    </script>
+
     <style>
-        body {
-            background-color: #f8f9fa;
+        :root {
+            --bs-body-font-family: 'Inter', sans-serif;
+            --primary-color: #135bec;
         }
 
+        [data-bs-theme="dark"] {
+            --bs-body-bg: #101622;
+            --bs-body-color: #e2e8f0;
+
+            --bg-card: #161b26;
+            --border-color: #282e39;
+            --text-muted: #9da6b9;
+        }
+
+        [data-bs-theme="light"] {
+            --bs-body-bg: #f6f6f8;
+            --bs-body-color: #334155;
+
+            --bg-card: #ffffff;
+            --border-color: #e2e8f0;
+            --text-muted: #64748b;
+        }
+
+        body {
+            background-color: var(--bs-body-bg);
+            color: var(--bs-body-color);
+            font-family: var(--bs-body-font-family);
+            min-height: 100vh;
+        }
+
+        /* Navbar Styles */
         .navbar {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.75rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--bs-body-color) !important;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-link {
+            color: var(--text-muted) !important;
+            padding: 0.5rem 1rem !important;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus,
+        .nav-link.active {
+            background-color: rgba(19, 91, 236, 0.1);
+            color: var(--primary-color) !important;
+        }
+
+        /* Dropdown Styles */
+        .dropdown-menu {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            z-index: 1050;
+        }
+
+        .dropdown-item {
+            color: var(--bs-body-color);
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--border-color);
+            color: var(--bs-body-color);
+        }
+
+        .dropdown-divider {
+            border-top-color: var(--border-color);
+        }
+
+        /* Search Input */
+        .search-input {
+            background-color: var(--bs-body-bg);
+            border: 1px solid var(--border-color);
+            color: var(--bs-body-color);
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border-radius: 0.5rem;
+            width: 250px;
+            font-size: 0.875rem;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-wrapper {
+            position: relative;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 20px;
+        }
+
+        /* Common Components */
+        .stat-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            height: 100%;
         }
 
         .card {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, .05);
-            border: none;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
             margin-bottom: 20px;
         }
 
         .btn-primary {
-            background-color: #0d6efd;
-            border-color: #0d6efd;
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
         }
 
-        /* 드롭다운 메뉴가 테이블에서 잘리지 않도록 */
-        .table-responsive {
-            overflow: visible !important;
-        }
-
-        /* 드롭다운 메뉴 스타일 */
-        .dropdown-menu {
-            z-index: 1050;
-        }
-
-        /* Progress Steps 스타일 */
-        .progress-steps {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px 0;
-        }
-
-        .step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-
-        .step-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: #e9ecef;
-            color: #6c757d;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .material-symbols-outlined {
             font-size: 20px;
-            transition: all 0.3s ease;
+            vertical-align: middle;
         }
 
-        .step-label {
-            margin-top: 10px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #6c757d;
+        /* Table overrides */
+        .table {
+            --bs-table-bg: transparent;
+            --bs-table-color: var(--bs-body-color);
+            --bs-table-border-color: var(--border-color);
+            color: var(--bs-body-color);
         }
 
-        .step-connector {
-            width: 100px;
-            height: 3px;
-            background-color: #e9ecef;
-            margin: 0 10px;
-            transition: all 0.3s ease;
+        .table> :not(caption)>*>* {
+            background-color: transparent;
+            color: var(--bs-body-color);
+            border-bottom-color: var(--border-color);
         }
 
-        /* 완료된 단계 */
+        /* Progress Steps */
+        .step .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .step.completed .step-icon {
-            background-color: #28a745;
+            background-color: #198754;
             color: white;
         }
 
-        .step.completed .step-label {
-            color: #28a745;
-        }
-
-        .step.completed+.step-connector {
-            background-color: #28a745;
-        }
-
-        /* 진행 중인 단계 */
         .step.active .step-icon {
-            background-color: #0d6efd;
+            background-color: var(--primary-color);
             color: white;
-            animation: pulse 1.5s infinite;
-        }
-
-        .step.active .step-label {
-            color: #0d6efd;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
-        }
-
-        /* 테이블 행 호버 효과 */
-        .analysis-row:hover {
-            background-color: #f8f9fa;
-        }
-
-        .progress-detail-row {
-            background-color: #f8f9fa;
         }
     </style>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-        <div class="container">
-            <a class="navbar-brand" href="/"><i class="bi bi-shield-check"></i> VulnScanner</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <!-- Horizontal Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid" style="max-width: 1600px;">
+            <!-- Brand -->
+            <a class="navbar-brand me-4" href="/">
+                <div class="text-primary" style="width: 32px; height: 32px;">
+                    <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M13.8261 17.4264C16.7203 18.1174 20.2244 18.5217 24 18.5217C27.7756 18.5217 31.2797 18.1174 34.1739 17.4264C36.9144 16.7722 39.9967 15.2331 41.3563 14.1648L24.8486 40.6391C24.4571 41.267 23.5429 41.267 23.1514 40.6391L6.64374 14.1648C8.00331 15.2331 11.0856 16.7722 13.8261 17.4264Z"
+                            fill="currentColor"></path>
+                        <path clip-rule="evenodd"
+                            d="M39.998 12.236C39.9944 12.2537 39.9875 12.2845 39.9748 12.3294C39.9436 12.4399 39.8949 12.5741 39.8346 12.7175C39.8168 12.7597 39.7989 12.8007 39.7813 12.8398C38.5103 13.7113 35.9788 14.9393 33.7095 15.4811C30.9875 16.131 27.6413 16.5217 24 16.5217C20.3587 16.5217 17.0125 16.131 14.2905 15.4811C12.0012 14.9346 9.44505 13.6897 8.18538 12.8168C8.17384 12.7925 8.16216 12.767 8.15052 12.7408C8.09919 12.6249 8.05721 12.5114 8.02977 12.411C8.00356 12.3152 8.00039 12.2667 8.00004 12.2612C8.00004 12.261 8 12.2607 8.00004 12.2612C8.00004 12.2359 8.0104 11.9233 8.68485 11.3686C9.34546 10.8254 10.4222 10.2469 11.9291 9.72276C14.9242 8.68098 19.1919 8 24 8C28.8081 8 33.0758 8.68098 36.0709 9.72276C37.5778 10.2469 38.6545 10.8254 39.3151 11.3686C39.9006 11.8501 39.9857 12.1489 39.998 12.236ZM4.95178 15.2312L21.4543 41.6973C22.6288 43.5809 25.3712 43.5809 26.5457 41.6973L43.0534 15.223C43.0709 15.1948 43.0878 15.1662 43.104 15.1371L41.3563 14.1648C43.104 15.1371 43.1038 15.1374 43.104 15.1371L43.1051 15.135L43.1065 15.1325L43.1101 15.1261L43.1199 15.1082C43.1276 15.094 43.1377 15.0754 43.1497 15.0527C43.1738 15.0075 43.2062 14.9455 43.244 14.8701C43.319 14.7208 43.4196 14.511 43.5217 14.2683C43.6901 13.8679 44 13.0689 44 12.2609C44 10.5573 43.003 9.22254 41.8558 8.2791C40.6947 7.32427 39.1354 6.55361 37.385 5.94477C33.8654 4.72057 29.133 4 24 4C18.867 4 14.1346 4.72057 10.615 5.94478C8.86463 6.55361 7.30529 7.32428 6.14419 8.27911C4.99695 9.22255 3.99999 10.5573 3.99999 12.2609C3.99999 13.1275 4.29264 13.9078 4.49321 14.3607C4.60375 14.6102 4.71348 14.8196 4.79687 14.9689C4.83898 15.0444 4.87547 15.1065 4.9035 15.1529C4.91754 15.1762 4.92954 15.1957 4.93916 15.2111L4.94662 15.223L4.95178 15.2312ZM35.9868 18.996L24 38.22L12.0131 18.996C12.4661 19.1391 12.9179 19.2658 13.3617 19.3718C16.4281 20.1039 20.0901 20.5217 24 20.5217C27.9099 20.5217 31.5719 20.1039 34.6383 19.3718C35.082 19.2658 35.5339 19.1391 35.9868 18.996Z"
+                            fill="currentColor" fill-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-body fw-bold">SecuriGuard</span>
+                    <span class="text-muted ms-1" style="font-size: 0.75rem;">Enterprise</span>
+                </div>
+            </a>
+
+            <!-- Toggle Button for Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <!-- Navigation Links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">대시보드</a>
+                        <a href="/" class="nav-link">
+                            <span class="material-symbols-outlined">dashboard</span>
+                            대시보드
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/results">분석 결과</a>
+                        <a href="/results" class="nav-link">
+                            <span class="material-symbols-outlined">folder</span>
+                            분석 결과
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/stats">통계</a>
+                        <a href="/stats" class="nav-link">
+                            <span class="material-symbols-outlined">description</span>
+                            통계
+                        </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="vulnMgmtDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="material-symbols-outlined">verified_user</span>
                             취약점 관리
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="vulnMgmtDropdown">
@@ -163,17 +272,43 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/fortify/view">취약점 탐색</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#newScanModal">분석 요청</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="settingsDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            설정
+                        <a href="/fortify/view" class="nav-link">
+                            <span class="material-symbols-outlined">radar</span>
+                            취약점 탐색
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="settingsDropdown">
+                    </li>
+                </ul>
+
+                <!-- Right Side Actions -->
+                <div class="d-flex align-items-center gap-3">
+
+                    <!-- Search -->
+                    <!-- <div class="search-wrapper d-none d-md-block me-2">
+                        <span class="material-symbols-outlined search-icon">search</span>
+                        <input type="text" class="search-input" placeholder="Search...">
+                    </div> -->
+
+                    <!-- Analysis Request Button -->
+                    <button class="btn btn-primary d-flex align-items-center gap-2 btn-sm px-3" data-bs-toggle="modal"
+                        data-bs-target="#newScanModal">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">add_circle</span>
+                        분석 요청
+                    </button>
+
+                    <div class="vr mx-2 d-none d-lg-block text-secondary"></div>
+
+                    <!-- Dark Mode Toggle -->
+                    <button class="btn btn-link text-muted p-0 border-0" id="globalThemeToggle" title="Toggle Theme">
+                        <span class="material-symbols-outlined" id="globalThemeIcon">light_mode</span>
+                    </button>
+
+                    <!-- Settings (Dropdown) -->
+                    <div class="dropdown">
+                        <a href="#" class="nav-link p-0 d-flex align-items-center" id="settingsDropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="material-symbols-outlined">settings</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end border-0 shadow" aria-labelledby="settingsDropdown">
                             <li><a class="dropdown-item" href="/settings">일반 설정</a></li>
                             <li><a class="dropdown-item" href="/settings/users">사용자 관리</a></li>
                             <li>
@@ -181,13 +316,28 @@
                             </li>
                             <li><a class="dropdown-item text-danger" href="/logout">로그아웃</a></li>
                         </ul>
-                    </li>
-                </ul>
+                    </div>
+
+                    <!-- User Profile -->
+                    <div class="dropdown">
+                        <a href="#"
+                            class="d-flex align-items-center gap-2 text-decoration-none dropdown-toggle hide-arrow"
+                            id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="rounded-circle bg-secondary" style="width: 36px; height: 36px;"></div>
+                            <div class="d-none d-xl-block text-start">
+                                <p class="text-body fw-medium mb-0" style="font-size: 0.85rem;">Admin User</p>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end border-0 shadow" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item text-danger" href="/logout">로그아웃</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container-fluid" style="max-width: 1600px; padding: 2rem;">
         <div th:replace="${content}"></div>
     </div>
 
@@ -479,6 +629,56 @@
                     this.textContent = '분석 시작';
                 });
         });
+
+        // Global Theme Toggle Logic
+        const globalThemeToggle = document.getElementById('globalThemeToggle');
+        const globalThemeIcon = document.getElementById('globalThemeIcon');
+        const htmlElement = document.documentElement;
+
+        // Current theme is already set in head, just update icon
+        const currentTheme = htmlElement.getAttribute('data-bs-theme') || 'dark';
+        updateThemeIcon(currentTheme);
+
+        if (globalThemeToggle) {
+            globalThemeToggle.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-bs-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+                htmlElement.setAttribute('data-bs-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme);
+
+                // Trigger event for other components (like Charts) to perform updates
+                document.dispatchEvent(new CustomEvent('themeChanged', { detail: newTheme }));
+            });
+        }
+
+        function updateThemeIcon(theme) {
+            if (globalThemeIcon) {
+                globalThemeIcon.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
+            }
+        }
+
+        // Active Nav Logic
+        (function () {
+            const currentPath = window.location.pathname;
+            document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (!href || href === '#') return;
+
+                if (href === '/' && currentPath === '/') {
+                    link.classList.add('active');
+                } else if (href !== '/' && currentPath.startsWith(href)) {
+                    link.classList.add('active');
+                    // Activate parent dropdown if exists
+                    const dropdown = link.closest('.dropdown');
+                    if (dropdown) {
+                        const toggle = dropdown.querySelector('.dropdown-toggle');
+                        if (toggle) toggle.classList.add('active');
+                    }
+                }
+            });
+        })();
     </script>
     <div class="modal fade" id="customAlertModal" tabindex="-1" aria-labelledby="customAlertModalLabel"
         aria-hidden="true">

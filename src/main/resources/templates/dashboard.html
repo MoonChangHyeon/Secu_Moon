@@ -3,321 +3,265 @@
 
 <body>
     <div>
-        <h2 class="mb-4">Dashboard</h2>
+        <!-- Page Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold fs-4 mb-0">Security Overview</h2>
+            <div class="d-flex gap-2">
+                <button class="btn btn-dark d-flex align-items-center gap-2">
+                    <span class="material-symbols-outlined fs-5">download</span>
+                    Export Report
+                </button>
+            </div>
+        </div>
 
-        <!-- Dashboard Tabs -->
-        <ul class="nav nav-tabs mb-4" id="dashboardTabs" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="sast-tab" data-bs-toggle="tab" data-bs-target="#sast-content"
-                    type="button" role="tab">SAST (Source Code)</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="sbom-tab" data-bs-toggle="tab" data-bs-target="#sbom-content" type="button"
-                    role="tab">SBOM (Open Source)</button>
-            </li>
-        </ul>
-
-        <div class="tab-content" id="dashboardTabContent">
-            <!-- SAST Content -->
-            <div class="tab-pane fade show active" id="sast-content" role="tabpanel">
-                <!-- Summary Cards -->
-                <div class="row mb-4">
-                    <div class="col-md-4">
-                        <div class="card text-white bg-primary mb-3">
-                            <div class="card-header">총 스캔 수</div>
-                            <div class="card-body">
-                                <h5 class="card-title display-4" th:text="${totalScans}">0</h5>
-                                <p class="card-text">수행된 총 분석 횟수입니다.</p>
-                            </div>
-                        </div>
+        <!-- Stats Grid -->
+        <div class="row g-3 mb-4 row-cols-1 row-cols-sm-2 row-cols-lg-4">
+            <!-- Total Vulnerabilities -->
+            <div class="col">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-muted fw-medium fs-6">Total Scans</span>
+                        <span class="material-symbols-outlined text-primary">shield</span>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card text-white bg-success mb-3">
-                            <div class="card-header">성공률</div>
-                            <div class="card-body">
-                                <h5 class="card-title display-4" th:text="${successRate} + '%'">0%</h5>
-                                <p class="card-text">성공한 스캔의 비율입니다.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-white bg-info mb-3">
-                            <div class="card-header">최근 활동 (24h)</div>
-                            <div class="card-body">
-                                <h5 class="card-title display-4" th:text="${recentCount}">0</h5>
-                                <p class="card-text">지난 24시간 동안의 스캔 수입니다.</p>
-                            </div>
-                        </div>
+                    <div class="d-flex align-items-end gap-2">
+                        <h3 class="fw-bold mb-0" th:text="${totalScans}">0</h3>
                     </div>
                 </div>
             </div>
 
-            <!-- SBOM Content -->
-            <div class="tab-pane fade" id="sbom-content" role="tabpanel">
-                <div class="card mb-4">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5 class="card-title mb-0">최근 SBOM 스캔 목록</h5>
-                        <!-- <a href="/sbom/results" class="btn btn-sm btn-outline-primary">전체 보기</a> -->
+            <!-- Critical -->
+            <div class="col">
+                <div class="stat-card border-danger border-opacity-25 position-relative overflow-hidden">
+                    <div class="position-absolute top-0 end-0 p-3 opacity-10">
+                        <span class="material-symbols-outlined text-danger" style="font-size: 64px;">dangerous</span>
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>빌드 ID</th>
-                                        <th>날짜</th>
-                                        <th>상태</th>
-                                        <th>작업</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr th:each="scan : ${recentSbomScans}"
-                                        th:attr="data-id=${scan.id},data-status=${scan.status}">
-                                        <td th:text="${scan.id}">1</td>
-                                        <td th:text="${scan.analysisOption.buildId}">Project</td>
-                                        <td th:text="${#temporals.format(scan.scanDate, 'yyyy-MM-dd HH:mm')}">Date</td>
-                                        <td>
-                                            <span th:if="${scan.status == 'SUCCESS'}"
-                                                class="badge bg-success status-badge">SUCCESS</span>
-                                            <span th:if="${scan.status == 'FAILED'}"
-                                                class="badge bg-danger status-badge">FAILED</span>
-                                            <span th:if="${scan.status != 'SUCCESS' and scan.status != 'FAILED'}"
-                                                class="badge bg-primary status-badge">RUNNING</span>
-                                        </td>
-                                        <td class="action-cell">
-                                            <!-- <a th:href="@{/sbom/results/{id}(id=${scan.id})}" class="btn btn-sm btn-outline-secondary">
-                                                <i class="bi bi-search"></i> 상세
-                                            </a> -->
-                                            <span class="text-muted" th:if="${scan.status == 'SUCCESS'}">완료 (상세 페이지
-                                                준비중)</span>
-                                            <span class="text-muted" th:if="${scan.status != 'SUCCESS'}">진행 중</span>
-                                        </td>
-                                    </tr>
-                                    <tr th:if="${#lists.isEmpty(recentSbomScans)}">
-                                        <td colspan="5" class="text-center text-muted py-3">최근 SBOM 스캔 기록이 없습니다.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="d-flex justify-content-between align-items-center mb-2 position-relative z-1">
+                        <span class="text-muted fw-medium fs-6">Critical</span>
+                        <span class="material-symbols-outlined text-danger">dangerous</span>
+                    </div>
+                    <div class="d-flex align-items-end gap-2 position-relative z-1">
+                        <h3 class="fw-bold mb-0" th:text="${totalVulns}">0</h3>
+                        <span class="badge bg-danger-subtle text-danger d-flex align-items-center">
+                            <span class="material-symbols-outlined" style="font-size: 14px;">arrow_upward</span>
+                            Review Needed
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Success Rate -->
+            <div class="col">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-muted fw-medium fs-6">Success Rate</span>
+                        <span class="material-symbols-outlined text-success">check_circle</span>
+                    </div>
+                    <div class="d-flex align-items-end gap-2">
+                        <h3 class="fw-bold mb-0" th:text="${successRate} + '%'">0%</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="col">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-muted fw-medium fs-6">Recent Scans (24h)</span>
+                        <span class="material-symbols-outlined text-warning">history</span>
+                    </div>
+                    <div class="d-flex align-items-end gap-2">
+                        <h3 class="fw-bold mb-0" th:text="${recentCount}">0</h3>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Charts Row -->
-        <div class="row mb-4">
-            <div class="col-md-8">
-                <div class="card h-100">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5 class="card-title mb-0">스캔 추세</h5>
-                        <div class="btn-group btn-group-sm" role="group">
-                            <button type="button" class="btn btn-outline-primary active" id="btnWeekly">주간</button>
-                            <button type="button" class="btn btn-outline-primary" id="btnMonthly">월간</button>
-                        </div>
+        <!-- Charts Section -->
+        <div class="row g-4 mb-4">
+            <div class="col-xl-8">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="fw-bold mb-0">Scan Trends</h5>
                     </div>
-                    <div class="card-body">
-                        <div style="height: 300px; position: relative;">
-                            <canvas id="trendChart"></canvas>
-                        </div>
+                    <div style="height: 300px;">
+                        <canvas id="trendChart"></canvas>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">상태 분포</h5>
+            <div class="col-xl-4">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="fw-bold mb-0">Status Distribution</h5>
                     </div>
-                    <div class="card-body">
-                        <div style="height: 300px; position: relative;">
-                            <canvas id="statusChart"></canvas>
-                        </div>
+                    <div style="height: 300px;">
+                        <canvas id="statusChart"></canvas>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Recent Scans Table -->
-        <div class="card mb-4">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="card-title mb-0">최근 스캔 목록</h5>
-                <a href="/results" class="btn btn-sm btn-outline-primary">전체 보기</a>
+        <div class="stat-card p-0 overflow-hidden">
+            <div class="p-4 border-bottom border-secondary border-opacity-25">
+                <h5 class="fw-bold mb-0">Recent Scans</h5>
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>빌드 ID</th>
-                                <th>날짜</th>
-                                <th>상태</th>
-                                <th>작업</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="scan : ${recentScans}">
-                                <td th:text="${scan.id}">1</td>
-                                <td>
-                                    <a th:href="@{/results/{id}(id=${scan.id})}" class="text-decoration-none fw-bold"
-                                        th:text="${scan.analysisOption.buildId}">Project</a>
-                                </td>
-                                <td th:text="${#temporals.format(scan.scanDate, 'yyyy-MM-dd HH:mm')}">Date</td>
-                                <td>
-                                    <span th:if="${scan.status == 'SUCCESS'}" class="badge bg-success">SUCCESS</span>
-                                    <span th:if="${scan.status == 'FAILED'}" class="badge bg-danger">FAILED</span>
-                                    <span th:if="${scan.status != 'SUCCESS' and scan.status != 'FAILED'}"
-                                        class="badge bg-primary">RUNNING</span>
-                                </td>
-                                <td>
-                                    <a th:href="@{/results/{id}(id=${scan.id})}"
-                                        class="btn btn-sm btn-outline-secondary">
-                                        <i class="bi bi-search"></i> 상세
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr th:if="${#lists.isEmpty(recentScans)}">
-                                <td colspan="5" class="text-center text-muted py-3">최근 스캔 기록이 없습니다.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="table-responsive">
+                <table class="table custom-table mb-0 table-hover">
+                    <thead>
+                        <tr>
+                            <th>Project Name</th>
+                            <th>Scan Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="scan : ${recentScans}">
+                            <td>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="rounded bg-primary bg-opacity-10 p-2 d-flex align-items-center justify-content-center text-primary"
+                                        style="width: 32px; height: 32px;">
+                                        <span class="material-symbols-outlined fs-6">code</span>
+                                    </div>
+                                    <div>
+                                        <p class="fw-medium mb-0" th:text="${scan.analysisOption.buildId}">
+                                            Project Alpha</p>
+                                        <small class="text-muted" th:text="'ID: ' + ${scan.id}">ID: 1</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-muted">
+                                <div th:text="${#temporals.format(scan.scanDate, 'MMM dd, yyyy')}">Oct 24, 2023
+                                </div>
+                                <small class="opacity-75" th:text="${#temporals.format(scan.scanDate, 'HH:mm a')}">10:42
+                                    AM</small>
+                            </td>
+                            <td>
+                                <span th:if="${scan.status == 'SUCCESS'}"
+                                    class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-2 py-1">
+                                    <span class="d-inline-block rounded-circle bg-success me-1"
+                                        style="width: 6px; height: 6px;"></span>
+                                    Success
+                                </span>
+                                <span th:if="${scan.status == 'FAILED'}"
+                                    class="badge bg-danger-subtle text-danger border border-danger-subtle rounded-pill px-2 py-1">
+                                    <span class="d-inline-block rounded-circle bg-danger me-1"
+                                        style="width: 6px; height: 6px;"></span>
+                                    Failed
+                                </span>
+                                <span th:if="${scan.status != 'SUCCESS' and scan.status != 'FAILED'}"
+                                    class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-2 py-1">
+                                    <span class="d-inline-block rounded-circle bg-primary me-1"
+                                        style="width: 6px; height: 6px;"></span>
+                                    Running
+                                </span>
+                            </td>
+                            <td>
+                                <a th:href="@{/results/{id}(id=${scan.id})}" class="btn btn-link text-muted p-1">
+                                    <span class="material-symbols-outlined">visibility</span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(recentScans)}">
+                            <td colspan="4" class="text-center py-4 text-muted">No recent scans found.</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div>
 
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script th:inline="javascript">
-        document.addEventListener('DOMContentLoaded', function () {
-            // Trend Chart Data
-            const weeklyLabels = /*[[${trendLabels}]]*/[];
-            const weeklyData = /*[[${trendData}]]*/[];
-            const monthlyLabels = /*[[${monthlyTrendLabels}]]*/[];
-            const monthlyData = /*[[${monthlyTrendData}]]*/[];
-
+        <!-- Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script th:inline="javascript">
+            // Charts
             const trendCtx = document.getElementById('trendChart').getContext('2d');
-
-            const trendChart = new Chart(trendCtx, {
-                type: 'bar',
-                data: {
-                    labels: weeklyLabels,
-                    datasets: [{
-                        label: '스캔 수',
-                        data: weeklyData,
-                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                stepSize: 1
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Toggle Logic
-            const btnWeekly = document.getElementById('btnWeekly');
-            const btnMonthly = document.getElementById('btnMonthly');
-
-            btnWeekly.addEventListener('click', function () {
-                if (this.classList.contains('active')) return;
-
-                this.classList.add('active');
-                btnMonthly.classList.remove('active');
-
-                trendChart.data.labels = weeklyLabels;
-                trendChart.data.datasets[0].data = weeklyData;
-                trendChart.update();
-            });
-
-            btnMonthly.addEventListener('click', function () {
-                if (this.classList.contains('active')) return;
-
-                this.classList.add('active');
-                btnWeekly.classList.remove('active');
-
-                trendChart.data.labels = monthlyLabels;
-                trendChart.data.datasets[0].data = monthlyData;
-                trendChart.update();
-            });
-
-            // Status Chart
             const statusCtx = document.getElementById('statusChart').getContext('2d');
+
+            const trendLabels = /*[[${trendLabels}]]*/[];
+            const trendData = /*[[${trendData}]]*/[];
             const statusLabels = /*[[${statusLabels}]]*/[];
             const statusData = /*[[${statusData}]]*/[];
 
-            const backgroundColors = statusLabels.map(label => {
-                if (label === 'SUCCESS') return 'rgba(75, 192, 192, 0.6)';
-                if (label === 'FAILED') return 'rgba(255, 99, 132, 0.6)';
-                return 'rgba(255, 206, 86, 0.6)';
-            });
+            let trendChart, statusChart;
+            const html = document.documentElement;
 
-            new Chart(statusCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: statusLabels,
-                    datasets: [{
-                        data: statusData,
-                        backgroundColor: backgroundColors,
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'bottom'
+            function initCharts() {
+                const isDark = html.getAttribute('data-bs-theme') === 'dark';
+                const gridColor = isDark ? '#282e39' : '#e2e8f0';
+                const textColor = isDark ? '#9da6b9' : '#64748b';
+
+                // Trend Chart
+                if (trendChart) trendChart.destroy();
+                trendChart = new Chart(trendCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: trendLabels || [],
+                        datasets: [{
+                            label: 'Scans',
+                            data: trendData || [],
+                            backgroundColor: '#135bec',
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: { color: gridColor },
+                                ticks: { color: textColor }
+                            },
+                            x: {
+                                grid: { display: false },
+                                ticks: { color: textColor }
+                            }
                         }
                     }
-                }
-            });
-        });
-        // SBOM Status Polling
-        function pollSbomStatus() {
-            const runningRows = document.querySelectorAll('#sbom-content tr[data-status="RUNNING"]');
-            runningRows.forEach(row => {
-                const id = row.getAttribute('data-id');
-                if (!id) return;
+                });
 
-                fetch(`/api/sbom/status/${id}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'SUCCESS') {
-                            row.setAttribute('data-status', 'SUCCESS');
-                            row.querySelector('.status-badge').className = 'badge bg-success status-badge';
-                            row.querySelector('.status-badge').textContent = 'SUCCESS';
-                            // Update Action button
-                            const actionCell = row.querySelector('.action-cell');
-                            // actionCell.innerHTML = `<a href="/sbom/results/${id}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-search"></i> 상세</a>`;
-                            actionCell.innerHTML = `<span class="text-muted">완료 (상세 페이지 준비중)</span>`;
-                        } else if (data.status === 'FAILED') {
-                            row.setAttribute('data-status', 'FAILED');
-                            row.querySelector('.status-badge').className = 'badge bg-danger status-badge';
-                            row.querySelector('.status-badge').textContent = 'FAILED';
+                // Status Chart
+                if (statusChart) statusChart.destroy();
+
+                const backgroundColors = (statusLabels || []).map(label => {
+                    if (label === 'SUCCESS') return '#198754'; // success
+                    if (label === 'FAILED') return '#dc3545'; // danger
+                    return '#ffc107'; // warning
+                });
+
+                statusChart = new Chart(statusCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: statusLabels || [],
+                        datasets: [{
+                            data: statusData || [],
+                            backgroundColor: backgroundColors,
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: { color: textColor }
+                            }
                         }
-                    })
-                    .catch(console.error);
-            });
-        }
-
-        // Poll every 5 seconds if SBOM tab is active
-        setInterval(() => {
-            const sbomTab = document.getElementById('sbom-tab');
-            if (sbomTab && sbomTab.classList.contains('active')) {
-                pollSbomStatus();
+                    }
+                });
             }
-        }, 5000);
-    </script>
+
+            // Listen for theme changes from layout
+            document.addEventListener('themeChanged', function () {
+                initCharts();
+            });
+
+            document.addEventListener('DOMContentLoaded', initCharts);
+        </script>
     </div>
 </body>
 

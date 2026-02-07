@@ -29,6 +29,9 @@
                 background: #e9ecef;
                 border-bottom: 1px solid #ddd;
                 font-weight: bold;
+                display: flex;
+                justify-content: source-between;
+                align-items: center;
             }
 
             .column-body {
@@ -57,6 +60,13 @@
                 font-weight: bold;
                 color: #198754;
                 background-color: #e8f5e9;
+            }
+
+            /* Recommendation Style */
+            .list-group-item.recommended {
+                border-left: 5px solid #fd7e14;
+                /* Orange */
+                background-color: #fff3cd;
             }
 
             .draggable-source {
@@ -135,6 +145,11 @@
                                 <h5><i class="bi bi-palette"></i> 상태 표시</h5>
                                 <ul class="list-unstyled">
                                     <li class="mb-2">
+                                        <span class="badge bg-warning text-dark">Recommended</span>
+                                        <span class="fw-bold text-dark">주황색 테두리</span><br>
+                                        선택한 카테고리와 연관성이 높은 추천 룰입니다.
+                                    </li>
+                                    <li class="mb-2">
                                         <span class="badge bg-success">New</span> <span class="fw-bold text-success">초록색
                                             텍스트</span><br>
                                         사용자가 직접 추가한 커스텀 매핑입니다.
@@ -143,10 +158,6 @@
                                         <span class="badge bg-danger">Deleted</span> <span
                                             class="text-danger text-decoration-line-through">빨간 취소선</span><br>
                                         시스템 기본 매핑이지만 사용자가 삭제(비활성화)한 항목입니다. 다시 추가하면 복구됩니다.
-                                    </li>
-                                    <li>
-                                        <span class="text-dark">검정색 기본 텍스트</span><br>
-                                        시스템 기본(Default) 매핑 상태입니다.
                                     </li>
                                 </ul>
                             </div>
@@ -184,8 +195,12 @@
 
             <!-- Col 2: Mapped Rules (Target) -->
             <div class="column shadow-sm border-primary" style="border-width: 2px;">
-                <div class="column-header d-flex justify-content-between align-items-center bg-primary text-white">
-                    <span><i class="bi bi-link-45deg"></i> 2. Mapped Rules (Target)</span>
+                <div class="column-header bg-primary text-white">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-link-45deg"></i>
+                        <span>2. Mapped Rules</span>
+                        <span class="badge bg-light text-primary rounded-pill" id="mappedCount">0</span>
+                    </div>
                     <button class="btn btn-sm btn-light text-danger fw-bold" onclick="removeSelected()" disabled
                         id="btnRemove">Remove Selected</button>
                 </div>
@@ -207,10 +222,27 @@
 
             <!-- Col 3: All Rules (Source) -->
             <div class="column shadow-sm">
-                <div class="column-header d-flex justify-content-between align-items-center">
-                    <span><i class="bi bi-list-ul"></i> 3. All Rules (Source)</span>
+                <div class="column-header">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-list-ul"></i>
+                        <span>3. All Rules</span>
+                        <span class="badge bg-secondary rounded-pill" id="sourceCount">0</span>
+                    </div>
                     <button class="btn btn-sm btn-primary" onclick="addSelected()" disabled id="btnAdd">Add
                         Selected</button>
+                </div>
+                <!-- Filter Toolbar -->
+                <div class="px-2 py-2 bg-white border-bottom d-flex gap-2 align-items-center flex-wrap">
+                    <select class="form-select form-select-sm" style="width: auto;" id="languageSelect"
+                        onchange="searchRulesDebounced()">
+                        <option value="">All Languages</option>
+                        <!-- Languages injected here -->
+                    </select>
+                    <div class="form-check form-check-inline m-0">
+                        <input class="form-check-input" type="checkbox" id="checkUnmapped"
+                            onchange="searchRulesDebounced()">
+                        <label class="form-check-label small" for="checkUnmapped">Hide Mapped</label>
+                    </div>
                 </div>
                 <div class="column-body">
                     <input type="text" class="form-control mb-2" placeholder="Search Rules..." id="ruleSearch"
@@ -245,6 +277,11 @@
                 const res = await fetch(`/api/compliance/categories/${catId}/mappings`);
                 const data = await res.json();
                 renderMappedList(data.mappings);
+
+                // If unmapped filter is on, refresh source list to update exclusion
+                if (document.getElementById('checkUnmapped').checked) {
+                    searchRulesDebounced();
+                }
             }
 
             let currentRecommendations = [];
@@ -255,8 +292,7 @@
                     if (res.ok) {
                         currentRecommendations = await res.json();
                         // Refresh source list to apply highlighting
-                        const query = document.getElementById('ruleSearch').value;
-                        fetchRules(query);
+                        searchRulesDebounced();
                     }
                 } catch (e) {
                     console.error("Failed to load recommendations", e);
@@ -266,6 +302,8 @@
             function renderMappedList(mappings) {
                 const list = document.getElementById('mappedList');
                 list.innerHTML = '';
+                document.getElementById('mappedCount').innerText = mappings.length; // Update count
+
                 mappings.forEach(m => {
                     const item = document.createElement('label');
                     item.className = `list-group-item d-flex gap-2 align-items-center ${m.active ? '' : 'deleted'} ${m.custom ? 'added' : ''}`;
@@ -288,32 +326,110 @@
                 clearTimeout(debounceTimer);
                 debounceTimer = setTimeout(() => {
                     const query = document.getElementById('ruleSearch').value;
-                    if (query.length < 2) return;
-                    fetchRules(query);
+                    const language = document.getElementById('languageSelect').value;
+                    const unmappedOnly = document.getElementById('checkUnmapped').checked;
+
+                    fetchRules(query, language, unmappedOnly);
                 }, 300);
             }
 
-            async function fetchRules(query) {
-                const res = await fetch(`/api/compliance/rules?query=${encodeURIComponent(query)}`);
+            async function fetchRules(query, language, unmappedOnly) {
+                let url = `/api/compliance/rules?query=${encodeURIComponent(query)}`;
+                if (language) url += `&language=${encodeURIComponent(language)}`;
+                if (unmappedOnly) url += `&unmappedOnly=true`;
+                if (currentCategoryId) url += `&categoryId=${currentCategoryId}`;
+
+                const res = await fetch(url);
                 const rules = await res.json();
-                renderSourceList(rules);
+
+                // Sorting: Recommendations first
+                const recSet = new Set(currentRecommendations);
+                rules.sort((a, b) => {
+                    const aRec = recSet.has(a);
+                    const bRec = recSet.has(b);
+                    if (aRec && !bRec) return -1;
+                    if (!aRec && bRec) return 1;
+                    return a.localeCompare(b);
+                });
+
+                updateAllRules(rules, recSet);
             }
 
-            function renderSourceList(rules) {
+            // --- Lazy Loading State ---
+            let allRules = [];
+            let displayedCount = 0;
+            const RENDER_BATCH_SIZE = 50;
+
+            function updateAllRules(rules, recSet) {
+                allRules = rules;
+                displayedCount = 0;
+                document.getElementById('sourceCount').innerText = rules.length;
+
                 const list = document.getElementById('sourceList');
                 list.innerHTML = '';
-                rules.forEach(r => {
+
+                // Reset scroll position
+                if (list.parentElement) list.parentElement.scrollTop = 0;
+
+                appendRules(recSet);
+            }
+
+            function appendRules(recSet = new Set(currentRecommendations)) {
+                if (displayedCount >= allRules.length) return;
+
+                const list = document.getElementById('sourceList');
+                const fragment = document.createDocumentFragment();
+
+                const nextBatch = allRules.slice(displayedCount, displayedCount + RENDER_BATCH_SIZE);
+
+                nextBatch.forEach(r => {
+                    const isRec = recSet.has(r);
                     const item = document.createElement('div');
-                    item.className = 'list-group-item draggable-source d-flex gap-2';
+                    item.className = `list-group-item draggable-source d-flex gap-2 ${isRec ? 'recommended' : ''}`;
                     item.setAttribute('draggable', 'true');
                     item.setAttribute('data-id', r);
                     item.ondragstart = drag;
+
+                    let badges = '';
+                    if (isRec) badges += '<span class="badge bg-warning text-dark ms-auto">Recommended</span>';
+
                     item.innerHTML = `
                         <input class="form-check-input flex-shrink-0" type="checkbox" value="${r}" onchange="updateBtnState('sourceList', 'btnAdd')">
                         <span>${r}</span>
+                        ${badges}
                     `;
-                    list.appendChild(item);
+                    fragment.appendChild(item);
                 });
+
+                list.appendChild(fragment);
+                displayedCount += nextBatch.length;
+            }
+
+            // Infinite Scroll Listener
+            document.querySelector('#sourceList').parentElement.addEventListener('scroll', function (e) {
+                const { scrollTop, scrollHeight, clientHeight } = e.target;
+                if (scrollTop + clientHeight >= scrollHeight - 50) {
+                    appendRules();
+                }
+            });
+
+            // --- Language Load ---
+            async function loadLanguages() {
+                try {
+                    const res = await fetch('/api/compliance/languages');
+                    if (res.ok) {
+                        const langs = await res.json();
+                        const select = document.getElementById('languageSelect');
+                        langs.forEach(lang => {
+                            const opt = document.createElement('option');
+                            opt.value = lang;
+                            opt.innerText = lang;
+                            select.appendChild(opt);
+                        });
+                    }
+                } catch (e) {
+                    console.error("Failed to load languages", e);
+                }
             }
 
             // --- Drag & Drop ---
@@ -426,6 +542,7 @@
 
             // Initial Load
             fetchRules(""); // Load initial rules
+            loadLanguages(); // Load languages
         </script>
     </div>
 </body>
